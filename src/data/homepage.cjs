@@ -141,8 +141,7 @@ const DOMAIN_NOTES = {
         {
         title: '可能不续',
         items: [
-          { name: 'zutomayo.org', status: '可能不续', note: '当时觉得好听。', href: 'https://zutomayo.org', action: '打开' },
-          { name: 'greyfox.dev', status: '可能不续', note: '还没有认真用起来。' }
+          { name: 'zutomayo.org', status: '可能不续', note: '当时觉得好听。', href: 'https://zutomayo.org', action: '打开' }
         ]
       }
     ]
@@ -163,8 +162,7 @@ const DOMAIN_NOTES = {
         {
         title: '可能不續',
         items: [
-          { name: 'zutomayo.org', status: '可能不續', note: '當時覺得好聽。', href: 'https://zutomayo.org', action: '打開' },
-          { name: 'greyfox.dev', status: '可能不續', note: '還沒有認真用起來。' }
+          { name: 'zutomayo.org', status: '可能不續', note: '當時覺得好聽。', href: 'https://zutomayo.org', action: '打開' }
         ]
       }
     ]
@@ -185,8 +183,7 @@ const DOMAIN_NOTES = {
         {
         title: 'Probably not keeping',
         items: [
-          { name: 'zutomayo.org', status: 'maybe', note: 'It sounded nice then.', href: 'https://zutomayo.org', action: 'Open' },
-          { name: 'greyfox.dev', status: 'maybe', note: 'Not really used yet.' }
+          { name: 'zutomayo.org', status: 'maybe', note: 'It sounded nice then.', href: 'https://zutomayo.org', action: 'Open' }
         ]
       }
     ]

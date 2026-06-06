@@ -791,6 +791,63 @@ img {
   padding: 20px;
 }
 
+.akari-site-footer {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.52);
+  padding: 28px 20px;
+  font-size: 0.82rem;
+}
+
+.akari-site-footer p {
+  margin: 6px 0;
+}
+
+.akari-visit-counter {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.akari-visit-counter span[id*="_container_"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.akari-icp a {
+  color: var(--akari-accent);
+  text-decoration: none;
+}
+
+.akari-icp a:hover {
+  text-decoration: underline;
+}
+
+.akari-cf-cdn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.akari-cf-cdn svg {
+  height: 1em;
+  width: auto;
+  vertical-align: middle;
+  display: inline;
+}
+
+.akari-footer-copy {
+  margin-top: 12px;
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+.akari-feed-link a {
+  color: var(--akari-accent);
+}
+
 html.mdui-theme-light,
 body.mdui-theme-light {
   color-scheme: light;
