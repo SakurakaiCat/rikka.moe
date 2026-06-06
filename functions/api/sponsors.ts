@@ -5,17 +5,14 @@ interface SecretBinding {
 }
 
 interface Env {
-  // Direct env vars or individual secret bindings
   AifadianAPIToken?: string | SecretBinding;
   AifadianUserID?: string | SecretBinding;
-  // Alternate naming conventions
   AIFADIAN_API_TOKEN?: string | SecretBinding;
   AIFADIAN_USER_ID?: string | SecretBinding;
   AFDIAN_API_TOKEN?: string | SecretBinding;
   AFDIAN_USER_ID?: string | SecretBinding;
   AFDIAN_TOKEN?: string | SecretBinding;
   AFDIAN_USERID?: string | SecretBinding;
-  // Secrets Store namespace bindings (common names)
   SECRETS?: SecretBinding;
   SECRETS_STORE?: SecretBinding;
   SECRET_STORE?: SecretBinding;
@@ -24,7 +21,6 @@ interface Env {
   CLOUDFLARE_SECRETS?: SecretBinding;
   SECRET?: SecretBinding;
   SECRET_STORE_BINDING?: SecretBinding;
-  // Allow any other keys
   [key: string]: unknown;
 }
 
@@ -48,7 +44,6 @@ const resolveFromStore = async (
   env: Env,
   secretName: string,
 ): Promise<string> => {
-  // Try direct env var / individual binding first
   const directBindings: Record<string, string | SecretBinding | undefined> = {
     AifadianAPIToken: env.AifadianAPIToken,
     AifadianUserID: env.AifadianUserID,
@@ -63,7 +58,6 @@ const resolveFromStore = async (
   const directValue = await resolveSecret(directBindings[secretName]);
   if (directValue) return directValue;
 
-  // Try Secrets Store namespace bindings with common names
   const storeBindings = [
     env.SECRETS,
     env.SECRETS_STORE,
@@ -81,19 +75,17 @@ const resolveFromStore = async (
         const value = await binding.get(secretName);
         if (value) return value;
       } catch {
-        // Continue to next binding
+        // Continue
       }
     }
   }
 
-  // Last resort: iterate over all env keys to find SecretBinding
   for (const [key, value] of Object.entries(env)) {
     if (isSecretBinding(value)) {
       try {
         const result = await value.get(secretName);
         if (result) return result;
       } catch {
-        // Try without key for individual bindings
         try {
           const result = await value.get();
           if (result) return result;
@@ -129,7 +121,28 @@ const jsonResponse = (
 export const onRequestOptions = () =>
   new Response(null, { status: 204, headers: corsHeaders });
 
-export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
+export const onRequestGet: PagesFunction<Env> = async ({ env, request }) => {
+  const url = new URL(request.url);
+
+  // Debug mode: list env keys and their types
+  if (url.searchParams.get('debug') === '1') {
+    const keys: Record<string, string> = {};
+    for (const [key, value] of Object.entries(env)) {
+      if (value === undefined) {
+        keys[key] = 'undefined';
+      } else if (value === null) {
+        keys[key] = 'null';
+      } else if (typeof value === 'string') {
+        keys[key] = `string(${value.length})`;
+      } else if (isSecretBinding(value)) {
+        keys[key] = 'SecretBinding';
+      } else {
+        keys[key] = typeof value;
+      }
+    }
+    return jsonResponse({ debug: true, keys });
+  }
+
   const token = await resolveFromStore(env as unknown as Env, 'AifadianAPIToken');
   const userId = await resolveFromStore(env as unknown as Env, 'AifadianUserID');
 
