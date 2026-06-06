@@ -129,8 +129,10 @@ document.addEventListener('click', (event) => {
     return;
   }
 
-  if (!target.closest('#akari-lang-popover')) setLangPopoverOpen(false);
-  if (!target.closest('#akari-settings-popover')) setSettingsOpen(false);
+  const clickedLangBtn = target.closest('.appbar-lang-trigger');
+  const clickedSettingsBtn = target.closest('.appbar-settings-trigger');
+  if (!target.closest('#akari-lang-popover') && !clickedLangBtn) setLangPopoverOpen(false);
+  if (!target.closest('#akari-settings-popover') && !clickedSettingsBtn) setSettingsOpen(false);
 });
 
 document.addEventListener('input', (event) => {
