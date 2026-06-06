@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import PostCard from '../../../../components/PostCard.astro';
+import { categorySlug, getPostsByLocale, LOCALES, normalizeRoutePath, postCategories } from '../../../../lib/content';
+import { label } from '../../../../lib/i18n';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const locale of LOCALES) {
+    const posts = await getPostsByLocale(locale);
+    const categories = new Set(posts.flatMap((post) => postCategories(post)));
+    for (const category of categories) {
+      paths.push({ params: { lang: locale.lang_path, category: categorySlug(category) }, props: { locale, category } });
+    }
+  }
+  return paths;
+}
+
+const { locale, category } = Astro.props;
+const posts = (await getPostsByLocale(locale)).filter((post) => postCategories(post).some((item) => categorySlug(item) === categorySlug(category)));
+---
+<BaseLayout title={`${label('common', 'categories', locale)}: ${category}`} description={`${category} - Akari`} locale={locale} canonicalPath={normalizeRoutePath(`${locale.lang_path}/categories/${categorySlug(category)}`)}>
+  <section class="archive-page glass-card">
+    <h1>{category}</h1>
+    <div class="post-grid">{posts.map((post) => <PostCard post={post} />)}</div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HomePage from '../../components/HomePage.astro';
+import { getPostsByLocale, getLocaleByPath, LOCALES, homePath } from '../../lib/content';
+
+export async function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { lang: locale.lang_path }, props: { locale } }));
+}
+
+const { locale } = Astro.props;
+const posts = await getPostsByLocale(locale);
+---
+<BaseLayout title="Akari" description={locale.home_description} locale={locale} canonicalPath={homePath(locale)}>
+  <HomePage locale={locale} posts={posts} />
+</BaseLayout>

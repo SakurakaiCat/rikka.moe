@@ -1,0 +1,174 @@
+---
+import type { Locale, PostEntry } from '../lib/content';
+import { asDate, postCategories, postUrl } from '../lib/content';
+import { getHomepageModel } from '../lib/i18n';
+
+const { locale, posts } = Astro.props as { locale: Locale; posts: PostEntry[] };
+const model = getHomepageModel(locale);
+const byCategory = (names: string[]) => posts.filter((post) => post.data.categories?.some((category) => names.includes(category)));
+const articlePosts = byCategory(['长文', '長文', 'Essays', '記事']);
+const thoughtPosts = byCategory(['随想', '隨想', 'Thoughts', 'つぶやき']);
+const galleryPosts = byCategory(['相册', '相冊', 'Gallery', 'ギャラリー']);
+const imagePattern = /!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)|<img[^>]+src=["']([^"']+)["']/g;
+const imagesOf = (post: PostEntry) => {
+  const images = [post.data.cover, post.data.thumbnail, post.data.banner, post.data.image].filter(Boolean) as string[];
+  for (const match of (post.body || '').matchAll(imagePattern)) {
+    const src = match[1] || match[2];
+    if (src && !images.includes(src)) images.push(src);
+  }
+  return images;
+};
+const firstImageOf = (post: PostEntry) => imagesOf(post)[0] || '/images/profile/background.jpg';
+const dateLabel = (post: PostEntry) => asDate(post.data.date)?.toISOString().slice(0, 10) || '';
+const categoryLabel = (post: PostEntry) => postCategories(post)[0] || '';
+---
+<section class="akari-hero-banner">
+  <div class="akari-hero-card glass-card">
+    <picture class="akari-hero-media" aria-hidden="true">
+      <source media="(min-width: 1200px)" srcset={model.hero.sources.desktop} />
+      <source media="(min-width: 700px)" srcset={model.hero.sources.tablet} />
+      <img src={model.hero.sources.mobile} alt="" fetchpriority="high" decoding="async" />
+    </picture>
+    <div class="akari-hero-overlay"></div>
+    <div class="akari-hero-content">
+      <div class="akari-hero-badge">{model.hero.badge}</div>
+      <h1 class="akari-hero-title">
+        <img class="akari-hero-avatar" src={model.hero.avatarSrc} alt={model.hero.avatarAlt} width="72" height="72" />
+        <span>{model.hero.title}</span>
+      </h1>
+      <p class="akari-hero-brand-cn">{model.hero.brandCn}</p>
+      <p class="akari-hero-subtitle">{model.hero.subtitle}</p>
+      <div class="akari-hero-tags" aria-label="Tags">{model.hero.tags.map((tag: string) => <span>{tag}</span>)}</div>
+      <nav class="akari-hero-actions" aria-label="Hero actions">
+        {model.hero.ctas.map((cta: any) => <a class:list={["button", cta.primary && "button--primary"]} href={cta.href} target={cta.external ? '_blank' : undefined} rel={cta.external ? 'noopener noreferrer' : undefined}>{cta.label}</a>)}
+      </nav>
+    </div>
+  </div>
+</section>
+
+<div class="akari-bento-layout">
+  <div class="akari-bento-layout__left">
+    <section class="akari-info-tabs glass-card" aria-labelledby="akari-info-tabs-title">
+      <div class="akari-info-tabs__header">
+        <small>{model.tabs.eyebrow}</small>
+        <h2 id="akari-info-tabs-title">{model.tabs.title}</h2>
+      </div>
+      <div class="akari-info-tabs__bar" role="tablist" aria-label={model.tabs.label}>
+        <a href="#akari-nav-panel">{model.tabs.nav}</a>
+        <a href="#akari-now-panel">{model.tabs.now}</a>
+        <a href="#akari-projects-panel">{model.tabs.projects}</a>
+        <a href="#akari-places-panel">{model.tabs.places}</a>
+        <a href="#akari-albums-panel">{model.tabs.albums}</a>
+        <a href="#akari-domains-panel">{model.tabs.domains}</a>
+      </div>
+      <div class="akari-info-panels">
+        <article id="akari-nav-panel" class="akari-info-panel akari-info-panel--wide">
+          <h3>{model.nav.title}</h3>
+          <p>{model.nav.subtitle}</p>
+          <div class="akari-info-nav__grid">
+            {model.nav.stations.map((station: any) => <a class="station" href={station.href} target={station.href.startsWith('#') ? undefined : '_blank'} rel={station.href.startsWith('#') ? undefined : 'noopener noreferrer'}><span>[{station.number}]</span><strong>{station.name}</strong><code>{station.code}</code><small>{station.description}</small></a>)}
+          </div>
+        </article>
+        <article id="akari-now-panel" class="akari-info-panel">
+          <h3>{model.personal.now.title}</h3>
+          <ul class="akari-info-now__list">{model.personal.now.items.map((item: any) => <li><span>{item.status}</span><p>{item.text}</p></li>)}</ul>
+        </article>
+        <article id="akari-projects-panel" class="akari-info-panel">
+          <h3>{model.personal.projects.title}</h3>
+          <div class="akari-info-project__grid">{model.personal.projects.items.map((project: any) => <section class="mini-card"><header><strong>{project.title}</strong><span>{project.status}</span></header><p>{project.description}</p><div>{project.tags.map((tag: string) => <em>{tag}</em>)}</div></section>)}</div>
+        </article>
+        <article id="akari-places-panel" class="akari-info-panel">
+          <h3>{model.personal.places.title}</h3>
+          <p>{model.personal.places.countLabel}</p>
+          <div class="chips">{model.personal.places.cities.map((city: string) => <span>{city}</span>)}</div>
+        </article>
+        <article id="akari-albums-panel" class="akari-info-panel akari-info-panel--wide">
+          <h3>{model.gallery.title}</h3>
+          <div class="akari-info-gallery__grid">{model.gallery.sections.flatMap((section: any) => section.albums.slice(0, 4)).map((album: any) => <a class="akari-info-album" href={album.externalHref || '#'} target="_blank" rel="noopener noreferrer"><img src={album.coverSrc} alt={album.coverAlt} loading="lazy" /><span>{album.artist}</span><strong>{album.title}</strong></a>)}</div>
+        </article>
+        <article id="akari-domains-panel" class="akari-info-panel akari-info-panel--wide">
+          <h3>{model.domains.title}</h3>
+          <p>{model.domains.intro}</p>
+          <div class="akari-info-domain__items">{model.domains.groups.flatMap((group: any) => group.items).map((item: any) => <section><strong>{item.name}</strong><span>{item.status}</span><p>{item.note}</p></section>)}</div>
+        </article>
+      </div>
+    </section>
+  </div>
+  <div class="akari-bento-layout__right">
+    <aside class="recent-comments-card glass-card"><div class="recent-comments-card__head"><i class="ph ph-chat-circle-dots"></i><div><h2>{model.comments.title}</h2><p>{model.comments.subtitle}</p></div></div><div class="recent-comments-card__list" data-empty={model.comments.empty} data-loading={model.comments.loading}>{model.comments.loading}</div></aside>
+    <section id="akari-blog-feed" class="akari-feed-intro glass-card"><h2>{model.feed.title}</h2><p>{model.feed.text}</p></section>
+  </div>
+</div>
+
+{model.personalIntro && <section class="akari-personal-intro glass-card"><article><header><small>Personal</small><h2>{model.personalIntro.title}</h2><p>{model.personalIntro.memoirNote}</p></header><figure><img src={model.personalIntro.image} alt={model.personalIntro.imageAlt} loading="lazy" /></figure><div class="akari-personal-intro__body">{model.personalIntro.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}</div><div class="akari-personal-intro__tags"><h3>{model.personalIntro.tagHeader}</h3><ul>{model.personalIntro.tags.map((tag: string) => <li>{tag}</li>)}</ul></div><footer><p>{model.personalIntro.closing}</p></footer></article></section>}
+
+<section class="akari-blog-feed akari-home-sections akari-card-mosaic">
+  <section class="akari-section akari-section--articles akari-mosaic-block">
+    <header class="akari-section__head akari-section__head--split">
+      <div><small>Essays</small><h2>长文</h2></div>
+      <span>{articlePosts.length}</span>
+    </header>
+    <div class="akari-article-glass-grid">
+      {articlePosts.map((post, index) => (
+        <article class:list={["akari-article-glass-card", index === 0 && "akari-article-glass-card--featured"]}>
+          <a href={postUrl(post)}>
+            <div class="akari-article-glass-card__shine"></div>
+            <div class="akari-article-glass-card__meta"><time>{dateLabel(post)}</time><span>{categoryLabel(post)}</span></div>
+            <h3>{post.data.title}</h3>
+            {post.data.description && <p>{post.data.description}</p>}
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="akari-section akari-section--thoughts akari-mosaic-block">
+    <header class="akari-section__head akari-section__head--split">
+      <div><small>Timeline</small><h2>随想</h2></div>
+      <span>{thoughtPosts.length}</span>
+    </header>
+    <div class="akari-thought-timeline">
+      {thoughtPosts.map((post) => {
+        const image = firstImageOf(post);
+        return (
+          <article class="akari-thought-timeline__item">
+            <a href={postUrl(post)}>
+              <time>{dateLabel(post)}</time>
+              <figure><img src={image} alt="" loading="lazy" decoding="async" /></figure>
+              <div>
+                <h3>{post.data.title}</h3>
+                {post.data.description && <p>{post.data.description}</p>}
+              </div>
+            </a>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="akari-section akari-section--gallery akari-mosaic-block akari-mosaic-block--wide">
+    <header class="akari-section__head akari-section__head--split">
+      <div><small>Gallery</small><h2>相册</h2></div>
+      <span>{galleryPosts.length}</span>
+    </header>
+    <div class="akari-gallery-mosaic">
+      {galleryPosts.map((post) => {
+        const images = imagesOf(post).slice(0, 6);
+        return (
+          <article class="akari-gallery-card">
+            <a href={postUrl(post)}>
+              <div class:list={["akari-gallery-card__images", images.length <= 1 && "akari-gallery-card__images--single"]}>
+                {(images.length ? images : ['/images/profile/background.jpg']).map((image) => <img src={image} alt="" loading="lazy" decoding="async" />)}
+              </div>
+              <div class="akari-gallery-card__body">
+                <time>{dateLabel(post)}</time>
+                <h3>{post.data.title}</h3>
+                {post.data.description && <p>{post.data.description}</p>}
+              </div>
+            </a>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+</section>

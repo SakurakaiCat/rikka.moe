@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { archivePath, getPostsByLocale, LOCALES } from '../../../lib/content';
+import { label } from '../../../lib/i18n';
+
+export async function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { lang: locale.lang_path }, props: { locale } }));
+}
+
+const { locale } = Astro.props;
+const posts = await getPostsByLocale(locale);
+---
+<BaseLayout title={label('common', 'archive', locale)} description={locale.archive_description} locale={locale} canonicalPath={archivePath(locale)}>
+  <section class="archive-page glass-card">
+    <h1>{label('common', 'archive', locale)}</h1>
+    <p>{locale.archive_description}</p>
+    <div class="post-grid">{posts.map((post) => <PostCard post={post} />)}</div>
+  </section>
+</BaseLayout>

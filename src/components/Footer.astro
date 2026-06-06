@@ -1,0 +1,7 @@
+---
+import type { Locale } from '../lib/content';
+const { locale } = Astro.props as { locale: Locale };
+---
+<footer class="akari-footer">
+  <p>© {new Date().getFullYear()} Akari / 篠崎香澄 · <a href={`/${locale.lang_path}/atom.xml`}>Atom</a></p>
+</footer>

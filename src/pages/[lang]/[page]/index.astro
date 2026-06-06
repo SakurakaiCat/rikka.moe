@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { languageOptions, LOCALES, pageUrl, resolveLocale } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages', (entry) => !entry.data.is_locale_selector);
+  return pages
+    .filter((page) => {
+      const parts = page.id.split('/');
+      return LOCALES.some((locale) => locale.lang_path === parts[0]) && parts[1];
+    })
+    .map((page) => ({ params: { lang: page.id.split('/')[0], page: page.id.split('/')[1] }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const locale = resolveLocale(page.data);
+const { Content } = await render(page);
+const allPages = await getCollection('pages');
+const options = languageOptions(pageUrl(page), locale, page.data.translation_key, allPages);
+---
+<BaseLayout title={page.data.title || 'Akari'} description={page.data.description} locale={locale} canonicalPath={pageUrl(page)} indexing={page.data.indexing !== false} languageOptions={options}>
+  <section class="content-page glass-card">
+    <h1>{page.data.title}</h1>
+    <Content />
+    {page.id.includes('/guestbook/') && <div class="guestbook-card"><div id="guestbook-list"></div><form id="guestbook-form"><input name="nickname" placeholder="Name" /><textarea name="content" placeholder="Message"></textarea><button type="submit">Submit</button></form></div>}
+  </section>
+</BaseLayout>
