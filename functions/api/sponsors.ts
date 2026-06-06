@@ -55,10 +55,11 @@ export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
   }
 
   if (!token || !userId) {
-    return jsonResponse(
-      { error: 'not_configured' },
-      { status: 500, cache: 'no-store' },
-    );
+    return jsonResponse({
+      sponsors: [],
+      total: 0,
+      updated_at: Math.floor(Date.now() / 1000),
+    });
   }
 
   try {
