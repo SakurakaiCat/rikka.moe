@@ -1,13 +1,3 @@
-const themeKey = 'materialis-theme';
-
-function setTheme(theme) {
-  document.documentElement.classList.toggle('mdui-theme-light', theme === 'light');
-  document.documentElement.classList.toggle('mdui-theme-dark', theme !== 'light');
-  document.body.classList.toggle('mdui-theme-light', theme === 'light');
-  document.body.classList.toggle('mdui-theme-dark', theme !== 'light');
-  try { localStorage.setItem(themeKey, theme); } catch {}
-}
-
 function setDrawerOpen(open) {
   const drawer = document.getElementById('akari-sidebar');
   const backdrop = document.querySelector('.akari-drawer-backdrop');
@@ -20,7 +10,80 @@ function setDrawerOpen(open) {
   trigger?.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
 
-try { setTheme(localStorage.getItem(themeKey) || 'dark'); } catch {}
+function setSearchOpen(open) {
+  const modal = document.getElementById('akari-search-modal');
+  if (!modal) return;
+  modal.style.display = open ? 'flex' : 'none';
+  modal.setAttribute('aria-hidden', open ? 'false' : 'true');
+  if (open) {
+    const input = modal.querySelector('.akari-search-modal__input');
+    input?.focus();
+  }
+}
+
+function setSettingsOpen(open) {
+  const popover = document.getElementById('akari-settings-popover');
+  if (!popover) return;
+  popover.style.display = open ? 'block' : 'none';
+  popover.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+
+function setLangPopoverOpen(open) {
+  const popover = document.getElementById('akari-lang-popover');
+  if (!popover) return;
+  popover.style.display = open ? 'block' : 'none';
+  popover.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+
+let searchData = [];
+let searchLoaded = false;
+
+async function loadSearchData() {
+  if (searchLoaded) return;
+  const lang = document.documentElement.lang || 'zh-CN';
+  const langPath = lang === 'zh-TW' ? 'zh-tw' : lang === 'ja' ? 'ja' : 'en';
+  try {
+    const res = await fetch(`/${langPath}/search.json`);
+    if (res.ok) {
+      const data = await res.json();
+      searchData = data.posts || [];
+      searchLoaded = true;
+    }
+  } catch {}
+}
+
+function renderSearchResults(query) {
+  const resultsEl = document.querySelector('.akari-search-modal__results');
+  if (!resultsEl) return;
+  if (!query.trim()) {
+    resultsEl.innerHTML = '';
+    return;
+  }
+  const q = query.toLowerCase();
+  const matches = searchData.filter((post) =>
+    (post.title && post.title.toLowerCase().includes(q)) ||
+    (post.content && post.content.toLowerCase().includes(q)) ||
+    (post.tags && post.tags.some((t) => t.toLowerCase().includes(q))) ||
+    (post.categories && post.categories.some((c) => c.toLowerCase().includes(q)))
+  ).slice(0, 10);
+
+  if (!matches.length) {
+    resultsEl.innerHTML = '<div class="akari-search-modal__empty">没有找到相关文章</div>';
+    return;
+  }
+
+  resultsEl.innerHTML = matches.map((post) =>
+    `<a class="akari-search-modal__result" href="${post.url}">
+      <h4>${escapeHtml(post.title)}</h4>
+      <time>${post.date}</time>
+      <p>${escapeHtml(post.content?.slice(0, 120) || '')}...</p>
+    </a>`
+  ).join('');
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[c]);
+}
 
 document.addEventListener('click', (event) => {
   const target = event.target;
@@ -37,24 +100,53 @@ document.addEventListener('click', (event) => {
     return;
   }
 
-  const langTrigger = target.closest('.appbar-lang-trigger');
-  const popover = document.getElementById('akari-lang-popover');
-  if (langTrigger && popover) {
-    const hidden = popover.getAttribute('aria-hidden') !== 'false';
-    popover.style.display = 'block';
-    popover.setAttribute('aria-hidden', hidden ? 'false' : 'true');
+  if (target.closest('.appbar-search-trigger')) {
+    setSearchOpen(true);
+    loadSearchData();
     return;
   }
-  if (popover && !target.closest('#akari-lang-popover')) popover.setAttribute('aria-hidden', 'true');
 
-  if (target.closest('.appbar-theme-trigger')) {
-    const isLight = document.documentElement.classList.contains('mdui-theme-light');
-    setTheme(isLight ? 'dark' : 'light');
+  if (target.closest('.akari-search-modal__close') || target.closest('.akari-search-modal__backdrop')) {
+    setSearchOpen(false);
+    return;
+  }
+
+  if (target.closest('.appbar-lang-trigger')) {
+    const popover = document.getElementById('akari-lang-popover');
+    if (popover) {
+      const hidden = popover.getAttribute('aria-hidden') !== 'false';
+      setLangPopoverOpen(hidden);
+    }
+    return;
+  }
+
+  if (target.closest('.appbar-settings-trigger')) {
+    const popover = document.getElementById('akari-settings-popover');
+    if (popover) {
+      const hidden = popover.getAttribute('aria-hidden') !== 'false';
+      setSettingsOpen(hidden);
+    }
+    return;
+  }
+
+  if (!target.closest('#akari-lang-popover')) setLangPopoverOpen(false);
+  if (!target.closest('#akari-settings-popover')) setSettingsOpen(false);
+});
+
+document.addEventListener('input', (event) => {
+  const target = event.target;
+  if (target.classList.contains('akari-search-modal__input')) {
+    renderSearchResults(target.value);
   }
 });
 
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') setDrawerOpen(false);
+  if (event.key === 'Escape') {
+    setDrawerOpen(false);
+    setSearchOpen(false);
+    setSettingsOpen(false);
+    setLangPopoverOpen(false);
+  }
 });
 
 document.querySelectorAll('[data-locale-preference]').forEach((node) => node.addEventListener('click', () => {
@@ -89,3 +181,44 @@ if (toc) {
     return `<a class="toc-link" href="#${heading.id}">${heading.textContent}</a>`;
   }).join('');
 }
+
+// Color palette
+document.querySelectorAll('.akari-settings-palette__item').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const color = btn.getAttribute('data-color');
+    if (color) {
+      document.documentElement.style.setProperty('--akari-accent', color);
+      try { localStorage.setItem('akari-accent-color', color); } catch {}
+    }
+  });
+});
+
+// Font size
+document.querySelectorAll('.akari-settings-font-size__btn').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const size = btn.getAttribute('data-size');
+    document.querySelectorAll('.akari-settings-font-size__btn').forEach((b) => b.classList.remove('akari-settings-font-size__btn--active'));
+    btn.classList.add('akari-settings-font-size__btn--active');
+    let fontSize = '16px';
+    if (size === 'small') fontSize = '14px';
+    if (size === 'large') fontSize = '18px';
+    document.documentElement.style.fontSize = fontSize;
+    try { localStorage.setItem('akari-font-size', size); } catch {}
+  });
+});
+
+// Restore preferences
+try {
+  const savedColor = localStorage.getItem('akari-accent-color');
+  if (savedColor) document.documentElement.style.setProperty('--akari-accent', savedColor);
+  const savedSize = localStorage.getItem('akari-font-size');
+  if (savedSize) {
+    let fontSize = '16px';
+    if (savedSize === 'small') fontSize = '14px';
+    if (savedSize === 'large') fontSize = '18px';
+    document.documentElement.style.fontSize = fontSize;
+    document.querySelectorAll('.akari-settings-font-size__btn').forEach((b) => {
+      b.classList.toggle('akari-settings-font-size__btn--active', b.getAttribute('data-size') === savedSize);
+    });
+  }
+} catch {}
