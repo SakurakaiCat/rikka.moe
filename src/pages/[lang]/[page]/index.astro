@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { languageOptions, LOCALES, pageUrl, resolveLocale } from '../../../lib/content';
+import { label } from '../../../lib/i18n';
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages', (entry) => !entry.data.is_locale_selector);
@@ -24,5 +25,6 @@ const options = languageOptions(pageUrl(page), locale, page.data.translation_key
     <h1>{page.data.title}</h1>
     <Content />
     {page.id.includes('/guestbook/') && <div class="guestbook-card"><div id="guestbook-list"></div><form id="guestbook-form"><input name="nickname" placeholder="Name" /><textarea name="content" placeholder="Message"></textarea><button type="submit">Submit</button></form></div>}
+    {page.data.comment !== false && <section class="post-comments glass-card"><h2>{label('post', 'comment', locale)}</h2><div id="twikoo"></div><script is:inline src="https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js"></script><script is:inline>window.twikoo&&twikoo.init({envId:'https://comment.rikka.moe',el:'#twikoo',path:window.location.pathname})</script></section>}
   </section>
 </BaseLayout>

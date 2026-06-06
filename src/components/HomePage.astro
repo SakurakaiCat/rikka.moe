@@ -95,7 +95,10 @@ const categoryLabel = (post: PostEntry) => postCategories(post)[0] || '';
     </section>
   </div>
   <div class="akari-bento-layout__right">
-    <aside class="recent-comments-card glass-card"><div class="recent-comments-card__head"><i class="ph ph-chat-circle-dots"></i><div><h2>{model.comments.title}</h2><p>{model.comments.subtitle}</p></div></div><div class="recent-comments-card__list" data-empty={model.comments.empty} data-loading={model.comments.loading}>{model.comments.loading}</div></aside>
+    <aside class="recent-comments-card glass-card" data-twikoo-env-id="https://comment.rikka.moe" data-twikoo-src="https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js">
+      <div class="recent-comments-card__head"><i class="ph ph-chat-circle-dots"></i><div><h2>{model.comments.title}</h2><p>{model.comments.subtitle}</p></div></div>
+      <div class="recent-comments-card__list" data-empty={model.comments.empty} data-loading={model.comments.loading}>{model.comments.loading}</div>
+    </aside>
     <section id="akari-blog-feed" class="akari-feed-intro glass-card"><h2>{model.feed.title}</h2><p>{model.feed.text}</p></section>
   </div>
 </div>
@@ -146,7 +149,7 @@ const categoryLabel = (post: PostEntry) => postCategories(post)[0] || '';
     </div>
   </section>
 
-  <section class="akari-section akari-section--gallery akari-mosaic-block akari-mosaic-block--wide">
+  <section class="akari-section akari-section--gallery akari-mosaic-block">
     <header class="akari-section__head akari-section__head--split">
       <div><small>Gallery</small><h2>相册</h2></div>
       <span>{galleryPosts.length}</span>
@@ -172,3 +175,70 @@ const categoryLabel = (post: PostEntry) => postCategories(post)[0] || '';
     </div>
   </section>
 </section>
+
+<script is:inline>
+(function() {
+  var card = document.querySelector('.recent-comments-card');
+  if (!card || !card.dataset.twikooEnvId) return;
+  var list = card.querySelector('.recent-comments-card__list');
+  var src = card.dataset.twikooSrc || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js';
+
+  function stripTags(value) {
+    var div = document.createElement('div');
+    div.innerHTML = value || '';
+    return div.textContent || div.innerText || '';
+  }
+
+  function escapeHtml(value) {
+    return stripTags(value).replace(/[&<>"]/g, function(char) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[char];
+    });
+  }
+
+  function normalizeDate(value) {
+    if (!value) return '';
+    var date = typeof value === 'number' && value < 10000000000 ? new Date(value * 1000) : new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    return date.toLocaleDateString(document.documentElement.lang || 'zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
+  }
+
+  function render(items) {
+    if (!Array.isArray(items) || !items.length) {
+      list.textContent = list.dataset.empty;
+      return;
+    }
+    list.innerHTML = items.slice(0, 5).map(function(item) {
+      var nick = escapeHtml(item.nick || item.mailMd5 || 'Guest');
+      var comment = escapeHtml(item.comment || item.text || '').slice(0, 140);
+      var url = escapeHtml(item.url || item.href || '#');
+      var time = normalizeDate(item.created || item.insertedAt || item.updated);
+      var pageTitle = escapeHtml(item.pageTitle || item.title || '');
+      return '<a class="recent-comment" href="' + url + '"><div class="recent-comment__top"><strong>' + nick + '</strong><time>' + time + '</time></div><span>' + comment + '</span>' + (pageTitle ? '<em>' + pageTitle + '</em>' : '') + '</a>';
+    }).join('');
+  }
+
+  function loadComments() {
+    if (!window.twikoo || !window.twikoo.getRecentComments) {
+      list.textContent = list.dataset.empty;
+      return;
+    }
+    window.twikoo.getRecentComments({ envId: card.dataset.twikooEnvId, pageSize: 5, includeReply: true })
+      .then(render)
+      .catch(function() { list.textContent = list.dataset.empty; });
+  }
+
+  var existing = document.querySelector('script[data-akari-twikoo="true"]');
+  if (existing) {
+    if (window.twikoo) loadComments();
+    else existing.addEventListener('load', loadComments, { once: true });
+    return;
+  }
+  var script = document.createElement('script');
+  script.src = src;
+  script.async = true;
+  script.dataset.akariTwikoo = 'true';
+  script.onload = loadComments;
+  script.onerror = function() { list.textContent = list.dataset.empty; };
+  document.head.appendChild(script);
+})();
+</script>

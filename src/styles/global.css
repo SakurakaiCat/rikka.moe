@@ -1012,9 +1012,17 @@ html.mdui-theme-light .akari-sidebar__nav a:hover {
   grid-column: span 6;
 }
 
-.akari-mosaic-block--wide,
+.akari-mosaic-block--wide {
+  grid-column: 1 / -1;
+}
+
 .akari-section--articles {
   grid-column: 1 / -1;
+}
+
+.akari-section--thoughts,
+.akari-section--gallery {
+  grid-column: span 6;
 }
 
 .akari-section__head--split {
@@ -1272,4 +1280,96 @@ html.mdui-theme-light .akari-article-glass-card__meta {
   .akari-gallery-card__images {
     grid-auto-rows: 78px;
   }
+}
+
+.recent-comment {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.045);
+  color: inherit;
+  transition: background 0.18s ease;
+}
+
+.recent-comment:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.recent-comment__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.recent-comment__top strong {
+  color: var(--akari-accent);
+  font-weight: 700;
+}
+
+.recent-comment__top time {
+  color: var(--akari-muted);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.recent-comment span {
+  display: block;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.recent-comment em {
+  display: block;
+  margin-top: 6px;
+  color: var(--akari-muted);
+  font-size: 0.78rem;
+  font-style: normal;
+}
+
+.recent-comments-card__list {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.akari-snow {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.akari-snow .snowflake {
+  position: absolute;
+  top: -10px;
+  color: #fff;
+  font-size: 1em;
+  opacity: 0.8;
+  animation: snow-fall linear infinite, snow-sway ease-in-out infinite;
+}
+
+@keyframes snow-fall {
+  0% { top: -10px; }
+  100% { top: 100vh; }
+}
+
+@keyframes snow-sway {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(30px); }
+}
+
+html.mdui-theme-light .recent-comment span {
+  color: rgba(15, 15, 15, 0.78);
+}
+
+html.mdui-theme-light .recent-comment em {
+  color: rgba(15, 15, 15, 0.55);
 }
