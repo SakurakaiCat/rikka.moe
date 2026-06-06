@@ -5,8 +5,14 @@ interface SecretBinding {
 }
 
 interface Env {
+  // Primary names (Secrets Store bindings or plain strings)
   AifadianAPIToken?: string | SecretBinding;
   AifadianUserID?: string | SecretBinding;
+  // Fallback names (common alternate naming conventions)
+  AFDIAN_API_TOKEN?: string | SecretBinding;
+  AFDIAN_USER_ID?: string | SecretBinding;
+  AFDIAN_TOKEN?: string | SecretBinding;
+  AFDIAN_USERID?: string | SecretBinding;
 }
 
 const isSecretBinding = (value: unknown): value is SecretBinding =>
@@ -42,24 +48,22 @@ export const onRequestOptions = () =>
   new Response(null, { status: 204, headers: corsHeaders });
 
 export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
-  let token: string;
-  let userId: string;
-  try {
-    token = await resolveSecret(env.AifadianAPIToken);
-    userId = await resolveSecret(env.AifadianUserID);
-  } catch (error) {
-    return jsonResponse(
-      { error: 'binding_resolution_failed' },
-      { status: 500, cache: 'no-store' },
-    );
-  }
+  // Try multiple possible env var names for compatibility
+  const token =
+    (await resolveSecret(env.AifadianAPIToken)) ||
+    (await resolveSecret(env.AFDIAN_API_TOKEN)) ||
+    (await resolveSecret(env.AFDIAN_TOKEN));
+
+  const userId =
+    (await resolveSecret(env.AifadianUserID)) ||
+    (await resolveSecret(env.AFDIAN_USER_ID)) ||
+    (await resolveSecret(env.AFDIAN_USERID));
 
   if (!token || !userId) {
-    return jsonResponse({
-      sponsors: [],
-      total: 0,
-      updated_at: Math.floor(Date.now() / 1000),
-    });
+    return jsonResponse(
+      { error: 'not_configured', message: 'Aifadian API credentials not configured' },
+      { status: 500, cache: 'no-store' },
+    );
   }
 
   try {
