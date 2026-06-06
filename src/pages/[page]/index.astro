@@ -6,7 +6,7 @@ import { DEFAULT_LOCALE, pageUrl } from '../../lib/content';
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
   return pages
-    .filter((page) => ['books', 'books/index', 'projects', 'projects/index', 'books/index.md', 'projects/index.md'].includes(page.id))
+    .filter((page) => ['books', 'books/index', 'projects', 'projects/index'].includes(page.id))
     .map((page) => ({ params: { page: page.id.split('/')[0] }, props: { page } }));
 }
 
