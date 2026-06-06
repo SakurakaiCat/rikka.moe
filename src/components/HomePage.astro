@@ -32,6 +32,10 @@ const categoryLabel = (post: PostEntry) => postCategories(post)[0] || '';
     </picture>
     <div class="akari-hero-overlay"></div>
     <div class="akari-hero-content">
+      <div class="akari-hero-migration-banner">
+        <span class="akari-hero-migration-banner__dot"></span>
+        <span>本博客已换新颜，迁移到 Astro 框架！</span>
+      </div>
       <div class="akari-hero-badge">{model.hero.badge}</div>
       <h1 class="akari-hero-title">
         <img class="akari-hero-avatar" src={model.hero.avatarSrc} alt={model.hero.avatarAlt} width="72" height="72" />

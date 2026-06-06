@@ -18,13 +18,11 @@ const { locale, title, section = '', languageOptions } = Astro.props;
         {section && <span class="akari-appbar-section">{section}</span>}
         <span class="akari-appbar-title">{title}</span>
       </a>
-      <button class="appbar-lang-trigger akari-lang-badge" aria-label="Switch language" type="button">
-        <i class="ph ph-translate"></i><span>{locale.display_name}</span>
-      </button>
     </div>
     <div class="akari-capsule akari-capsule--trailing">
-      <button class="icon-button appbar-theme-trigger" type="button" aria-label="Theme"><i class="ph ph-palette"></i></button>
-      <a class="icon-button" href={`/${locale.lang_path}/search.json`} aria-label="Search"><i class="ph ph-magnifying-glass"></i></a>
+      <button class="icon-button appbar-search-trigger" type="button" aria-label="Search"><i class="ph ph-magnifying-glass"></i></button>
+      <button class="icon-button appbar-lang-trigger" type="button" aria-label="Switch language"><i class="ph ph-translate"></i></button>
+      <button class="icon-button appbar-settings-trigger" type="button" aria-label="Settings"><i class="ph ph-gear"></i></button>
     </div>
   </div>
 </header>
@@ -33,5 +31,39 @@ const { locale, title, section = '', languageOptions } = Astro.props;
     {languageOptions.map((option) => (
       <a class:list={["akari-popover__item", option.isCurrent && "akari-popover__item--active"]} href={option.relativeUrl} data-locale-preference={option.lang_path}>{option.display_name}</a>
     ))}
+  </div>
+</div>
+<div id="akari-search-modal" class="akari-search-modal" aria-hidden="true" style="display:none">
+  <div class="akari-search-modal__backdrop"></div>
+  <div class="akari-search-modal__content">
+    <div class="akari-search-modal__header">
+      <i class="ph ph-magnifying-glass"></i>
+      <input type="text" class="akari-search-modal__input" placeholder="搜索文章..." aria-label="Search blog" />
+      <button class="akari-search-modal__close" type="button" aria-label="Close search"><i class="ph ph-x"></i></button>
+    </div>
+    <div class="akari-search-modal__results"></div>
+  </div>
+</div>
+<div id="akari-settings-popover" class="akari-popover akari-settings-popover" aria-hidden="true" style="display:none">
+  <div class="akari-popover__content">
+    <div class="akari-settings-section">
+      <h3>配色方案</h3>
+      <div class="akari-settings-palette">
+        <button class="akari-settings-palette__item" data-color="#f4abba" style="background:#f4abba" aria-label="Pink"></button>
+        <button class="akari-settings-palette__item" data-color="#a0beff" style="background:#a0beff" aria-label="Blue"></button>
+        <button class="akari-settings-palette__item" data-color="#b5e4a0" style="background:#b5e4a0" aria-label="Green"></button>
+        <button class="akari-settings-palette__item" data-color="#ffd8a0" style="background:#ffd8a0" aria-label="Orange"></button>
+        <button class="akari-settings-palette__item" data-color="#d4a0ff" style="background:#d4a0ff" aria-label="Purple"></button>
+        <button class="akari-settings-palette__item" data-color="#a0f0f0" style="background:#a0f0f0" aria-label="Cyan"></button>
+      </div>
+    </div>
+    <div class="akari-settings-section">
+      <h3>字体大小</h3>
+      <div class="akari-settings-font-size">
+        <button class="akari-settings-font-size__btn" data-size="small" type="button">小</button>
+        <button class="akari-settings-font-size__btn akari-settings-font-size__btn--active" data-size="medium" type="button">中</button>
+        <button class="akari-settings-font-size__btn" data-size="large" type="button">大</button>
+      </div>
+    </div>
   </div>
 </div>
