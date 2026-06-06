@@ -125,21 +125,22 @@ export const onRequestGet: PagesFunction<Env> = async ({ env, request }) => {
   const url = new URL(request.url);
 
   // Debug mode: list env keys and their types
-  if (url.searchParams.get('debug') === '1') {
-    const keys: Record<string, string> = {};
-    for (const [key, value] of Object.entries(env)) {
-      if (value === undefined) {
-        keys[key] = 'undefined';
-      } else if (value === null) {
-        keys[key] = 'null';
-      } else if (typeof value === 'string') {
-        keys[key] = `string(${value.length})`;
-      } else if (isSecretBinding(value)) {
-        keys[key] = 'SecretBinding';
-      } else {
-        keys[key] = typeof value;
-      }
+  const keys: Record<string, string> = {};
+  for (const [key, value] of Object.entries(env)) {
+    if (value === undefined) {
+      keys[key] = 'undefined';
+    } else if (value === null) {
+      keys[key] = 'null';
+    } else if (typeof value === 'string') {
+      keys[key] = `string(${value.length})`;
+    } else if (isSecretBinding(value)) {
+      keys[key] = 'SecretBinding';
+    } else {
+      keys[key] = typeof value;
     }
+  }
+
+  if (url.searchParams.get('debug') === '1') {
     return jsonResponse({ debug: true, keys });
   }
 
