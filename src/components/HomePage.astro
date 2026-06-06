@@ -2,6 +2,7 @@
 import type { Locale, PostEntry } from '../lib/content';
 import { asDate, postCategories, postUrl } from '../lib/content';
 import { getHomepageModel } from '../lib/i18n';
+import SponsorWall from './SponsorWall.astro';
 
 const { locale, posts } = Astro.props as { locale: Locale; posts: PostEntry[] };
 const model = getHomepageModel(locale);
@@ -175,6 +176,8 @@ const categoryLabel = (post: PostEntry) => postCategories(post)[0] || '';
     </div>
   </section>
 </section>
+
+<SponsorWall locale={locale} />
 
 <script is:inline>
 (function() {
