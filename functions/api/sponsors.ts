@@ -8,12 +8,24 @@ interface Env {
   // Direct env vars or individual secret bindings
   AifadianAPIToken?: string | SecretBinding;
   AifadianUserID?: string | SecretBinding;
+  // Alternate naming conventions
+  AIFADIAN_API_TOKEN?: string | SecretBinding;
+  AIFADIAN_USER_ID?: string | SecretBinding;
+  AFDIAN_API_TOKEN?: string | SecretBinding;
+  AFDIAN_USER_ID?: string | SecretBinding;
+  AFDIAN_TOKEN?: string | SecretBinding;
+  AFDIAN_USERID?: string | SecretBinding;
   // Secrets Store namespace bindings (common names)
   SECRETS?: SecretBinding;
   SECRETS_STORE?: SecretBinding;
   SECRET_STORE?: SecretBinding;
   AIFADIAN_SECRETS?: SecretBinding;
   CF_SECRETS?: SecretBinding;
+  CLOUDFLARE_SECRETS?: SecretBinding;
+  SECRET?: SecretBinding;
+  SECRET_STORE_BINDING?: SecretBinding;
+  // Allow any other keys
+  [key: string]: unknown;
 }
 
 const isSecretBinding = (value: unknown): value is SecretBinding =>
@@ -24,10 +36,8 @@ const resolveSecret = async (value: string | SecretBinding | undefined): Promise
   if (typeof value === 'string') return value;
   if (isSecretBinding(value)) {
     try {
-      // Try without key first (individual secret binding)
       return await value.get();
     } catch {
-      // If that fails, the binding might require a key
       return '';
     }
   }
@@ -39,16 +49,32 @@ const resolveFromStore = async (
   secretName: string,
 ): Promise<string> => {
   // Try direct env var / individual binding first
-  const direct =
-    secretName === 'AifadianAPIToken'
-      ? await resolveSecret(env.AifadianAPIToken)
-      : secretName === 'AifadianUserID'
-        ? await resolveSecret(env.AifadianUserID)
-        : '';
-  if (direct) return direct;
+  const directBindings: Record<string, string | SecretBinding | undefined> = {
+    AifadianAPIToken: env.AifadianAPIToken,
+    AifadianUserID: env.AifadianUserID,
+    AIFADIAN_API_TOKEN: env.AIFADIAN_API_TOKEN,
+    AIFADIAN_USER_ID: env.AIFADIAN_USER_ID,
+    AFDIAN_API_TOKEN: env.AFDIAN_API_TOKEN,
+    AFDIAN_USER_ID: env.AFDIAN_USER_ID,
+    AFDIAN_TOKEN: env.AFDIAN_TOKEN,
+    AFDIAN_USERID: env.AFDIAN_USERID,
+  };
+
+  const directValue = await resolveSecret(directBindings[secretName]);
+  if (directValue) return directValue;
 
   // Try Secrets Store namespace bindings with common names
-  const storeBindings = [env.SECRETS, env.SECRETS_STORE, env.SECRET_STORE, env.AIFADIAN_SECRETS, env.CF_SECRETS];
+  const storeBindings = [
+    env.SECRETS,
+    env.SECRETS_STORE,
+    env.SECRET_STORE,
+    env.AIFADIAN_SECRETS,
+    env.CF_SECRETS,
+    env.CLOUDFLARE_SECRETS,
+    env.SECRET,
+    env.SECRET_STORE_BINDING,
+  ];
+
   for (const binding of storeBindings) {
     if (isSecretBinding(binding)) {
       try {
@@ -56,6 +82,24 @@ const resolveFromStore = async (
         if (value) return value;
       } catch {
         // Continue to next binding
+      }
+    }
+  }
+
+  // Last resort: iterate over all env keys to find SecretBinding
+  for (const [key, value] of Object.entries(env)) {
+    if (isSecretBinding(value)) {
+      try {
+        const result = await value.get(secretName);
+        if (result) return result;
+      } catch {
+        // Try without key for individual bindings
+        try {
+          const result = await value.get();
+          if (result) return result;
+        } catch {
+          // Continue
+        }
       }
     }
   }
