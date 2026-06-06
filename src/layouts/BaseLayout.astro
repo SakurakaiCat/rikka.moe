@@ -1,0 +1,93 @@
+---
+import '../styles/global.css';
+import AppBar from '../components/AppBar.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Footer from '../components/Footer.astro';
+import type { Locale } from '../lib/content';
+import { LOCALES, toAbsoluteUrl } from '../lib/content';
+
+interface Props {
+  title?: string;
+  description?: string;
+  locale: Locale;
+  canonicalPath: string;
+  image?: string;
+  indexing?: boolean;
+  type?: 'website' | 'article';
+  languageOptions?: Array<Locale & { relativeUrl: string; absoluteUrl: string; isCurrent: boolean }>;
+  rootAutoRedirect?: boolean;
+}
+
+const {
+  title,
+  description = '',
+  locale,
+  canonicalPath,
+  image = '/images/profile/avatar.jpg',
+  indexing = true,
+  type = 'website',
+  languageOptions = LOCALES.map((loc) => ({ ...loc, relativeUrl: `/${loc.lang_path}/`, absoluteUrl: toAbsoluteUrl('https://rikka.moe', `/${loc.lang_path}/`), isCurrent: loc.lang === locale.lang })),
+  rootAutoRedirect = false,
+} = Astro.props;
+const siteTitle = 'Akari';
+const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+const canonical = toAbsoluteUrl('https://rikka.moe', canonicalPath);
+const seoDescription = description || locale.home_description;
+const localeRoutingConfig = {
+  preferenceKey: 'akari_locale_preference',
+  defaultLocaleKey: 'en',
+  defaultLocaleHomePath: '/en/',
+  rootAutoRedirect,
+  locales: LOCALES.map((loc) => ({
+    key: loc.lang_path,
+    homePath: `/${loc.lang_path}/`,
+    browserLangPatterns: loc.browser_lang_patterns || [],
+  })),
+};
+---
+<!doctype html>
+<html lang={locale.html_lang} class="mdui-theme-dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="robots" content={indexing ? 'index, follow' : 'noindex, nofollow'} />
+    <meta name="author" content="Akari / 篠崎香澄" />
+    <meta name="description" content={seoDescription} />
+    <link rel="canonical" href={canonical} />
+    {languageOptions.map((option) => <link rel="alternate" hreflang={option.lang} href={option.absoluteUrl} />)}
+    <link rel="alternate" hreflang="x-default" href="https://rikka.moe/" />
+    <link rel="icon" href="/images/profile/avatar.jpg" type="image/jpeg" />
+    <link rel="apple-touch-icon" href="/images/profile/avatar.jpg" />
+    <link rel="alternate" type="application/atom+xml" title={`${siteTitle} - ${locale.display_name}`} href={`/${locale.lang_path}/atom.xml`} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={seoDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image.startsWith('http') ? image : toAbsoluteUrl('https://rikka.moe', image)} />
+    <meta property="og:locale" content={locale.og_locale} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css" />
+    <link rel="stylesheet" href="/fonts/pingfang/pingfang.css" />
+    <link rel="stylesheet" href="/fonts/lxwk/lxwk.css" />
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <script defer src="https://analytics.rikka.moe/script.js" data-website-id="cdcfa939-9c79-48c3-8234-a2d87ebdf5b6"></script>
+    <script is:inline set:html={`window.__AKARI_LOCALE_ROUTING__ = ${JSON.stringify(localeRoutingConfig)};`}></script>
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': type === 'article' ? 'BlogPosting' : 'WebSite', name: title || siteTitle, headline: title || siteTitle, url: canonical, inLanguage: locale.html_lang, description: seoDescription, author: { '@type': 'Person', name: 'Akari / 篠崎香澄' } })}></script>
+  </head>
+  <body class="mdui-theme-dark">
+    <div class="akari-snow" aria-hidden="true"></div>
+    <AppBar locale={locale} title={title || siteTitle} languageOptions={languageOptions} />
+    <Sidebar locale={locale} />
+    <main class="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <script type="module" src="/assets/js/akari-locale-routing.js"></script>
+    <script type="module" src="/scripts/site.js"></script>
+  </body>
+</html>

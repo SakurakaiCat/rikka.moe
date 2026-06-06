@@ -1,0 +1,15 @@
+name = "personal-site"
+compatibility_date = "2026-05-09"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "personal-site-guestbook"
+database_id = "809db55e-8c54-4935-8c5b-6f47b039bacf"
+preview_database_id = "dade78dc-76c7-4418-9167-2456b021e071"
+
+# Secrets Store bindings (AifadianAPIToken, AifadianUserID) are configured
+# in the Cloudflare Pages dashboard because Pages does not yet support
+# `secrets_store_secrets` in wrangler.toml.
+
+# Cloudflare Pages production branch is set in the Pages project settings: main

@@ -7,11 +7,30 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
+    "check": "astro check",
+    "deploy:cloudflare": "npm run build && npx wrangler pages deploy dist --project-name personal-site --branch main",
+    "dev:cloudflare": "npm run build && npx wrangler pages dev dist",
+    "db:guestbook:local": "npx wrangler d1 execute DB --local --file=migrations/0001_guestbook.sql",
+    "db:guestbook:remote": "npx wrangler d1 execute DB --remote --file=migrations/0001_guestbook.sql",
+    "db:analytics:local": "npx wrangler d1 execute DB --local --file=migrations/0002_analytics.sql",
+    "db:analytics:remote": "npx wrangler d1 execute DB --remote --file=migrations/0002_analytics.sql",
+    "db:migrate:local": "npm run db:guestbook:local && npm run db:analytics:local",
+    "db:migrate:remote": "npm run db:guestbook:remote && npm run db:analytics:remote",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.4.4"
+    "@astrojs/mdx": "^6.0.2",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^6.4.4",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@cloudflare/workers-types": "^4.20260606.1",
+    "@playwright/test": "^1.60.0",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.98.0"
   }
 }

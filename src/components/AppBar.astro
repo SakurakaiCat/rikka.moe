@@ -1,0 +1,37 @@
+---
+import type { Locale } from '../lib/content';
+interface Props {
+  locale: Locale;
+  title: string;
+  section?: string;
+  languageOptions: Array<Locale & { relativeUrl: string; isCurrent: boolean }>;
+}
+const { locale, title, section = '', languageOptions } = Astro.props;
+---
+<header class="akari-appbar top-app-bar">
+  <div class="akari-appbar-rail">
+    <div class="akari-capsule akari-capsule--leading">
+      <button class="icon-button appbar-menu-button" type="button" aria-label="Menu" aria-controls="akari-sidebar" aria-expanded="false"><i class="ph ph-list"></i></button>
+    </div>
+    <div class="akari-capsule akari-capsule--center">
+      <a class="akari-capsule--center-link" href={`/${locale.lang_path}/`}>
+        {section && <span class="akari-appbar-section">{section}</span>}
+        <span class="akari-appbar-title">{title}</span>
+      </a>
+      <button class="appbar-lang-trigger akari-lang-badge" aria-label="Switch language" type="button">
+        <i class="ph ph-translate"></i><span>{locale.display_name}</span>
+      </button>
+    </div>
+    <div class="akari-capsule akari-capsule--trailing">
+      <button class="icon-button appbar-theme-trigger" type="button" aria-label="Theme"><i class="ph ph-palette"></i></button>
+      <a class="icon-button" href={`/${locale.lang_path}/search.json`} aria-label="Search"><i class="ph ph-magnifying-glass"></i></a>
+    </div>
+  </div>
+</header>
+<div id="akari-lang-popover" class="akari-popover" aria-hidden="true" style="display:none">
+  <div class="akari-popover__content">
+    {languageOptions.map((option) => (
+      <a class:list={["akari-popover__item", option.isCurrent && "akari-popover__item--active"]} href={option.relativeUrl} data-locale-preference={option.lang_path}>{option.display_name}</a>
+    ))}
+  </div>
+</div>

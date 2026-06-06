@@ -1,17 +1,13 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { DEFAULT_LOCALE, LOCALES } from '../lib/content';
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Choose Your Language" description="Enter Akari in Simplified Chinese, Traditional Chinese, English, or Japanese." locale={DEFAULT_LOCALE} canonicalPath="/" indexing={false} rootAutoRedirect={true}>
+  <section class="locale-chooser glass-card">
+    <h1>Choose Your Language</h1>
+    <p>Akari is available in four language editions. Pick the one you want to read first.</p>
+    <nav class="locale-chooser__grid">
+      {LOCALES.map((locale) => <a class="locale-chooser__card" href={`/${locale.lang_path}/`} data-locale-preference={locale.lang_path}><strong>{locale.display_name}</strong><span>{locale.home_description}</span></a>)}
+    </nav>
+  </section>
+</BaseLayout>

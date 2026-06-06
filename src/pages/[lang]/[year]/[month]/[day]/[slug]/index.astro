@@ -1,0 +1,56 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import { adjacentPosts, asDate, dateParts, getAllPosts, getPostsByLocale, languageOptions, postCategories, postUrl, resolveLocale } from '../../../../../../lib/content';
+import { label } from '../../../../../../lib/i18n';
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return posts.map((post) => {
+    const locale = resolveLocale(post.data);
+    const { year, month, day } = dateParts(post.data.date);
+    const slug = post.data.url_slug || post.data.slug || post.id.replace(/\.mdx?$/, '').split('/').pop();
+    return { params: { lang: locale.lang_path, year, month, day, slug }, props: { post, locale } };
+  });
+}
+
+const { post, locale } = Astro.props;
+const { Content } = await render(post);
+const localePosts = await getPostsByLocale(locale);
+const { prev, next } = adjacentPosts(localePosts, post);
+const allPosts = await getAllPosts();
+const options = languageOptions(postUrl(post), locale, post.data.translation_key, allPosts);
+const date = asDate(post.data.date);
+const categories = postCategories(post);
+const leadCategory = categories[0] || label('common', 'archive', locale);
+const cover = post.data.cover || post.data.thumbnail || post.data.banner || post.data.image;
+---
+<BaseLayout title={post.data.title} description={post.data.description} locale={locale} canonicalPath={postUrl(post)} type="article" image={cover} languageOptions={options}>
+  <article class="article-shell">
+    <header class="article-hero">
+      <div class="article-appbar-rail">
+        <a class="article-capsule article-capsule--lead" href={`/${locale.lang_path}/archives/`}><i class="ph ph-arrow-left"></i><span>{leadCategory}</span></a>
+        <div class="article-capsule article-capsule--trailing">
+          {date && <span>{date.toISOString().slice(0, 10)}</span>}
+          <span>Akari / 篠崎香澄</span>
+          {categories.map((category) => <a href={`/${locale.lang_path}/categories/${encodeURIComponent(category.toLowerCase())}/`}>{category}</a>)}
+        </div>
+      </div>
+      <section class="article-hero-card glass-card">
+        <div class="article-hero-kicker">{leadCategory}</div>
+        <h1>{post.data.title}</h1>
+        {post.data.description && <p>{post.data.description}</p>}
+      </section>
+      {cover && <figure class="article-hero-cover"><img src={cover} alt={post.data.title} loading="lazy" decoding="async" /></figure>}
+    </header>
+    <div class="article-layout">
+      <nav class="article-toc glass-card" aria-label="Table of Contents"><strong>目录</strong><div id="desktop-toc-body"></div></nav>
+      <div class="article-prose glass-card"><Content /></div>
+    </div>
+    <nav class="post-navigation glass-card">
+      {prev ? <a href={postUrl(prev)}><span>{label('post', 'prev', locale)}</span><strong>{prev.data.title}</strong></a> : <span>{label('post', 'none', locale)}</span>}
+      {next ? <a href={postUrl(next)}><span>{label('post', 'next', locale)}</span><strong>{next.data.title}</strong></a> : <span>{label('post', 'none', locale)}</span>}
+    </nav>
+    {post.data.comment !== false && <section class="post-comments glass-card"><h2>{label('post', 'comment', locale)}</h2><div id="twikoo"></div><script is:inline src="https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js"></script><script is:inline>window.twikoo&&twikoo.init({envId:'https://comment.rikka.moe',el:'#twikoo',path:window.location.pathname})</script></section>}
+  </article>
+</BaseLayout>
