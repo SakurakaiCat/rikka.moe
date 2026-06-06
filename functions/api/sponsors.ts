@@ -1,18 +1,19 @@
 import { fetchAllSponsors, type SponsorsPayload } from '../_lib/afdian';
 
 interface SecretBinding {
-  get(): Promise<string>;
+  get(key?: string): Promise<string>;
 }
 
 interface Env {
-  // Primary names (Secrets Store bindings or plain strings)
+  // Direct env vars or individual secret bindings
   AifadianAPIToken?: string | SecretBinding;
   AifadianUserID?: string | SecretBinding;
-  // Fallback names (common alternate naming conventions)
-  AFDIAN_API_TOKEN?: string | SecretBinding;
-  AFDIAN_USER_ID?: string | SecretBinding;
-  AFDIAN_TOKEN?: string | SecretBinding;
-  AFDIAN_USERID?: string | SecretBinding;
+  // Secrets Store namespace bindings (common names)
+  SECRETS?: SecretBinding;
+  SECRETS_STORE?: SecretBinding;
+  SECRET_STORE?: SecretBinding;
+  AIFADIAN_SECRETS?: SecretBinding;
+  CF_SECRETS?: SecretBinding;
 }
 
 const isSecretBinding = (value: unknown): value is SecretBinding =>
@@ -21,7 +22,44 @@ const isSecretBinding = (value: unknown): value is SecretBinding =>
 const resolveSecret = async (value: string | SecretBinding | undefined): Promise<string> => {
   if (!value) return '';
   if (typeof value === 'string') return value;
-  if (isSecretBinding(value)) return await value.get();
+  if (isSecretBinding(value)) {
+    try {
+      // Try without key first (individual secret binding)
+      return await value.get();
+    } catch {
+      // If that fails, the binding might require a key
+      return '';
+    }
+  }
+  return '';
+};
+
+const resolveFromStore = async (
+  env: Env,
+  secretName: string,
+): Promise<string> => {
+  // Try direct env var / individual binding first
+  const direct =
+    secretName === 'AifadianAPIToken'
+      ? await resolveSecret(env.AifadianAPIToken)
+      : secretName === 'AifadianUserID'
+        ? await resolveSecret(env.AifadianUserID)
+        : '';
+  if (direct) return direct;
+
+  // Try Secrets Store namespace bindings with common names
+  const storeBindings = [env.SECRETS, env.SECRETS_STORE, env.SECRET_STORE, env.AIFADIAN_SECRETS, env.CF_SECRETS];
+  for (const binding of storeBindings) {
+    if (isSecretBinding(binding)) {
+      try {
+        const value = await binding.get(secretName);
+        if (value) return value;
+      } catch {
+        // Continue to next binding
+      }
+    }
+  }
+
   return '';
 };
 
@@ -48,16 +86,8 @@ export const onRequestOptions = () =>
   new Response(null, { status: 204, headers: corsHeaders });
 
 export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
-  // Try multiple possible env var names for compatibility
-  const token =
-    (await resolveSecret(env.AifadianAPIToken)) ||
-    (await resolveSecret(env.AFDIAN_API_TOKEN)) ||
-    (await resolveSecret(env.AFDIAN_TOKEN));
-
-  const userId =
-    (await resolveSecret(env.AifadianUserID)) ||
-    (await resolveSecret(env.AFDIAN_USER_ID)) ||
-    (await resolveSecret(env.AFDIAN_USERID));
+  const token = await resolveFromStore(env as unknown as Env, 'AifadianAPIToken');
+  const userId = await resolveFromStore(env as unknown as Env, 'AifadianUserID');
 
   if (!token || !userId) {
     return jsonResponse(
