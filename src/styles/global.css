@@ -1983,3 +1983,38 @@ body.akari-drawer-open {
     font-size: 0.68rem;
   }
 }
+
+/* ===== Collapsible info tabs ===== */
+.akari-info-tabs__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  cursor: pointer;
+}
+
+.akari-info-tabs__summary::-webkit-details-marker {
+  display: none;
+}
+
+.akari-info-tabs__summary::after {
+  content: '+';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--akari-accent);
+  font-size: 1.2rem;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.akari-info-tabs__details[open] > .akari-info-tabs__summary::after {
+  content: '−';
+}
+
+.akari-info-tabs__summary:hover::after {
+  background: rgba(255, 255, 255, 0.12);
+}

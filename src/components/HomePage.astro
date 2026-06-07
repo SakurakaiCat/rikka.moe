@@ -54,51 +54,58 @@ const categoryLabel = (post: PostEntry) => postCategories(post)[0] || '';
 <div class="akari-bento-layout">
   <div class="akari-bento-layout__left">
     <section class="akari-info-tabs glass-card" aria-labelledby="akari-info-tabs-title">
-      <div class="akari-info-tabs__header">
-        <small>{model.tabs.eyebrow}</small>
-        <h2 id="akari-info-tabs-title">{model.tabs.title}</h2>
-      </div>
-      <div class="akari-info-tabs__bar" role="tablist" aria-label={model.tabs.label}>
-        <a href="#akari-nav-panel">{model.tabs.nav}</a>
-        <a href="#akari-now-panel">{model.tabs.now}</a>
-        <a href="#akari-projects-panel">{model.tabs.projects}</a>
-        <a href="#akari-places-panel">{model.tabs.places}</a>
-        <a href="#akari-albums-panel">{model.tabs.albums}</a>
-        <a href="#akari-domains-panel">{model.tabs.domains}</a>
-      </div>
-      <div class="akari-info-panels">
-        <article id="akari-nav-panel" class="akari-info-panel akari-info-panel--wide">
-          <h3>{model.nav.title}</h3>
-          <p>{model.nav.subtitle}</p>
-          <div class="akari-info-nav__grid">
-            {model.nav.stations.map((station: any) => <a class="station" href={station.href} target={station.href.startsWith('#') ? undefined : '_blank'} rel={station.href.startsWith('#') ? undefined : 'noopener noreferrer'}><span>[{station.number}]</span><strong>{station.name}</strong><code>{station.code}</code><small>{station.description}</small></a>)}
+      <details class="akari-info-tabs__details">
+        <summary class="akari-info-tabs__summary">
+          <div class="akari-info-tabs__header">
+            <small>{model.tabs.eyebrow}</small>
+            <h2 id="akari-info-tabs-title">{model.tabs.title}</h2>
           </div>
-        </article>
-        <article id="akari-now-panel" class="akari-info-panel">
-          <h3>{model.personal.now.title}</h3>
-          <ul class="akari-info-now__list">{model.personal.now.items.map((item: any) => <li><span>{item.status}</span><p>{item.text}</p></li>)}</ul>
-        </article>
-        <article id="akari-projects-panel" class="akari-info-panel">
-          <h3>{model.personal.projects.title}</h3>
-          <div class="akari-info-project__grid">{model.personal.projects.items.map((project: any) => <section class="mini-card"><header><strong>{project.title}</strong><span>{project.status}</span></header><p>{project.description}</p><div>{project.tags.map((tag: string) => <em>{tag}</em>)}</div></section>)}</div>
-        </article>
-        <article id="akari-places-panel" class="akari-info-panel">
-          <h3>{model.personal.places.title}</h3>
-          <p>{model.personal.places.countLabel}</p>
-          <div class="chips">{model.personal.places.cities.map((city: string) => <span>{city}</span>)}</div>
-        </article>
-        <article id="akari-albums-panel" class="akari-info-panel akari-info-panel--wide">
-          <h3>{model.gallery.title}</h3>
-          <div class="akari-info-gallery__grid">{model.gallery.sections.flatMap((section: any) => section.albums.slice(0, 4)).map((album: any) => <a class="akari-info-album" href={album.externalHref || '#'} target="_blank" rel="noopener noreferrer"><img src={album.coverSrc} alt={album.coverAlt} loading="lazy" /><span>{album.artist}</span><strong>{album.title}</strong></a>)}</div>
-        </article>
-        <article id="akari-domains-panel" class="akari-info-panel akari-info-panel--wide">
-          <h3>{model.domains.title}</h3>
-          <p>{model.domains.intro}</p>
-          <div class="akari-info-domain__items">{model.domains.groups.flatMap((group: any) => group.items).map((item: any) => <section><strong>{item.name}</strong><span>{item.status}</span><p>{item.note}</p></section>)}</div>
-        </article>
-      </div>
+        </summary>
+        <div class="akari-info-tabs__content">
+          <div class="akari-info-tabs__bar" role="tablist" aria-label={model.tabs.label}>
+            <a href="#akari-nav-panel">{model.tabs.nav}</a>
+            <a href="#akari-now-panel">{model.tabs.now}</a>
+            <a href="#akari-projects-panel">{model.tabs.projects}</a>
+            <a href="#akari-places-panel">{model.tabs.places}</a>
+            <a href="#akari-albums-panel">{model.tabs.albums}</a>
+            <a href="#akari-domains-panel">{model.tabs.domains}</a>
+          </div>
+          <div class="akari-info-panels">
+            <article id="akari-nav-panel" class="akari-info-panel akari-info-panel--wide">
+              <h3>{model.nav.title}</h3>
+              <p>{model.nav.subtitle}</p>
+              <div class="akari-info-nav__grid">
+                {model.nav.stations.map((station: any) => <a class="station" href={station.href} target={station.href.startsWith('#') ? undefined : '_blank'} rel={station.href.startsWith('#') ? undefined : 'noopener noreferrer'}><span>[{station.number}]</span><strong>{station.name}</strong><code>{station.code}</code><small>{station.description}</small></a>)}
+              </div>
+            </article>
+            <article id="akari-now-panel" class="akari-info-panel">
+              <h3>{model.personal.now.title}</h3>
+              <ul class="akari-info-now__list">{model.personal.now.items.map((item: any) => <li><span>{item.status}</span><p>{item.text}</p></li>)}</ul>
+            </article>
+            <article id="akari-projects-panel" class="akari-info-panel">
+              <h3>{model.personal.projects.title}</h3>
+              <div class="akari-info-project__grid">{model.personal.projects.items.map((project: any) => <section class="mini-card"><header><strong>{project.title}</strong><span>{project.status}</span></header><p>{project.description}</p><div>{project.tags.map((tag: string) => <em>{tag}</em>)}</div></section>)}</div>
+            </article>
+            <article id="akari-places-panel" class="akari-info-panel">
+              <h3>{model.personal.places.title}</h3>
+              <p>{model.personal.places.countLabel}</p>
+              <div class="chips">{model.personal.places.cities.map((city: string) => <span>{city}</span>)}</div>
+            </article>
+            <article id="akari-albums-panel" class="akari-info-panel akari-info-panel--wide">
+              <h3>{model.gallery.title}</h3>
+              <div class="akari-info-gallery__grid">{model.gallery.sections.flatMap((section: any) => section.albums.slice(0, 4)).map((album: any) => <a class="akari-info-album" href={album.externalHref || '#'} target="_blank" rel="noopener noreferrer"><img src={album.coverSrc} alt={album.coverAlt} loading="lazy" /><span>{album.artist}</span><strong>{album.title}</strong></a>)}</div>
+            </article>
+            <article id="akari-domains-panel" class="akari-info-panel akari-info-panel--wide">
+              <h3>{model.domains.title}</h3>
+              <p>{model.domains.intro}</p>
+              <div class="akari-info-domain__items">{model.domains.groups.flatMap((group: any) => group.items).map((item: any) => <section><strong>{item.name}</strong><span>{item.status}</span><p>{item.note}</p></section>)}</div>
+            </article>
+          </div>
+        </div>
+      </details>
     </section>
   </div>
+
   <div class="akari-bento-layout__right">
     <aside class="recent-comments-card glass-card" data-twikoo-env-id="https://comment.rikka.moe" data-twikoo-src="https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js">
       <div class="recent-comments-card__head"><i class="ph ph-chat-circle-dots"></i><div><h2>{model.comments.title}</h2><p>{model.comments.subtitle}</p></div></div>
