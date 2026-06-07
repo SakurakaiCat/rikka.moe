@@ -5,8 +5,16 @@ interface SecretBinding {
 }
 
 interface Env {
+  // Names user actually configured in the Pages dashboard
+  user_id?: string;
+  api_token?: string;
+  // Original planned names
   AifadianAPIToken?: string | SecretBinding;
   AifadianUserID?: string | SecretBinding;
+  // Uppercase variants
+  USER_ID?: string;
+  API_TOKEN?: string;
+  // Other naming conventions
   AIFADIAN_API_TOKEN?: string | SecretBinding;
   AIFADIAN_USER_ID?: string | SecretBinding;
   AFDIAN_API_TOKEN?: string | SecretBinding;
@@ -44,6 +52,16 @@ const resolveFromStore = async (
   env: Env,
   secretName: string,
 ): Promise<string> => {
+  // Try the names user actually configured first
+  if (secretName === 'AifadianAPIToken') {
+    if (env.api_token && typeof env.api_token === 'string') return env.api_token;
+    if (env.API_TOKEN && typeof env.API_TOKEN === 'string') return env.API_TOKEN;
+  }
+  if (secretName === 'AifadianUserID') {
+    if (env.user_id && typeof env.user_id === 'string') return env.user_id;
+    if (env.USER_ID && typeof env.USER_ID === 'string') return env.USER_ID;
+  }
+
   const directBindings: Record<string, string | SecretBinding | undefined> = {
     AifadianAPIToken: env.AifadianAPIToken,
     AifadianUserID: env.AifadianUserID,
