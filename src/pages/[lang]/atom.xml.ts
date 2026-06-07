@@ -1,4 +1,5 @@
 import { getPostsByLocale, LOCALES, postCategories, postUrl, stripHtml, toAbsoluteUrl } from '../../lib/content';
+import { categoryName } from '../../lib/i18n';
 
 function escapeXml(value = '') {
   return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
@@ -16,7 +17,7 @@ export async function GET({ props }: any) {
     const url = toAbsoluteUrl('https://rikka.moe', postUrl(post));
     const published = post.data.date ? new Date(post.data.date as any).toISOString() : new Date().toISOString();
     const modified = post.data.updated ? new Date(post.data.updated as any).toISOString() : published;
-    const categories = postCategories(post).map((category) => `    <category term="${escapeXml(category)}"/>`).join('\n');
+    const categories = postCategories(post).map((category) => `    <category term="${escapeXml(categoryName(category, locale))}"/>`).join('\n');
     return `<entry>
     <title>${escapeXml(post.data.title || '')}</title>
     <link href="${escapeXml(url)}" rel="alternate" type="text/html" hreflang="${escapeXml(locale.html_lang)}"/>

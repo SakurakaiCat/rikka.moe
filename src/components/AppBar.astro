@@ -1,5 +1,6 @@
 ---
 import type { Locale } from '../lib/content';
+import { label } from '../lib/i18n';
 interface Props {
   locale: Locale;
   title: string;
@@ -11,7 +12,7 @@ const { locale, title, section = '', languageOptions } = Astro.props;
 <header class="akari-appbar top-app-bar">
   <div class="akari-appbar-rail">
     <div class="akari-capsule akari-capsule--leading">
-      <button class="icon-button appbar-menu-button" type="button" aria-label="Menu" aria-controls="akari-sidebar" aria-expanded="false"><i class="ph ph-list"></i></button>
+      <button class="icon-button appbar-menu-button" type="button" aria-label={label('ui', 'menu', locale)} aria-controls="akari-sidebar" aria-expanded="false"><i class="ph ph-list"></i></button>
     </div>
     <div class="akari-capsule akari-capsule--center">
       <a class="akari-capsule--center-link" href={`/${locale.lang_path}/`}>
@@ -20,9 +21,9 @@ const { locale, title, section = '', languageOptions } = Astro.props;
       </a>
     </div>
     <div class="akari-capsule akari-capsule--trailing">
-      <button class="icon-button appbar-search-trigger" type="button" aria-label="Search"><i class="ph ph-magnifying-glass"></i></button>
-      <button class="icon-button appbar-lang-trigger" type="button" aria-label="Switch language" aria-controls="akari-lang-popover" aria-expanded="false"><i class="ph ph-translate"></i></button>
-      <button class="icon-button appbar-settings-trigger" type="button" aria-label="Settings"><i class="ph ph-gear"></i></button>
+      <button class="icon-button appbar-search-trigger" type="button" aria-label={label('ui', 'search', locale)}><i class="ph ph-magnifying-glass"></i></button>
+      <button class="icon-button appbar-lang-trigger" type="button" aria-label={label('ui', 'switchLanguage', locale)} aria-controls="akari-lang-popover" aria-expanded="false"><i class="ph ph-translate"></i></button>
+      <button class="icon-button appbar-settings-trigger" type="button" aria-label={label('ui', 'settings', locale)}><i class="ph ph-gear"></i></button>
     </div>
   </div>
 </header>
@@ -38,8 +39,8 @@ const { locale, title, section = '', languageOptions } = Astro.props;
   <div class="akari-search-modal__content">
     <div class="akari-search-modal__header">
       <i class="ph ph-magnifying-glass"></i>
-      <input type="text" class="akari-search-modal__input" placeholder="搜索文章..." aria-label="Search blog" />
-      <button class="akari-search-modal__close" type="button" aria-label="Close search"><i class="ph ph-x"></i></button>
+      <input type="text" class="akari-search-modal__input" placeholder={label('ui', 'searchPlaceholder', locale)} aria-label={label('ui', 'searchBlog', locale)} />
+      <button class="akari-search-modal__close" type="button" aria-label={label('ui', 'closeSearch', locale)}><i class="ph ph-x"></i></button>
     </div>
     <div class="akari-search-modal__results"></div>
   </div>
@@ -47,7 +48,7 @@ const { locale, title, section = '', languageOptions } = Astro.props;
 <div id="akari-settings-popover" class="akari-popover akari-settings-popover" aria-hidden="true" style="display:none">
   <div class="akari-popover__content">
     <div class="akari-settings-section">
-      <h3>配色方案</h3>
+      <h3>{label('ui', 'colorScheme', locale)}</h3>
       <div class="akari-settings-palette">
         <button class="akari-settings-palette__item" data-color="#f4abba" style="background:#f4abba" aria-label="Pink"></button>
         <button class="akari-settings-palette__item" data-color="#a0beff" style="background:#a0beff" aria-label="Blue"></button>
@@ -58,11 +59,11 @@ const { locale, title, section = '', languageOptions } = Astro.props;
       </div>
     </div>
     <div class="akari-settings-section">
-      <h3>字体大小</h3>
+      <h3>{label('ui', 'fontSize', locale)}</h3>
       <div class="akari-settings-font-size">
-        <button class="akari-settings-font-size__btn" data-size="small" type="button">小</button>
-        <button class="akari-settings-font-size__btn akari-settings-font-size__btn--active" data-size="medium" type="button">中</button>
-        <button class="akari-settings-font-size__btn" data-size="large" type="button">大</button>
+        <button class="akari-settings-font-size__btn" data-size="small" type="button">{label('ui', 'fontSmall', locale)}</button>
+        <button class="akari-settings-font-size__btn akari-settings-font-size__btn--active" data-size="medium" type="button">{label('ui', 'fontMedium', locale)}</button>
+        <button class="akari-settings-font-size__btn" data-size="large" type="button">{label('ui', 'fontLarge', locale)}</button>
       </div>
     </div>
   </div>

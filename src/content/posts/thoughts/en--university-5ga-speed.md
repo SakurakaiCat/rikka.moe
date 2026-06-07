@@ -11,7 +11,7 @@ description: "5G-A connecting to a Hong Kong IP at 105 MB/s — China Telecom, y
 ---
 
 <div class="ai-summary">
-The campus cell tower is a beast — **5G-A hitting 105 MB/s on a Hong Kong IP**, everything loads instantly. A simple感叹: "China Telecom, you are truly great."
+The campus cell tower is a beast — **5G-A hitting 105 MB/s on a Hong Kong IP**, everything loads instantly. A simple exclamation: "China Telecom, you are truly great."
 </div>
 
 Holy cow, the campus cell tower is insanely fast. 5G-A connecting to Hong Kong, 105 MB/s — I'm shocked. China Telecom, you are truly great. Everything loads instantly.

@@ -1,27 +1,33 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import PostCard from '../../../../components/PostCard.astro';
-import { categorySlug, getPostsByLocale, LOCALES, normalizeRoutePath, postCategories } from '../../../../lib/content';
-import { label } from '../../../../lib/i18n';
+import { getPostsByLocale, LOCALES, normalizeRoutePath, postCategories } from '../../../../lib/content';
+import { categoryName, categorySlugForLocale, label } from '../../../../lib/i18n';
 
 export async function getStaticPaths() {
   const paths = [];
   for (const locale of LOCALES) {
     const posts = await getPostsByLocale(locale);
     const categories = new Set(posts.flatMap((post) => postCategories(post)));
+    const seen = new Set<string>();
     for (const category of categories) {
-      paths.push({ params: { lang: locale.lang_path, category: categorySlug(category) }, props: { locale, category } });
+      const slug = categorySlugForLocale(category, locale);
+      if (seen.has(slug)) continue;
+      seen.add(slug);
+      paths.push({ params: { lang: locale.lang_path, category: slug }, props: { locale, category } });
     }
   }
   return paths;
 }
 
 const { locale, category } = Astro.props;
-const posts = (await getPostsByLocale(locale)).filter((post) => postCategories(post).some((item) => categorySlug(item) === categorySlug(category)));
+const categorySlug = categorySlugForLocale(category, locale);
+const displayCategory = categoryName(category, locale);
+const posts = (await getPostsByLocale(locale)).filter((post) => postCategories(post).some((item) => categorySlugForLocale(item, locale) === categorySlug));
 ---
-<BaseLayout title={`${label('common', 'categories', locale)}: ${category}`} description={`${category} - Akari`} locale={locale} canonicalPath={normalizeRoutePath(`${locale.lang_path}/categories/${categorySlug(category)}`)}>
+<BaseLayout title={`${label('common', 'categories', locale)}: ${displayCategory}`} description={`${displayCategory} - Akari`} locale={locale} canonicalPath={normalizeRoutePath(`${locale.lang_path}/categories/${categorySlug}`)}>
   <section class="archive-page glass-card">
-    <h1>{category}</h1>
+    <h1>{displayCategory}</h1>
     <div class="post-grid">{posts.map((post) => <PostCard post={post} />)}</div>
   </section>
 </BaseLayout>

@@ -1,0 +1,171 @@
+---
+import type { Locale } from '../lib/content';
+import { label } from '../lib/i18n';
+
+const { locale } = Astro.props as { locale: Locale };
+const copy = {
+  loading: label('guestbook', 'loading', locale),
+  empty: label('guestbook', 'empty', locale),
+  loadMore: label('guestbook', 'loadMore', locale),
+  nickname: label('guestbook', 'nickname', locale),
+  email: label('guestbook', 'email', locale),
+  message: label('guestbook', 'message', locale),
+  submit: label('guestbook', 'submit', locale),
+  submitting: label('guestbook', 'submitting', locale),
+  success: label('guestbook', 'success', locale),
+  errorInvalid: label('guestbook', 'errorInvalid', locale),
+  errorDuplicate: label('guestbook', 'errorDuplicate', locale),
+  errorBlocked: label('guestbook', 'errorBlocked', locale),
+  errorRateLimited: label('guestbook', 'errorRateLimited', locale),
+  errorServer: label('guestbook', 'errorServer', locale),
+};
+---
+<section class="guestbook-card" data-guestbook-root data-guestbook-copy={JSON.stringify(copy)}>
+  <div class="guestbook-card__status" data-guestbook-status>{copy.loading}</div>
+  <div id="guestbook-list" class="guestbook-card__list" data-guestbook-list></div>
+  <button class="guestbook-card__more" type="button" data-guestbook-more hidden>{copy.loadMore}</button>
+  <form id="guestbook-form" class="guestbook-card__form" data-guestbook-form>
+    <input name="nickname" autocomplete="name" maxlength="32" placeholder={copy.nickname} aria-label={copy.nickname} required />
+    <input name="email" autocomplete="email" inputmode="email" maxlength="254" placeholder={copy.email} aria-label={copy.email} />
+    <textarea name="content" maxlength="500" placeholder={copy.message} aria-label={copy.message} required></textarea>
+    <input class="guestbook-card__website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <button type="submit" data-guestbook-submit>{copy.submit}</button>
+  </form>
+</section>
+
+<script is:inline>
+(function() {
+  var root = document.querySelector('[data-guestbook-root]');
+  if (!root) return;
+  var copy;
+  try { copy = JSON.parse(root.getAttribute('data-guestbook-copy') || '{}'); } catch (error) { copy = {}; }
+  var list = root.querySelector('[data-guestbook-list]');
+  var status = root.querySelector('[data-guestbook-status]');
+  var more = root.querySelector('[data-guestbook-more]');
+  var form = root.querySelector('[data-guestbook-form]');
+  var submit = root.querySelector('[data-guestbook-submit]');
+  var nextCursor = null;
+  var loading = false;
+
+  function escapeHtml(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, function(char) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[char];
+    });
+  }
+
+  function setStatus(message, kind) {
+    if (!status) return;
+    status.textContent = message || '';
+    status.hidden = !message;
+    status.setAttribute('data-kind', kind || '');
+  }
+
+  function formatDate(value) {
+    var date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    try {
+      return date.toLocaleString(document.documentElement.lang || 'en', { dateStyle: 'medium', timeStyle: 'short' });
+    } catch (error) {
+      return date.toISOString().slice(0, 16).replace('T', ' ');
+    }
+  }
+
+  function buildEntry(entry) {
+    var avatar = escapeHtml(entry.avatarUrl || entry.fallbackAvatarUrl || '');
+    var fallback = escapeHtml(entry.fallbackAvatarUrl || '');
+    var nickname = escapeHtml(entry.nickname || 'Guest');
+    var content = escapeHtml(entry.content || '').replace(/\n/g, '<br>');
+    var createdAt = escapeHtml(formatDate(entry.createdAt));
+    return '<article class="guestbook-entry">' +
+      '<img class="guestbook-entry__avatar" src="' + avatar + '" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src=\'' + fallback + '\'">' +
+      '<div class="guestbook-entry__body"><header><strong>' + nickname + '</strong><time>' + createdAt + '</time></header><p>' + content + '</p></div>' +
+      '</article>';
+  }
+
+  function renderEntries(entries, append) {
+    if (!list) return;
+    var html = (entries || []).map(buildEntry).join('');
+    if (append) list.innerHTML += html;
+    else list.innerHTML = html;
+  }
+
+  function errorMessage(code) {
+    if (code === 'invalid_input') return copy.errorInvalid;
+    if (code === 'duplicate') return copy.errorDuplicate;
+    if (code === 'blocked') return copy.errorBlocked;
+    if (code === 'rate_limited') return copy.errorRateLimited;
+    return copy.errorServer;
+  }
+
+  function loadEntries(append) {
+    if (loading) return;
+    loading = true;
+    if (!append) setStatus(copy.loading || 'Loading…');
+    var url = '/api/guestbook/list' + (append && nextCursor ? '?cursor=' + encodeURIComponent(nextCursor) : '');
+    fetch(url, { credentials: 'omit' })
+      .then(function(response) {
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        return response.json();
+      })
+      .then(function(data) {
+        var entries = Array.isArray(data.entries) ? data.entries : [];
+        renderEntries(entries, append);
+        nextCursor = data.nextCursor || null;
+        if (more) more.hidden = !nextCursor;
+        if (!append && !entries.length) setStatus(copy.empty || 'No messages yet.');
+        else setStatus('');
+      })
+      .catch(function() { setStatus(copy.errorServer || 'Failed to load.', 'error'); })
+      .finally(function() { loading = false; });
+  }
+
+  if (more) more.addEventListener('click', function() { loadEntries(true); });
+
+  if (form) {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      var formData = new FormData(form);
+      var payload = {
+        nickname: String(formData.get('nickname') || ''),
+        email: String(formData.get('email') || ''),
+        content: String(formData.get('content') || ''),
+        website: String(formData.get('website') || '')
+      };
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = copy.submitting || 'Submitting…';
+      }
+      setStatus('');
+      fetch('/api/guestbook/submit', {
+        method: 'POST',
+        credentials: 'omit',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function(response) {
+          return response.json().catch(function() { return {}; }).then(function(data) {
+            if (!response.ok || !data.ok) throw data;
+            return data;
+          });
+        })
+        .then(function(data) {
+          form.reset();
+          if (data.entry) renderEntries([data.entry], false);
+          nextCursor = null;
+          if (more) more.hidden = true;
+          setStatus(copy.success || 'Posted.', 'success');
+          loadEntries(false);
+        })
+        .catch(function(error) { setStatus(errorMessage(error && error.code), 'error'); })
+        .finally(function() {
+          if (submit) {
+            submit.disabled = false;
+            submit.textContent = copy.submit || 'Submit';
+          }
+        });
+    });
+  }
+
+  loadEntries(false);
+})();
+</script>

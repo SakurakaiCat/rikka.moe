@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import HomePage from '../../components/HomePage.astro';
-import { getPostsByLocale, getLocaleByPath, LOCALES, homePath } from '../../lib/content';
+import { getPostsByLocale, LOCALES, homePath } from '../../lib/content';
 
 export async function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { lang: locale.lang_path }, props: { locale } }));

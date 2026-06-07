@@ -1,4 +1,5 @@
 import { getAllPosts, LOCALES, postCategories, postTags, postUrl, resolveLocale, stripHtml } from '../../lib/content';
+import { categoryName } from '../../lib/i18n';
 
 export async function getStaticPaths() {
   return LOCALES.map((locale) => ({ params: { lang: locale.lang_path }, props: { locale } }));
@@ -6,14 +7,14 @@ export async function getStaticPaths() {
 
 export async function GET({ props }: any) {
   const { locale } = props;
-  const posts = await getAllPosts();
+  const posts = (await getAllPosts()).filter((post) => resolveLocale(post.data).lang === locale.lang);
   return new Response(JSON.stringify({
     lang: locale.lang,
     posts: posts.map((post) => {
       const postLocale = resolveLocale(post.data);
       const content = stripHtml(post.body);
       const tags = postTags(post);
-      const categories = postCategories(post);
+      const categories = postCategories(post).map((category) => categoryName(category, locale));
       const metadata = [
         post.data.title,
         post.data.description,

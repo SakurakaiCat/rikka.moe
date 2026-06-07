@@ -93,19 +93,32 @@
     return readStoredLocalePreference() || resolveLocaleFromBrowserLanguages();
   }
 
+  function resolveLocaleKeyFromCurrentPage() {
+    if (!document || !document.documentElement) {
+      return null;
+    }
+
+    var pathLocale = normalizeLocaleKey(window.location.pathname.split('/').filter(Boolean)[0]);
+    if (pathLocale) {
+      return pathLocale;
+    }
+
+    return normalizeLocaleKey(document.documentElement.lang);
+  }
+
   function applyFontLocalePreference() {
     if (!document || !document.documentElement) {
       return;
     }
 
-    var preferredLocale = resolvePreferredLocaleKey();
+    var fontLocale = resolveLocaleKeyFromCurrentPage() || resolvePreferredLocaleKey();
 
-    if (!preferredLocale) {
+    if (!fontLocale) {
       document.documentElement.removeAttribute('data-font-locale');
       return;
     }
 
-    document.documentElement.setAttribute('data-font-locale', preferredLocale);
+    document.documentElement.setAttribute('data-font-locale', fontLocale);
   }
 
   function resolveTargetHomePath() {

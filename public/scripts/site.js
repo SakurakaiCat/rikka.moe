@@ -1,3 +1,7 @@
+function siteCopy(key, fallback) {
+  return (window.__AKARI_SITE_COPY__ && window.__AKARI_SITE_COPY__[key]) || fallback;
+}
+
 function setDrawerOpen(open) {
   const drawer = document.getElementById('akari-sidebar');
   const backdrop = document.querySelector('.akari-drawer-backdrop');
@@ -78,7 +82,7 @@ function renderSearchResults(query) {
   const matches = searchData.filter((post) => normalizeSearchText(post.searchText).includes(q)).slice(0, 10);
 
   if (!matches.length) {
-    resultsEl.innerHTML = '<div class="akari-search-modal__empty">没有找到相关文章</div>';
+    resultsEl.innerHTML = '<div class="akari-search-modal__empty">' + escapeHtml(siteCopy('searchEmpty', 'No matching posts found')) + '</div>';
     return;
   }
 
@@ -171,7 +175,7 @@ document.querySelectorAll('.article-prose pre').forEach((pre) => {
   wrapper.className = 'code-block';
   const button = document.createElement('button');
   button.type = 'button';
-  button.textContent = 'Copy';
+  button.textContent = siteCopy('copy', 'Copy');
   button.className = 'code-copy';
   pre.parentNode?.insertBefore(wrapper, pre);
   wrapper.appendChild(button);
@@ -179,8 +183,8 @@ document.querySelectorAll('.article-prose pre').forEach((pre) => {
   button.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(pre.textContent || '');
-      button.textContent = 'Copied';
-      setTimeout(() => button.textContent = 'Copy', 1200);
+      button.textContent = siteCopy('copied', 'Copied');
+      setTimeout(() => button.textContent = siteCopy('copy', 'Copy'), 1200);
     } catch {}
   });
 });

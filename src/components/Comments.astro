@@ -1,0 +1,36 @@
+---
+import type { Locale } from '../lib/content';
+import { label, twikooLang } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+  path?: string;
+}
+
+const { locale, path = '' } = Astro.props;
+const twikooContainerId = `twikoo-${locale.lang_path}`;
+---
+<section class="post-comments glass-card" data-twikoo-lang={twikooLang(locale)} data-twikoo-path={path}>
+  <h2>{label('post', 'comment', locale)}</h2>
+  <div id={twikooContainerId} data-twikoo-container></div>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js"></script>
+  <script is:inline>
+  (function() {
+    var script = document.currentScript;
+    var root = script && script.closest ? script.closest('.post-comments') : null;
+    if (!root) return;
+    var container = root.querySelector('[data-twikoo-container]');
+    if (!container || !container.id) return;
+    function initTwikoo() {
+      if (!window.twikoo || !window.twikoo.init) return;
+      window.twikoo.init({
+        envId: 'https://comment.rikka.moe',
+        el: '#' + container.id,
+        path: root.getAttribute('data-twikoo-path') || window.location.pathname,
+        lang: root.getAttribute('data-twikoo-lang') || document.documentElement.lang || 'en'
+      });
+    }
+    initTwikoo();
+  })();
+  </script>
+</section>

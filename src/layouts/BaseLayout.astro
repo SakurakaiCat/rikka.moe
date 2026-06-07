@@ -5,6 +5,7 @@ import Sidebar from '../components/Sidebar.astro';
 import Footer from '../components/Footer.astro';
 import type { Locale } from '../lib/content';
 import { LOCALES, toAbsoluteUrl } from '../lib/content';
+import { label } from '../lib/i18n';
 
 interface Props {
   title?: string;
@@ -33,6 +34,16 @@ const siteTitle = 'Akari';
 const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle;
 const canonical = toAbsoluteUrl('https://rikka.moe', canonicalPath);
 const seoDescription = description || locale.home_description;
+const siteCopy = {
+  searchEmpty: label('ui', 'searchEmpty', locale),
+  copy: label('ui', 'copy', locale),
+  copied: label('ui', 'copied', locale),
+};
+const aiSummaryCopy = {
+  title: label('ai', 'summaryTitle', locale),
+  footerPrefix: label('ai', 'summaryFooterPrefix', locale),
+  footerSuffix: label('ai', 'summaryFooterSuffix', locale),
+};
 const localeRoutingConfig = {
   preferenceKey: 'akari_locale_preference',
   defaultLocaleKey: 'en',
@@ -46,7 +57,7 @@ const localeRoutingConfig = {
 };
 ---
 <!doctype html>
-<html lang={locale.html_lang} class="mdui-theme-dark">
+<html lang={locale.html_lang} class="mdui-theme-dark" data-font-locale={locale.lang_path}>
   <head>
     <meta charset="UTF-8" />
     <meta name="renderer" content="webkit" />
@@ -69,6 +80,10 @@ const localeRoutingConfig = {
     <meta property="og:image" content={image.startsWith('http') ? image : toAbsoluteUrl('https://rikka.moe', image)} />
     <meta property="og:locale" content={locale.og_locale} />
     <meta name="twitter:card" content="summary_large_image" />
+    {locale.lang === 'en' && <link rel="preconnect" href="https://fonts.googleapis.com" />}
+    {locale.lang === 'en' && <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />}
+    {locale.lang === 'en' && <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet" />}
+    {locale.lang === 'en' && <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet" />}
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css" />
@@ -76,7 +91,7 @@ const localeRoutingConfig = {
     <link rel="stylesheet" href="/fonts/lxwk/lxwk.css" />
     <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
     <script defer src="https://analytics.rikka.moe/script.js" data-website-id="cdcfa939-9c79-48c3-8234-a2d87ebdf5b6"></script>
-    <script is:inline set:html={`window.__AKARI_LOCALE_ROUTING__ = ${JSON.stringify(localeRoutingConfig)};`}></script>
+    <script is:inline set:html={`window.__AKARI_LOCALE_ROUTING__ = ${JSON.stringify(localeRoutingConfig)}; window.__AKARI_SITE_COPY__ = ${JSON.stringify(siteCopy)}; window.__AKARI_AI_SUMMARY_COPY__ = ${JSON.stringify(aiSummaryCopy)};`}></script>
     <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': type === 'article' ? 'BlogPosting' : 'WebSite', name: title || siteTitle, headline: title || siteTitle, url: canonical, inLanguage: locale.html_lang, description: seoDescription, author: { '@type': 'Person', name: 'Akari / 篠崎香澄' } })}></script>
   </head>
   <body class="mdui-theme-dark">
@@ -112,17 +127,18 @@ const localeRoutingConfig = {
     </script>
     <script is:inline>
     (function() {
+      var aiCopy = window.__AKARI_AI_SUMMARY_COPY__ || {};
       var els = document.querySelectorAll('.ai-summary');
       for (var i = 0; i < els.length; i++) {
         var el = els[i];
         if (el.querySelector('.ai-summary-title')) continue;
         var title = document.createElement('div');
         title.className = 'ai-summary-title';
-        title.textContent = 'AI总结';
+        title.textContent = aiCopy.title || 'AI summary';
         el.insertBefore(title, el.firstChild);
         var footer = document.createElement('div');
         footer.className = 'ai-summary-footer';
-        footer.innerHTML = '由<img src=\"/images/deepseek-icon.svg\" alt=\"\" style=\"width:1em;height:1em;vertical-align:middle;margin:0 0.25em 0 0;display:inline-block;\">DeepSeek V4 Pro 驱动总结';
+        footer.innerHTML = (aiCopy.footerPrefix || 'Summary powered by') + '<img src=\"/images/deepseek-icon.svg\" alt=\"\" style=\"width:1em;height:1em;vertical-align:middle;margin:0 0.25em 0 0;display:inline-block;\">' + (aiCopy.footerSuffix || 'DeepSeek V4 Pro');
         el.appendChild(footer);
       }
     })();

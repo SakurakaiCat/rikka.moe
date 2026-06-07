@@ -1,19 +1,20 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { DEFAULT_LOCALE, pageUrl } from '../../lib/content';
+import { pageUrl, resolveLocale } from '../../lib/content';
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
   return pages
-    .filter((page) => ['books', 'books/index', 'projects', 'projects/index'].includes(page.id))
+    .filter((page) => ['projects', 'projects/index'].includes(page.id))
     .map((page) => ({ params: { page: page.id.split('/')[0] }, props: { page } }));
 }
 
 const { page } = Astro.props;
 const { Content } = await render(page);
+const locale = resolveLocale(page.data);
 ---
-<BaseLayout title={page.data.title || 'Akari'} description={page.data.description} locale={DEFAULT_LOCALE} canonicalPath={pageUrl(page)} indexing={page.data.indexing !== false}>
+<BaseLayout title={page.data.title || 'Akari'} description={page.data.description} locale={locale} canonicalPath={pageUrl(page)} indexing={page.data.indexing !== false}>
   <section class="content-page glass-card">
     <h1>{page.data.title}</h1>
     <Content />

@@ -1,0 +1,507 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SponsorWall from '../../components/SponsorWall.astro';
+import { getLocaleByLang, LOCALES, toAbsoluteUrl } from '../../lib/content';
+
+interface TocChild {
+  label: string;
+  title: string;
+  sub?: string[];
+}
+
+interface TocPart {
+  label: string;
+  title: string;
+  children: TocChild[];
+}
+
+const locale = getLocaleByLang('zh-CN')!;
+const languageOptions = LOCALES.map((loc) => ({
+  ...loc,
+  relativeUrl: '/books/',
+  absoluteUrl: toAbsoluteUrl('https://rikka.moe', '/books/'),
+  isCurrent: loc.lang === locale.lang,
+}));
+
+const funcToc: TocPart[] = [
+  {
+    label: '第一卷',
+    title: '函数 — 语言、图像与结构',
+    children: [
+      { label: '01', title: '函数的概念' },
+      { label: '02', title: '定义域' },
+      { label: '03', title: '函数的表示法' },
+      { label: '04', title: '从关系到函数' },
+      { label: '05', title: '图像与坐标轴' },
+      { label: '06', title: '由解析式抓作图线索' },
+      { label: '07', title: '含参数函数的图像综合' },
+      { label: '08', title: '图像研究的基本路径与常见误判' },
+      { label: '09', title: '单调性' },
+      { label: '10', title: '最值' },
+      { label: '11', title: '奇偶性' },
+      { label: '12', title: '周期性' },
+      { label: '13', title: '性质之间的联系与综合判断' },
+      { label: '14', title: '凹凸性' },
+      { label: '15', title: '反函数' },
+      { label: '16', title: '函数的复合' },
+      { label: '17', title: '函数的图像变换' },
+      { label: '18', title: '多项式函数与三次函数初步' },
+      { label: '19', title: '指数函数' },
+      { label: '20', title: '幂函数' },
+      { label: '21', title: '对数函数' },
+      { label: '22', title: '函数模型的建立与应用' },
+      { label: '23', title: '函数的零点' },
+      { label: '24', title: '分段函数' },
+      { label: '25', title: '绝对值函数' },
+      { label: '26', title: '抽象函数与函数方程' },
+      { label: '27', title: '函数值域' },
+    ],
+  },
+  {
+    label: '第二卷',
+    title: '极限与导数 — 思想、工具与应用',
+    children: [
+      { label: '01', title: '数轴为什么需要「没有空隙」' },
+      { label: '02', title: '极限' },
+      { label: '03', title: '切线问题' },
+      { label: '04', title: '函数的连续性' },
+      { label: '05', title: '连续性在图像与方程中的作用' },
+      { label: '06', title: '极限的运算与常用工具' },
+      { label: '07', title: '无穷远处的极限与渐近现象' },
+      { label: '08', title: '导数的概念' },
+      { label: '09', title: '中值定理与线性近似' },
+      { label: '10', title: '单调性、零点与不等式' },
+      { label: '11', title: '高阶导数与泰勒展开初步' },
+      { label: '12', title: '洛必达法则与极限计算' },
+      { label: '13', title: '端点分析与局部保号' },
+      { label: '14', title: '极值点偏移问题' },
+      { label: '15', title: '三次函数的导数分析' },
+      { label: '16', title: '分段点分析与导数法求值域' },
+    ],
+  },
+];
+
+const journeyToc: TocPart[] = [
+  {
+    label: '基础篇',
+    title: 'PART 1 · 基础',
+    children: [
+      { label: '01', title: '预备知识', sub: ['因式分解', '乘法公式与因式分解', '恒等变形的方法', '二次函数', '计算与变形技巧', '一些有用的数论知识'] },
+      { label: '02', title: '集合与映射', sub: ['集合论初步', '映射', '逻辑用语初步'] },
+      { label: '03', title: '函数', sub: ['函数的概念', '定义域', '单调性', '奇偶性', '周期性', '凹凸性', '反函数', '函数的复合', '函数的图像变换', '常见多项式函数', '指数函数', '幂函数', '对数函数', '函数模型与应用', '函数的零点', '分段函数', '绝对值函数', '函数解析式的求解', '函数值域的求解'] },
+      { label: '04', title: '函数方程与抽象函数', sub: ['基本分析方法', '柯西函数方程及其变式', '二次及高次多项式模型', '三角与双曲函数模型'] },
+      { label: '05', title: '不等式', sub: ['均值不等式', '均值不等式的提示', '均值不等式链', '均值不等式的应用技巧', '柯西不等式', '排序不等式', '伯努利不等式', '糖水不等式'] },
+      { label: '06', title: '三角函数', sub: ['弧度制', '正弦函数与余弦函数', '正弦与余弦函数的图像', '正弦函数与余弦函数的性质', '正切函数', '余切、正割与余割函数', '同角三角函数的基本关系', '诱导公式', '和差角公式', '倍角公式', '万能公式与齐次式思想', '角的变换', '和差化积与积化和差', '反三角函数'] },
+      { label: '07', title: '数列', sub: ['数学归纳法', '和-符号', '数列的语言', '等差数列', '等比数列', '差比数列', '斐波那契数列', '数列求和的通用策略', '递推关系与通项公式', '一阶递推的基本形式', '迭代与不动点', '数列的单调性', '奇偶数列', '数列的周期性', '数列的极限', '级数', '泰勒公式与泰勒级数'] },
+      { label: '08', title: '统计', sub: ['描述数据', '抽样方法', '从样本到总体'] },
+      { label: '09', title: '计数原理', sub: ['加法原理与乘法原理', '组合与排列', '二项式定理', '从三项式定理到多项式定理', '排列组合'] },
+      { label: '10', title: '概率', sub: ['事件与概率'] },
+    ],
+  },
+  {
+    label: '进阶篇',
+    title: 'PART 2 · 进阶',
+    children: [
+      { label: '11', title: '解三角形', sub: ['正弦定理和余弦定理', '常见题型', '保底的建系法', '非常规题型'] },
+      { label: '12', title: '解析几何', sub: ['向量代数', '定比分点与共线定理', '直线与圆', '线性规划初步', '二次曲线'] },
+      { label: '13', title: '射影几何', sub: ['源起与观念', '单比与交比', '二次曲线的极点与极线', '极点与极线的几何作图'] },
+      { label: '14', title: '极限与导数', sub: ['实数系的完备性', '极限的定义', '切线问题', '函数的连续性', '极限的运算', '无穷远处的极限与无穷小量', '导数的概念', '中值定理的应用与推广', '导数的综合应用：方程根、零点与不等式证明', '高阶导数与泰勒展开初步', '洛必达法则与极限计算的系统策略', '必要性探路与端点分析法', '极值点偏移问题'] },
+      { label: '15', title: '极坐标与参数方程' },
+      { label: '16', title: '复数', sub: ['复数的概念与几何意义', '复数的运算', '二次方程的复数解', '复数运算的几何意义', '代数基本定理', '曲线方程的复数表示', '本章小结与思想方法'] },
+      { label: '17', title: '立体几何', sub: ['基本公理与空间元素', '证明线线平行的基本策略', '空间中的平行关系', '空间中的垂直关系'] },
+      { label: '18', title: '数学思想浅谈', sub: ['如何确定数学对象', '什么是自由度？', '搭建起解题框架', '纯构造式问题的解法', '含满足式问题的通用策略', '谈谈二级结论', '换元法为何行之有效'] },
+    ],
+  },
+  {
+    label: '拓展篇',
+    title: 'PART 3 · 拓展',
+    children: [
+      { label: '19', title: '简单的积分', sub: ['原函数与不定积分', '不定积分', '换元积分法', '分部积分法', '定积分与微积分基本定理', '定积分的性质'] },
+      { label: '20', title: '微分方程初步', sub: ['基本概念', '可分离变量的微分方程', '一阶线性微分方程', '应用微分方程求解函数方程'] },
+      { label: '21', title: '矩阵与行列式', sub: ['向量', '矩阵'] },
+    ],
+  },
+];
+
+const volumeCovers = [
+  { label: '第一卷', src: '/images/books/covers/vol-1.png' },
+  { label: '第二卷', src: '/images/books/covers/vol-2.png' },
+  { label: '第三卷', src: '/images/books/covers/vol-3.png' },
+  { label: '第四卷', src: '/images/books/covers/vol-4.png' },
+  { label: '第五卷', src: '/images/books/covers/vol-5.png' },
+];
+
+const features = [
+  { icon: 'file-pdf', title: '纯净阅读体验', desc: '付费版 PDF 完全无水印，每一页都保持完整的视觉与版心比例。' },
+  { icon: 'pen-nib', title: '排版即艺术', desc: 'LaTeX 级精细驱动，公式、图形、间距、字体的每一处细节都经过推敲。' },
+  { icon: 'globe', title: '开源与知识自由', desc: '书稿以开放方式呈现，让每个人都能接触高质量的数学内容。' },
+  { icon: 'code', title: '代码生成精度', desc: '所有图形由 TikZ 代码驱动，保证数学图形的精确性与可复现性。' },
+  { icon: 'shield-check', title: '质量门禁', desc: 'GitHub Actions 持续集成、自动化编译校验、PDF 质量检查保障每一次提交。' },
+  { icon: 'books', title: '专题分册编排', desc: '按数学专题独立分册，便于围绕不同主题独立阅读与查阅。' },
+];
+
+const freeFeatures = ['完整章节内容（含水印）', '全部图形与公式', '全部目录与内容提要', '作者简介与前言'];
+const premiumFeatures = ['与免费版内容完全相同', '去除页面水印，阅读纯净', 'TikZ 矢量图形源文件', '终身版本更新', '所有专题分册独立下载'];
+const nextcloudSteps = [
+  '点击页面上的「下载」按钮后，会跳转到 Nextcloud 网盘分享页面。',
+  '页面加载后，你会看到一个或多个 PDF 文件；点击文件名即可在浏览器中直接在线预览。',
+  '若要下载，点击文件右侧的「下载」图标（向下箭头），或将鼠标悬停在文件名上，选择「下载」。',
+  '下载完成后，用任意 PDF 阅读器（如浏览器自带、Adobe Acrobat、WPS 等）打开即可阅读。',
+];
+const afdianSteps = [
+  '点击页面上的「前往爱发电支持」按钮，跳转到作者的爱发电主页。',
+  '选择你想支持的商品（如「函数与导数 无水印版」），点击「支持」。',
+  '完成付款后，系统会自动发货——你会收到一个网盘下载链接（通常在订单页面或邮件中可找到）。',
+  '打开链接即可下载无水印 PDF，终身可下载，后续更新也会同步。',
+];
+
+const screenshotGroups = [
+  {
+    title: '《函数与导数》',
+    images: [
+      { src: '/images/books/screenshots/func-sample-1.png', alt: '《函数与导数》内页预览 1' },
+      { src: '/images/books/screenshots/func-sample-2.png', alt: '《函数与导数》内页预览 2' },
+      { src: '/images/books/screenshots/func-sample-3.png', alt: '《函数与导数》内页预览 3' },
+    ],
+  },
+  {
+    title: '《高中数学之旅》',
+    images: [
+      { src: '/images/books/screenshots/journey-sample-1.png', alt: '《高中数学之旅》内页预览 1' },
+      { src: '/images/books/screenshots/journey-sample-2.png', alt: '《高中数学之旅》内页预览 2' },
+      { src: '/images/books/screenshots/journey-sample-3.png', alt: '《高中数学之旅》内页预览 3' },
+    ],
+  },
+];
+
+const renderToc = (toc: TocPart[]) => toc.map((part, partIndex) => (
+  <details class="akari-book-toc__part" open={partIndex === 0}>
+    <summary>
+      <span class="akari-book-toc__label">{part.label}</span>
+      <strong>{part.title}</strong>
+      <i class="ph ph-caret-down"></i>
+    </summary>
+    <div class="akari-book-toc__children">
+      {part.children.map((child) => (
+        <div class="akari-book-toc__child">
+          <div class="akari-book-toc__child-head">
+            <span>{child.label}</span>
+            <strong>{child.title}</strong>
+          </div>
+          {child.sub && child.sub.length > 0 && (
+            <ul class="akari-book-toc__sub">
+              {child.sub.map((sub, index) => <li><span>{String(index + 1).padStart(2, '0')}</span>{sub}</li>)}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  </details>
+));
+---
+
+<BaseLayout
+  title="数学之旅"
+  description="ProjectA 书籍落地页已迁入 Akari 个人网站：展示《数学之旅：函数与导数》与《高中数学之旅》的目录、预览、版本对比、下载与支持入口。"
+  locale={locale}
+  canonicalPath="/books/"
+  image="/images/books/covers/func-math-cover.png"
+  languageOptions={languageOptions}
+>
+  <article class="akari-books-landing">
+    <section class="akari-books-hero-v2 glass-card" aria-labelledby="books-title">
+      <div class="akari-books-hero-v2__content">
+        <p class="akari-books-eyebrow">A Journey Through Mathematics</p>
+        <h1 id="books-title">数学之旅</h1>
+        <p class="akari-books-hero-v2__english">THE JOURNEY OF MATHEMATICS</p>
+        <p class="akari-books-hero-v2__lead">为中学数学而写的现代数学读物。函数、极限、导数一脉贯通，用 LaTeX 与 TikZ 把每一页都做成艺术品。</p>
+        <div class="akari-books-chips" aria-label="书籍关键词">
+          <span>LaTeX / XeLaTeX</span>
+          <span>TikZ 矢量图形</span>
+          <span>免费版内容完整</span>
+          <span>付费版仅去水印</span>
+        </div>
+        <div class="akari-books-actions">
+          <a class="akari-button akari-button--filled" href="#akari-book-showcase"><i class="ph ph-sparkle"></i>探索书稿</a>
+          <a class="akari-button" href="#akari-book-versions"><i class="ph ph-arrows-left-right"></i>版本对比</a>
+          <a class="akari-button" href="#akari-book-screenshots"><i class="ph ph-images"></i>内页预览</a>
+          <a class="akari-button" href="https://reader.rikka.moe" target="_blank" rel="noopener noreferrer"><i class="ph ph-book-open"></i>在线阅读</a>
+        </div>
+      </div>
+      <div class="akari-books-hero-v2__covers" aria-hidden="true">
+        <img class="akari-books-hero-v2__cover akari-books-hero-v2__cover--back" src="/images/books/covers/journey-cover.png" alt="" loading="eager" decoding="async" />
+        <img class="akari-books-hero-v2__cover akari-books-hero-v2__cover--front" src="/images/books/covers/func-math-cover.png" alt="" loading="eager" decoding="async" />
+      </div>
+    </section>
+
+    <nav class="akari-books-anchor-nav glass-card" aria-label="书籍页导航">
+      <a href="#akari-book-showcase"><i class="ph ph-books"></i><span>书稿总览</span></a>
+      <a href="#akari-book-design"><i class="ph ph-pen-nib"></i><span>设计哲学</span></a>
+      <a href="#akari-book-versions"><i class="ph ph-download-simple"></i><span>下载版本</span></a>
+      <a href="#akari-book-method"><i class="ph ph-route"></i><span>写作说明</span></a>
+      <a href="#akari-book-support"><i class="ph ph-heart"></i><span>支持作者</span></a>
+    </nav>
+
+    <section id="akari-book-showcase" class="akari-books-section">
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">书稿总览</p>
+        <h2>两个系列，一脉相承</h2>
+        <p>两个系列内容互相独立。免费版与付费版的内容完全一致，付费版仅去除了页面水印，阅读体验更纯净。</p>
+      </header>
+
+      <div class="akari-books-showcase glass-card">
+        <div class="akari-books-tabs" role="tablist" aria-label="书籍系列切换">
+          <button type="button" class="akari-books-tab akari-books-tab--active" role="tab" aria-selected="true" data-series-tab="func"><i class="ph ph-sparkle"></i><span>数学之旅 · 函数与导数</span></button>
+          <button type="button" class="akari-books-tab" role="tab" aria-selected="false" data-series-tab="journey"><i class="ph ph-books"></i><span>高中数学之旅 · 旧版五册</span></button>
+        </div>
+
+        <div class="akari-books-series-panel akari-books-series-panel--active" data-series-panel="func">
+          <div class="akari-books-note"><i class="ph ph-info"></i><p>数学之旅 是新启动的独立系列，作为《高中数学之旅》的精神续作进行全面重写。目前已出版第一册《函数与导数》。</p></div>
+          <div class="akari-books-series-layout">
+            <aside class="akari-books-cover-card">
+              <img src="/images/books/covers/func-math-cover.png" alt="数学之旅：函数与导数 封面" loading="lazy" decoding="async" />
+              <div class="akari-books-update"><i class="ph ph-git-commit"></i><span>最近更新：</span><span data-github-latest="WritingMathBooks/func-math-book">加载中…</span></div>
+              <a class="akari-button akari-button--filled" href="https://c.rikka.moe/s/iopEsCAHqsXkemo" target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>免费下载《函数与导数》</a>
+            </aside>
+            <div class="akari-books-series-copy">
+              <p class="akari-books-badge">新系列 · 第一册</p>
+              <h3>数学之旅：函数与导数</h3>
+              <p>本书围绕中学阶段的「函数与导数」展开，按专题分册编排，呈现由函数观念通向极限思想、再延伸至导数方法的数学脉络。前半部分依次讨论函数的概念、定义域、单调性、奇偶性、周期性、图像变换以及若干常见函数模型，强调图像、性质与解析式之间的联系。后半部分进入极限、连续、导数、中值定理、高阶导数与相关应用。</p>
+              <div class="akari-books-meta"><span>LaTeX / XeLaTeX</span><span>持续迭代中</span><span>WritingMathBooks/func-math-book</span></div>
+              <h4>目录</h4>
+              <div class="akari-book-toc">{renderToc(funcToc)}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="akari-books-series-panel" data-series-panel="journey" hidden>
+          <div class="akari-books-note"><i class="ph ph-info"></i><p>高中数学之旅 目前暂缓更新，全套五册，覆盖中学数学的全部专题。后续如有新修订将以更新日志形式通知。</p></div>
+          <div class="akari-books-series-layout">
+            <aside class="akari-books-cover-card">
+              <img id="akari-journey-cover-main" src="/images/books/covers/vol-1.png" alt="高中数学之旅 第一卷 封面" loading="lazy" decoding="async" />
+              <div class="akari-books-volume-strip" aria-label="选择旧版分册封面">
+                {volumeCovers.map((volume, index) => (
+                  <button type="button" class:list={["akari-books-volume", index === 0 && "akari-books-volume--active"]} data-volume-src={volume.src} data-volume-label={volume.label} aria-pressed={index === 0}>
+                    <img src={volume.src} alt={`${volume.label} 封面`} loading="lazy" decoding="async" />
+                  </button>
+                ))}
+              </div>
+              <div class="akari-books-update"><i class="ph ph-git-commit"></i><span>最近更新：</span><span data-github-latest="ShinozakiKasumi/ProjectA-journey">加载中…</span></div>
+              <a class="akari-button akari-button--filled" href="https://c.rikka.moe/s/M7eQTWP8oHNBXGH" target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>免费下载《高中数学之旅》</a>
+            </aside>
+            <div class="akari-books-series-copy">
+              <p class="akari-books-badge">旧版 · 完整五册</p>
+              <h3>高中数学之旅</h3>
+              <p>本系列覆盖中学数学的大部分专题与常见题型，并对若干进阶内容进行了介绍与论述。从集合与逻辑用语出发，最终于概率一章结束，适合从基础到中档的学生阅读。该书面向对中学数学抱有兴趣，以及正在学习或复习中学数学的读者。</p>
+              <div class="akari-books-meta"><span>LaTeX / XeLaTeX</span><span>五册</span><span>暂缓更新</span><span>ShinozakiKasumi/ProjectA-journey</span></div>
+              <h4>目录</h4>
+              <div class="akari-book-toc">{renderToc(journeyToc)}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="akari-book-design" class="akari-books-section">
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">设计哲学</p>
+        <h2>理念与特征</h2>
+        <p>知识自由是我的起源。书稿以开放方式呈现，也用尽可能精细的排版保留数学内容的结构美。</p>
+      </header>
+      <div class="akari-books-stats glass-card">
+        <article><strong>21</strong><span>章</span><p>完整覆盖中学数学核心专题</p></article>
+        <article><strong>100%</strong><span>矢量</span><p>TikZ 驱动的精确图形渲染</p></article>
+        <article><strong>∞</strong><span>精度</span><p>LaTeX 排版，像素级数学公式</p></article>
+      </div>
+      <div class="akari-books-feature-grid">
+        {features.map((feature) => (
+          <article class="akari-books-card glass-card">
+            <i class={`ph ph-${feature.icon}`}></i>
+            <h3>{feature.title}</h3>
+            <p>{feature.desc}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="akari-book-versions" class="akari-books-section">
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">版本对比</p>
+        <h2>选择你的版本</h2>
+        <p>免费版与付费版的内容完全一致。付费版仅去除页面水印，并作为对作者的一份支持。</p>
+      </header>
+      <div class="akari-books-version-grid">
+        <article class="akari-books-version glass-card">
+          <p class="akari-books-badge">Free Edition</p>
+          <h3>免费版</h3>
+          <ul>{freeFeatures.map((item) => <li><i class="ph ph-check"></i>{item}</li>)}</ul>
+          <div class="akari-books-actions akari-books-actions--stacked">
+            <a class="akari-button" href="https://c.rikka.moe/s/iopEsCAHqsXkemo" target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>下载《函数与导数》</a>
+            <a class="akari-button" href="https://c.rikka.moe/s/M7eQTWP8oHNBXGH" target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>下载《高中数学之旅》</a>
+          </div>
+        </article>
+        <article class="akari-books-version akari-books-version--primary glass-card">
+          <p class="akari-books-badge">Watermark-Free Edition</p>
+          <h3>无水印版</h3>
+          <span class="akari-books-version__chip">内容相同 · 仅去水印</span>
+          <ul>{premiumFeatures.map((item) => <li><i class="ph ph-check-circle"></i>{item}</li>)}</ul>
+          <a class="akari-button akari-button--filled" href="https://afdian.com/a/writeamathbook" target="_blank" rel="noopener noreferrer"><i class="ph ph-heart"></i>前往爱发电支持</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="akari-book-screenshots" class="akari-books-section">
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">内页预览</p>
+        <h2>翻阅书页</h2>
+        <p>随机抽取两本书的一些页面，提前感受排版风格。</p>
+      </header>
+      <div class="akari-books-screenshot-groups">
+        {screenshotGroups.map((group) => (
+          <section class="akari-books-screenshot-group glass-card" aria-label={group.title}>
+            <h3>{group.title}</h3>
+            <div class="akari-books-screenshot-grid">
+              {group.images.map((image) => <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />)}
+            </div>
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <section class="akari-books-section">
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">使用指南</p>
+        <h2>下载与购买教程</h2>
+      </header>
+      <div class="akari-books-tutorial-grid">
+        <article class="akari-books-tutorial glass-card">
+          <i class="ph ph-cloud-arrow-down"></i>
+          <h3>如何在线预览与下载 PDF</h3>
+          <ol>{nextcloudSteps.map((step) => <li>{step}</li>)}</ol>
+        </article>
+        <article class="akari-books-tutorial glass-card">
+          <i class="ph ph-shopping-bag-open"></i>
+          <h3>如何在爱发电购买无水印版</h3>
+          <ol>{afdianSteps.map((step) => <li>{step}</li>)}</ol>
+        </article>
+      </div>
+      <p class="akari-books-notice"><i class="ph ph-globe-hemisphere-west"></i>提示：网盘服务器位于美国，部分地区下载速度可能较慢，请耐心等待或使用下载工具加速。</p>
+    </section>
+
+    <section id="akari-book-method" class="akari-books-section">
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">Origin / Practice / Paused</p>
+        <h2>写作缘起、学习方式与暂停说明</h2>
+        <p>这一部分保留原书籍说明页中的背景文字，解释为什么写这本书，以及项目当前的状态。</p>
+      </header>
+      <div class="akari-books-method-grid">
+        <article class="akari-books-text-card glass-card">
+          <h3>写作缘起与方法论</h3>
+          <p>本书的起点源自我在高中三年学习数学期间使用 Obsidian 软件记的笔记，书稿最终使用 LaTeX 编排。写这本书的初衷很简单：我觉得市面上没有一本教辅可以真正满足我。</p>
+          <p>我观察到目前大部分教辅的形式，要不就是总结加一堆例题，有些比较良心的教辅，无非是在解析和答案上多下点功夫。直到我读了 Springer 出版社的《初等数学之旅》之后，我突然有感而发：为什么国内就没有一本这种能从初中一直讲到本科数学的大部头书呢？于是我写了这本书。</p>
+          <p>我更想强调的是：拥有另一种模式的学生，看到一道题，不是先去 Matching 是什么题型，而是看到整道题背后的逻辑流：从哪个定义或定理出发，经历哪些分支，最后如何收敛到答案。</p>
+        </article>
+        <article class="akari-books-text-card glass-card">
+          <h3>关于习题册、AI 与学习方式</h3>
+          <p>许多人问我为什么不继续编一个习题册：一是没时间且回报太少；二是我确实懒；三是市面上的习题与专题资源已经很多。</p>
+          <p>以前我也觉得解析册里的思路引导很重要，但现在我渐渐改变了想法。很多 AI 配合学习模式的一步步交互性引导，在效率上明显超过纸面答案。</p>
+          <p>我在高三后期就经常把错题思路交给模型继续推演，让它顺着我的错误路径解释“为什么错、为什么这个方法好而那个不好”。把真实思考过程交给可交互系统，效率更高。</p>
+        </article>
+        <article class="akari-books-text-card akari-books-text-card--wide glass-card">
+          <h3>为什么暂停更新</h3>
+          <p>这个项目已经进入无限期暂停，目前看到的可能就是最后版本。核心原因包括：新增内容没有形成可持续回报；书稿被改名、拆分、低价倒卖持续消耗精力；大部头写作需要连续的大块时间且过于单向；我也有新的软件开发项目要做。</p>
+          <ol>
+            <li>把这本书的内容逐步迁移到软件中。由于底稿是 LaTeX，转为其他格式相对容易，也会尝试多语言版本。</li>
+            <li>继续开发软件，不管最终是否商业化，至少可以沉淀工程经验并形成可展示的作品集。</li>
+            <li>继续观察有没有新的写作切入点，未来不排除以新结构重写。</li>
+            <li>先实现可持续收益，改善财务状况，再谈更长期目标。</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section id="akari-book-support" class="akari-books-section">
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">支持作者</p>
+        <h2>在爱发电支持我</h2>
+        <p>在爱发电平台支持作者的创作。每一份支持都是持续写作的动力。付费版与免费版内容完全一致，付费仅去除水印。</p>
+      </header>
+      <div class="akari-books-support-card glass-card">
+        <div>
+          <h3>感谢友情支持</h3>
+          <p>前往爱发电主页获取无水印版并支持作者。</p>
+          <a href="https://afdian.com/a/writeamathbook" target="_blank" rel="noopener noreferrer">afdian.com/a/writeamathbook ↗</a>
+        </div>
+        <iframe id="afdian_leaflet_writeamathbook" src="https://ifdian.net/leaflet?slug=writeamathbook" width="640" height="200" scrolling="no" frameborder="0" loading="lazy" title="爱发电赞助卡片"></iframe>
+      </div>
+      <SponsorWall locale={locale} />
+    </section>
+
+    <section class="akari-books-section akari-books-akari-card glass-card">
+      <img src="/akari-logo.svg" width="64" height="64" alt="Project Akari" loading="lazy" decoding="async" />
+      <p class="akari-books-eyebrow">Project Akari</p>
+      <h2>Illuminating the Path of Learning</h2>
+      <p>Project Akari 致力于重塑学习体验，提供更高效、更具亲和力的学习范式。项目名取自日文「あかり」(Akari)，意为灯/光，寓意照亮前行之路。</p>
+      <p>《高中数学之旅》以旅程为线索重构知识体系，《数学之旅》系列延伸广度与深度；配套软件提供个性化学习辅助。项目以普惠分发、极低价格或免费为原则，成本由书籍收入及开发兼职反哺。</p>
+    </section>
+  </article>
+
+  <script is:inline>
+    (function () {
+      var tabs = document.querySelectorAll('[data-series-tab]');
+      var panels = document.querySelectorAll('[data-series-panel]');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var key = tab.getAttribute('data-series-tab');
+          tabs.forEach(function (item) {
+            var active = item === tab;
+            item.classList.toggle('akari-books-tab--active', active);
+            item.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          panels.forEach(function (panel) {
+            var active = panel.getAttribute('data-series-panel') === key;
+            panel.classList.toggle('akari-books-series-panel--active', active);
+            panel.hidden = !active;
+          });
+        });
+      });
+
+      var journeyCover = document.getElementById('akari-journey-cover-main');
+      document.querySelectorAll('[data-volume-src]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          if (!journeyCover) return;
+          var src = button.getAttribute('data-volume-src');
+          var label = button.getAttribute('data-volume-label') || '分册';
+          if (src) journeyCover.setAttribute('src', src);
+          journeyCover.setAttribute('alt', '高中数学之旅 ' + label + ' 封面');
+          document.querySelectorAll('[data-volume-src]').forEach(function (item) {
+            var active = item === button;
+            item.classList.toggle('akari-books-volume--active', active);
+            item.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+        });
+      });
+
+      function formatDate(value) {
+        if (!value) return '—';
+        var date = new Date(value);
+        if (Number.isNaN(date.getTime())) return '—';
+        return date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+      }
+
+      document.querySelectorAll('[data-github-latest]').forEach(function (node) {
+        var repo = node.getAttribute('data-github-latest');
+        if (!repo) return;
+        fetch('https://api.github.com/repos/' + repo + '/commits?per_page=1', {
+          headers: { Accept: 'application/vnd.github.v3+json' },
+        })
+          .then(function (response) { return response.ok ? response.json() : Promise.reject(); })
+          .then(function (data) {
+            var date = Array.isArray(data) && data[0] && data[0].commit && data[0].commit.committer && data[0].commit.committer.date;
+            node.textContent = formatDate(date);
+          })
+          .catch(function () { node.textContent = '—'; });
+      });
+    })();
+  </script>
+</BaseLayout>
