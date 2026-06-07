@@ -174,30 +174,38 @@ const screenshotGroups = [
   },
 ];
 
-const renderToc = (toc: TocPart[]) => toc.map((part, partIndex) => (
-  <details class="akari-book-toc__part" open={partIndex === 0}>
+const escapeHtml = (value: unknown) => String(value ?? '')
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&#039;');
+
+const renderTocHtml = (toc: TocPart[]) => toc.map((part, partIndex) => `
+  <details class="akari-book-toc__part" ${partIndex === 0 ? 'open' : ''}>
     <summary>
-      <span class="akari-book-toc__label">{part.label}</span>
-      <strong>{part.title}</strong>
+      <span class="akari-book-toc__label">${escapeHtml(part.label)}</span>
+      <strong>${escapeHtml(part.title)}</strong>
       <i class="ph ph-caret-down"></i>
     </summary>
     <div class="akari-book-toc__children">
-      {part.children.map((child) => (
+      ${part.children.map((child) => `
         <div class="akari-book-toc__child">
           <div class="akari-book-toc__child-head">
-            <span>{child.label}</span>
-            <strong>{child.title}</strong>
+            <span>${escapeHtml(child.label)}</span>
+            <strong>${escapeHtml(child.title)}</strong>
           </div>
-          {child.sub && child.sub.length > 0 && (
+          ${child.sub && child.sub.length > 0 ? `
             <ul class="akari-book-toc__sub">
-              {child.sub.map((sub, index) => <li><span>{String(index + 1).padStart(2, '0')}</span>{sub}</li>)}
+              ${child.sub.map((sub, index) => `<li><span>${String(index + 1).padStart(2, '0')}</span>${escapeHtml(sub)}</li>`).join('')}
             </ul>
-          )}
+          ` : ''}
         </div>
-      ))}
+      `).join('')}
     </div>
   </details>
-));
+`).join('');
+
 ---
 
 <BaseLayout
@@ -269,7 +277,7 @@ const renderToc = (toc: TocPart[]) => toc.map((part, partIndex) => (
               <p>本书围绕中学阶段的「函数与导数」展开，按专题分册编排，呈现由函数观念通向极限思想、再延伸至导数方法的数学脉络。前半部分依次讨论函数的概念、定义域、单调性、奇偶性、周期性、图像变换以及若干常见函数模型，强调图像、性质与解析式之间的联系。后半部分进入极限、连续、导数、中值定理、高阶导数与相关应用。</p>
               <div class="akari-books-meta"><span>LaTeX / XeLaTeX</span><span>持续迭代中</span><span>WritingMathBooks/func-math-book</span></div>
               <h4>目录</h4>
-              <div class="akari-book-toc">{renderToc(funcToc)}</div>
+              <div class="akari-book-toc"><Fragment set:html={renderTocHtml(funcToc)} /></div>
             </div>
           </div>
         </div>
@@ -295,7 +303,7 @@ const renderToc = (toc: TocPart[]) => toc.map((part, partIndex) => (
               <p>本系列覆盖中学数学的大部分专题与常见题型，并对若干进阶内容进行了介绍与论述。从集合与逻辑用语出发，最终于概率一章结束，适合从基础到中档的学生阅读。该书面向对中学数学抱有兴趣，以及正在学习或复习中学数学的读者。</p>
               <div class="akari-books-meta"><span>LaTeX / XeLaTeX</span><span>五册</span><span>暂缓更新</span><span>ShinozakiKasumi/ProjectA-journey</span></div>
               <h4>目录</h4>
-              <div class="akari-book-toc">{renderToc(journeyToc)}</div>
+              <div class="akari-book-toc"><Fragment set:html={renderTocHtml(journeyToc)} /></div>
             </div>
           </div>
         </div>
