@@ -16,12 +16,16 @@ interface TocPart {
 }
 
 const locale = getLocaleByLang('zh-CN')!;
-const languageOptions = LOCALES.map((loc) => ({
-  ...loc,
-  relativeUrl: '/books/',
-  absoluteUrl: toAbsoluteUrl('https://rikka.moe', '/books/'),
-  isCurrent: loc.lang === locale.lang,
-}));
+const bookPathForLocale = (loc: typeof LOCALES[number]) => loc.lang === 'zh-CN' ? '/books/' : `/${loc.lang_path}/books/`;
+const languageOptions = LOCALES.map((loc) => {
+  const relativeUrl = bookPathForLocale(loc);
+  return {
+    ...loc,
+    relativeUrl,
+    absoluteUrl: toAbsoluteUrl('https://rikka.moe', relativeUrl),
+    isCurrent: loc.lang === locale.lang,
+  };
+});
 
 const funcToc: TocPart[] = [
   {
@@ -233,7 +237,7 @@ const renderTocHtml = (toc: TocPart[]) => toc.map((part, partIndex) => `
           <a class="akari-button akari-button--filled" href="#akari-book-showcase"><i class="ph ph-sparkle"></i>探索书稿</a>
           <a class="akari-button" href="#akari-book-versions"><i class="ph ph-arrows-left-right"></i>版本对比</a>
           <a class="akari-button" href="#akari-book-screenshots"><i class="ph ph-images"></i>内页预览</a>
-          <a class="akari-button" href="https://reader.rikka.moe" target="_blank" rel="noopener noreferrer"><i class="ph ph-book-open"></i>在线阅读</a>
+          <a class="akari-button" href="https://app.rikka.moe/library" target="_blank" rel="noopener noreferrer"><i class="ph ph-book-open"></i>前往 app.rikka.moe 书库</a>
         </div>
       </div>
       <div class="akari-books-hero-v2__covers" aria-hidden="true">

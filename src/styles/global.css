@@ -33,10 +33,28 @@ html[data-font-locale='ja'] {
 }
 
 html[data-font-locale='en'] {
-  --akari-font-sans: 'EB Garamond', Georgia, 'Times New Roman', serif;
-  --akari-font-serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
-  --akari-font-display: 'Cinzel', 'EB Garamond', Georgia, serif;
-  --akari-font-ui: 'EB Garamond', Georgia, serif;
+  --akari-font-sans: 'Old Standard TT', Georgia, 'Times New Roman', serif;
+  --akari-font-serif: 'Old Standard TT', Georgia, 'Times New Roman', serif;
+  --akari-font-display: 'Old Standard TT', Georgia, 'Times New Roman', serif;
+  --akari-font-ui: 'Old Standard TT', Georgia, 'Times New Roman', serif;
+}
+
+.old-standard-tt-regular {
+  font-family: "Old Standard TT", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.old-standard-tt-bold {
+  font-family: "Old Standard TT", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.old-standard-tt-regular-italic {
+  font-family: "Old Standard TT", serif;
+  font-weight: 400;
+  font-style: italic;
 }
 
 body {
@@ -49,7 +67,7 @@ body {
 
 html[data-font-locale='en'] body {
   font-optical-sizing: auto;
-  font-weight: 450;
+  font-weight: 400;
 }
 
 html[data-font-locale='en'] h1,

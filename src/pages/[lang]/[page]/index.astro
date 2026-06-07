@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   return pages
     .filter((page) => {
       const parts = page.id.split('/');
-      return LOCALES.some((locale) => locale.lang_path === parts[0]) && parts[1];
+      return LOCALES.some((locale) => locale.lang_path === parts[0]) && parts[1] && parts[1] !== 'books';
     })
     .map((page) => ({ params: { lang: page.id.split('/')[0], page: page.id.split('/')[1] }, props: { page } }));
 }

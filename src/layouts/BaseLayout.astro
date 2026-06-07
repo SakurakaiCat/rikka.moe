@@ -80,10 +80,7 @@ const localeRoutingConfig = {
     <meta property="og:image" content={image.startsWith('http') ? image : toAbsoluteUrl('https://rikka.moe', image)} />
     <meta property="og:locale" content={locale.og_locale} />
     <meta name="twitter:card" content="summary_large_image" />
-    {locale.lang === 'en' && <link rel="preconnect" href="https://fonts.googleapis.com" />}
-    {locale.lang === 'en' && <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />}
-    {locale.lang === 'en' && <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet" />}
-    {locale.lang === 'en' && <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet" />}
+    {locale.lang === 'en' && <style is:inline set:html={`@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap');`}></style>}
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css" />
