@@ -110,5 +110,22 @@ const localeRoutingConfig = {
       }
     })();
     </script>
+    <script is:inline>
+    (function() {
+      var els = document.querySelectorAll('.ai-summary');
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (el.querySelector('.ai-summary-title')) continue;
+        var title = document.createElement('div');
+        title.className = 'ai-summary-title';
+        title.textContent = 'AI总结';
+        el.insertBefore(title, el.firstChild);
+        var footer = document.createElement('div');
+        footer.className = 'ai-summary-footer';
+        footer.innerHTML = '由<img src=\"/images/deepseek-icon.svg\" alt=\"\" style=\"width:1em;height:1em;vertical-align:middle;margin:0 0.25em 0 0;display:inline-block;\">DeepSeek V4 Pro 驱动总结';
+        el.appendChild(footer);
+      }
+    })();
+    </script>
   </body>
 </html>

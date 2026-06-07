@@ -809,6 +809,38 @@ img {
   border-left: 4px solid var(--akari-accent);
   border-radius: 14px;
   background: rgba(244, 171, 186, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-summary-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--akari-accent);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(244, 171, 186, 0.35);
+}
+
+.ai-summary-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  font-size: 0.72rem;
+  color: rgba(120, 120, 120, 0.75);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.ai-summary-footer img,
+.ai-summary-footer svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  display: inline-block;
+  flex-shrink: 0;
 }
 
 .post-navigation {
