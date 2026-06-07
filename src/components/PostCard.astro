@@ -1,9 +1,12 @@
 ---
 import type { PostEntry } from '../lib/content';
-import { asDate, postCategories, postUrl } from '../lib/content';
+import { asDate, postCategories, postUrl, resolveLocale } from '../lib/content';
+import { categoryName } from '../lib/i18n';
 const { post } = Astro.props as { post: PostEntry };
 const date = asDate(post.data.date);
 const categories = postCategories(post);
+const locale = resolveLocale(post.data);
+const leadCategory = categories[0] ? categoryName(categories[0], locale) : '';
 ---
 <article class="post-card">
   <a href={postUrl(post)}>
@@ -11,7 +14,7 @@ const categories = postCategories(post);
     <div class="post-card__body">
       <div class="post-card__meta">
         {date && <time datetime={date.toISOString()}>{date.toISOString().slice(0, 10)}</time>}
-        {categories[0] && <span>{categories[0]}</span>}
+        {leadCategory && <span>{leadCategory}</span>}
       </div>
       <h3>{post.data.title}</h3>
       {post.data.description && <p>{post.data.description}</p>}

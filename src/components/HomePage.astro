@@ -1,7 +1,7 @@
 ---
 import type { Locale, PostEntry } from '../lib/content';
 import { asDate, postCategories, postUrl } from '../lib/content';
-import { getHomepageModel } from '../lib/i18n';
+import { categoryName, label, getHomepageModel } from '../lib/i18n';
 import SponsorWall from './SponsorWall.astro';
 
 const { locale, posts } = Astro.props as { locale: Locale; posts: PostEntry[] };
@@ -21,7 +21,12 @@ const imagesOf = (post: PostEntry) => {
 };
 const firstImageOf = (post: PostEntry) => imagesOf(post)[0] || '/images/profile/background.jpg';
 const dateLabel = (post: PostEntry) => asDate(post.data.date)?.toISOString().slice(0, 10) || '';
-const categoryLabel = (post: PostEntry) => postCategories(post)[0] || '';
+const categoryLabel = (post: PostEntry) => categoryName(postCategories(post)[0] || '', locale);
+const sectionLabels = {
+  articles: label('category', 'articles', locale),
+  thoughts: label('category', 'thoughts', locale),
+  gallery: label('category', 'gallery', locale),
+};
 ---
 <section class="akari-hero-banner">
   <div class="akari-hero-card glass-card">
@@ -34,7 +39,7 @@ const categoryLabel = (post: PostEntry) => postCategories(post)[0] || '';
     <div class="akari-hero-content">
       <div class="akari-hero-migration-banner">
         <span class="akari-hero-migration-banner__dot"></span>
-        <span>本博客已换新颜，迁移到 Astro 框架！</span>
+        <span>{label('ui', 'migration', locale)}</span>
       </div>
       <div class="akari-hero-badge">{model.hero.badge}</div>
       <h1 class="akari-hero-title">
@@ -115,12 +120,12 @@ const categoryLabel = (post: PostEntry) => postCategories(post)[0] || '';
   </div>
 </div>
 
-{model.personalIntro && <section class="akari-personal-intro glass-card"><article><header><small>Personal</small><h2>{model.personalIntro.title}</h2><p>{model.personalIntro.memoirNote}</p></header><figure><img src={model.personalIntro.image} alt={model.personalIntro.imageAlt} loading="lazy" /></figure><div class="akari-personal-intro__body">{model.personalIntro.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}</div><div class="akari-personal-intro__tags"><h3>{model.personalIntro.tagHeader}</h3><ul>{model.personalIntro.tags.map((tag: string) => <li>{tag}</li>)}</ul></div><footer><p>{model.personalIntro.closing}</p></footer></article></section>}
+{model.personalIntro && <section class="akari-personal-intro glass-card"><article><header><small>{label('ui', 'personal', locale)}</small><h2>{model.personalIntro.title}</h2><p>{model.personalIntro.memoirNote}</p></header><figure><img src={model.personalIntro.image} alt={model.personalIntro.imageAlt} loading="lazy" /></figure><div class="akari-personal-intro__body">{model.personalIntro.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}</div><div class="akari-personal-intro__tags"><h3>{model.personalIntro.tagHeader}</h3><ul>{model.personalIntro.tags.map((tag: string) => <li>{tag}</li>)}</ul></div><footer><p>{model.personalIntro.closing}</p></footer></article></section>}
 
 <section class="akari-blog-feed akari-home-sections akari-card-mosaic">
   <section class="akari-section akari-section--articles akari-mosaic-block">
     <header class="akari-section__head akari-section__head--split">
-      <div><small>Essays</small><h2>长文</h2></div>
+      <div><small>Essays</small><h2>{sectionLabels.articles}</h2></div>
       <span>{articlePosts.length}</span>
     </header>
     <div class="akari-article-glass-grid">
@@ -139,7 +144,7 @@ const categoryLabel = (post: PostEntry) => postCategories(post)[0] || '';
 
   <section class="akari-section akari-section--thoughts akari-mosaic-block">
     <header class="akari-section__head akari-section__head--split">
-      <div><small>Timeline</small><h2>随想</h2></div>
+      <div><small>Timeline</small><h2>{sectionLabels.thoughts}</h2></div>
       <span>{thoughtPosts.length}</span>
     </header>
     <div class="akari-thought-timeline">
@@ -163,7 +168,7 @@ const categoryLabel = (post: PostEntry) => postCategories(post)[0] || '';
 
   <section class="akari-section akari-section--gallery akari-mosaic-block">
     <header class="akari-section__head akari-section__head--split">
-      <div><small>Gallery</small><h2>相册</h2></div>
+      <div><small>Gallery</small><h2>{sectionLabels.gallery}</h2></div>
       <span>{galleryPosts.length}</span>
     </header>
     <div class="akari-gallery-mosaic">
