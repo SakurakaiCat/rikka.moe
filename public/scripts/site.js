@@ -30,9 +30,26 @@ function setSettingsOpen(open) {
 
 function setLangPopoverOpen(open) {
   const popover = document.getElementById('akari-lang-popover');
+  const trigger = document.querySelector('.appbar-lang-trigger');
   if (!popover) return;
   popover.style.display = open ? 'block' : 'none';
   popover.setAttribute('aria-hidden', open ? 'false' : 'true');
+  trigger?.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+
+function normalizeSearchText(value) {
+  return String(value || '').normalize('NFKC').toLowerCase();
+}
+
+function getSearchLangPath() {
+  const config = window.__AKARI_LOCALE_ROUTING__;
+  const localePaths = Array.isArray(config?.locales) ? config.locales.map((locale) => locale.key) : ['zh-cn', 'zh-tw', 'en', 'ja'];
+  const pathLang = window.location.pathname.split('/').filter(Boolean)[0];
+  if (localePaths.includes(pathLang)) return pathLang;
+  const lang = (document.documentElement.lang || 'en').toLowerCase();
+  if (localePaths.includes(lang)) return lang;
+  if (lang.startsWith('ja')) return 'ja';
+  return 'en';
 }
 
 let searchData = [];
@@ -40,10 +57,8 @@ let searchLoaded = false;
 
 async function loadSearchData() {
   if (searchLoaded) return;
-  const lang = document.documentElement.lang || 'zh-CN';
-  const langPath = lang === 'zh-TW' ? 'zh-tw' : lang === 'ja' ? 'ja' : 'en';
   try {
-    const res = await fetch(`/${langPath}/search.json`);
+    const res = await fetch(`/${getSearchLangPath()}/search.json`);
     if (res.ok) {
       const data = await res.json();
       searchData = data.posts || [];
@@ -59,13 +74,8 @@ function renderSearchResults(query) {
     resultsEl.innerHTML = '';
     return;
   }
-  const q = query.toLowerCase();
-  const matches = searchData.filter((post) =>
-    (post.title && post.title.toLowerCase().includes(q)) ||
-    (post.content && post.content.toLowerCase().includes(q)) ||
-    (post.tags && post.tags.some((t) => t.toLowerCase().includes(q))) ||
-    (post.categories && post.categories.some((c) => c.toLowerCase().includes(q)))
-  ).slice(0, 10);
+  const q = normalizeSearchText(query);
+  const matches = searchData.filter((post) => normalizeSearchText(post.searchText).includes(q)).slice(0, 10);
 
   if (!matches.length) {
     resultsEl.innerHTML = '<div class="akari-search-modal__empty">没有找到相关文章</div>';
@@ -75,7 +85,7 @@ function renderSearchResults(query) {
   resultsEl.innerHTML = matches.map((post) =>
     `<a class="akari-search-modal__result" href="${post.url}">
       <h4>${escapeHtml(post.title)}</h4>
-      <time>${post.date}</time>
+      <time>${escapeHtml([post.date, post.langName].filter(Boolean).join(' · '))}</time>
       <p>${escapeHtml(post.content?.slice(0, 120) || '')}...</p>
     </a>`
   ).join('');

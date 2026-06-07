@@ -205,7 +205,7 @@ img {
 .akari-popover {
   position: fixed;
   z-index: 10002;
-  right: calc(50vw - 390px);
+  right: max(12px, calc(50vw - 390px));
   top: 78px;
   max-width: calc(100vw - 24px);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -1747,7 +1747,7 @@ body.akari-drawer-open {
 
 /* ===== Settings Popover ===== */
 .akari-settings-popover {
-  right: calc(50vw - 390px + 180px);
+  right: max(12px, calc(50vw - 390px + 180px));
   top: 78px;
   width: 240px;
 }
@@ -1820,6 +1820,11 @@ body.akari-drawer-open {
 }
 
 @media (max-width: 720px) {
+  .akari-popover {
+    right: 12px;
+    top: 72px;
+  }
+
   .akari-settings-popover {
     right: 12px;
     top: 72px;

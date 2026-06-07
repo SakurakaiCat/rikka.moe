@@ -21,7 +21,7 @@ const { locale, title, section = '', languageOptions } = Astro.props;
     </div>
     <div class="akari-capsule akari-capsule--trailing">
       <button class="icon-button appbar-search-trigger" type="button" aria-label="Search"><i class="ph ph-magnifying-glass"></i></button>
-      <button class="icon-button appbar-lang-trigger" type="button" aria-label="Switch language"><i class="ph ph-translate"></i></button>
+      <button class="icon-button appbar-lang-trigger" type="button" aria-label="Switch language" aria-controls="akari-lang-popover" aria-expanded="false"><i class="ph ph-translate"></i></button>
       <button class="icon-button appbar-settings-trigger" type="button" aria-label="Settings"><i class="ph ph-gear"></i></button>
     </div>
   </div>
