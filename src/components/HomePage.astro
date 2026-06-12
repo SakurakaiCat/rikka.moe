@@ -28,36 +28,41 @@ const sectionLabels = {
   gallery: label('category', 'gallery', locale),
 };
 ---
-<section class="akari-hero-banner">
-  <div class="akari-hero-card glass-card">
-    <picture class="akari-hero-media" aria-hidden="true">
-      <source media="(min-width: 1200px)" srcset={model.hero.sources.desktop} />
-      <source media="(min-width: 700px)" srcset={model.hero.sources.tablet} />
-      <img src={model.hero.sources.mobile} alt="" fetchpriority="high" decoding="async" />
-    </picture>
-    <div class="akari-hero-overlay"></div>
-    <div class="akari-hero-content">
-      <div class="akari-hero-migration-banner">
-        <span class="akari-hero-migration-banner__dot"></span>
-        <span>{label('ui', 'migration', locale)}</span>
+<div class="akari-bento-grid">
+  <section class="akari-hero-banner">
+    <div class="akari-hero-card glass-card">
+      <picture class="akari-hero-media" aria-hidden="true">
+        <source media="(min-width: 1200px)" srcset={model.hero.sources.desktop} />
+        <source media="(min-width: 700px)" srcset={model.hero.sources.tablet} />
+        <img src={model.hero.sources.mobile} alt="" fetchpriority="high" decoding="async" />
+      </picture>
+      <div class="akari-hero-overlay"></div>
+      <div class="akari-hero-content">
+        <div class="akari-hero-migration-banner">
+          <span class="akari-hero-migration-banner__dot"></span>
+          <span>{label('ui', 'migration', locale)}</span>
+        </div>
+        <div class="akari-hero-badge">{model.hero.badge}</div>
+        <h1 class="akari-hero-title">
+          <img class="akari-hero-avatar" src={model.hero.avatarSrc} alt={model.hero.avatarAlt} width="72" height="72" />
+          <span>{model.hero.title}</span>
+        </h1>
+        <p class="akari-hero-brand-cn">{model.hero.brandCn}</p>
+        <p class="akari-hero-subtitle">{model.hero.subtitle}</p>
+        <div class="akari-hero-tags" aria-label="Tags">{model.hero.tags.map((tag: string) => <span>{tag}</span>)}</div>
+        <nav class="akari-hero-actions" aria-label="Hero actions">
+          {model.hero.ctas.map((cta: any) => <a class:list={["button", cta.primary && "button--primary"]} href={cta.href} target={cta.external ? '_blank' : undefined} rel={cta.external ? 'noopener noreferrer' : undefined}>{cta.label}</a>)}
+        </nav>
       </div>
-      <div class="akari-hero-badge">{model.hero.badge}</div>
-      <h1 class="akari-hero-title">
-        <img class="akari-hero-avatar" src={model.hero.avatarSrc} alt={model.hero.avatarAlt} width="72" height="72" />
-        <span>{model.hero.title}</span>
-      </h1>
-      <p class="akari-hero-brand-cn">{model.hero.brandCn}</p>
-      <p class="akari-hero-subtitle">{model.hero.subtitle}</p>
-      <div class="akari-hero-tags" aria-label="Tags">{model.hero.tags.map((tag: string) => <span>{tag}</span>)}</div>
-      <nav class="akari-hero-actions" aria-label="Hero actions">
-        {model.hero.ctas.map((cta: any) => <a class:list={["button", cta.primary && "button--primary"]} href={cta.href} target={cta.external ? '_blank' : undefined} rel={cta.external ? 'noopener noreferrer' : undefined}>{cta.label}</a>)}
-      </nav>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="akari-bento-layout">
-  <div class="akari-bento-layout__left">
+  <div class="akari-sidebar-stack">
+    <aside class="recent-comments-card glass-card" data-twikoo-env-id="https://comment.rikka.moe" data-twikoo-src="https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js">
+      <div class="recent-comments-card__head"><i class="ph ph-chat-circle-dots"></i><div><h2>{model.comments.title}</h2><p>{model.comments.subtitle}</p></div></div>
+      <div class="recent-comments-card__list" data-empty={model.comments.empty} data-loading={model.comments.loading}>{model.comments.loading}</div>
+    </aside>
+
     <section class="akari-info-tabs glass-card" aria-labelledby="akari-info-tabs-title">
       <details class="akari-info-tabs__details">
         <summary class="akari-info-tabs__summary">
@@ -109,13 +114,7 @@ const sectionLabels = {
         </div>
       </details>
     </section>
-  </div>
 
-  <div class="akari-bento-layout__right">
-    <aside class="recent-comments-card glass-card" data-twikoo-env-id="https://comment.rikka.moe" data-twikoo-src="https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js">
-      <div class="recent-comments-card__head"><i class="ph ph-chat-circle-dots"></i><div><h2>{model.comments.title}</h2><p>{model.comments.subtitle}</p></div></div>
-      <div class="recent-comments-card__list" data-empty={model.comments.empty} data-loading={model.comments.loading}>{model.comments.loading}</div>
-    </aside>
     <section id="akari-blog-feed" class="akari-feed-intro glass-card"><h2>{model.feed.title}</h2><p>{model.feed.text}</p></section>
   </div>
 </div>
