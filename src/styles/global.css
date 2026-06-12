@@ -133,7 +133,7 @@ img {
 }
 
 .main {
-  width: min(1180px, calc(100vw - 32px));
+  width: min(1536px, calc(100vw - 32px));
   margin: 0 auto;
   padding: 112px 0 48px;
 }
@@ -476,23 +476,75 @@ img {
   gap: 0.65rem;
 }
 
-.akari-bento-layout {
+.akari-bento-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
+  grid-template-columns: repeat(12, 1fr);
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
 }
 
-.akari-bento-layout__left,
-.akari-bento-layout__right {
+.akari-bento-grid > .akari-hero-banner {
+  grid-column: span 8 / span 8;
+  padding-inline: 0;
+}
+
+.akari-sidebar-stack {
+  grid-column: span 4 / span 4;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 20px;
   min-width: 0;
 }
 
-.akari-bento-layout__right {
-  display: grid;
-  gap: 18px;
-  position: sticky;
-  top: 96px;
+.akari-sidebar-stack > .recent-comments-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.akari-sidebar-stack > .recent-comments-card .recent-comments-card__list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.akari-sidebar-stack > .akari-info-tabs {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.akari-sidebar-stack > .akari-info-tabs .akari-info-tabs__details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.akari-sidebar-stack > .akari-info-tabs .akari-info-tabs__details[open] {
+  flex: 1;
+}
+
+.akari-sidebar-stack > .akari-info-tabs .akari-info-tabs__summary {
+  flex-shrink: 0;
+}
+
+.akari-sidebar-stack > .akari-info-tabs .akari-info-tabs__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+
+.akari-sidebar-stack > .akari-info-tabs .akari-info-panels {
+  flex: 1;
+  align-content: start;
+}
+
+.akari-sidebar-stack > .akari-feed-intro {
+  margin-top: 0;
 }
 
 .akari-info-tabs,
@@ -1041,9 +1093,15 @@ img {
 }
 
 @media (max-width: 1024px) {
+  .akari-bento-grid,
   .akari-bento-layout,
   .article-layout {
     grid-template-columns: 1fr;
+  }
+
+  .akari-bento-grid > .akari-hero-banner,
+  .akari-sidebar-stack {
+    grid-column: 1 / -1;
   }
 
   .akari-bento-layout__right,
