@@ -4,22 +4,26 @@
 @import url('/fonts/dingtalk/DingTalk.css');
 
 :root {
-  --akari-accent: #f4abba;
-  --akari-accent-strong: #ffd8e1;
-  --akari-text: rgba(255, 255, 255, 0.92);
-  --akari-muted: rgba(255, 255, 255, 0.66);
-  --akari-border: rgba(255, 255, 255, 0.1);
-  --akari-glass: rgba(18, 18, 24, 0.64);
-  --akari-glass-strong: rgba(15, 15, 18, 0.76);
-  --akari-bg: #07070b;
-  --akari-surface: #151515;
-  --akari-surface-soft: #1D1D1D;
+  --akari-accent: #c9a96e;
+  --akari-accent-strong: #dfc08a;
+  --akari-text: #e8e0d4;
+  --akari-muted: rgba(232, 224, 212, 0.58);
+  --akari-border: rgba(232, 224, 212, 0.12);
+  --akari-glass: rgba(22, 24, 32, 0.72);
+  --akari-glass-strong: rgba(18, 20, 28, 0.84);
+  --akari-bg: #0e1117;
+  --akari-surface: #161a22;
+  --akari-surface-soft: #1c2030;
   --akari-radius: 8px;
-  --akari-radius-xl: 28px;
+  --akari-radius-xl: 12px;
   --akari-font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'pingfang', 'PingFang SC', 'PingFang HK', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
   --akari-font-serif: 'LXGW WenKai', 'LXGW WenKai Screen', 'Songti SC', 'Noto Serif CJK SC', Georgia, serif;
   --akari-font-display: 'banner', 'DingTalk', sans-serif;
   --akari-font-ui: 'DingTalk', sans-serif;
+  --akari-font-academic: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+  --akari-bg-card: rgba(22, 26, 34, 0.85);
+  --akari-bg-subtle: rgba(22, 26, 34, 0.5);
+  --akari-text-muted: var(--akari-muted);
 }
 
 html {
@@ -60,7 +64,7 @@ html[data-font-locale='en'] {
 body {
   margin: 0;
   min-height: 100vh;
-  background: #07070b;
+  background: var(--akari-bg);
   color: var(--akari-text);
   font-family: var(--akari-font-sans);
 }
@@ -107,9 +111,9 @@ body::before {
   inset: 0;
   z-index: -3;
   background:
-    radial-gradient(circle at 20% 10%, rgba(244, 171, 186, 0.28), transparent 34rem),
-    radial-gradient(circle at 80% 0, rgba(150, 190, 255, 0.18), transparent 30rem),
-    linear-gradient(180deg, #0c0c14, #07070b 42%, #101018);
+    radial-gradient(circle at 20% 10%, rgba(201, 169, 110, 0.06), transparent 34rem),
+    radial-gradient(circle at 80% 0, rgba(100, 120, 160, 0.05), transparent 30rem),
+    linear-gradient(180deg, #0e1117, #0e1117 42%, #121620);
 }
 
 body::after {
@@ -118,8 +122,8 @@ body::after {
   inset: 0;
   z-index: -2;
   background: url('/images/profile/background.jpg') center / cover no-repeat;
-  opacity: 0.18;
-  filter: blur(10px) saturate(120%);
+  opacity: 0.12;
+  filter: blur(10px) saturate(80%) grayscale(0.3);
 }
 
 a {
@@ -139,12 +143,10 @@ img {
 }
 
 .glass-card {
-  border: 1px solid var(--akari-border);
-  border-radius: 28px;
-  background: var(--akari-glass);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(232, 224, 212, 0.1);
+  border-radius: 12px;
+  background: rgba(22, 26, 34, 0.85);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .button {
@@ -162,7 +164,7 @@ img {
 
 .button--primary {
   background: var(--akari-accent);
-  color: #1d1116;
+  color: #1a1508;
 }
 
 .akari-appbar {
@@ -189,10 +191,8 @@ img {
   min-height: 52px;
   border: 1px solid var(--akari-border);
   border-radius: 999px;
-  background: rgba(15, 15, 18, 0.66);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(22px) saturate(150%);
-  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  background: rgba(20, 24, 32, 0.82);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
   pointer-events: auto;
 }
 
@@ -269,12 +269,10 @@ img {
   right: max(12px, calc(50vw - 390px));
   top: 78px;
   max-width: calc(100vw - 24px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-  background: rgba(18, 18, 24, 0.82);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(18px) saturate(150%);
-  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(232, 224, 212, 0.12);
+  border-radius: 12px;
+  background: rgba(22, 26, 34, 0.92);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
@@ -312,7 +310,7 @@ img {
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: var(--akari-radius-xl) !important;
-  background: radial-gradient(circle at 18% 22%, rgba(244, 171, 186, 0.16), transparent 34%), var(--akari-surface) !important;
+  background: radial-gradient(circle at 18% 22%, rgba(201, 169, 110, 0.06), transparent 34%), var(--akari-surface) !important;
   box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42), 0 10px 32px rgba(0, 0, 0, 0.28) !important;
   isolation: isolate;
 }
@@ -394,7 +392,7 @@ img {
   border: 3px solid rgba(255, 255, 255, 0.85);
   border-radius: 50%;
   background: var(--akari-surface-soft);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(244, 171, 186, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(201, 169, 110, 0.35);
   object-fit: cover;
   transition: transform 240ms ease, box-shadow 240ms ease;
 }
@@ -414,7 +412,7 @@ img {
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: 0.08em;
-  color: rgba(255, 180, 200, 0.88);
+  color: rgba(201, 169, 110, 0.88);
 }
 
 .akari-hero-subtitle {
@@ -466,7 +464,7 @@ img {
 .akari-hero-language:hover,
 .akari-hero-language--active {
   border-color: var(--akari-accent);
-  background: rgba(244, 171, 186, 0.16);
+  background: rgba(201, 169, 110, 0.16);
   color: var(--akari-accent);
 }
 
@@ -657,7 +655,7 @@ img {
 .akari-section summary > span:last-child {
   padding: 0.22rem 0.55rem;
   border-radius: 999px;
-  background: rgba(244, 171, 186, 0.12);
+  background: rgba(201, 169, 110, 0.12);
   color: var(--akari-accent);
   font-size: 0.8rem;
   font-weight: 800;
@@ -743,9 +741,8 @@ img {
 .akari-section {
   padding: 24px;
   border: 1px solid var(--akari-border);
-  border-radius: 28px;
-  background: rgba(18, 18, 24, 0.52);
-  backdrop-filter: blur(20px) saturate(150%);
+  border-radius: 12px;
+  background: rgba(22, 26, 34, 0.72);
 }
 
 .akari-section summary {
@@ -773,10 +770,9 @@ img {
 
 .post-card {
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 22px;
-  background: rgba(18, 18, 24, 0.66);
-  backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(232, 224, 212, 0.1);
+  border-radius: 12px;
+  background: rgba(22, 26, 34, 0.72);
 }
 
 .post-card a {
@@ -832,8 +828,7 @@ img {
   padding: 0 18px;
   border: 1px solid var(--akari-border);
   border-radius: 999px;
-  background: rgba(15, 15, 18, 0.66);
-  backdrop-filter: blur(22px) saturate(150%);
+  background: rgba(20, 24, 32, 0.82);
   color: inherit;
 }
 
@@ -921,7 +916,7 @@ img {
   padding: 14px 18px;
   border-left: 4px solid var(--akari-accent);
   border-radius: 14px;
-  background: rgba(244, 171, 186, 0.08);
+  background: rgba(201, 169, 110, 0.08);
   display: flex;
   flex-direction: column;
 }
@@ -932,7 +927,7 @@ img {
   color: var(--akari-accent);
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(244, 171, 186, 0.35);
+  border-bottom: 1px solid rgba(201, 169, 110, 0.35);
 }
 
 .ai-summary-footer {
@@ -1025,7 +1020,7 @@ img {
   border: 0;
   border-radius: 999px;
   background: var(--akari-accent);
-  color: #211017;
+  color: #1a1508;
   font-weight: 800;
 }
 
@@ -1206,7 +1201,7 @@ img {
   .akari-hero-brand-cn {
     margin: 0 0 8px;
     font-size: clamp(18px, 5vw, 28px);
-    color: rgba(255, 180, 200, 0.88);
+    color: rgba(201, 169, 110, 0.88);
   }
 
   .akari-hero-subtitle {
@@ -1236,8 +1231,8 @@ img {
   }
 
   .akari-hero-language--active {
-    border-color: rgba(255, 180, 200, 0.82);
-    background: rgba(244, 171, 186, 0.22);
+    border-color: rgba(201, 169, 110, 0.82);
+    background: rgba(201, 169, 110, 0.22);
     color: white;
   }
 
@@ -1265,9 +1260,7 @@ img {
   position: fixed;
   inset: 0;
   z-index: 10001;
-  background: rgba(0, 0, 0, 0.42);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.55);
 }
 
 .akari-sidebar {
@@ -1292,11 +1285,9 @@ img {
 .akari-sidebar__card {
   height: 100%;
   border: 1px solid var(--akari-border);
-  border-radius: 28px;
-  background: rgba(18, 18, 24, 0.82);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border-radius: 12px;
+  background: rgba(22, 26, 34, 0.92);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1398,7 +1389,7 @@ body.akari-drawer-open {
 .akari-section__head--split span {
   padding: 0.28rem 0.7rem;
   border-radius: 999px;
-  background: rgba(244, 171, 186, 0.12);
+  background: rgba(201, 169, 110, 0.12);
   color: var(--akari-accent);
   font-weight: 800;
 }
@@ -1413,12 +1404,10 @@ body.akari-drawer-open {
   position: relative;
   overflow: hidden;
   min-height: 220px;
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 26px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.035)), rgba(18, 18, 24, 0.68);
-  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(24px) saturate(155%);
-  -webkit-backdrop-filter: blur(24px) saturate(155%);
+  border: 1px solid rgba(232, 224, 212, 0.1);
+  border-radius: 12px;
+  background: rgba(22, 26, 34, 0.72);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .akari-article-glass-card--featured {
@@ -1439,10 +1428,7 @@ body.akari-drawer-open {
 }
 
 .akari-article-glass-card__shine {
-  position: absolute;
-  inset: -1px;
-  z-index: -1;
-  background: radial-gradient(circle at 18% 0%, rgba(244, 171, 186, 0.22), transparent 38%), radial-gradient(circle at 100% 100%, rgba(160, 190, 255, 0.12), transparent 42%);
+  display: none;
 }
 
 .akari-article-glass-card__meta {
@@ -1482,7 +1468,7 @@ body.akari-drawer-open {
   left: 6px;
   width: 2px;
   border-radius: 999px;
-  background: linear-gradient(var(--akari-accent), rgba(244, 171, 186, 0.05));
+  background: linear-gradient(var(--akari-accent), rgba(201, 169, 110, 0.05));
 }
 
 .akari-thought-timeline__item {
@@ -1498,7 +1484,7 @@ body.akari-drawer-open {
   height: 10px;
   border-radius: 50%;
   background: var(--akari-accent);
-  box-shadow: 0 0 0 5px rgba(244, 171, 186, 0.12);
+  box-shadow: 0 0 0 5px rgba(201, 169, 110, 0.12);
 }
 
 .akari-thought-timeline__item a {
@@ -1549,9 +1535,9 @@ body.akari-drawer-open {
 
 .akari-gallery-card {
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 26px;
-  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(232, 224, 212, 0.1);
+  border-radius: 12px;
+  background: rgba(22, 26, 34, 0.72);
 }
 
 .akari-gallery-card a {
@@ -1722,9 +1708,9 @@ body.akari-drawer-open {
   width: fit-content;
   margin-bottom: 0.75rem;
   padding: 0.35rem 0.85rem;
-  border: 1px solid rgba(244, 171, 186, 0.35);
+  border: 1px solid rgba(201, 169, 110, 0.35);
   border-radius: 999px;
-  background: rgba(244, 171, 186, 0.12);
+  background: rgba(201, 169, 110, 0.12);
   color: var(--akari-accent);
   font-size: 0.82rem;
   font-weight: 700;
@@ -1736,12 +1722,12 @@ body.akari-drawer-open {
   height: 8px;
   border-radius: 50%;
   background: var(--akari-accent);
-  box-shadow: 0 0 8px rgba(244, 171, 186, 0.6);
+  box-shadow: 0 0 8px rgba(201, 169, 110, 0.6);
 }
 
 @keyframes akari-migration-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(244, 171, 186, 0.2); }
-  50% { box-shadow: 0 0 0 6px rgba(244, 171, 186, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 169, 110, 0.2); }
+  50% { box-shadow: 0 0 0 6px rgba(201, 169, 110, 0); }
 }
 
 /* ===== Search Modal ===== */
@@ -1758,20 +1744,16 @@ body.akari-drawer-open {
 .akari-search-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .akari-search-modal__content {
   position: relative;
   width: min(560px, calc(100vw - 2rem));
   border: 1px solid var(--akari-border);
-  border-radius: 24px;
-  background: rgba(18, 18, 24, 0.92);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border-radius: 12px;
+  background: rgba(22, 26, 34, 0.95);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
@@ -1933,7 +1915,7 @@ body.akari-drawer-open {
 
 .akari-settings-font-size__btn--active {
   border-color: var(--akari-accent);
-  background: rgba(244, 171, 186, 0.15);
+  background: rgba(201, 169, 110, 0.15);
   color: var(--akari-accent);
   font-weight: 700;
 }
@@ -1959,12 +1941,12 @@ body.akari-drawer-open {
   margin: var(--akari-section-gap, 2.5rem) auto 0;
   max-width: 1080px;
   padding: 1.75rem 1.5rem 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--akari-radius-xl, 24px);
+  border: 1px solid rgba(232, 224, 212, 0.1);
+  border-radius: var(--akari-radius-xl, 12px);
   background:
-    radial-gradient(circle at 88% 10%, rgba(244, 171, 186, 0.14), transparent 42%),
-    rgba(21, 21, 21, 0.66);
-  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42), 0 10px 32px rgba(0, 0, 0, 0.28);
+    radial-gradient(circle at 88% 10%, rgba(201, 169, 110, 0.06), transparent 42%),
+    rgba(22, 26, 34, 0.85);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
   color: var(--akari-text);
 }
 
@@ -1979,7 +1961,7 @@ body.akari-drawer-open {
   font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--akari-accent, #f4abba);
+  color: var(--akari-accent, #c9a96e);
 }
 
 .akari-sponsor-wall__header h2 {
@@ -2087,7 +2069,7 @@ body.akari-drawer-open {
 
 .akari-sponsor-wall__toggle:hover,
 .akari-sponsor-wall__toggle:focus-visible {
-  border-color: var(--akari-accent, #f4abba);
+  border-color: var(--akari-accent, #c9a96e);
   background: rgba(255, 255, 255, 0.03);
   outline: none;
 }
@@ -2108,8 +2090,8 @@ body.akari-drawer-open {
   gap: 0.4rem;
   padding: 0.55rem 1.1rem;
   border-radius: 999px;
-  background: var(--akari-accent, #f4abba);
-  color: #1c1018;
+  background: var(--akari-accent, #c9a96e);
+  color: #1a1508;
   font-weight: 600;
   font-size: 0.9rem;
   text-decoration: none;
@@ -2282,10 +2264,52 @@ body.akari-drawer-open {
 .akari-books-landing {
   display: grid;
   gap: 32px;
+  position: relative;
+}
+
+/* Graph paper texture for books page */
+.akari-books-landing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(232, 224, 212, 0.025) 0px, rgba(232, 224, 212, 0.025) 1px, transparent 1px, transparent 48px),
+    repeating-linear-gradient(90deg, rgba(232, 224, 212, 0.025) 0px, rgba(232, 224, 212, 0.025) 1px, transparent 1px, transparent 48px);
+}
+
+/* Hide snow particles on books page only */
+body:has(.akari-books-landing) > .akari-snow {
+  display: none !important;
 }
 
 .akari-books-landing * {
   box-sizing: border-box;
+}
+
+/* Academic typography for books page */
+.akari-books-landing h1,
+.akari-books-landing h2,
+.akari-books-landing h3 {
+  font-family: var(--akari-font-academic);
+  letter-spacing: 0.02em;
+}
+
+.akari-books-landing h1 {
+  letter-spacing: -0.04em;
+}
+
+.akari-books-landing .akari-books-section__header p,
+.akari-books-landing .akari-books-series-copy p,
+.akari-books-landing .akari-books-card p,
+.akari-books-landing .akari-books-version li,
+.akari-books-landing .akari-books-tutorial li,
+.akari-books-landing .akari-books-text-card p,
+.akari-books-landing .akari-books-akari-card p,
+.akari-books-landing .akari-books-support-card p {
+  line-height: 1.95;
+  letter-spacing: 0.01em;
 }
 
 .akari-books-eyebrow,
@@ -2324,7 +2348,7 @@ body.akari-drawer-open {
   inset: -18% auto auto -12%;
   width: 48vw;
   height: 48vw;
-  background: radial-gradient(circle, rgba(244, 171, 186, 0.22), transparent 64%);
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.06), transparent 64%);
 }
 
 .akari-books-hero-v2::after {
@@ -2332,7 +2356,7 @@ body.akari-drawer-open {
   bottom: -20%;
   width: 54vw;
   height: 54vw;
-  background: radial-gradient(circle, rgba(160, 190, 255, 0.18), transparent 66%);
+  background: radial-gradient(circle, rgba(100, 120, 160, 0.05), transparent 66%);
 }
 
 .akari-books-hero-v2__content {
@@ -2341,17 +2365,17 @@ body.akari-drawer-open {
 
 .akari-books-hero-v2 h1 {
   margin: 0;
-  color: rgba(255, 255, 255, 0.96);
-  font-family: var(--akari-font-display);
+  color: var(--akari-text);
+  font-family: var(--akari-font-academic);
   font-size: clamp(4.5rem, 11vw, 9.2rem);
   font-weight: 700;
-  letter-spacing: -0.08em;
+  letter-spacing: -0.04em;
   line-height: 0.88;
 }
 
 .akari-books-hero-v2__english {
   margin: 1rem 0 2rem;
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--akari-muted);
   font-size: clamp(0.72rem, 1.5vw, 0.95rem);
   font-weight: 800;
   letter-spacing: 0.26em;
@@ -2360,9 +2384,10 @@ body.akari-drawer-open {
 .akari-books-hero-v2__lead {
   max-width: 640px;
   margin: 0;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--akari-muted);
   font-size: clamp(1.08rem, 1.7vw, 1.34rem);
-  line-height: 1.85;
+  line-height: 1.95;
+  letter-spacing: 0.01em;
 }
 
 .akari-books-chips,
@@ -2383,11 +2408,11 @@ body.akari-drawer-open {
   display: inline-flex;
   align-items: center;
   min-height: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
+  border: 1px solid rgba(232, 224, 212, 0.12);
+  border-radius: 6px;
   padding: 0.28rem 0.75rem;
-  background: rgba(255, 255, 255, 0.07);
-  color: rgba(255, 255, 255, 0.78);
+  background: rgba(201, 169, 110, 0.08);
+  color: var(--akari-muted);
   font-size: 0.82rem;
   font-weight: 700;
 }
@@ -2398,11 +2423,11 @@ body.akari-drawer-open {
   justify-content: center;
   gap: 0.48rem;
   min-height: 44px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
+  border: 1px solid rgba(232, 224, 212, 0.16);
+  border-radius: 6px;
   padding: 0.66rem 1.08rem;
-  background: rgba(255, 255, 255, 0.07);
-  color: rgba(255, 255, 255, 0.9);
+  background: rgba(232, 224, 212, 0.06);
+  color: var(--akari-text);
   font-weight: 800;
   line-height: 1.2;
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
@@ -2411,20 +2436,20 @@ body.akari-drawer-open {
 .akari-button:hover,
 .akari-button:focus-visible {
   transform: translateY(-1px);
-  border-color: rgba(244, 171, 186, 0.55);
-  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(201, 169, 110, 0.55);
+  background: rgba(232, 224, 212, 0.1);
 }
 
 .akari-button--filled {
-  border-color: rgba(244, 171, 186, 0.72);
+  border-color: rgba(201, 169, 110, 0.72);
   background: var(--akari-accent);
-  color: #231018;
+  color: #1a1508;
 }
 
 .akari-button--filled:hover,
 .akari-button--filled:focus-visible {
   background: var(--akari-accent-strong);
-  color: #231018;
+  color: #1a1508;
 }
 
 .akari-books-actions--stacked {
@@ -2439,8 +2464,8 @@ body.akari-drawer-open {
 .akari-books-hero-v2__cover {
   position: absolute;
   width: min(52vw, 330px);
-  border-radius: 18px;
-  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   object-fit: cover;
 }
 
@@ -2475,13 +2500,13 @@ body.akari-drawer-open {
   justify-content: center;
   gap: 0.45rem;
   min-height: 42px;
-  border-radius: 999px;
-  color: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  color: var(--akari-muted);
   font-weight: 800;
 }
 
 .akari-books-anchor-nav a:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(232, 224, 212, 0.06);
   color: var(--akari-accent);
 }
 
@@ -2501,10 +2526,10 @@ body.akari-drawer-open {
 .akari-books-version h3,
 .akari-books-akari-card h2 {
   margin: 0.2rem 0 0.6rem;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--akari-text);
   font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1.08;
-  letter-spacing: -0.045em;
+  letter-spacing: 0.02em;
 }
 
 .akari-books-section__header p,
@@ -2538,7 +2563,7 @@ body.akari-drawer-open {
   border: 0;
   border-bottom: 2px solid transparent;
   background: transparent;
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--akari-muted);
   font: inherit;
   font-weight: 800;
   cursor: pointer;
@@ -2547,7 +2572,7 @@ body.akari-drawer-open {
 .akari-books-tab--active {
   border-bottom-color: var(--akari-accent);
   color: var(--akari-accent);
-  background: rgba(244, 171, 186, 0.06);
+  background: rgba(201, 169, 110, 0.06);
 }
 
 .akari-books-series-panel {
@@ -2559,10 +2584,10 @@ body.akari-drawer-open {
   gap: 12px;
   align-items: flex-start;
   margin-bottom: 24px;
-  border: 1px solid rgba(244, 171, 186, 0.16);
-  border-radius: 20px;
+  border: 1px solid rgba(201, 169, 110, 0.16);
+  border-radius: 8px;
   padding: 14px 16px;
-  background: rgba(244, 171, 186, 0.07);
+  background: rgba(201, 169, 110, 0.06);
 }
 
 .akari-books-note i {
@@ -2573,7 +2598,7 @@ body.akari-drawer-open {
 
 .akari-books-note p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.76);
+  color: var(--akari-muted);
   line-height: 1.75;
 }
 
@@ -2594,8 +2619,8 @@ body.akari-drawer-open {
 .akari-books-cover-card > img {
   width: min(100%, 290px);
   margin-inline: auto;
-  border-radius: 18px;
-  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.45);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .akari-books-update {
@@ -2604,7 +2629,7 @@ body.akari-drawer-open {
   gap: 6px;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--akari-muted);
   font-size: 0.82rem;
 }
 
@@ -2658,9 +2683,9 @@ body.akari-drawer-open {
 
 .akari-book-toc__part {
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(232, 224, 212, 0.08);
+  border-radius: 8px;
+  background: rgba(232, 224, 212, 0.03);
 }
 
 .akari-book-toc__part summary {
@@ -2684,7 +2709,7 @@ body.akari-drawer-open {
 .akari-book-toc__label,
 .akari-book-toc__child-head span,
 .akari-book-toc__sub span {
-  color: rgba(255, 255, 255, 0.48);
+  color: var(--akari-muted);
   font-size: 0.78rem;
   font-variant-numeric: tabular-nums;
   font-weight: 800;
@@ -2703,7 +2728,7 @@ body.akari-drawer-open {
 }
 
 .akari-book-toc__child-head strong {
-  color: rgba(255, 255, 255, 0.86);
+  color: var(--akari-text);
   font-size: 0.94rem;
 }
 
@@ -2720,7 +2745,7 @@ body.akari-drawer-open {
   display: flex;
   gap: 8px;
   min-width: 0;
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--akari-muted);
   font-size: 0.85rem;
 }
 
@@ -2740,8 +2765,8 @@ body.akari-drawer-open {
 
 .akari-books-stats article {
   padding: 18px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.045);
+  border-radius: 8px;
+  background: rgba(232, 224, 212, 0.04);
 }
 
 .akari-books-stats strong {
@@ -2752,7 +2777,7 @@ body.akari-drawer-open {
 }
 
 .akari-books-stats span {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--akari-text);
   font-weight: 800;
 }
 
@@ -2779,8 +2804,8 @@ body.akari-drawer-open {
   justify-content: center;
   width: 44px;
   height: 44px;
-  border-radius: 999px;
-  background: rgba(244, 171, 186, 0.12);
+  border-radius: 8px;
+  background: rgba(201, 169, 110, 0.1);
   color: var(--akari-accent);
   font-size: 1.35rem;
 }
@@ -2791,7 +2816,7 @@ body.akari-drawer-open {
 .akari-books-text-card h3,
 .akari-books-support-card h3 {
   margin: 0.9rem 0 0.45rem;
-  color: rgba(255, 255, 255, 0.93);
+  color: var(--akari-text);
 }
 
 .akari-books-version-grid {
@@ -2824,7 +2849,8 @@ body.akari-drawer-open {
 }
 
 .akari-books-version--primary {
-  background: linear-gradient(145deg, rgba(244, 171, 186, 0.18), rgba(255, 255, 255, 0.06)), var(--akari-glass) !important;
+  background: rgba(201, 169, 110, 0.08) !important;
+  border-color: rgba(201, 169, 110, 0.2) !important;
 }
 
 .akari-books-screenshot-groups {
@@ -2849,8 +2875,8 @@ body.akari-drawer-open {
 
 .akari-books-screenshot-grid img {
   width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 16px 52px rgba(0, 0, 0, 0.32);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .akari-books-tutorial-grid,
@@ -2879,8 +2905,8 @@ body.akari-drawer-open {
   justify-content: center;
   width: 28px;
   height: 28px;
-  border-radius: 999px;
-  background: rgba(244, 171, 186, 0.12);
+  border-radius: 6px;
+  background: rgba(201, 169, 110, 0.1);
   color: var(--akari-accent);
   font-size: 0.78rem;
   font-weight: 900;
@@ -2891,8 +2917,8 @@ body.akari-drawer-open {
   gap: 10px;
   align-items: flex-start;
   margin: 0;
-  border: 1px dashed rgba(255, 255, 255, 0.18);
-  border-radius: 18px;
+  border: 1px dashed rgba(232, 224, 212, 0.15);
+  border-radius: 8px;
   padding: 14px 16px;
   color: var(--akari-muted);
 }
@@ -2933,8 +2959,8 @@ body.akari-drawer-open {
   width: 100%;
   max-width: 640px;
   border: 0;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  background: rgba(232, 224, 212, 0.04);
 }
 
 .akari-books-akari-card {
@@ -3039,7 +3065,7 @@ body.akari-drawer-open {
 }
 
 .akari-sidebar__nav a.akari-sidebar__nav-active {
-  background: rgba(244, 171, 186, 0.14);
+  background: rgba(201, 169, 110, 0.14);
   color: var(--akari-accent);
 }
 
@@ -3053,8 +3079,8 @@ body.akari-drawer-open {
   gap: 1.5rem;
   align-items: flex-start;
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(244, 171, 186, 0.12), rgba(168, 130, 255, 0.08));
-  border: 1px solid rgba(244, 171, 186, 0.25);
+  background: rgba(201, 169, 110, 0.06);
+  border: 1px solid rgba(201, 169, 110, 0.18);
 }
 
 .akari-books-update-banner__icon {
@@ -3064,9 +3090,9 @@ body.akari-drawer-open {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.75rem;
-  background: linear-gradient(135deg, var(--akari-accent), #a882ff);
-  color: #fff;
+  border-radius: 8px;
+  background: var(--akari-accent);
+  color: #1a1508;
   font-size: 1.5rem;
 }
 
@@ -3116,7 +3142,7 @@ body.akari-drawer-open {
 
 .akari-errata-tier {
   border: 1px solid var(--akari-border);
-  border-radius: 0.75rem;
+  border-radius: 8px;
   margin-bottom: 1rem;
   overflow: hidden;
   transition: border-color 0.2s ease;
@@ -3146,17 +3172,17 @@ body.akari-drawer-open {
 }
 
 .akari-errata-tier summary:hover {
-  background: rgba(244, 171, 186, 0.06);
+  background: rgba(201, 169, 110, 0.06);
 }
 
 .akari-errata-tier__label {
   flex-shrink: 0;
   padding: 0.25rem 0.6rem;
-  border-radius: 0.375rem;
+  border-radius: 4px;
   font-size: 0.75rem;
   font-weight: 600;
   background: var(--akari-accent);
-  color: #fff;
+  color: #1a1508;
 }
 
 .akari-errata-tier summary strong {
