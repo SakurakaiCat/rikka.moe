@@ -122,7 +122,26 @@ const sectionLabels = {
   </div>
 </div>
 
-{model.personalIntro && <section class="akari-personal-intro glass-card" data-motion="fade-up"><article><header><small>{label('ui', 'personal', locale)}</small><h2>{model.personalIntro.title}</h2><p>{model.personalIntro.memoirNote}</p></header><figure><img src={model.personalIntro.image} alt={model.personalIntro.imageAlt} loading="lazy" /></figure><div class="akari-personal-intro__body">{model.personalIntro.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}</div><div class="akari-personal-intro__tags"><h3>{model.personalIntro.tagHeader}</h3><ul>{model.personalIntro.tags.map((tag: string) => <li>{tag}</li>)}</ul></div><footer><p>{model.personalIntro.closing}</p></footer></article></section>}
+{model.personalIntro && <section class="akari-personal-intro glass-card" data-motion="fade-up">
+  <article>
+    <header class="akari-personal-intro__header">
+      <small>{label('ui', 'personal', locale)}</small>
+      <h2>{model.personalIntro.title}</h2>
+      <p class="akari-personal-intro__memoir-note">{model.personalIntro.memoirNote}</p>
+    </header>
+    <div class="akari-personal-intro__content">
+      <figure class="akari-personal-intro__figure">
+        <img src={model.personalIntro.image} alt={model.personalIntro.imageAlt} loading="lazy" />
+        <figcaption>{model.personalIntro.closing}</figcaption>
+      </figure>
+      <div class="akari-personal-intro__body">{model.personalIntro.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}</div>
+    </div>
+    <div class="akari-personal-intro__tags">
+      <h3>{model.personalIntro.tagHeader}</h3>
+      <ul>{model.personalIntro.tags.map((tag: string) => <li>{tag}</li>)}</ul>
+    </div>
+  </article>
+</section>}
 
 <section class="akari-blog-feed akari-home-sections akari-card-mosaic">
   <section class="akari-section akari-section--articles akari-mosaic-block">
