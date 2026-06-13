@@ -20,7 +20,6 @@
   --akari-font-serif: 'LXGW WenKai', 'LXGW WenKai Screen', 'Songti SC', 'Noto Serif CJK SC', Georgia, serif;
   --akari-font-display: 'banner', 'DingTalk', sans-serif;
   --akari-font-ui: 'DingTalk', sans-serif;
-  --akari-font-academic: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
   --akari-bg-card: rgba(0, 0, 0, 0.22);
   --akari-bg-subtle: rgba(0, 0, 0, 0.12);
   --akari-text-muted: var(--akari-muted);
@@ -2318,16 +2317,14 @@ body.akari-drawer-open {
   box-sizing: border-box;
 }
 
-/* Academic typography for books page */
-.akari-books-landing h1,
-.akari-books-landing h2,
-.akari-books-landing h3 {
-  font-family: var(--akari-font-academic);
-  letter-spacing: 0.02em;
+.akari-books-landing h2 {
+  font-family: var(--akari-font-display);
+  letter-spacing: -0.02em;
 }
 
-.akari-books-landing h1 {
-  letter-spacing: -0.04em;
+.akari-books-landing h3 {
+  font-family: var(--akari-font-display);
+  letter-spacing: -0.01em;
 }
 
 .akari-books-landing .akari-books-section__header p,
@@ -2342,10 +2339,23 @@ body.akari-drawer-open {
   letter-spacing: 0.01em;
 }
 
-.akari-books-eyebrow,
-.akari-books-badge {
+.akari-books-eyebrow {
   margin: 0 0 0.65rem;
   color: rgba(255, 255, 255, 0.50);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.akari-books-badge {
+  display: inline-flex;
+  width: fit-content;
+  margin: 0 0 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 999px;
+  padding: 0.28rem 0.72rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -2395,10 +2405,10 @@ body.akari-drawer-open {
 .akari-books-hero-v2 h1 {
   margin: 0;
   color: var(--akari-text);
-  font-family: var(--akari-font-academic);
+  font-family: var(--akari-font-display);
   font-size: clamp(4.5rem, 11vw, 9.2rem);
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.075em;
   line-height: 0.88;
 }
 
@@ -2407,7 +2417,7 @@ body.akari-drawer-open {
   color: rgba(255, 255, 255, 0.50);
   font-size: clamp(0.72rem, 1.5vw, 0.95rem);
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
 }
 
 .akari-books-hero-v2__lead {
@@ -2437,11 +2447,10 @@ body.akari-drawer-open {
   display: inline-flex;
   align-items: center;
   min-height: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 6px;
-  padding: 0.28rem 0.75rem;
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  padding: 0.32rem 0.72rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.70);
   font-size: 0.82rem;
   font-weight: 600;
 }
@@ -2451,22 +2460,22 @@ body.akari-drawer-open {
   align-items: center;
   justify-content: center;
   gap: 0.48rem;
-  min-height: 44px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
-  padding: 0.66rem 1.08rem;
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--akari-text);
+  min-height: 42px;
+  padding: 0 18px;
+  border: 1px solid var(--akari-glass-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  color: rgba(255, 255, 255, 0.90);
   font-weight: 600;
   line-height: 1.2;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .akari-button:hover,
 .akari-button:focus-visible {
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.14);
   border-color: rgba(255, 255, 255, 0.20);
-  background: rgba(255, 255, 255, 0.10);
 }
 
 .akari-button--filled {
@@ -2493,7 +2502,7 @@ body.akari-drawer-open {
 .akari-books-hero-v2__cover {
   position: absolute;
   width: min(52vw, 330px);
-  border-radius: 8px;
+  border-radius: 14px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   object-fit: cover;
 }
@@ -2529,7 +2538,7 @@ body.akari-drawer-open {
   justify-content: center;
   gap: 0.45rem;
   min-height: 42px;
-  border-radius: 6px;
+  border-radius: 999px;
   color: rgba(255, 255, 255, 0.55);
   font-weight: 600;
 }
@@ -2551,14 +2560,21 @@ body.akari-drawer-open {
 }
 
 .akari-books-section__header h2,
-.akari-books-series-copy h3,
-.akari-books-version h3,
 .akari-books-akari-card h2 {
   margin: 0.2rem 0 0.6rem;
   color: var(--akari-text);
   font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1.08;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.02em;
+}
+
+.akari-books-series-copy h3,
+.akari-books-version h3 {
+  margin: 0.2rem 0 0.6rem;
+  color: var(--akari-text);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
 }
 
 .akari-books-section__header p,
@@ -2614,7 +2630,7 @@ body.akari-drawer-open {
   align-items: flex-start;
   margin-bottom: 24px;
   border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 8px;
+  border-radius: 14px;
   padding: 14px 16px;
   background: rgba(255, 255, 255, 0.03);
 }
@@ -2648,7 +2664,7 @@ body.akari-drawer-open {
 .akari-books-cover-card > img {
   width: min(100%, 290px);
   margin-inline: auto;
-  border-radius: 8px;
+  border-radius: 14px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -2673,7 +2689,7 @@ body.akari-drawer-open {
   flex: 0 0 54px;
   overflow: hidden;
   border: 2px solid transparent;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 0;
   background: transparent;
   opacity: 0.72;
@@ -2712,7 +2728,7 @@ body.akari-drawer-open {
 .akari-book-toc__part {
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.03);
 }
 
@@ -2793,7 +2809,7 @@ body.akari-drawer-open {
 
 .akari-books-stats article {
   padding: 18px;
-  border-radius: 8px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.04);
 }
 
@@ -2832,19 +2848,20 @@ body.akari-drawer-open {
   justify-content: center;
   width: 44px;
   height: 44px;
-  border-radius: 8px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.55);
   font-size: 1.35rem;
 }
 
 .akari-books-card h3,
-.akari-books-version h3,
 .akari-books-tutorial h3,
 .akari-books-text-card h3,
 .akari-books-support-card h3 {
   margin: 0.9rem 0 0.45rem;
   color: var(--akari-text);
+  font-family: var(--akari-font-display);
+  letter-spacing: -0.01em;
 }
 
 .akari-books-version-grid {
@@ -2903,7 +2920,7 @@ body.akari-drawer-open {
 
 .akari-books-screenshot-grid img {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 14px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -2933,7 +2950,7 @@ body.akari-drawer-open {
   justify-content: center;
   width: 28px;
   height: 28px;
-  border-radius: 6px;
+  border-radius: 12px;
   background: rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.55);
   font-size: 0.78rem;
@@ -2946,7 +2963,7 @@ body.akari-drawer-open {
   align-items: flex-start;
   margin: 0;
   border: 1px dashed rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
+  border-radius: 14px;
   padding: 14px 16px;
   color: rgba(255, 255, 255, 0.55);
 }
@@ -2987,7 +3004,7 @@ body.akari-drawer-open {
   width: 100%;
   max-width: 640px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.04);
 }
 
@@ -3118,7 +3135,7 @@ body.akari-drawer-open {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 14px;
   background: rgba(10, 132, 255, 0.85);
   color: #fff;
   font-size: 1.5rem;
@@ -3170,7 +3187,7 @@ body.akari-drawer-open {
 
 .akari-errata-tier {
   border: 1px solid var(--akari-border);
-  border-radius: 8px;
+  border-radius: 14px;
   margin-bottom: 1rem;
   overflow: hidden;
   transition: border-color 0.2s ease;
@@ -3206,7 +3223,7 @@ body.akari-drawer-open {
 .akari-errata-tier__label {
   flex-shrink: 0;
   padding: 0.25rem 0.6rem;
-  border-radius: 4px;
+  border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
   background: rgba(10, 132, 255, 0.85);
@@ -3225,7 +3242,7 @@ body.akari-drawer-open {
   color: var(--akari-text-muted);
   padding: 0.15rem 0.5rem;
   background: var(--akari-bg-subtle);
-  border-radius: 1rem;
+  border-radius: 999px;
 }
 
 .akari-errata-tier summary i {
