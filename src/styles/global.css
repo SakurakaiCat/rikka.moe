@@ -758,21 +758,101 @@ img {
 
 .akari-personal-intro article {
   display: grid;
-  gap: 18px;
+  gap: 22px;
 }
 
-.akari-personal-intro figure {
+.akari-personal-intro__header h2 {
+  margin: 0.3rem 0 0;
+}
+
+.akari-personal-intro__memoir-note {
+  margin: 0.5rem 0 0;
+  color: rgba(255, 255, 255, 0.50);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.akari-personal-intro__content {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.akari-personal-intro__figure {
   margin: 0;
 }
 
-.akari-personal-intro img {
-  border-radius: 20px;
+.akari-personal-intro__figure img {
+  border-radius: 16px;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.akari-personal-intro__figure figcaption {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.40);
+  font-size: 0.78rem;
+  font-style: italic;
+  line-height: 1.5;
 }
 
 .akari-personal-intro__body {
   font-family: var(--akari-font-serif);
-  font-size: 17.5px;
+  font-size: 17px;
   line-height: 1.9;
+}
+
+.akari-personal-intro__body p {
+  margin: 0 0 1em;
+  text-indent: 2em;
+}
+
+.akari-personal-intro__body p:last-child {
+  margin-bottom: 0;
+}
+
+.akari-personal-intro__tags h3 {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.04em;
+}
+
+.akari-personal-intro__tags ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.akari-personal-intro__tags li {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.45;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.akari-personal-intro__tags li:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+@media (max-width: 720px) {
+  .akari-personal-intro__content {
+    grid-template-columns: 1fr;
+  }
+
+  .akari-personal-intro__figure img {
+    aspect-ratio: 16 / 9;
+  }
 }
 
 .akari-blog-feed {
