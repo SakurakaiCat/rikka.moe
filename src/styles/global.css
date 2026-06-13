@@ -139,6 +139,7 @@ img {
   width: min(1536px, calc(100vw - 32px));
   margin: 0 auto;
   padding: 112px 0 48px;
+  overflow-x: clip;
 }
 
 .glass-card {
@@ -315,7 +316,10 @@ img {
 
 .akari-hero-banner {
   --akari-section-gap: 2.5rem;
-  margin: 0 auto 0;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
   padding-inline: 0;
   color: var(--akari-text);
 }
@@ -1166,6 +1170,13 @@ img {
   .main {
     width: min(100% - 20px, 1180px);
     padding-top: 82px;
+  }
+
+  .akari-hero-banner {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .akari-appbar {
