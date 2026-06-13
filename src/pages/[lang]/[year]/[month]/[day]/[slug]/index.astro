@@ -4,6 +4,7 @@ import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
 import Comments from '../../../../../../components/Comments.astro';
 import { adjacentPosts, asDate, dateParts, getAllPosts, getPostsByLocale, languageOptions, postCategories, postUrl, resolveLocale } from '../../../../../../lib/content';
 import { categoryName, categorySlugForLocale, label } from '../../../../../../lib/i18n';
+import { artFallbackForSlug } from '../../../../../../lib/art';
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
@@ -26,7 +27,8 @@ const date = asDate(post.data.date);
 const categories = postCategories(post);
 const leadCategoryRaw = categories[0] || label('common', 'archive', locale);
 const leadCategory = categoryName(leadCategoryRaw, locale);
-const cover = post.data.cover || post.data.thumbnail || post.data.banner || post.data.image;
+const slugId = post.data.url_slug || post.data.slug || post.id.replace(/\.mdx?$/, '').split('/').pop() || post.id;
+const cover = post.data.cover || post.data.thumbnail || post.data.banner || post.data.image || await artFallbackForSlug(slugId);
 ---
 <BaseLayout title={post.data.title} description={post.data.description} locale={locale} canonicalPath={currentUrl} type="article" image={cover} languageOptions={options}>
   <article class="article-shell">
@@ -44,7 +46,8 @@ const cover = post.data.cover || post.data.thumbnail || post.data.banner || post
         <h1>{post.data.title}</h1>
         {post.data.description && <p>{post.data.description}</p>}
       </section>
-      {cover && <figure class="article-hero-cover"><img src={cover} alt={post.data.title} loading="lazy" decoding="async" /></figure>}
+      <figure class="article-hero-cover"><img src={cover} alt={post.data.title} loading="lazy" decoding="async" /></figure>
+      <div class="akari-read-progress" data-motion="read-progress"></div>
     </header>
     <div class="article-layout">
       <nav class="article-toc glass-card" aria-label={label('ui', 'tableOfContents', locale)}><strong>{label('ui', 'tableOfContents', locale)}</strong><div id="desktop-toc-body"></div></nav>

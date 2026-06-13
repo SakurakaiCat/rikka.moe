@@ -15,6 +15,6 @@ const posts = await getPostsByLocale(locale);
   <section class="archive-page glass-card">
     <h1>{label('common', 'archive', locale)}</h1>
     <p>{locale.archive_description}</p>
-    <div class="post-grid">{posts.map((post) => <PostCard post={post} />)}</div>
+    <div class="post-grid" data-motion="fade-up-children">{posts.map((post) => <PostCard post={post} />)}</div>
   </section>
 </BaseLayout>

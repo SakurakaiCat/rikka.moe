@@ -3337,3 +3337,73 @@ body.akari-drawer-open {
   0%, 100% { transform: translateX(0); }
   50% { transform: translateX(30px); }
 }
+
+/* ──────────────────────────────────────────────
+   Motion: Read progress bar
+   ────────────────────────────────────────────── */
+
+.akari-read-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--akari-accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* ──────────────────────────────────────────────
+   Motion: Initial hidden state for data-motion elements
+   ────────────────────────────────────────────── */
+
+[data-motion="fade-up"],
+[data-motion="fade-up-children"] > *,
+[data-motion="scale-up"],
+[data-motion="scale-up-children"] > *,
+[data-motion="slide-in-left"],
+[data-motion="slide-in-right"] {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-motion="fade-up"],
+  [data-motion="fade-up-children"] > *,
+  [data-motion="scale-up"],
+  [data-motion="scale-up-children"] > *,
+  [data-motion="slide-in-left"],
+  [data-motion="slide-in-right"] {
+    opacity: 1;
+  }
+
+  .akari-read-progress {
+    display: none;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   View Transitions: Page slide animations
+   ────────────────────────────────────────────── */
+
+@keyframes akari-slide-from-right {
+  from { transform: translateX(30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes akari-slide-to-left {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-30px); opacity: 0; }
+}
+
+@keyframes akari-slide-from-left {
+  from { transform: translateX(-30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes akari-slide-to-right {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(30px); opacity: 0; }
+}

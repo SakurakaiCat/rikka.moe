@@ -3,9 +3,21 @@ import '../styles/global.css';
 import AppBar from '../components/AppBar.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Footer from '../components/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
 import type { Locale } from '../lib/content';
 import { LOCALES, toAbsoluteUrl } from '../lib/content';
 import { label } from '../lib/i18n';
+
+const akariSlide = {
+  forwards: {
+    old: { name: 'akari-slide-to-left', duration: '0.25s', easing: 'ease-in' },
+    new: { name: 'akari-slide-from-right', duration: '0.3s', easing: 'ease-out' },
+  },
+  backwards: {
+    old: { name: 'akari-slide-to-right', duration: '0.25s', easing: 'ease-in' },
+    new: { name: 'akari-slide-from-left', duration: '0.3s', easing: 'ease-out' },
+  },
+};
 
 interface Props {
   title?: string;
@@ -57,7 +69,7 @@ const localeRoutingConfig = {
 };
 ---
 <!doctype html>
-<html lang={locale.html_lang} class="mdui-theme-dark" data-font-locale={locale.lang_path}>
+<html lang={locale.html_lang} class="mdui-theme-dark" data-font-locale={locale.lang_path} transition:animate="none">
   <head>
     <meta charset="UTF-8" />
     <meta name="renderer" content="webkit" />
@@ -73,6 +85,7 @@ const localeRoutingConfig = {
     <link rel="icon" href="/images/profile/avatar.jpg" type="image/jpeg" />
     <link rel="apple-touch-icon" href="/images/profile/avatar.jpg" />
     <link rel="alternate" type="application/atom+xml" title={`${siteTitle} - ${locale.display_name}`} href={`/${locale.lang_path}/atom.xml`} />
+    <ClientRouter />
     <meta property="og:type" content={type} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={seoDescription} />
@@ -95,12 +108,15 @@ const localeRoutingConfig = {
     <div class="akari-snow" aria-hidden="true"></div>
     <AppBar locale={locale} title={title || siteTitle} languageOptions={languageOptions} />
     <Sidebar locale={locale} />
-    <main class="main">
+    <main class="main" transition:animate={akariSlide}>
       <slot />
     </main>
     <Footer locale={locale} />
     <script type="module" src="/assets/js/akari-locale-routing.js"></script>
     <script type="module" src="/scripts/site.js"></script>
+    <script>
+    import '../scripts/akari-motion.ts';
+    </script>
     <script is:inline>
     (function() {
       var aiCopy = window.__AKARI_AI_SUMMARY_COPY__ || {};
