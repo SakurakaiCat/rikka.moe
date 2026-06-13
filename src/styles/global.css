@@ -1186,9 +1186,9 @@ img {
   }
 
   .akari-hero-card {
-    display: block;
+    display: grid;
     position: relative;
-    min-height: clamp(660px, 92vh, 880px);
+    min-height: clamp(360px, 65vh, 560px);
     border-radius: 22px !important;
   }
 
@@ -1207,16 +1207,16 @@ img {
   }
 
   .akari-hero-content {
-    position: absolute;
-    left: 24px;
-    right: 24px;
-    bottom: 28px;
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
     width: auto;
     align-self: end;
     margin: 0;
     border: none;
     border-radius: 0;
-    padding: 0;
+    padding: clamp(120px, 22vh, 200px) 20px 24px;
     background: none;
     box-shadow: none;
     backdrop-filter: none;
@@ -1242,36 +1242,42 @@ img {
 
   .akari-hero-title {
     margin: 18px 0 8px;
-    font-size: clamp(56px, 18vw, 88px);
+    font-size: clamp(2.4rem, 12vw, 4.5rem);
     line-height: 0.95;
-    letter-spacing: -0.06em;
+    letter-spacing: -0.04em;
     color: white;
     gap: 0.5rem;
   }
 
   .akari-hero-avatar {
-    width: clamp(48px, 14vw, 72px);
-    height: clamp(48px, 14vw, 72px);
+    width: clamp(40px, 12vw, 64px);
+    height: clamp(40px, 12vw, 64px);
     border-width: 2px;
   }
 
   .akari-hero-brand-cn {
     margin: 0 0 8px;
-    font-size: clamp(18px, 5vw, 28px);
+    font-size: clamp(1rem, 4vw, 1.5rem);
     color: rgba(255, 255, 255, 0.70);
   }
 
   .akari-hero-subtitle {
     color: rgba(255, 255, 255, 0.70);
-    font-size: 20px;
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+    line-height: 1.5;
   }
 
   .akari-hero-tags {
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 1.2rem;
+    gap: 8px;
+    margin-bottom: 1rem;
     overflow-x: visible;
     padding-bottom: 0;
+  }
+
+  .akari-hero-tags span {
+    font-size: 0.78rem;
+    padding: 0.25rem 0.55rem;
   }
 
   .akari-hero-languages {
@@ -1293,7 +1299,13 @@ img {
     color: white;
   }
 
-  .akari-hero-actions { gap: 12px; margin-top: 24px; }
+  .akari-hero-actions { gap: 10px; margin-top: 16px; }
+
+  .akari-hero-actions .button {
+    min-height: 38px;
+    padding: 0 14px;
+    font-size: 0.85rem;
+  }
 
   .akari-info-panels,
   .akari-info-nav__grid,
