@@ -38,10 +38,7 @@ const sectionLabels = {
       </picture>
       <div class="akari-hero-overlay"></div>
       <div class="akari-hero-content">
-        <div class="akari-hero-migration-banner">
-          <span class="akari-hero-migration-banner__dot"></span>
-          <span>{label('ui', 'migration', locale)}</span>
-        </div>
+        <div class="akari-hero-content__inner">
         <div class="akari-hero-badge">{model.hero.badge}</div>
         <h1 class="akari-hero-title">
           <img class="akari-hero-avatar" src={model.hero.avatarSrc} alt={model.hero.avatarAlt} width="72" height="72" />
@@ -53,6 +50,7 @@ const sectionLabels = {
         <nav class="akari-hero-actions" aria-label="Hero actions">
           {model.hero.ctas.map((cta: any) => <a class:list={["button", cta.primary && "button--primary"]} href={cta.href} target={cta.external ? '_blank' : undefined} rel={cta.external ? 'noopener noreferrer' : undefined}>{cta.label}</a>)}
         </nav>
+        </div>
       </div>
     </div>
   </section>
