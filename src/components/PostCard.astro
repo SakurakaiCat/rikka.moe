@@ -2,15 +2,18 @@
 import type { PostEntry } from '../lib/content';
 import { asDate, postCategories, postUrl, resolveLocale } from '../lib/content';
 import { categoryName } from '../lib/i18n';
+import { artFallbackForSlug } from '../lib/art';
 const { post } = Astro.props as { post: PostEntry };
 const date = asDate(post.data.date);
 const categories = postCategories(post);
 const locale = resolveLocale(post.data);
 const leadCategory = categories[0] ? categoryName(categories[0], locale) : '';
+const slug = post.id.replace(/\.mdx?$/, '').split('/').pop() || post.id;
+const coverSrc = post.data.cover || post.data.thumbnail || post.data.banner || post.data.image || await artFallbackForSlug(slug);
 ---
-<article class="post-card">
+<article class="post-card" data-motion="fade-up">
   <a href={postUrl(post)}>
-    {post.data.cover && <img src={post.data.cover} alt="" loading="lazy" decoding="async" />}
+    <img src={coverSrc} alt="" loading="lazy" decoding="async" />
     <div class="post-card__body">
       <div class="post-card__meta">
         {date && <time datetime={date.toISOString()}>{date.toISOString().slice(0, 10)}</time>}

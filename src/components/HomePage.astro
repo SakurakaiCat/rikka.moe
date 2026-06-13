@@ -2,6 +2,7 @@
 import type { Locale, PostEntry } from '../lib/content';
 import { asDate, postCategories, postUrl } from '../lib/content';
 import { categoryName, label, getHomepageModel } from '../lib/i18n';
+import { resolveArtFallbacks } from '../lib/art';
 import SponsorWall from './SponsorWall.astro';
 
 const { locale, posts } = Astro.props as { locale: Locale; posts: PostEntry[] };
@@ -19,7 +20,11 @@ const imagesOf = (post: PostEntry) => {
   }
   return images;
 };
-const firstImageOf = (post: PostEntry) => imagesOf(post)[0] || '/images/profile/background.jpg';
+const slugOf = (post: PostEntry) => post.id.replace(/\.mdx?$/, '').split('/').pop() || post.id;
+const artFallbackMap = await resolveArtFallbacks(
+  [...thoughtPosts, ...galleryPosts].map((p) => slugOf(p)),
+);
+const firstImageOf = (post: PostEntry) => imagesOf(post)[0] || artFallbackMap.get(slugOf(post)) || '/images/profile/background.jpg';
 const dateLabel = (post: PostEntry) => asDate(post.data.date)?.toISOString().slice(0, 10) || '';
 const categoryLabel = (post: PostEntry) => categoryName(postCategories(post)[0] || '', locale);
 const sectionLabels = {
@@ -55,7 +60,7 @@ const sectionLabels = {
     </div>
   </section>
 
-  <div class="akari-sidebar-stack">
+  <div class="akari-sidebar-stack" data-motion="fade-up-children">
     <aside class="recent-comments-card glass-card" data-twikoo-env-id="https://comment.rikka.moe" data-twikoo-src="https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js">
       <div class="recent-comments-card__head"><i class="ph ph-chat-circle-dots"></i><div><h2>{model.comments.title}</h2><p>{model.comments.subtitle}</p></div></div>
       <div class="recent-comments-card__list" data-empty={model.comments.empty} data-loading={model.comments.loading}>{model.comments.loading}</div>
@@ -117,7 +122,7 @@ const sectionLabels = {
   </div>
 </div>
 
-{model.personalIntro && <section class="akari-personal-intro glass-card"><article><header><small>{label('ui', 'personal', locale)}</small><h2>{model.personalIntro.title}</h2><p>{model.personalIntro.memoirNote}</p></header><figure><img src={model.personalIntro.image} alt={model.personalIntro.imageAlt} loading="lazy" /></figure><div class="akari-personal-intro__body">{model.personalIntro.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}</div><div class="akari-personal-intro__tags"><h3>{model.personalIntro.tagHeader}</h3><ul>{model.personalIntro.tags.map((tag: string) => <li>{tag}</li>)}</ul></div><footer><p>{model.personalIntro.closing}</p></footer></article></section>}
+{model.personalIntro && <section class="akari-personal-intro glass-card" data-motion="fade-up"><article><header><small>{label('ui', 'personal', locale)}</small><h2>{model.personalIntro.title}</h2><p>{model.personalIntro.memoirNote}</p></header><figure><img src={model.personalIntro.image} alt={model.personalIntro.imageAlt} loading="lazy" /></figure><div class="akari-personal-intro__body">{model.personalIntro.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}</div><div class="akari-personal-intro__tags"><h3>{model.personalIntro.tagHeader}</h3><ul>{model.personalIntro.tags.map((tag: string) => <li>{tag}</li>)}</ul></div><footer><p>{model.personalIntro.closing}</p></footer></article></section>}
 
 <section class="akari-blog-feed akari-home-sections akari-card-mosaic">
   <section class="akari-section akari-section--articles akari-mosaic-block">
@@ -125,7 +130,7 @@ const sectionLabels = {
       <div><small>Essays</small><h2>{sectionLabels.articles}</h2></div>
       <span>{articlePosts.length}</span>
     </header>
-    <div class="akari-article-glass-grid">
+    <div class="akari-article-glass-grid" data-motion="fade-up-children">
       {articlePosts.map((post, index) => (
         <article class:list={["akari-article-glass-card", index === 0 && "akari-article-glass-card--featured"]}>
           <a href={postUrl(post)}>
@@ -144,7 +149,7 @@ const sectionLabels = {
       <div><small>Timeline</small><h2>{sectionLabels.thoughts}</h2></div>
       <span>{thoughtPosts.length}</span>
     </header>
-    <div class="akari-thought-timeline">
+    <div class="akari-thought-timeline" data-motion="fade-up-children">
       {thoughtPosts.map((post) => {
         const image = firstImageOf(post);
         return (
@@ -168,14 +173,16 @@ const sectionLabels = {
       <div><small>Gallery</small><h2>{sectionLabels.gallery}</h2></div>
       <span>{galleryPosts.length}</span>
     </header>
-    <div class="akari-gallery-mosaic">
+    <div class="akari-gallery-mosaic" data-motion="scale-up-children">
       {galleryPosts.map((post) => {
         const images = imagesOf(post).slice(0, 6);
+        const slug = slugOf(post);
+        const galleryFallback = artFallbackMap.get(slug) || '/images/profile/background.jpg';
         return (
           <article class="akari-gallery-card">
             <a href={postUrl(post)}>
               <div class:list={["akari-gallery-card__images", images.length <= 1 && "akari-gallery-card__images--single"]}>
-                {(images.length ? images : ['/images/profile/background.jpg']).map((image) => <img src={image} alt="" loading="lazy" decoding="async" />)}
+                {(images.length ? images : [galleryFallback]).map((image) => <img src={image} alt="" loading="lazy" decoding="async" />)}
               </div>
               <div class="akari-gallery-card__body">
                 <time>{dateLabel(post)}</time>

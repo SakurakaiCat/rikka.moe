@@ -28,6 +28,6 @@ const posts = (await getPostsByLocale(locale)).filter((post) => postCategories(p
 <BaseLayout title={`${label('common', 'categories', locale)}: ${displayCategory}`} description={`${displayCategory} - Akari`} locale={locale} canonicalPath={normalizeRoutePath(`${locale.lang_path}/categories/${categorySlug}`)}>
   <section class="archive-page glass-card">
     <h1>{displayCategory}</h1>
-    <div class="post-grid">{posts.map((post) => <PostCard post={post} />)}</div>
+    <div class="post-grid" data-motion="fade-up-children">{posts.map((post) => <PostCard post={post} />)}</div>
   </section>
 </BaseLayout>
