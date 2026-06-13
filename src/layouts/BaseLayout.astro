@@ -93,7 +93,6 @@ const localeRoutingConfig = {
     <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': type === 'article' ? 'BlogPosting' : 'WebSite', name: title || siteTitle, headline: title || siteTitle, url: canonical, inLanguage: locale.html_lang, description: seoDescription, author: { '@type': 'Person', name: 'Akari / 篠崎香澄' } })}></script>
   </head>
   <body class="mdui-theme-dark">
-    <div class="akari-snow" aria-hidden="true"></div>
     <AppBar locale={locale} title={title || siteTitle} languageOptions={languageOptions} />
     <Sidebar locale={locale} />
     <main class="main">
@@ -102,27 +101,6 @@ const localeRoutingConfig = {
     <Footer locale={locale} />
     <script type="module" src="/assets/js/akari-locale-routing.js"></script>
     <script type="module" src="/scripts/site.js"></script>
-    <script is:inline>
-    (function() {
-      var container = document.querySelector('.akari-snow');
-      if (!container) return;
-      var snowflakes = ['❄', '❅', '❆', '·', '•'];
-      var colors = ['#ffffff', '#e0f7fa', '#f4abba', '#c5e1ff'];
-      var count = 50;
-      for (var i = 0; i < count; i++) {
-        var flake = document.createElement('span');
-        flake.className = 'snowflake';
-        flake.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
-        flake.style.left = Math.random() * 100 + 'vw';
-        flake.style.fontSize = (Math.random() * 0.8 + 0.6) + 'em';
-        flake.style.color = colors[Math.floor(Math.random() * colors.length)];
-        flake.style.animationDuration = (Math.random() * 5 + 5) + 's, ' + (Math.random() * 3 + 2) + 's';
-        flake.style.animationDelay = (Math.random() * 10) + 's, ' + (Math.random() * 5) + 's';
-        flake.style.opacity = Math.random() * 0.6 + 0.2;
-        container.appendChild(flake);
-      }
-    })();
-    </script>
     <script is:inline>
     (function() {
       var aiCopy = window.__AKARI_AI_SUMMARY_COPY__ || {};

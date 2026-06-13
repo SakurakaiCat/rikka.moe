@@ -4,26 +4,28 @@
 @import url('/fonts/dingtalk/DingTalk.css');
 
 :root {
-  --akari-accent: #c9a96e;
-  --akari-accent-strong: #dfc08a;
-  --akari-text: #e8e0d4;
-  --akari-muted: rgba(232, 224, 212, 0.58);
-  --akari-border: rgba(232, 224, 212, 0.12);
-  --akari-glass: rgba(22, 24, 32, 0.72);
-  --akari-glass-strong: rgba(18, 20, 28, 0.84);
+  --akari-accent: #0a84ff;
+  --akari-accent-strong: #409cff;
+  --akari-text: rgba(255, 255, 255, 0.95);
+  --akari-muted: rgba(255, 255, 255, 0.55);
+  --akari-border: rgba(255, 255, 255, 0.10);
+  --akari-glass: rgba(0, 0, 0, 0.20);
+  --akari-glass-strong: rgba(0, 0, 0, 0.35);
   --akari-bg: #0e1117;
   --akari-surface: #161a22;
   --akari-surface-soft: #1c2030;
-  --akari-radius: 8px;
-  --akari-radius-xl: 12px;
+  --akari-radius: 12px;
+  --akari-radius-xl: 20px;
   --akari-font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'pingfang', 'PingFang SC', 'PingFang HK', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
   --akari-font-serif: 'LXGW WenKai', 'LXGW WenKai Screen', 'Songti SC', 'Noto Serif CJK SC', Georgia, serif;
   --akari-font-display: 'banner', 'DingTalk', sans-serif;
   --akari-font-ui: 'DingTalk', sans-serif;
   --akari-font-academic: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-  --akari-bg-card: rgba(22, 26, 34, 0.85);
-  --akari-bg-subtle: rgba(22, 26, 34, 0.5);
+  --akari-bg-card: rgba(0, 0, 0, 0.22);
+  --akari-bg-subtle: rgba(0, 0, 0, 0.12);
   --akari-text-muted: var(--akari-muted);
+  --akari-glass-border: rgba(255, 255, 255, 0.15);
+  --akari-shadow-card: 0 8px 32px rgba(0, 0, 0, 0.40), 0 2px 8px rgba(0, 0, 0, 0.20);
 }
 
 html {
@@ -110,10 +112,7 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -3;
-  background:
-    radial-gradient(circle at 20% 10%, rgba(201, 169, 110, 0.06), transparent 34rem),
-    radial-gradient(circle at 80% 0, rgba(100, 120, 160, 0.05), transparent 30rem),
-    linear-gradient(180deg, #0e1117, #0e1117 42%, #121620);
+  background: linear-gradient(180deg, #0e1117, #0e1117 42%, #121620);
 }
 
 body::after {
@@ -143,10 +142,12 @@ img {
 }
 
 .glass-card {
-  border: 1px solid rgba(232, 224, 212, 0.1);
-  border-radius: 12px;
-  background: rgba(22, 26, 34, 0.85);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--akari-glass-border);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: var(--akari-shadow-card);
 }
 
 .button {
@@ -155,16 +156,29 @@ img {
   justify-content: center;
   min-height: 42px;
   padding: 0 18px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid var(--akari-glass-border);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  font-weight: 700;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: rgba(255, 255, 255, 0.90);
+  font-weight: 600;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.20);
 }
 
 .button--primary {
-  background: var(--akari-accent);
-  color: #1a1508;
+  background: rgba(10, 132, 255, 0.85);
+  color: #fff;
+  border-color: rgba(10, 132, 255, 0.50);
+}
+
+.button--primary:hover {
+  background: rgba(10, 132, 255, 1);
 }
 
 .akari-appbar {
@@ -189,10 +203,12 @@ img {
   display: flex;
   align-items: center;
   min-height: 52px;
-  border: 1px solid var(--akari-border);
+  border: 1px solid var(--akari-glass-border);
   border-radius: 999px;
-  background: rgba(20, 24, 32, 0.82);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.30);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: var(--akari-shadow-card);
   pointer-events: auto;
 }
 
@@ -219,11 +235,10 @@ img {
 
 .akari-appbar-section {
   overflow: hidden;
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(255, 255, 255, 0.50);
   font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -231,7 +246,7 @@ img {
 .akari-appbar-title {
   overflow: hidden;
   color: rgba(255, 255, 255, 0.95);
-  font-weight: 800;
+  font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -258,8 +273,8 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
-  color: var(--akari-accent);
-  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -269,10 +284,12 @@ img {
   right: max(12px, calc(50vw - 390px));
   top: 78px;
   max-width: calc(100vw - 24px);
-  border: 1px solid rgba(232, 224, 212, 0.12);
-  border-radius: 12px;
-  background: rgba(22, 26, 34, 0.92);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--akari-glass-border);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: var(--akari-shadow-card);
   overflow: hidden;
 }
 
@@ -292,8 +309,8 @@ img {
 }
 
 .akari-popover__item--active {
-  color: var(--akari-accent);
-  font-weight: 800;
+  color: #0a84ff;
+  font-weight: 600;
 }
 
 .akari-hero-banner {
@@ -306,12 +323,12 @@ img {
 .akari-hero-card {
   position: relative;
   display: grid;
-  min-height: clamp(660px, 90vh, 1020px);
+  min-height: clamp(480px, 60vh, 780px);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: var(--akari-radius-xl) !important;
-  background: radial-gradient(circle at 18% 22%, rgba(201, 169, 110, 0.06), transparent 34%), var(--akari-surface) !important;
-  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42), 0 10px 32px rgba(0, 0, 0, 0.28) !important;
+  border: 1px solid var(--akari-glass-border) !important;
+  border-radius: 20px !important;
+  background: var(--akari-surface) !important;
+  box-shadow: var(--akari-shadow-card) !important;
   isolation: isolate;
 }
 
@@ -336,7 +353,8 @@ img {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: radial-gradient(ellipse 52% 42% at 22% 22%, rgba(5, 5, 5, 0.62) 0%, rgba(5, 5, 5, 0.22) 55%, transparent 100%);
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.35) 35%, transparent 65%);
 }
 
 .akari-hero-content {
@@ -344,11 +362,12 @@ img {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: clamp(2rem, 4.5vw, 3rem);
+  justify-content: flex-end;
+  padding: clamp(2rem, 4.5vw, 3.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
   border: none;
   border-radius: 0;
-  margin: clamp(1.5rem, 3vw, 2.5rem);
+  margin: 0;
   background: none;
   box-shadow: none;
   backdrop-filter: none;
@@ -356,19 +375,28 @@ img {
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
 }
 
+.akari-hero-content__inner {
+  width: 100%;
+  max-width: 36rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: var(--akari-radius-lg, 16px);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.25) 70%, transparent 100%);
+  backdrop-filter: blur(6px) saturate(1.2);
+  -webkit-backdrop-filter: blur(6px) saturate(1.2);
+}
+
 .akari-hero-badge {
   display: inline-flex;
   width: fit-content;
   align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 999px;
   padding: 0.28rem 0.72rem;
   background: rgba(255, 255, 255, 0.08);
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .akari-hero-title {
@@ -392,14 +420,14 @@ img {
   border: 3px solid rgba(255, 255, 255, 0.85);
   border-radius: 50%;
   background: var(--akari-surface-soft);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(201, 169, 110, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.20);
   object-fit: cover;
   transition: transform 240ms ease, box-shadow 240ms ease;
 }
 
 .akari-hero-avatar:hover {
   transform: rotate(-3deg) scale(1.04);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 0 2px var(--akari-accent);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(255, 255, 255, 0.40);
 }
 
 .akari-hero-title__text {
@@ -409,16 +437,16 @@ img {
 .akari-hero-brand-cn {
   margin: 0 0 0.5rem;
   font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
-  letter-spacing: 0.08em;
-  color: rgba(201, 169, 110, 0.88);
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.70);
 }
 
 .akari-hero-subtitle {
   max-width: 28rem;
   margin: 0 0 1.2rem;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.70);
   font-size: clamp(1.08rem, 1.7vw, 1.28rem);
   line-height: 1.6;
 }
@@ -436,7 +464,8 @@ img {
 .chips span {
   padding: 0.32rem 0.72rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.70);
 }
 
 .akari-hero-languages {
@@ -463,9 +492,9 @@ img {
 
 .akari-hero-language:hover,
 .akari-hero-language--active {
-  border-color: var(--akari-accent);
-  background: rgba(201, 169, 110, 0.16);
-  color: var(--akari-accent);
+  border-color: rgba(10, 132, 255, 0.50);
+  background: rgba(10, 132, 255, 0.12);
+  color: #0a84ff;
 }
 
 .akari-hero-actions {
@@ -482,12 +511,12 @@ img {
 }
 
 .akari-bento-grid > .akari-hero-banner {
-  grid-column: span 8 / span 8;
+  grid-column: span 9 / span 9;
   padding-inline: 0;
 }
 
 .akari-sidebar-stack {
-  grid-column: span 4 / span 4;
+  grid-column: span 3 / span 3;
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 20px;
@@ -557,10 +586,9 @@ img {
 .akari-info-tabs__header small,
 .akari-section__head small,
 .akari-personal-intro small {
-  color: var(--akari-accent);
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.50);
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .akari-info-tabs__header h2,
@@ -580,9 +608,21 @@ img {
 .akari-info-tabs__bar a {
   padding: 0.48rem 0.8rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--akari-text);
-  font-weight: 700;
+  font-weight: 600;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.akari-info-tabs__bar a:hover {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.akari-info-tabs__bar a[aria-current="true"],
+.akari-info-tabs__bar a:target {
+  border: 1px solid rgba(10, 132, 255, 0.40);
+  color: #0a84ff;
+  background: rgba(10, 132, 255, 0.10);
 }
 
 .akari-info-panels {
@@ -598,7 +638,7 @@ img {
   display: block;
   padding: 18px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.04);
 }
 
@@ -655,10 +695,10 @@ img {
 .akari-section summary > span:last-child {
   padding: 0.22rem 0.55rem;
   border-radius: 999px;
-  background: rgba(201, 169, 110, 0.12);
-  color: var(--akari-accent);
+  background: rgba(10, 132, 255, 0.12);
+  color: #0a84ff;
   font-size: 0.8rem;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .mini-card header {
@@ -705,7 +745,7 @@ img {
 }
 
 .recent-comments-card__head i {
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 1.8rem;
 }
 
@@ -740,9 +780,12 @@ img {
 
 .akari-section {
   padding: 24px;
-  border: 1px solid var(--akari-border);
-  border-radius: 12px;
-  background: rgba(22, 26, 34, 0.72);
+  border: 1px solid var(--akari-glass-border);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: var(--akari-shadow-card);
 }
 
 .akari-section summary {
@@ -770,9 +813,12 @@ img {
 
 .post-card {
   overflow: hidden;
-  border: 1px solid rgba(232, 224, 212, 0.1);
-  border-radius: 12px;
-  background: rgba(22, 26, 34, 0.72);
+  border: 1px solid var(--akari-glass-border);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: var(--akari-shadow-card);
 }
 
 .post-card a {
@@ -826,9 +872,12 @@ img {
   gap: 10px;
   min-height: 52px;
   padding: 0 18px;
-  border: 1px solid var(--akari-border);
+  border: 1px solid var(--akari-glass-border);
   border-radius: 999px;
-  background: rgba(20, 24, 32, 0.82);
+  background: rgba(0, 0, 0, 0.30);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: var(--akari-shadow-card);
   color: inherit;
 }
 
@@ -846,16 +895,15 @@ img {
 }
 
 .article-hero-kicker {
-  color: var(--akari-accent);
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.50);
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .article-hero-cover {
   overflow: hidden;
   margin: 0;
-  border-radius: 28px;
+  border-radius: 20px;
 }
 
 .article-hero-cover img {
@@ -894,7 +942,7 @@ img {
 .article-prose h1,
 .article-prose h2,
 .article-prose h3 {
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .article-prose pre {
@@ -914,9 +962,9 @@ img {
 .ai-summary {
   margin: 1.4em 0;
   padding: 14px 18px;
-  border-left: 4px solid var(--akari-accent);
+  border-left: 4px solid rgba(255, 255, 255, 0.20);
   border-radius: 14px;
-  background: rgba(201, 169, 110, 0.08);
+  background: rgba(255, 255, 255, 0.04);
   display: flex;
   flex-direction: column;
 }
@@ -924,10 +972,10 @@ img {
 .ai-summary-title {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.70);
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(201, 169, 110, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 .ai-summary-footer {
@@ -1019,20 +1067,20 @@ img {
   padding: 12px 18px;
   border: 0;
   border-radius: 999px;
-  background: var(--akari-accent);
-  color: #1a1508;
-  font-weight: 800;
+  background: rgba(10, 132, 255, 0.85);
+  color: #fff;
+  font-weight: 600;
 }
 
 .akari-footer {
   text-align: center;
-  color: rgba(255, 255, 255, 0.52);
+  color: rgba(255, 255, 255, 0.35);
   padding: 20px;
 }
 
 .akari-site-footer {
   text-align: center;
-  color: rgba(255, 255, 255, 0.52);
+  color: rgba(255, 255, 255, 0.35);
   padding: 28px 20px;
   font-size: 0.82rem;
 }
@@ -1177,6 +1225,15 @@ img {
     text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
   }
 
+  .akari-hero-content__inner {
+    max-width: none;
+    padding: 0;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 0;
+  }
+
   .akari-hero-badge {
     background: rgba(255, 255, 255, 0.16);
     border-color: rgba(255, 255, 255, 0.18);
@@ -1201,11 +1258,11 @@ img {
   .akari-hero-brand-cn {
     margin: 0 0 8px;
     font-size: clamp(18px, 5vw, 28px);
-    color: rgba(201, 169, 110, 0.88);
+    color: rgba(255, 255, 255, 0.70);
   }
 
   .akari-hero-subtitle {
-    color: rgba(255, 255, 255, 0.86);
+    color: rgba(255, 255, 255, 0.70);
     font-size: 20px;
   }
 
@@ -1231,8 +1288,8 @@ img {
   }
 
   .akari-hero-language--active {
-    border-color: rgba(201, 169, 110, 0.82);
-    background: rgba(201, 169, 110, 0.22);
+    border-color: rgba(10, 132, 255, 0.82);
+    background: rgba(10, 132, 255, 0.22);
     color: white;
   }
 
@@ -1284,10 +1341,12 @@ img {
 
 .akari-sidebar__card {
   height: 100%;
-  border: 1px solid var(--akari-border);
-  border-radius: 12px;
-  background: rgba(22, 26, 34, 0.92);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--akari-glass-border);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: var(--akari-shadow-card);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1344,12 +1403,12 @@ img {
 
 .akari-sidebar__nav a:hover {
   background: rgba(255, 255, 255, 0.08);
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .akari-sidebar__nav i {
   font-size: 1.15rem;
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 body.akari-drawer-open {
@@ -1389,9 +1448,9 @@ body.akari-drawer-open {
 .akari-section__head--split span {
   padding: 0.28rem 0.7rem;
   border-radius: 999px;
-  background: rgba(201, 169, 110, 0.12);
-  color: var(--akari-accent);
-  font-weight: 800;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.60);
+  font-weight: 600;
 }
 
 .akari-article-glass-grid {
@@ -1404,10 +1463,12 @@ body.akari-drawer-open {
   position: relative;
   overflow: hidden;
   min-height: 220px;
-  border: 1px solid rgba(232, 224, 212, 0.1);
-  border-radius: 12px;
-  background: rgba(22, 26, 34, 0.72);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--akari-glass-border);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: var(--akari-shadow-card);
 }
 
 .akari-article-glass-card--featured {
@@ -1468,7 +1529,7 @@ body.akari-drawer-open {
   left: 6px;
   width: 2px;
   border-radius: 999px;
-  background: linear-gradient(var(--akari-accent), rgba(201, 169, 110, 0.05));
+  background: linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05));
 }
 
 .akari-thought-timeline__item {
@@ -1483,8 +1544,8 @@ body.akari-drawer-open {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--akari-accent);
-  box-shadow: 0 0 0 5px rgba(201, 169, 110, 0.12);
+  background: rgba(255, 255, 255, 0.60);
+  box-shadow: none;
 }
 
 .akari-thought-timeline__item a {
@@ -1494,16 +1555,16 @@ body.akari-drawer-open {
   gap: 6px 14px;
   padding: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 22px;
+  border-radius: 16px;
   background: rgba(255, 255, 255, 0.045);
   color: inherit;
 }
 
 .akari-thought-timeline__item time {
   grid-area: time;
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.50);
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .akari-thought-timeline__item figure {
@@ -1535,9 +1596,12 @@ body.akari-drawer-open {
 
 .akari-gallery-card {
   overflow: hidden;
-  border: 1px solid rgba(232, 224, 212, 0.1);
-  border-radius: 12px;
-  background: rgba(22, 26, 34, 0.72);
+  border: 1px solid var(--akari-glass-border);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: var(--akari-shadow-card);
 }
 
 .akari-gallery-card a {
@@ -1576,9 +1640,9 @@ body.akari-drawer-open {
 
 .akari-gallery-card__body time {
   display: block;
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.50);
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: 500;
   margin-bottom: 6px;
 }
 
@@ -1638,8 +1702,8 @@ body.akari-drawer-open {
 }
 
 .recent-comment__top strong {
-  color: var(--akari-accent);
-  font-weight: 700;
+  color: rgba(255, 255, 255, 0.90);
+  font-weight: 600;
 }
 
 .recent-comment__top time {
@@ -1673,63 +1737,6 @@ body.akari-drawer-open {
   margin-top: 14px;
 }
 
-.akari-snow {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.akari-snow .snowflake {
-  position: absolute;
-  top: -10px;
-  color: #fff;
-  font-size: 1em;
-  opacity: 0.8;
-  animation: snow-fall linear infinite, snow-sway ease-in-out infinite;
-}
-
-@keyframes snow-fall {
-  0% { top: -10px; }
-  100% { top: 100vh; }
-}
-
-@keyframes snow-sway {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(30px); }
-}
-
-/* ===== Migration Banner ===== */
-.akari-hero-migration-banner {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: fit-content;
-  margin-bottom: 0.75rem;
-  padding: 0.35rem 0.85rem;
-  border: 1px solid rgba(201, 169, 110, 0.35);
-  border-radius: 999px;
-  background: rgba(201, 169, 110, 0.12);
-  color: var(--akari-accent);
-  font-size: 0.82rem;
-  font-weight: 700;
-  animation: akari-migration-pulse 2.5s ease-in-out infinite;
-}
-
-.akari-hero-migration-banner__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--akari-accent);
-  box-shadow: 0 0 8px rgba(201, 169, 110, 0.6);
-}
-
-@keyframes akari-migration-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 169, 110, 0.2); }
-  50% { box-shadow: 0 0 0 6px rgba(201, 169, 110, 0); }
-}
-
 /* ===== Search Modal ===== */
 .akari-search-modal {
   position: fixed;
@@ -1750,10 +1757,12 @@ body.akari-drawer-open {
 .akari-search-modal__content {
   position: relative;
   width: min(560px, calc(100vw - 2rem));
-  border: 1px solid var(--akari-border);
-  border-radius: 12px;
-  background: rgba(22, 26, 34, 0.95);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--akari-glass-border);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: var(--akari-shadow-card);
   overflow: hidden;
 }
 
@@ -1865,10 +1874,9 @@ body.akari-drawer-open {
 .akari-settings-section h3 {
   margin: 0 0 10px;
   font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--akari-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.50);
+  letter-spacing: 0.02em;
 }
 
 .akari-settings-palette {
@@ -1914,10 +1922,10 @@ body.akari-drawer-open {
 }
 
 .akari-settings-font-size__btn--active {
-  border-color: var(--akari-accent);
-  background: rgba(201, 169, 110, 0.15);
-  color: var(--akari-accent);
-  font-weight: 700;
+  border-color: rgba(10, 132, 255, 0.50);
+  background: rgba(10, 132, 255, 0.12);
+  color: #0a84ff;
+  font-weight: 600;
 }
 
 @media (max-width: 720px) {
@@ -1941,12 +1949,12 @@ body.akari-drawer-open {
   margin: var(--akari-section-gap, 2.5rem) auto 0;
   max-width: 1080px;
   padding: 1.75rem 1.5rem 1.5rem;
-  border: 1px solid rgba(232, 224, 212, 0.1);
-  border-radius: var(--akari-radius-xl, 12px);
-  background:
-    radial-gradient(circle at 88% 10%, rgba(201, 169, 110, 0.06), transparent 42%),
-    rgba(22, 26, 34, 0.85);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--akari-glass-border);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: var(--akari-shadow-card);
   color: var(--akari-text);
 }
 
@@ -1959,9 +1967,8 @@ body.akari-drawer-open {
 
 .akari-sponsor-wall__eyebrow {
   font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--akari-accent, #c9a96e);
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.50);
 }
 
 .akari-sponsor-wall__header h2 {
@@ -2069,7 +2076,7 @@ body.akari-drawer-open {
 
 .akari-sponsor-wall__toggle:hover,
 .akari-sponsor-wall__toggle:focus-visible {
-  border-color: var(--akari-accent, #c9a96e);
+  border-color: rgba(255, 255, 255, 0.20);
   background: rgba(255, 255, 255, 0.03);
   outline: none;
 }
@@ -2090,8 +2097,8 @@ body.akari-drawer-open {
   gap: 0.4rem;
   padding: 0.55rem 1.1rem;
   border-radius: 999px;
-  background: var(--akari-accent, #c9a96e);
-  color: #1a1508;
+  background: rgba(10, 132, 255, 0.85);
+  color: #fff;
   font-weight: 600;
   font-size: 0.9rem;
   text-decoration: none;
@@ -2100,7 +2107,7 @@ body.akari-drawer-open {
 
 .akari-sponsor-wall__cta:hover,
 .akari-sponsor-wall__cta:focus-visible {
-  background: var(--akari-accent-strong, #ffd8e1);
+  background: rgba(10, 132, 255, 1);
   transform: translateY(-1px);
   outline: none;
 }
@@ -2144,7 +2151,7 @@ body.akari-drawer-open {
   height: 32px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.07);
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 1.2rem;
   transition: transform 0.2s ease, background 0.2s ease;
 }
@@ -2218,7 +2225,7 @@ body.akari-drawer-open {
 }
 
 .guestbook-entry__body strong {
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.90);
 }
 
 .guestbook-entry__body time {
@@ -2275,14 +2282,10 @@ body.akari-drawer-open {
   z-index: -1;
   pointer-events: none;
   background:
-    repeating-linear-gradient(0deg, rgba(232, 224, 212, 0.025) 0px, rgba(232, 224, 212, 0.025) 1px, transparent 1px, transparent 48px),
-    repeating-linear-gradient(90deg, rgba(232, 224, 212, 0.025) 0px, rgba(232, 224, 212, 0.025) 1px, transparent 1px, transparent 48px);
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0px, rgba(255, 255, 255, 0.025) 1px, transparent 1px, transparent 48px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0px, rgba(255, 255, 255, 0.025) 1px, transparent 1px, transparent 48px);
 }
 
-/* Hide snow particles on books page only */
-body:has(.akari-books-landing) > .akari-snow {
-  display: none !important;
-}
 
 .akari-books-landing * {
   box-sizing: border-box;
@@ -2315,11 +2318,10 @@ body:has(.akari-books-landing) > .akari-snow {
 .akari-books-eyebrow,
 .akari-books-badge {
   margin: 0 0 0.65rem;
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.50);
   font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .akari-books-hero-v2 {
@@ -2348,7 +2350,7 @@ body:has(.akari-books-landing) > .akari-snow {
   inset: -18% auto auto -12%;
   width: 48vw;
   height: 48vw;
-  background: radial-gradient(circle, rgba(201, 169, 110, 0.06), transparent 64%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.02), transparent 64%);
 }
 
 .akari-books-hero-v2::after {
@@ -2356,7 +2358,7 @@ body:has(.akari-books-landing) > .akari-snow {
   bottom: -20%;
   width: 54vw;
   height: 54vw;
-  background: radial-gradient(circle, rgba(100, 120, 160, 0.05), transparent 66%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.015), transparent 66%);
 }
 
 .akari-books-hero-v2__content {
@@ -2375,10 +2377,10 @@ body:has(.akari-books-landing) > .akari-snow {
 
 .akari-books-hero-v2__english {
   margin: 1rem 0 2rem;
-  color: var(--akari-muted);
+  color: rgba(255, 255, 255, 0.50);
   font-size: clamp(0.72rem, 1.5vw, 0.95rem);
-  font-weight: 800;
-  letter-spacing: 0.26em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
 }
 
 .akari-books-hero-v2__lead {
@@ -2408,13 +2410,13 @@ body:has(.akari-books-landing) > .akari-snow {
   display: inline-flex;
   align-items: center;
   min-height: 32px;
-  border: 1px solid rgba(232, 224, 212, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 6px;
   padding: 0.28rem 0.75rem;
-  background: rgba(201, 169, 110, 0.08);
-  color: var(--akari-muted);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .akari-button {
@@ -2423,12 +2425,12 @@ body:has(.akari-books-landing) > .akari-snow {
   justify-content: center;
   gap: 0.48rem;
   min-height: 44px;
-  border: 1px solid rgba(232, 224, 212, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 6px;
   padding: 0.66rem 1.08rem;
-  background: rgba(232, 224, 212, 0.06);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--akari-text);
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.2;
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
@@ -2436,20 +2438,20 @@ body:has(.akari-books-landing) > .akari-snow {
 .akari-button:hover,
 .akari-button:focus-visible {
   transform: translateY(-1px);
-  border-color: rgba(201, 169, 110, 0.55);
-  background: rgba(232, 224, 212, 0.1);
+  border-color: rgba(255, 255, 255, 0.20);
+  background: rgba(255, 255, 255, 0.10);
 }
 
 .akari-button--filled {
-  border-color: rgba(201, 169, 110, 0.72);
-  background: var(--akari-accent);
-  color: #1a1508;
+  border-color: rgba(10, 132, 255, 0.50);
+  background: rgba(10, 132, 255, 0.85);
+  color: #fff;
 }
 
 .akari-button--filled:hover,
 .akari-button--filled:focus-visible {
-  background: var(--akari-accent-strong);
-  color: #1a1508;
+  background: rgba(10, 132, 255, 1);
+  color: #fff;
 }
 
 .akari-books-actions--stacked {
@@ -2501,13 +2503,13 @@ body:has(.akari-books-landing) > .akari-snow {
   gap: 0.45rem;
   min-height: 42px;
   border-radius: 6px;
-  color: var(--akari-muted);
-  font-weight: 800;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 600;
 }
 
 .akari-books-anchor-nav a:hover {
-  background: rgba(232, 224, 212, 0.06);
-  color: var(--akari-accent);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.90);
 }
 
 .akari-books-section {
@@ -2563,16 +2565,16 @@ body:has(.akari-books-landing) > .akari-snow {
   border: 0;
   border-bottom: 2px solid transparent;
   background: transparent;
-  color: var(--akari-muted);
+  color: rgba(255, 255, 255, 0.55);
   font: inherit;
-  font-weight: 800;
+  font-weight: 600;
   cursor: pointer;
 }
 
 .akari-books-tab--active {
-  border-bottom-color: var(--akari-accent);
-  color: var(--akari-accent);
-  background: rgba(201, 169, 110, 0.06);
+  border-bottom-color: #0a84ff;
+  color: #0a84ff;
+  background: rgba(10, 132, 255, 0.06);
 }
 
 .akari-books-series-panel {
@@ -2584,15 +2586,15 @@ body:has(.akari-books-landing) > .akari-snow {
   gap: 12px;
   align-items: flex-start;
   margin-bottom: 24px;
-  border: 1px solid rgba(201, 169, 110, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 8px;
   padding: 14px 16px;
-  background: rgba(201, 169, 110, 0.06);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .akari-books-note i {
   margin-top: 0.25rem;
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 1.2rem;
 }
 
@@ -2656,7 +2658,7 @@ body:has(.akari-books-landing) > .akari-snow {
 .akari-books-volume--active {
   opacity: 1;
   transform: translateY(-1px);
-  border-color: var(--akari-accent);
+  border-color: rgba(255, 255, 255, 0.30);
 }
 
 .akari-books-volume img {
@@ -2670,10 +2672,9 @@ body:has(.akari-books-landing) > .akari-snow {
 
 .akari-books-series-copy h4 {
   margin: 1.6rem 0 0.8rem;
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.50);
   font-size: 1rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .akari-book-toc {
@@ -2683,9 +2684,9 @@ body:has(.akari-books-landing) > .akari-snow {
 
 .akari-book-toc__part {
   overflow: hidden;
-  border: 1px solid rgba(232, 224, 212, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
-  background: rgba(232, 224, 212, 0.03);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .akari-book-toc__part summary {
@@ -2709,10 +2710,10 @@ body:has(.akari-books-landing) > .akari-snow {
 .akari-book-toc__label,
 .akari-book-toc__child-head span,
 .akari-book-toc__sub span {
-  color: var(--akari-muted);
+  color: rgba(255, 255, 255, 0.50);
   font-size: 0.78rem;
   font-variant-numeric: tabular-nums;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .akari-book-toc__children {
@@ -2766,19 +2767,19 @@ body:has(.akari-books-landing) > .akari-snow {
 .akari-books-stats article {
   padding: 18px;
   border-radius: 8px;
-  background: rgba(232, 224, 212, 0.04);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .akari-books-stats strong {
   display: block;
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.95);
   font-size: clamp(2.4rem, 5vw, 4rem);
   line-height: 1;
 }
 
 .akari-books-stats span {
   color: var(--akari-text);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .akari-books-stats p {
@@ -2805,8 +2806,8 @@ body:has(.akari-books-landing) > .akari-snow {
   width: 44px;
   height: 44px;
   border-radius: 8px;
-  background: rgba(201, 169, 110, 0.1);
-  color: var(--akari-accent);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 1.35rem;
 }
 
@@ -2845,12 +2846,12 @@ body:has(.akari-books-landing) > .akari-snow {
 
 .akari-books-version li i {
   margin-top: 0.3rem;
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .akari-books-version--primary {
-  background: rgba(201, 169, 110, 0.08) !important;
-  border-color: rgba(201, 169, 110, 0.2) !important;
+  background: rgba(10, 132, 255, 0.06) !important;
+  border-color: rgba(10, 132, 255, 0.15) !important;
 }
 
 .akari-books-screenshot-groups {
@@ -2864,7 +2865,7 @@ body:has(.akari-books-landing) > .akari-snow {
 
 .akari-books-screenshot-group h3 {
   margin: 0 0 16px;
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .akari-books-screenshot-grid {
@@ -2906,10 +2907,10 @@ body:has(.akari-books-landing) > .akari-snow {
   width: 28px;
   height: 28px;
   border-radius: 6px;
-  background: rgba(201, 169, 110, 0.1);
-  color: var(--akari-accent);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 0.78rem;
-  font-weight: 900;
+  font-weight: 600;
 }
 
 .akari-books-notice {
@@ -2917,10 +2918,10 @@ body:has(.akari-books-landing) > .akari-snow {
   gap: 10px;
   align-items: flex-start;
   margin: 0;
-  border: 1px dashed rgba(232, 224, 212, 0.15);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   padding: 14px 16px;
-  color: var(--akari-muted);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .akari-books-text-card--wide {
@@ -2960,7 +2961,7 @@ body:has(.akari-books-landing) > .akari-snow {
   max-width: 640px;
   border: 0;
   border-radius: 8px;
-  background: rgba(232, 224, 212, 0.04);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .akari-books-akari-card {
@@ -3065,8 +3066,8 @@ body:has(.akari-books-landing) > .akari-snow {
 }
 
 .akari-sidebar__nav a.akari-sidebar__nav-active {
-  background: rgba(201, 169, 110, 0.14);
-  color: var(--akari-accent);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 /* ========================================
@@ -3079,8 +3080,8 @@ body:has(.akari-books-landing) > .akari-snow {
   gap: 1.5rem;
   align-items: flex-start;
   padding: 2rem;
-  background: rgba(201, 169, 110, 0.06);
-  border: 1px solid rgba(201, 169, 110, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 .akari-books-update-banner__icon {
@@ -3091,8 +3092,8 @@ body:has(.akari-books-landing) > .akari-snow {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  background: var(--akari-accent);
-  color: #1a1508;
+  background: rgba(10, 132, 255, 0.85);
+  color: #fff;
   font-size: 1.5rem;
 }
 
@@ -3149,11 +3150,11 @@ body:has(.akari-books-landing) > .akari-snow {
 }
 
 .akari-errata-tier:hover {
-  border-color: var(--akari-accent);
+  border-color: rgba(255, 255, 255, 0.20);
 }
 
 .akari-errata-tier[open] {
-  border-color: var(--akari-accent);
+  border-color: rgba(255, 255, 255, 0.20);
 }
 
 .akari-errata-tier summary {
@@ -3172,7 +3173,7 @@ body:has(.akari-books-landing) > .akari-snow {
 }
 
 .akari-errata-tier summary:hover {
-  background: rgba(201, 169, 110, 0.06);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .akari-errata-tier__label {
@@ -3181,8 +3182,8 @@ body:has(.akari-books-landing) > .akari-snow {
   border-radius: 4px;
   font-size: 0.75rem;
   font-weight: 600;
-  background: var(--akari-accent);
-  color: #1a1508;
+  background: rgba(10, 132, 255, 0.85);
+  color: #fff;
 }
 
 .akari-errata-tier summary strong {
@@ -3230,7 +3231,7 @@ body:has(.akari-books-landing) > .akari-snow {
 }
 
 .akari-errata-tier__list li sup {
-  color: var(--akari-accent);
+  color: rgba(255, 255, 255, 0.70);
   font-weight: 600;
 }
 
