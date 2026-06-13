@@ -316,7 +316,7 @@ img {
 .akari-hero-banner {
   --akari-section-gap: 2.5rem;
   margin: 0 auto 0;
-  padding-inline: 1.5rem;
+  padding-inline: 0;
   color: var(--akari-text);
 }
 
@@ -511,7 +511,7 @@ img {
 }
 
 .akari-bento-grid > .akari-hero-banner {
-  grid-column: span 9 / span 9;
+  grid-column: 1 / -1;
   padding-inline: 0;
 }
 
