@@ -22,7 +22,7 @@ const imagesOf = (post: PostEntry) => {
 };
 const slugOf = (post: PostEntry) => post.id.replace(/\.mdx?$/, '').split('/').pop() || post.id;
 const artFallbackMap = await resolveArtFallbacks(
-  [...thoughtPosts, ...galleryPosts].map((p) => slugOf(p)),
+  [...articlePosts, ...thoughtPosts, ...galleryPosts].map((p) => slugOf(p)),
 );
 const firstImageOf = (post: PostEntry) => imagesOf(post)[0] || artFallbackMap.get(slugOf(post)) || '/images/profile/background.jpg';
 const dateLabel = (post: PostEntry) => asDate(post.data.date)?.toISOString().slice(0, 10) || '';
@@ -131,16 +131,20 @@ const sectionLabels = {
       <span>{articlePosts.length}</span>
     </header>
     <div class="akari-article-glass-grid" data-motion="fade-up-children">
-      {articlePosts.map((post, index) => (
-        <article class:list={["akari-article-glass-card", index === 0 && "akari-article-glass-card--featured"]}>
-          <a href={postUrl(post)}>
-            <div class="akari-article-glass-card__shine"></div>
-            <div class="akari-article-glass-card__meta"><time>{dateLabel(post)}</time><span>{categoryLabel(post)}</span></div>
-            <h3>{post.data.title}</h3>
-            {post.data.description && <p>{post.data.description}</p>}
-          </a>
-        </article>
-      ))}
+      {articlePosts.map((post, index) => {
+        const image = firstImageOf(post);
+        return (
+          <article class:list={["akari-article-glass-card", index === 0 && "akari-article-glass-card--featured"]}>
+            <a href={postUrl(post)}>
+              <div class="akari-article-glass-card__shine"></div>
+              <figure class="akari-article-glass-card__cover"><img src={image} alt="" loading="lazy" decoding="async" /></figure>
+              <div class="akari-article-glass-card__meta"><time>{dateLabel(post)}</time><span>{categoryLabel(post)}</span></div>
+              <h3>{post.data.title}</h3>
+              {post.data.description && <p>{post.data.description}</p>}
+            </a>
+          </article>
+        );
+      })}
     </div>
   </section>
 
