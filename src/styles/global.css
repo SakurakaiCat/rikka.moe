@@ -3306,3 +3306,34 @@ body.akari-drawer-open {
     display: none;
   }
 }
+
+/* ──────────────────────────────────────────────
+   Snowflake effect
+   ────────────────────────────────────────────── */
+
+.akari-snow {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.akari-snow .snowflake {
+  position: absolute;
+  top: -10px;
+  color: #fff;
+  font-size: 1em;
+  opacity: 0.8;
+  animation: snow-fall linear infinite, snow-sway ease-in-out infinite;
+}
+
+@keyframes snow-fall {
+  0% { top: -10px; }
+  100% { top: 100vh; }
+}
+
+@keyframes snow-sway {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(30px); }
+}
