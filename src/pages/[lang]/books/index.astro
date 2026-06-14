@@ -2,65 +2,25 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import SponsorWall from '../../../components/SponsorWall.astro';
 import { LOCALES, toAbsoluteUrl, type Locale } from '../../../lib/content';
+import { getBookCopy, type BookLang } from '../../../data/books-i18n';
+import {
+  DOWNLOAD_URL, AFDIAN_URL,
+  screenshotGroups,
+  journeyErrata, funcErrata,
+  renderErrataTier,
+} from '../../../data/books';
 
-type Lang = 'zh-TW' | 'en' | 'ja';
-type Copy = {
-  title: string;
-  description: string;
-  lead: string;
-  chips: string[];
-  buttons: { explore: string; reading: string; preview: string; library: string; support: string };
-  nav: { overview: string; design: string; reading: string; notes: string; support: string };
-  overview: {
-    eyebrow: string;
-    title: string;
-    lead: string;
-    funcTitle: string;
-    funcBadge: string;
-    funcBody: string;
-    journeyTitle: string;
-    journeyBadge: string;
-    journeyBody: string;
-    latest: string;
-    loading: string;
-    downloadFunc: string;
-    downloadJourney: string;
-  };
-  design: {
-    eyebrow: string;
-    title: string;
-    lead: string;
-    stats: { value: string; label: string; desc: string }[];
-    features: { icon: string; title: string; desc: string }[];
-  };
-  reading: {
-    eyebrow: string;
-    title: string;
-    lead: string;
-    libraryTitle: string;
-    libraryBody: string;
-    freeTitle: string;
-    freeItems: string[];
-    premiumTitle: string;
-    premiumChip: string;
-    premiumItems: string[];
-  };
-  preview: { eyebrow: string; title: string; lead: string; func: string; journey: string; funcAlt: string; journeyAlt: string };
-  notes: { eyebrow: string; title: string; lead: string; originTitle: string; origin: string[]; pausedTitle: string; paused: string[] };
-  support: { eyebrow: string; title: string; lead: string; cardTitle: string; cardBody: string; akariTitle: string; akariBody: string[] };
-  aria: { chips: string; nav: string };
-  dateLocale: string;
-};
-
-const bookPathForLocale = (locale: Locale) => locale.lang === 'zh-CN' ? '/books/' : `/${locale.lang_path}/books/`;
+const bookPathForLocale = (loc: Locale) => loc.lang === 'zh-CN' ? '/books/' : `/${loc.lang_path}/books/`;
 
 export async function getStaticPaths() {
   return LOCALES
-    .filter((locale) => locale.lang !== 'zh-CN')
-    .map((locale) => ({ params: { lang: locale.lang_path }, props: { locale } }));
+    .filter((loc) => loc.lang !== 'zh-CN')
+    .map((loc) => ({ params: { lang: loc.lang_path }, props: { locale: loc } }));
 }
 
 const { locale } = Astro.props as { locale: Locale };
+const langMap: Record<string, BookLang> = { 'zh-TW': 'zh-TW', 'en': 'en', 'ja': 'ja' };
+const copy = getBookCopy(langMap[locale.lang] || 'en');
 const currentUrl = bookPathForLocale(locale);
 const languageOptions = LOCALES.map((loc) => {
   const relativeUrl = bookPathForLocale(loc);
@@ -71,234 +31,16 @@ const languageOptions = LOCALES.map((loc) => {
     isCurrent: loc.lang === locale.lang,
   };
 });
-
-const copies: Record<Lang, Copy> = {
-  'zh-TW': {
-    title: '數學之旅',
-    description: 'ProjectA 書籍介紹頁：介紹《數學之旅：函數與導數》與《高中數學之旅》，並引導讀者前往 app.rikka.moe 書庫查看。',
-    lead: '為中學數學而寫的現代數學讀物。函數、極限、導數一脈貫通，用 LaTeX 與 TikZ 把每一頁都做成藝術品。',
-    chips: ['LaTeX / XeLaTeX', 'TikZ 向量圖形', '免費版內容完整', '付費版僅去水印'],
-    buttons: { explore: '探索書稿', reading: '版本與閱讀方式', preview: '內頁預覽', library: '前往 app.rikka.moe 書庫', support: '前往愛發電支持' },
-    nav: { overview: '書稿總覽', design: '設計哲學', reading: '閱讀方式', notes: '寫作說明', support: '支持作者' },
-    overview: {
-      eyebrow: '書稿總覽',
-      title: '兩個系列，一脈相承',
-      lead: '兩個系列內容互相獨立。免費版與付費版內容完全一致，付費版僅去除頁面水印，閱讀體驗更純淨。',
-      funcTitle: '數學之旅：函數與導數',
-      funcBadge: '新系列 · 第一冊',
-      funcBody: '新啟動的獨立系列，作為《高中數學之旅》的精神續作全面重寫。第一冊圍繞函數、極限與導數展開，呈現從概念到方法的數學脈絡。',
-      journeyTitle: '高中數學之旅',
-      journeyBadge: '舊版 · 完整五冊',
-      journeyBody: '舊版系列覆蓋中學數學的主要專題與常見題型，也包含若干進階內容。項目目前暫緩更新。',
-      latest: '最近更新：',
-      loading: '載入中…',
-      downloadFunc: '免費下載《函數與導數》',
-      downloadJourney: '免費下載《高中數學之旅》',
-    },
-    design: {
-      eyebrow: '設計哲學',
-      title: '理念與特徵',
-      lead: '知識自由是我的起源。書稿以開放方式呈現，也用盡可能精細的排版保留數學內容的結構美。',
-      stats: [
-        { value: '21', label: '章', desc: '完整覆蓋中學數學核心專題' },
-        { value: '100%', label: '向量', desc: 'TikZ 驅動的精確圖形渲染' },
-        { value: '∞', label: '精度', desc: 'LaTeX 排版，像素級數學公式' },
-      ],
-      features: [
-        { icon: 'file-pdf', title: '純淨閱讀體驗', desc: '付費版 PDF 完全無水印，每一頁都保持完整的視覺與版心比例。' },
-        { icon: 'pen-nib', title: '排版即藝術', desc: '公式、圖形、間距與字體都經過細緻推敲。' },
-        { icon: 'globe', title: '開源與知識自由', desc: '書稿以開放方式呈現，讓更多人能接觸高品質的數學內容。' },
-        { icon: 'code', title: '程式生成精度', desc: '所有圖形由 TikZ 程式碼驅動，保證精確性與可重現性。' },
-      ],
-    },
-    reading: {
-      eyebrow: '閱讀方式',
-      title: '可以前往 app.rikka.moe 的書庫查看',
-      lead: '閱讀入口已改為前往我的在線學習工具台 app.rikka.moe 的書庫。PDF 下載與愛發電支持入口仍保留。',
-      libraryTitle: 'app.rikka.moe 書庫',
-      libraryBody: '在在線學習工具台的書庫中查看我的書籍與後續整理內容。',
-      freeTitle: '免費版',
-      freeItems: ['完整章節內容（含水印）', '全部圖形與公式', '全部目錄與內容提要', '作者簡介與前言'],
-      premiumTitle: '無水印版',
-      premiumChip: '內容相同 · 僅去水印',
-      premiumItems: ['與免費版內容完全相同', '去除頁面水印，閱讀純淨', 'TikZ 向量圖形源文件', '終身版本更新'],
-    },
-    preview: { eyebrow: '內頁預覽', title: '翻閱書頁', lead: '隨機抽取兩本書的一些頁面，提前感受排版風格。', func: '《函數與導數》', journey: '《高中數學之旅》', funcAlt: '《函數與導數》內頁預覽', journeyAlt: '《高中數學之旅》內頁預覽' },
-    notes: {
-      eyebrow: 'Origin / Practice / Paused',
-      title: '寫作緣起、學習方式與暫停說明',
-      lead: '這一部分保留原書籍說明頁中的背景文字，說明為什麼寫這本書，以及項目目前的狀態。',
-      originTitle: '寫作緣起與方法論',
-      origin: ['本書的起點源自我在高中三年學習數學期間使用 Obsidian 記下的筆記，書稿最終使用 LaTeX 編排。', '我想做的不是單純羅列題型與例題，而是呈現從定義、定理、推理分支到答案收束的邏輯流。'],
-      pausedTitle: '為什麼暫停更新',
-      paused: ['項目已進入無限期暫停，目前看到的可能就是最後版本。新增內容沒有形成可持續回報，二次販賣與大部頭寫作也持續消耗精力。', '接下來會把一部分內容逐步遷移到軟體中，也會繼續觀察是否有新的寫作切入點。'],
-    },
-    support: {
-      eyebrow: '支持作者',
-      title: '在愛發電支持我',
-      lead: '每一份支持都是持續寫作與開發的動力。付費版與免費版內容完全一致，付費僅去除水印。',
-      cardTitle: '感謝友情支持',
-      cardBody: '前往愛發電主頁取得無水印版並支持作者。',
-      akariTitle: 'Illuminating the Path of Learning',
-      akariBody: ['Project Akari 致力於重塑學習體驗，提供更高效、更具親和力的學習範式。', '書籍與配套軟體共同服務於更自由、更可持續的學習方式。'],
-    },
-    aria: { chips: '書籍關鍵詞', nav: '書籍頁導航' },
-    dateLocale: 'zh-TW',
-  },
-  en: {
-    title: 'Journey of Mathematics',
-    description: 'ProjectA book introduction page for Journey of Mathematics and Secondary Math Journey, now pointing readers to the app.rikka.moe library.',
-    lead: 'A modern mathematics reader for secondary-school math. Functions, limits, and derivatives are connected into one path, with every page shaped through LaTeX and TikZ.',
-    chips: ['LaTeX / XeLaTeX', 'TikZ vector graphics', 'Complete free edition', 'Paid edition only removes watermark'],
-    buttons: { explore: 'Explore the manuscripts', reading: 'Reading options', preview: 'Page previews', library: 'Visit the app.rikka.moe library', support: 'Support on Afdian' },
-    nav: { overview: 'Overview', design: 'Design', reading: 'Reading', notes: 'Notes', support: 'Support' },
-    overview: {
-      eyebrow: 'Overview',
-      title: 'Two series, one continuous idea',
-      lead: 'The two series are independent. The free and paid editions contain the same content; the paid edition only removes page watermarks for a cleaner reading experience.',
-      funcTitle: 'Journey of Mathematics: Functions and Derivatives',
-      funcBadge: 'New series · Volume 1',
-      funcBody: 'A new standalone series and a full rewrite of the older project. The first volume follows functions, limits, and derivatives as one mathematical path from concepts to methods.',
-      journeyTitle: 'Secondary Math Journey',
-      journeyBadge: 'Legacy series · Five volumes',
-      journeyBody: 'The older five-volume series covers the main topics and common problem types of secondary-school mathematics, with several advanced discussions. It is currently paused.',
-      latest: 'Latest update:',
-      loading: 'Loading…',
-      downloadFunc: 'Download Functions and Derivatives',
-      downloadJourney: 'Download Secondary Math Journey',
-    },
-    design: {
-      eyebrow: 'Design',
-      title: 'Principles and features',
-      lead: 'The project began from a belief in open knowledge. The manuscripts are shared openly, while the typography preserves the structure and beauty of the mathematics.',
-      stats: [
-        { value: '21', label: 'chapters', desc: 'Core topics across secondary mathematics' },
-        { value: '100%', label: 'vector', desc: 'Precise figures generated with TikZ' },
-        { value: '∞', label: 'precision', desc: 'LaTeX typesetting for formulas and layout' },
-      ],
-      features: [
-        { icon: 'file-pdf', title: 'Clean reading', desc: 'The paid PDF removes watermarks while keeping the same content and layout.' },
-        { icon: 'pen-nib', title: 'Typesetting as craft', desc: 'Formulas, figures, spacing, and type are adjusted with LaTeX-level care.' },
-        { icon: 'globe', title: 'Open knowledge', desc: 'The manuscripts are presented openly so more learners can access high-quality math material.' },
-        { icon: 'code', title: 'Generated precision', desc: 'Figures are driven by TikZ source code, making diagrams precise and reproducible.' },
-      ],
-    },
-    reading: {
-      eyebrow: 'Reading options',
-      title: 'Read from the app.rikka.moe library',
-      lead: 'The reader entry now points to the library inside my online study toolbox at app.rikka.moe. PDF download and Afdian support links remain available.',
-      libraryTitle: 'app.rikka.moe library',
-      libraryBody: 'Open the library in the online study toolbox to view my books and later organized materials.',
-      freeTitle: 'Free edition',
-      freeItems: ['Full chapters with watermark', 'All figures and formulas', 'Full table of contents and summaries', 'Author notes and preface'],
-      premiumTitle: 'Watermark-free edition',
-      premiumChip: 'Same content · watermark removed',
-      premiumItems: ['Exactly the same content as the free edition', 'Cleaner pages without watermarks', 'TikZ vector source files', 'Lifetime version updates'],
-    },
-    preview: { eyebrow: 'Page previews', title: 'Flip through the pages', lead: 'A few sample pages from the two books, showing the visual style before you download or read them.', func: 'Functions and Derivatives', journey: 'Secondary Math Journey', funcAlt: 'Functions and Derivatives page preview', journeyAlt: 'Secondary Math Journey page preview' },
-    notes: {
-      eyebrow: 'Origin / Practice / Paused',
-      title: 'Why it exists and why it is paused',
-      lead: 'This section keeps the background of the original book page: why I wrote it, how I think about learning, and the current project status.',
-      originTitle: 'Origin and method',
-      origin: ['The manuscript began as Obsidian notes from three years of high-school mathematics study, and was later typeset in LaTeX.', 'Rather than listing problem templates, I wanted to show the logical flow from definitions and theorems through branches of reasoning to a final answer.'],
-      pausedTitle: 'Why updates are paused',
-      paused: ['The project is paused indefinitely, and the current version may remain the final version for quite a while. Low return, reposting/reselling, and the cost of long-form writing all contributed to this decision.', 'Some material may gradually move into software, and I will keep watching for a better structure if I ever rewrite it.'],
-    },
-    support: {
-      eyebrow: 'Support',
-      title: 'Support me on Afdian',
-      lead: 'Every contribution helps future writing and development. The paid edition has the same content as the free edition and only removes watermarks.',
-      cardTitle: 'Thank you for supporting',
-      cardBody: 'Visit Afdian to get the watermark-free edition and support the author.',
-      akariTitle: 'Illuminating the Path of Learning',
-      akariBody: ['Project Akari is about reshaping learning experiences with tools that feel efficient, accessible, and kind.', 'The books and the companion software work together toward a freer and more sustainable way to learn.'],
-    },
-    aria: { chips: 'Book keywords', nav: 'Book page navigation' },
-    dateLocale: 'en-US',
-  },
-  ja: {
-    title: '数学の旅',
-    description: 'ProjectA の書籍紹介ページ。『数学の旅：関数と導数』と『高校数学の旅』を紹介し、app.rikka.moe の書庫へ案内します。',
-    lead: '中学・高校数学のために書いた現代的な数学読本です。関数、極限、導数をひと続きの流れとして扱い、LaTeX と TikZ で一ページずつ丁寧に組んでいます。',
-    chips: ['LaTeX / XeLaTeX', 'TikZ ベクター図形', '無料版も本文は完全', '有料版は透かしのみ削除'],
-    buttons: { explore: '原稿を見る', reading: '読む方法', preview: '紙面プレビュー', library: 'app.rikka.moe の書庫へ', support: '愛発電で支援する' },
-    nav: { overview: '概要', design: '設計思想', reading: '読む方法', notes: '執筆メモ', support: '支援' },
-    overview: {
-      eyebrow: '概要',
-      title: '二つのシリーズ、一つの流れ',
-      lead: '二つのシリーズはそれぞれ独立しています。無料版と有料版の本文は同じで、有料版はページの透かしだけを削除した読みやすい版です。',
-      funcTitle: '数学の旅：関数と導数',
-      funcBadge: '新シリーズ · 第一冊',
-      funcBody: '新しく始めた独立シリーズで、旧プロジェクトを全面的に書き直しています。第一冊は関数、極限、導数を一つの流れとして扱います。',
-      journeyTitle: '高校数学の旅',
-      journeyBadge: '旧版 · 全五冊',
-      journeyBody: '旧シリーズは中学・高校数学の主要な話題と典型問題を扱い、いくつかの発展的な内容も紹介しています。現在は更新停止中です。',
-      latest: '最終更新：',
-      loading: '読み込み中…',
-      downloadFunc: '『関数と導数』を無料ダウンロード',
-      downloadJourney: '『高校数学の旅』を無料ダウンロード',
-    },
-    design: {
-      eyebrow: '設計思想',
-      title: '理念と特徴',
-      lead: 'このプロジェクトの原点には、知識を開いて届けたいという思いがあります。原稿は公開しつつ、数式と構造の美しさを丁寧な組版で残しています。',
-      stats: [
-        { value: '21', label: '章', desc: '中学・高校数学の中心テーマをカバー' },
-        { value: '100%', label: 'ベクター', desc: 'TikZ による精密な図形描画' },
-        { value: '∞', label: '精度', desc: 'LaTeX 組版による数式とレイアウト' },
-      ],
-      features: [
-        { icon: 'file-pdf', title: 'すっきり読める PDF', desc: '有料版は透かしを削除し、本文とレイアウトは無料版と同じです。' },
-        { icon: 'pen-nib', title: '組版も表現', desc: '数式、図形、余白、フォントまで細かく調整しています。' },
-        { icon: 'globe', title: '開かれた知識', desc: '質の高い数学コンテンツに誰でも触れられるよう、原稿を公開しています。' },
-        { icon: 'code', title: 'コードによる精度', desc: '図形は TikZ のソースコードから生成し、正確さと再現性を保っています。' },
-      ],
-    },
-    reading: {
-      eyebrow: '読む方法',
-      title: 'app.rikka.moe の書庫で確認できます',
-      lead: '読書入口は、私のオンライン学習ツール台 app.rikka.moe の書庫へ案内する形に変更しました。PDF ダウンロードと愛発電の支援入口は引き続き残しています。',
-      libraryTitle: 'app.rikka.moe 書庫',
-      libraryBody: 'オンライン学習ツール台の書庫で、私の書籍と今後整理する内容を確認できます。',
-      freeTitle: '無料版',
-      freeItems: ['透かし付きの全章本文', 'すべての図形と数式', '目次と内容概要', '著者紹介と前書き'],
-      premiumTitle: '透かしなし版',
-      premiumChip: '本文は同じ · 透かしのみ削除',
-      premiumItems: ['無料版と本文は完全に同じ', '透かしを削除した読みやすいページ', 'TikZ ベクター図形のソース', '今後の更新も利用可能'],
-    },
-    preview: { eyebrow: '紙面プレビュー', title: 'ページを少しだけ見る', lead: '二つの本からいくつかのページを抜き出し、組版の雰囲気を先に確認できるようにしました。', func: '『関数と導数』', journey: '『高校数学の旅』', funcAlt: '『関数と導数』紙面プレビュー', journeyAlt: '『高校数学の旅』紙面プレビュー' },
-    notes: {
-      eyebrow: 'Origin / Practice / Paused',
-      title: '執筆のきっかけと更新停止について',
-      lead: 'ここでは、もとの書籍説明ページにあった背景を残し、なぜ書いたのか、現在の状態を説明します。',
-      originTitle: '執筆のきっかけと方法',
-      origin: ['この本の出発点は、高校三年間に Obsidian で書いていた数学ノートです。最終的には LaTeX で組版しました。', '単に問題パターンと例題を並べるのではなく、定義や定理から推論の分岐をたどり、答えへ収束していく論理の流れを見せたいと思いました。'],
-      pausedTitle: 'なぜ更新を止めているのか',
-      paused: ['このプロジェクトは無期限で更新停止中で、現在見えているものが最終版になる可能性があります。収益性の低さ、無断転載や転売、大部な執筆に必要な時間が大きな負担になりました。', '今後は一部の内容をソフトウェアへ移すことを考えつつ、よりよい構成で書き直せる機会があるかを見ています。'],
-    },
-    support: {
-      eyebrow: '支援',
-      title: '愛発電で支援する',
-      lead: '支援は今後の執筆と開発の力になります。有料版と無料版の本文は同じで、支援版は透かしのみ削除されています。',
-      cardTitle: '支援ありがとうございます',
-      cardBody: '愛発電のページから透かしなし版を入手し、作者を支援できます。',
-      akariTitle: 'Illuminating the Path of Learning',
-      akariBody: ['Project Akari は、より効率的で親しみやすい学習体験を作るためのプロジェクトです。', '書籍と関連ソフトウェアを通じて、より自由で続けやすい学び方を目指しています。'],
-    },
-    aria: { chips: '書籍キーワード', nav: '書籍ページナビゲーション' },
-    dateLocale: 'ja-JP',
-  },
-};
-
-const copy = copies[locale.lang as Lang] || copies.en;
-const screenshots = [
-  { title: copy.preview.func, alt: copy.preview.funcAlt, images: ['/images/books/screenshots/func-sample-1.png', '/images/books/screenshots/func-sample-2.png', '/images/books/screenshots/func-sample-3.png'] },
-  { title: copy.preview.journey, alt: copy.preview.journeyAlt, images: ['/images/books/screenshots/journey-sample-1.png', '/images/books/screenshots/journey-sample-2.png', '/images/books/screenshots/journey-sample-3.png'] },
-];
 ---
 
-<BaseLayout title={copy.title} description={copy.description} locale={locale} canonicalPath={currentUrl} image="/images/books/covers/func-math-cover.png" languageOptions={languageOptions}>
+<BaseLayout
+  title={copy.title}
+  description={copy.description}
+  locale={locale}
+  canonicalPath={currentUrl}
+  image="/images/books/covers/func-math-cover.png"
+  languageOptions={languageOptions}
+>
   <article class="akari-books-landing akari-books-landing--localized">
     <section class="akari-books-hero-v2 glass-card" aria-labelledby="books-title">
       <div class="akari-books-hero-v2__content">
@@ -306,12 +48,14 @@ const screenshots = [
         <h1 id="books-title">{copy.title}</h1>
         <p class="akari-books-hero-v2__english">THE JOURNEY OF MATHEMATICS</p>
         <p class="akari-books-hero-v2__lead">{copy.lead}</p>
-        <div class="akari-books-chips" aria-label={copy.aria.chips}>{copy.chips.map((chip) => <span>{chip}</span>)}</div>
+        <div class="akari-books-chips" aria-label={copy.aria.chips}>
+          {copy.chips.map((chip) => <span>{chip}</span>)}
+        </div>
         <div class="akari-books-actions">
-          <a class="akari-button akari-button--filled" href="#akari-book-showcase"><i class="ph ph-book-open"></i>{copy.buttons.explore}</a>
-          <a class="akari-button" href="#akari-book-versions"><i class="ph ph-book-open"></i>{copy.buttons.reading}</a>
-          <a class="akari-button" href="#akari-book-screenshots"><i class="ph ph-images"></i>{copy.buttons.preview}</a>
-          <a class="akari-button" href="https://app.rikka.moe/library" target="_blank" rel="noopener noreferrer"><i class="ph ph-books"></i>{copy.buttons.library}</a>
+          <a class="akari-button akari-button--filled" href={DOWNLOAD_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.downloadLabel}</a>
+          <a class="akari-button" href={AFDIAN_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-heart"></i>{copy.afdianLabel}</a>
+          <a class="akari-button" href="#akari-book-showcase"><i class="ph ph-book-open"></i>{copy.buttons.explore}</a>
+          <a class="akari-button" href="#akari-book-versions"><i class="ph ph-download-simple"></i>{copy.buttons.versions}</a>
         </div>
       </div>
       <div class="akari-books-hero-v2__covers" aria-hidden="true">
@@ -322,52 +66,173 @@ const screenshots = [
 
     <nav class="akari-books-anchor-nav glass-card" aria-label={copy.aria.nav}>
       <a href="#akari-book-showcase"><i class="ph ph-books"></i><span>{copy.nav.overview}</span></a>
+      <a href="#akari-book-errata"><i class="ph ph-list-checks"></i><span>{copy.nav.errata}</span></a>
       <a href="#akari-book-design"><i class="ph ph-pen-nib"></i><span>{copy.nav.design}</span></a>
-      <a href="#akari-book-versions"><i class="ph ph-book-open"></i><span>{copy.nav.reading}</span></a>
+      <a href="#akari-book-versions"><i class="ph ph-download-simple"></i><span>{copy.nav.versions}</span></a>
       <a href="#akari-book-method"><i class="ph ph-route"></i><span>{copy.nav.notes}</span></a>
       <a href="#akari-book-support"><i class="ph ph-heart"></i><span>{copy.nav.support}</span></a>
     </nav>
 
+    <section class="akari-books-section akari-books-update-banner-section" aria-label="重大更新通知">
+      <div class="akari-books-update-banner glass-card">
+        <div class="akari-books-update-banner__icon"><i class="ph ph-megaphone-simple"></i></div>
+        <div class="akari-books-update-banner__body">
+          <p class="akari-books-eyebrow">{copy.update.eyebrow}</p>
+          <h2>{copy.update.title}</h2>
+          <p>{copy.update.body}</p>
+          <div class="akari-books-actions">
+            <a class="akari-button akari-button--filled" href={DOWNLOAD_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.downloadLabel}</a>
+            <a class="akari-button" href="#akari-book-errata"><i class="ph ph-list-checks"></i>{copy.buttons.errata}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="akari-book-showcase" class="akari-books-section">
-      <header class="akari-books-section__header"><p class="akari-books-eyebrow">{copy.overview.eyebrow}</p><h2>{copy.overview.title}</h2><p>{copy.overview.lead}</p></header>
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">{copy.overview.eyebrow}</p>
+        <h2>{copy.overview.title}</h2>
+        <p>{copy.overview.lead}</p>
+      </header>
       <div class="akari-books-feature-grid">
-        <article class="akari-books-card glass-card"><i class="ph ph-pen-nib"></i><p class="akari-books-badge">{copy.overview.funcBadge}</p><h3>{copy.overview.funcTitle}</h3><p>{copy.overview.funcBody}</p><div class="akari-books-update"><i class="ph ph-git-commit"></i><span>{copy.overview.latest}</span><span data-github-latest="WritingMathBooks/func-math-book">{copy.overview.loading}</span></div><a class="akari-button akari-button--filled" href="https://c.rikka.moe/s/iopEsCAHqsXkemo" target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.overview.downloadFunc}</a></article>
-        <article class="akari-books-card glass-card"><i class="ph ph-books"></i><p class="akari-books-badge">{copy.overview.journeyBadge}</p><h3>{copy.overview.journeyTitle}</h3><p>{copy.overview.journeyBody}</p><div class="akari-books-update"><i class="ph ph-git-commit"></i><span>{copy.overview.latest}</span><span data-github-latest="ShinozakiKasumi/ProjectA-journey">{copy.overview.loading}</span></div><a class="akari-button akari-button--filled" href="https://c.rikka.moe/s/M7eQTWP8oHNBXGH" target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.overview.downloadJourney}</a></article>
+        <article class="akari-books-card glass-card">
+          <i class="ph ph-pen-nib"></i>
+          <p class="akari-books-badge">{copy.overview.funcBadge}</p>
+          <h3>{copy.overview.funcTitle}</h3>
+          <p>{copy.overview.funcBody}</p>
+          <div class="akari-books-update"><i class="ph ph-git-commit"></i><span>{copy.overview.latest}</span><span data-github-latest="WritingMathBooks/func-math-book">{copy.overview.loading}</span></div>
+        </article>
+        <article class="akari-books-card glass-card">
+          <i class="ph ph-books"></i>
+          <p class="akari-books-badge">{copy.overview.journeyBadge}</p>
+          <h3>{copy.overview.journeyTitle}</h3>
+          <p>{copy.overview.journeyBody}</p>
+          <div class="akari-books-update"><i class="ph ph-git-commit"></i><span>{copy.overview.latest}</span><span data-github-latest="ShinozakiKasumi/ProjectA-journey">{copy.overview.loading}</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="akari-book-errata" class="akari-books-section">
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">{`Errata`}</p>
+        <h2>{copy.nav.errata}</h2>
+      </header>
+      <div class="akari-books-showcase glass-card">
+        <div class="akari-books-tabs" role="tablist" aria-label="Errata book toggle">
+          <button type="button" class="akari-books-tab akari-books-tab--active" role="tab" aria-selected="true" data-errata-tab="journey"><i class="ph ph-books"></i><span>{copy.errataTabs.journey}</span></button>
+          <button type="button" class="akari-books-tab" role="tab" aria-selected="false" data-errata-tab="func"><i class="ph ph-pen-nib"></i><span>{copy.errataTabs.func}</span></button>
+        </div>
+        <div class="akari-errata-panel akari-errata-panel--active" data-errata-panel="journey">
+          <Fragment set:html={journeyErrata.map((tier, i) => renderErrataTier(tier.label, tier.title, tier.items, i === 0)).join('')} />
+        </div>
+        <div class="akari-errata-panel" data-errata-panel="func" hidden>
+          <Fragment set:html={funcErrata.map((tier, i) => renderErrataTier(tier.label, tier.title, tier.items, i === 0)).join('')} />
+        </div>
       </div>
     </section>
 
     <section id="akari-book-design" class="akari-books-section">
-      <header class="akari-books-section__header"><p class="akari-books-eyebrow">{copy.design.eyebrow}</p><h2>{copy.design.title}</h2><p>{copy.design.lead}</p></header>
-      <div class="akari-books-stats glass-card">{copy.design.stats.map((stat) => <article><strong>{stat.value}</strong><span>{stat.label}</span><p>{stat.desc}</p></article>)}</div>
-      <div class="akari-books-feature-grid">{copy.design.features.map((feature) => <article class="akari-books-card glass-card"><i class={`ph ph-${feature.icon}`}></i><h3>{feature.title}</h3><p>{feature.desc}</p></article>)}</div>
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">{copy.design.eyebrow}</p>
+        <h2>{copy.design.title}</h2>
+        <p>{copy.design.lead}</p>
+      </header>
+      <div class="akari-books-stats glass-card">
+        {copy.design.stats.map((stat) => <article><strong>{stat.value}</strong><span>{stat.label}</span><p>{stat.desc}</p></article>)}
+      </div>
+      <div class="akari-books-feature-grid">
+        {copy.design.features.map((feature) => (
+          <article class="akari-books-card glass-card">
+            <i class={`ph ph-${feature.icon}`}></i>
+            <h3>{feature.title}</h3>
+            <p>{feature.desc}</p>
+          </article>
+        ))}
+      </div>
     </section>
 
     <section id="akari-book-versions" class="akari-books-section">
-      <header class="akari-books-section__header"><p class="akari-books-eyebrow">{copy.reading.eyebrow}</p><h2>{copy.reading.title}</h2><p>{copy.reading.lead}</p></header>
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">{copy.versions.eyebrow}</p>
+        <h2>{copy.versions.title}</h2>
+        <p>{copy.versions.lead}</p>
+      </header>
       <div class="akari-books-version-grid">
-        <article class="akari-books-version akari-books-version--primary glass-card"><p class="akari-books-badge">Library</p><h3>{copy.reading.libraryTitle}</h3><span class="akari-books-version__chip">app.rikka.moe/library</span><p>{copy.reading.libraryBody}</p><a class="akari-button akari-button--filled" href="https://app.rikka.moe/library" target="_blank" rel="noopener noreferrer"><i class="ph ph-books"></i>{copy.buttons.library}</a></article>
-        <article class="akari-books-version glass-card"><p class="akari-books-badge">Free Edition</p><h3>{copy.reading.freeTitle}</h3><ul>{copy.reading.freeItems.map((item) => <li><i class="ph ph-check"></i>{item}</li>)}</ul><div class="akari-books-actions akari-books-actions--stacked"><a class="akari-button" href="https://c.rikka.moe/s/iopEsCAHqsXkemo" target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.overview.downloadFunc}</a><a class="akari-button" href="https://c.rikka.moe/s/M7eQTWP8oHNBXGH" target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.overview.downloadJourney}</a></div></article>
-        <article class="akari-books-version glass-card"><p class="akari-books-badge">Watermark-Free Edition</p><h3>{copy.reading.premiumTitle}</h3><span class="akari-books-version__chip">{copy.reading.premiumChip}</span><ul>{copy.reading.premiumItems.map((item) => <li><i class="ph ph-check-circle"></i>{item}</li>)}</ul><a class="akari-button" href="https://afdian.com/a/writeamathbook" target="_blank" rel="noopener noreferrer"><i class="ph ph-heart"></i>{copy.buttons.support}</a></article>
+        <article class="akari-books-version glass-card">
+          <p class="akari-books-badge">Free Edition</p>
+          <h3>{copy.versions.freeTitle}</h3>
+          <ul>{copy.versions.freeItems.map((item) => <li><i class="ph ph-check"></i>{item}</li>)}</ul>
+          <a class="akari-button akari-button--filled" href={DOWNLOAD_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.downloadLabel}</a>
+        </article>
+        <article class="akari-books-version akari-books-version--primary glass-card">
+          <p class="akari-books-badge">Watermark-Free Edition</p>
+          <h3>{copy.versions.premiumTitle}</h3>
+          <span class="akari-books-version__chip">{copy.versions.premiumChip}</span>
+          <ul>{copy.versions.premiumItems.map((item) => <li><i class="ph ph-check-circle"></i>{item}</li>)}</ul>
+          <a class="akari-button akari-button--filled" href={AFDIAN_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-heart"></i>{copy.afdianLabel}</a>
+        </article>
       </div>
     </section>
 
     <section id="akari-book-screenshots" class="akari-books-section">
-      <header class="akari-books-section__header"><p class="akari-books-eyebrow">{copy.preview.eyebrow}</p><h2>{copy.preview.title}</h2><p>{copy.preview.lead}</p></header>
-      <div class="akari-books-screenshot-groups">{screenshots.map((group) => <section class="akari-books-screenshot-group glass-card" aria-label={group.title}><h3>{group.title}</h3><div class="akari-books-screenshot-grid">{group.images.map((src, index) => <img src={src} alt={`${group.alt} ${index + 1}`} loading="lazy" decoding="async" />)}</div></section>)}</div>
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">{copy.preview.eyebrow}</p>
+        <h2>{copy.preview.title}</h2>
+        <p>{copy.preview.lead}</p>
+      </header>
+      <div class="akari-books-screenshot-groups">
+        {screenshotGroups.map((group) => (
+          <section class="akari-books-screenshot-group glass-card" aria-label={group.title}>
+            <h3>{group.title}</h3>
+            <div class="akari-books-screenshot-grid">
+              {group.images.map((image) => <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />)}
+            </div>
+          </section>
+        ))}
+      </div>
     </section>
 
     <section id="akari-book-method" class="akari-books-section">
-      <header class="akari-books-section__header"><p class="akari-books-eyebrow">{copy.notes.eyebrow}</p><h2>{copy.notes.title}</h2><p>{copy.notes.lead}</p></header>
-      <div class="akari-books-method-grid"><article class="akari-books-text-card glass-card"><h3>{copy.notes.originTitle}</h3>{copy.notes.origin.map((paragraph) => <p>{paragraph}</p>)}</article><article class="akari-books-text-card glass-card"><h3>{copy.notes.pausedTitle}</h3>{copy.notes.paused.map((paragraph) => <p>{paragraph}</p>)}</article></div>
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">{copy.notes.eyebrow}</p>
+        <h2>{copy.notes.title}</h2>
+        <p>{copy.notes.lead}</p>
+      </header>
+      <div class="akari-books-method-grid">
+        <article class="akari-books-text-card glass-card">
+          <h3>{copy.notes.originTitle}</h3>
+          {copy.notes.origin.map((paragraph) => <p>{paragraph}</p>)}
+        </article>
+        <article class="akari-books-text-card glass-card">
+          <h3>{copy.notes.practiceTitle}</h3>
+          {copy.notes.practice.map((paragraph) => <p>{paragraph}</p>)}
+        </article>
+      </div>
     </section>
 
     <section id="akari-book-support" class="akari-books-section">
-      <header class="akari-books-section__header"><p class="akari-books-eyebrow">{copy.support.eyebrow}</p><h2>{copy.support.title}</h2><p>{copy.support.lead}</p></header>
-      <div class="akari-books-support-card glass-card"><div><h3>{copy.support.cardTitle}</h3><p>{copy.support.cardBody}</p><a href="https://afdian.com/a/writeamathbook" target="_blank" rel="noopener noreferrer">afdian.com/a/writeamathbook ↗</a></div><iframe id={`afdian_leaflet_writeamathbook_${locale.lang_path}`} src="https://ifdian.net/leaflet?slug=writeamathbook" width="640" height="200" scrolling="no" frameborder="0" loading="lazy" title="Afdian support card"></iframe></div>
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">{copy.support.eyebrow}</p>
+        <h2>{copy.support.title}</h2>
+        <p>{copy.support.lead}</p>
+      </header>
+      <div class="akari-books-support-card glass-card">
+        <div>
+          <h3>{copy.support.cardTitle}</h3>
+          <p>{copy.support.cardBody}</p>
+          <a href={AFDIAN_URL} target="_blank" rel="noopener noreferrer">afdian.com/a/writeamathbook ↗</a>
+        </div>
+        <iframe id={`afdian_leaflet_writeamathbook_${locale.lang_path}`} src="https://ifdian.net/leaflet?slug=writeamathbook" width="640" height="200" scrolling="no" frameborder="0" loading="lazy" title="Afdian support card"></iframe>
+      </div>
       <SponsorWall locale={locale} />
     </section>
 
-    <section class="akari-books-section akari-books-akari-card glass-card"><img src="/akari-logo.svg" width="64" height="64" alt="Project Akari" loading="lazy" decoding="async" /><p class="akari-books-eyebrow">Project Akari</p><h2>{copy.support.akariTitle}</h2>{copy.support.akariBody.map((paragraph) => <p>{paragraph}</p>)}</section>
+    <section class="akari-books-section akari-books-akari-card glass-card">
+      <img src="/akari-logo.svg" width="64" height="64" alt="Project Akari" loading="lazy" decoding="async" />
+      <p class="akari-books-eyebrow">Project Akari</p>
+      <h2>{copy.support.akariTitle}</h2>
+      {copy.support.akariBody.map((paragraph) => <p>{paragraph}</p>)}
+    </section>
   </article>
 
   <script is:inline define:vars={{ dateLocale: copy.dateLocale }}>
@@ -388,6 +253,24 @@ const screenshots = [
             node.textContent = formatDate(date);
           })
           .catch(function () { node.textContent = '—'; });
+      });
+
+      var errataTabs = document.querySelectorAll('[data-errata-tab]');
+      var errataPanels = document.querySelectorAll('[data-errata-panel]');
+      errataTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var key = tab.getAttribute('data-errata-tab');
+          errataTabs.forEach(function (item) {
+            var active = item === tab;
+            item.classList.toggle('akari-books-tab--active', active);
+            item.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          errataPanels.forEach(function (panel) {
+            var active = panel.getAttribute('data-errata-panel') === key;
+            panel.classList.toggle('akari-errata-panel--active', active);
+            panel.hidden = !active;
+          });
+        });
       });
     })();
   </script>
