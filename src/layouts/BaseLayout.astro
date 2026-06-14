@@ -106,6 +106,34 @@ const localeRoutingConfig = {
   </head>
   <body class="mdui-theme-dark">
     <div class="akari-snow" aria-hidden="true"></div>
+    <script is:inline>
+    (function() {
+      function createSnow() {
+        var container = document.querySelector('.akari-snow');
+        if (!container) return;
+        container.innerHTML = '';
+        var snowflakes = ['❄', '❅', '❆', '·', '•'];
+        var colors = ['#ffffff', '#e0f7fa', '#f4abba', '#c5e1ff'];
+        var count = 50;
+        for (var i = 0; i < count; i++) {
+          var flake = document.createElement('span');
+          flake.className = 'snowflake';
+          flake.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+          flake.style.left = Math.random() * 100 + 'vw';
+          flake.style.fontSize = (Math.random() * 0.8 + 0.6) + 'em';
+          flake.style.color = colors[Math.floor(Math.random() * colors.length)];
+          var fallDuration = Math.random() * 5 + 5;
+          var swayDuration = Math.random() * 3 + 2;
+          flake.style.animationDuration = fallDuration + 's, ' + swayDuration + 's';
+          flake.style.animationDelay = (-Math.random() * fallDuration) + 's, ' + (-Math.random() * swayDuration) + 's';
+          flake.style.opacity = Math.random() * 0.6 + 0.2;
+          container.appendChild(flake);
+        }
+      }
+      createSnow();
+      document.addEventListener('astro:page-load', createSnow);
+    })();
+    </script>
     <AppBar locale={locale} title={title || siteTitle} languageOptions={languageOptions} />
     <Sidebar locale={locale} />
     <main class="main" transition:animate={akariSlide}>
@@ -132,27 +160,6 @@ const localeRoutingConfig = {
         footer.className = 'ai-summary-footer';
         footer.innerHTML = (aiCopy.footerPrefix || 'Summary powered by') + '<img src=\"/images/deepseek-icon.svg\" alt=\"\" style=\"width:1em;height:1em;vertical-align:middle;margin:0 0.25em 0 0;display:inline-block;\">' + (aiCopy.footerSuffix || 'DeepSeek V4 Pro');
         el.appendChild(footer);
-      }
-    })();
-    </script>
-    <script is:inline>
-    (function() {
-      var container = document.querySelector('.akari-snow');
-      if (!container) return;
-      var snowflakes = ['❄', '❅', '❆', '·', '•'];
-      var colors = ['#ffffff', '#e0f7fa', '#f4abba', '#c5e1ff'];
-      var count = 50;
-      for (var i = 0; i < count; i++) {
-        var flake = document.createElement('span');
-        flake.className = 'snowflake';
-        flake.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
-        flake.style.left = Math.random() * 100 + 'vw';
-        flake.style.fontSize = (Math.random() * 0.8 + 0.6) + 'em';
-        flake.style.color = colors[Math.floor(Math.random() * colors.length)];
-        flake.style.animationDuration = (Math.random() * 5 + 5) + 's, ' + (Math.random() * 3 + 2) + 's';
-        flake.style.animationDelay = (Math.random() * 10) + 's, ' + (Math.random() * 5) + 's';
-        flake.style.opacity = Math.random() * 0.6 + 0.2;
-        container.appendChild(flake);
       }
     })();
     </script>

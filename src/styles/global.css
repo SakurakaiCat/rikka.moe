@@ -3451,6 +3451,10 @@ body.akari-drawer-open {
   .akari-read-progress {
     display: none;
   }
+
+  .akari-snow {
+    display: none;
+  }
 }
 
 /* ──────────────────────────────────────────────
