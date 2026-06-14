@@ -2,20 +2,18 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SponsorWall from '../../components/SponsorWall.astro';
 import { getLocaleByLang, LOCALES, toAbsoluteUrl } from '../../lib/content';
-
-interface TocChild {
-  label: string;
-  title: string;
-  sub?: string[];
-}
-
-interface TocPart {
-  label: string;
-  title: string;
-  children: TocChild[];
-}
+import { getBookCopy } from '../../data/books-i18n';
+import {
+  DOWNLOAD_URL, AFDIAN_URL,
+  funcToc, journeyToc, volumeCovers,
+  screenshotGroups,
+  journeyErrata, funcErrata,
+  renderTocHtml, renderErrataTier,
+} from '../../data/books';
 
 const locale = getLocaleByLang('zh-CN')!;
+const copy = getBookCopy('zh-CN');
+
 const bookPathForLocale = (loc: typeof LOCALES[number]) => loc.lang === 'zh-CN' ? '/books/' : `/${loc.lang_path}/books/`;
 const languageOptions = LOCALES.map((loc) => {
   const relativeUrl = bookPathForLocale(loc);
@@ -26,461 +24,11 @@ const languageOptions = LOCALES.map((loc) => {
     isCurrent: loc.lang === locale.lang,
   };
 });
-
-const funcToc: TocPart[] = [
-  {
-    label: '第一卷',
-    title: '函数 — 语言、图像与结构',
-    children: [
-      { label: '01', title: '函数的概念' },
-      { label: '02', title: '定义域' },
-      { label: '03', title: '函数的表示法' },
-      { label: '04', title: '从关系到函数' },
-      { label: '05', title: '图像与坐标轴' },
-      { label: '06', title: '由解析式抓作图线索' },
-      { label: '07', title: '含参数函数的图像综合' },
-      { label: '08', title: '图像研究的基本路径与常见误判' },
-      { label: '09', title: '单调性' },
-      { label: '10', title: '最值' },
-      { label: '11', title: '奇偶性' },
-      { label: '12', title: '周期性' },
-      { label: '13', title: '性质之间的联系与综合判断' },
-      { label: '14', title: '凹凸性' },
-      { label: '15', title: '反函数' },
-      { label: '16', title: '函数的复合' },
-      { label: '17', title: '函数的图像变换' },
-      { label: '18', title: '多项式函数与三次函数初步' },
-      { label: '19', title: '指数函数' },
-      { label: '20', title: '幂函数' },
-      { label: '21', title: '对数函数' },
-      { label: '22', title: '函数模型的建立与应用' },
-      { label: '23', title: '函数的零点' },
-      { label: '24', title: '分段函数' },
-      { label: '25', title: '绝对值函数' },
-      { label: '26', title: '抽象函数与函数方程' },
-      { label: '27', title: '函数值域' },
-    ],
-  },
-  {
-    label: '第二卷',
-    title: '极限与导数 — 思想、工具与应用',
-    children: [
-      { label: '01', title: '数轴为什么需要「没有空隙」' },
-      { label: '02', title: '极限' },
-      { label: '03', title: '切线问题' },
-      { label: '04', title: '函数的连续性' },
-      { label: '05', title: '连续性在图像与方程中的作用' },
-      { label: '06', title: '极限的运算与常用工具' },
-      { label: '07', title: '无穷远处的极限与渐近现象' },
-      { label: '08', title: '导数的概念' },
-      { label: '09', title: '中值定理与线性近似' },
-      { label: '10', title: '单调性、零点与不等式' },
-      { label: '11', title: '高阶导数与泰勒展开初步' },
-      { label: '12', title: '洛必达法则与极限计算' },
-      { label: '13', title: '端点分析与局部保号' },
-      { label: '14', title: '极值点偏移问题' },
-      { label: '15', title: '三次函数的导数分析' },
-      { label: '16', title: '分段点分析与导数法求值域' },
-    ],
-  },
-];
-
-const journeyToc: TocPart[] = [
-  {
-    label: '基础篇',
-    title: 'PART 1 · 基础',
-    children: [
-      { label: '01', title: '预备知识', sub: ['因式分解', '乘法公式与因式分解', '恒等变形的方法', '二次函数', '计算与变形技巧', '一些有用的数论知识'] },
-      { label: '02', title: '集合与映射', sub: ['集合论初步', '映射', '逻辑用语初步'] },
-      { label: '03', title: '函数', sub: ['函数的概念', '定义域', '单调性', '奇偶性', '周期性', '凹凸性', '反函数', '函数的复合', '函数的图像变换', '常见多项式函数', '指数函数', '幂函数', '对数函数', '函数模型与应用', '函数的零点', '分段函数', '绝对值函数', '函数解析式的求解', '函数值域的求解'] },
-      { label: '04', title: '函数方程与抽象函数', sub: ['基本分析方法', '柯西函数方程及其变式', '二次及高次多项式模型', '三角与双曲函数模型'] },
-      { label: '05', title: '不等式', sub: ['均值不等式', '均值不等式的提示', '均值不等式链', '均值不等式的应用技巧', '柯西不等式', '排序不等式', '伯努利不等式', '糖水不等式'] },
-      { label: '06', title: '三角函数', sub: ['弧度制', '正弦函数与余弦函数', '正弦与余弦函数的图像', '正弦函数与余弦函数的性质', '正切函数', '余切、正割与余割函数', '同角三角函数的基本关系', '诱导公式', '和差角公式', '倍角公式', '万能公式与齐次式思想', '角的变换', '和差化积与积化和差', '反三角函数'] },
-      { label: '07', title: '数列', sub: ['数学归纳法', '和-符号', '数列的语言', '等差数列', '等比数列', '差比数列', '斐波那契数列', '数列求和的通用策略', '递推关系与通项公式', '一阶递推的基本形式', '迭代与不动点', '数列的单调性', '奇偶数列', '数列的周期性', '数列的极限', '级数', '泰勒公式与泰勒级数'] },
-      { label: '08', title: '统计', sub: ['描述数据', '抽样方法', '从样本到总体'] },
-      { label: '09', title: '计数原理', sub: ['加法原理与乘法原理', '组合与排列', '二项式定理', '从三项式定理到多项式定理', '排列组合'] },
-      { label: '10', title: '概率', sub: ['事件与概率'] },
-    ],
-  },
-  {
-    label: '进阶篇',
-    title: 'PART 2 · 进阶',
-    children: [
-      { label: '11', title: '解三角形', sub: ['正弦定理和余弦定理', '常见题型', '保底的建系法', '非常规题型'] },
-      { label: '12', title: '解析几何', sub: ['向量代数', '定比分点与共线定理', '直线与圆', '线性规划初步', '二次曲线'] },
-      { label: '13', title: '射影几何', sub: ['源起与观念', '单比与交比', '二次曲线的极点与极线', '极点与极线的几何作图'] },
-      { label: '14', title: '极限与导数', sub: ['实数系的完备性', '极限的定义', '切线问题', '函数的连续性', '极限的运算', '无穷远处的极限与无穷小量', '导数的概念', '中值定理的应用与推广', '导数的综合应用：方程根、零点与不等式证明', '高阶导数与泰勒展开初步', '洛必达法则与极限计算的系统策略', '必要性探路与端点分析法', '极值点偏移问题'] },
-      { label: '15', title: '极坐标与参数方程' },
-      { label: '16', title: '复数', sub: ['复数的概念与几何意义', '复数的运算', '二次方程的复数解', '复数运算的几何意义', '代数基本定理', '曲线方程的复数表示', '本章小结与思想方法'] },
-      { label: '17', title: '立体几何', sub: ['基本公理与空间元素', '证明线线平行的基本策略', '空间中的平行关系', '空间中的垂直关系'] },
-      { label: '18', title: '数学思想浅谈', sub: ['如何确定数学对象', '什么是自由度？', '搭建起解题框架', '纯构造式问题的解法', '含满足式问题的通用策略', '谈谈二级结论', '换元法为何行之有效'] },
-    ],
-  },
-  {
-    label: '拓展篇',
-    title: 'PART 3 · 拓展',
-    children: [
-      { label: '19', title: '简单的积分', sub: ['原函数与不定积分', '不定积分', '换元积分法', '分部积分法', '定积分与微积分基本定理', '定积分的性质'] },
-      { label: '20', title: '微分方程初步', sub: ['基本概念', '可分离变量的微分方程', '一阶线性微分方程', '应用微分方程求解函数方程'] },
-      { label: '21', title: '矩阵与行列式', sub: ['向量', '矩阵'] },
-    ],
-  },
-];
-
-const volumeCovers = [
-  { label: '第一卷', src: '/images/books/covers/vol-1.png' },
-  { label: '第二卷', src: '/images/books/covers/vol-2.png' },
-  { label: '第三卷', src: '/images/books/covers/vol-3.png' },
-  { label: '第四卷', src: '/images/books/covers/vol-4.png' },
-  { label: '第五卷', src: '/images/books/covers/vol-5.png' },
-];
-
-const features = [
-  { icon: 'file-pdf', title: '纯净阅读体验', desc: '付费版 PDF 完全无水印，每一页都保持完整的视觉与版心比例。' },
-  { icon: 'pen-nib', title: '排版即艺术', desc: 'LaTeX 级精细驱动，公式、图形、间距、字体的每一处细节都经过推敲。' },
-  { icon: 'globe', title: '开源与知识自由', desc: '书稿以开放方式呈现，让每个人都能接触高质量的数学内容。' },
-  { icon: 'code', title: '代码生成精度', desc: '所有图形由 TikZ 代码驱动，保证数学图形的精确性与可复现性。' },
-  { icon: 'shield-check', title: '质量门禁', desc: 'GitHub Actions 持续集成、自动化编译校验、PDF 质量检查保障每一次提交。' },
-  { icon: 'books', title: '专题分册编排', desc: '按数学专题独立分册，便于围绕不同主题独立阅读与查阅。' },
-];
-
-const freeFeatures = ['完整章节内容（含水印）', '全部图形与公式', '全部目录与内容提要', '作者简介与前言'];
-const premiumFeatures = ['与免费版内容完全相同', '去除页面水印，阅读纯净', 'TikZ 矢量图形源文件', '终身版本更新', '所有专题分册独立下载'];
-const nextcloudSteps = [
-  '点击页面上的「下载」按钮后，会跳转到 Nextcloud 网盘分享页面。',
-  '页面加载后，你会看到一个或多个 PDF 文件；点击文件名即可在浏览器中直接在线预览。',
-  '若要下载，点击文件右侧的「下载」图标（向下箭头），或将鼠标悬停在文件名上，选择「下载」。',
-  '下载完成后，用任意 PDF 阅读器（如浏览器自带、Adobe Acrobat、WPS 等）打开即可阅读。',
-];
-const afdianSteps = [
-  '点击页面上的「前往爱发电支持」按钮，跳转到作者的爱发电主页。',
-  '选择你想支持的商品（如「函数与导数 无水印版」），点击「支持」。',
-  '完成付款后，系统会自动发货——你会收到一个网盘下载链接（通常在订单页面或邮件中可找到）。',
-  '打开链接即可下载无水印 PDF，终身可下载，后续更新也会同步。',
-];
-
-const screenshotGroups = [
-  {
-    title: '《函数与导数》',
-    images: [
-      { src: '/images/books/screenshots/func-sample-1.png', alt: '《函数与导数》内页预览 1' },
-      { src: '/images/books/screenshots/func-sample-2.png', alt: '《函数与导数》内页预览 2' },
-      { src: '/images/books/screenshots/func-sample-3.png', alt: '《函数与导数》内页预览 3' },
-    ],
-  },
-  {
-    title: '《高中数学之旅》',
-    images: [
-      { src: '/images/books/screenshots/journey-sample-1.png', alt: '《高中数学之旅》内页预览 1' },
-      { src: '/images/books/screenshots/journey-sample-2.png', alt: '《高中数学之旅》内页预览 2' },
-      { src: '/images/books/screenshots/journey-sample-3.png', alt: '《高中数学之旅》内页预览 3' },
-    ],
-  },
-];
-
-const escapeHtml = (value: unknown) => String(value ?? '')
-  .replace(/&/g, '&amp;')
-  .replace(/</g, '&lt;')
-  .replace(/>/g, '&gt;')
-  .replace(/"/g, '&quot;')
-  .replace(/'/g, '&#039;');
-
-const renderTocHtml = (toc: TocPart[]) => toc.map((part, partIndex) => `
-  <details class="akari-book-toc__part" ${partIndex === 0 ? 'open' : ''}>
-    <summary>
-      <span class="akari-book-toc__label">${escapeHtml(part.label)}</span>
-      <strong>${escapeHtml(part.title)}</strong>
-      <i class="ph ph-caret-down"></i>
-    </summary>
-    <div class="akari-book-toc__children">
-      ${part.children.map((child) => `
-        <div class="akari-book-toc__child">
-          <div class="akari-book-toc__child-head">
-            <span>${escapeHtml(child.label)}</span>
-            <strong>${escapeHtml(child.title)}</strong>
-          </div>
-          ${child.sub && child.sub.length > 0 ? `
-            <ul class="akari-book-toc__sub">
-              ${child.sub.map((sub, index) => `<li><span>${String(index + 1).padStart(2, '0')}</span>${escapeHtml(sub)}</li>`).join('')}
-            </ul>
-          ` : ''}
-        </div>
-      `).join('')}
-    </div>
-  </details>
-`).join('');
-
-const renderErrataTier = (label: string, title: string, items: string[], defaultOpen = false) => {
-  const listItems = items.map(item => '<li>' + item + '</li>').join('');
-  return '<details class="akari-errata-tier"' + (defaultOpen ? ' open' : '') + '>'
-    + '<summary><span class="akari-errata-tier__label">' + label + '</span><strong>' + title + '</strong><span class="akari-errata-tier__count">' + items.length + ' 项</span><i class="ph ph-caret-down"></i></summary>'
-    + '<ol class="akari-errata-tier__list">' + listItems + '</ol></details>';
-};
-
-const journeyErrata = [
-  { label: '第一档', title: '推导与结论错误', items: [
-    '§1.3 例题 E038：Heron 型恒等式左边符号写反了，数值检验表明应该是正号。<sup>★</sup>',
-    '§1.5 例题 E072：附加说明里的区间方向写错了，正确是 1&lt;x≤2 时最小值 5。',
-    '§3.3 定理 T027：复合函数单调性没区分非严格和严格，严格单调需要额外条件。',
-    '§3.5 定理 T031：周期运算结论错误地断言了充要性和最小公倍数，应只作为充分条件。',
-    '§3.6 定理 T036：Jensen 不等式等号条件写错了，应是"所有正权重对应点相等"。<sup>★</sup>',
-    '§3.9 定理 T043：复合函数单调性没区分非严格与严格，同 T027。',
-    '§5.2 例题 E209：AM-GM 取等条件与定义域不匹配，导致最值表述错误。',
-    '§5.5 定理 T070：柯西不等式等号条件表述不精确，应明确"线性相关"及零向量。',
-    '§7.8 定理 T095：Gosper 判别方程原表述过宽，需收紧并补充证明。<sup>★</sup>',
-    '§7.14 定理 T101：结论"周期数列"过强，实为"最终周期数列"。',
-    '§9.1 定理 T111：加法原理中"独立"应改为"互斥"，加法要求分类两两互斥。',
-    '§9.3 定理 T116：帕斯卡恒等式范围包含 k=n 时右侧 C(n-1,n) 无定义，应限制 1≤k≤n-1。<sup>★</sup>',
-    '§11.1 定理 T132：外心中心角陈述只在锐角三角形成立，需修正为全局有效。',
-    '§12.4 定理 T165：线性规划表述过宽，应收紧为二维凸多边形情形。',
-    '§13.3 定理 T183：对"任意二次曲线"表述过宽，应收紧为非退化标准二次曲线。',
-    '§14.9 定理 T199：非严格单调不足以保证至多一个零点，应改为严格单调。',
-    '§14.11 定理 T203：洛必达法则陈述过宽，缺分母非零条件与显式证明。',
-    '§19.5 定理 T238：微积分第一基本定理未限定内点可导，端点不保证可导。',
-  ]},
-  { label: '第二档', title: '缺少前提条件 / 适用范围过宽', items: [
-    '§1.3 例题 E027：裂项分式恒等式没声明分母不能为零，分母为零时等式不成立。',
-    '§1.3 例题 E031：利用 abc=1 统一分母时没排除零分母，a,b,c 可能为零导致分母为 0。',
-    '§1.3 例题 E032：在 a+b+c=0 条件下通分，没排除零分母，分母含零变形无效。',
-    '§1.3 例题 E041：逐项作差等式没排除 a=0 等零分母，分母为零恒等式无意义。',
-    '§1.3 例题 E044：分母化为 -2bc 等之后求和为 0，缺少零分母排除的条件。',
-    '§1.3 例题 E045：比例式已经隐含 x,y,z 非零，但没明确写出来，不够清楚。',
-    '§1.3 例题 E046：通分后分子逐项抵消，没排除零分母，分母为零时不成立。',
-    '§1.5 例题 E064：倒数换元要求 x 非零且 |t|≥2，题面没声明"在实数范围内"。',
-    '§1.5 例题 E067：部分分式分解没排除使原分母为零的 n 值，n=0,-1,-2 时分母为 0。',
-    '§1.5 例题 E076：分母要求 ab≠0 但没说明，分母为零时等式无意义。',
-    '§1.1 引理 T001：齐次性等价刻画缺少"非零多项式"的前提，否则恒为零时定义失效。<sup>★</sup>',
-    '§1.2 性质 T004：立方和与立方差公式没写适用范围，应写明"对任意数 a,b"。',
-    '§1.2 性质 T005：完全立方公式没写适用范围，同 T004。',
-    '§1.2 定理 T007：奇数次幂和公式没限定 n 为正奇数，n 不限制时不一定成立。',
-    '§1.6 定理 T018：线性不定方程通解缺 a,b 非零前提，a,b 为零时通解公式失效。',
-    '§2.1 定理 T021：德摩根定律没明确 A,B 是 U 的子集，还缺第二式的证明。',
-    '§3.3 定理 T026：导数与单调性定理缺少连续/内点可导的前提。',
-    '§3.4 定理 T029：对称性判据缺定义域封闭和恒成立的条件，适用范围不清。',
-    '§3.5 定理 T033：函数方程迭代第三式缺少分母非零的前提。',
-    '§3.6 定理 T035：二阶导数判定法缺连续/内部二阶可导前提和中值定理证明。',
-    '§3.7 定理 T038：反函数存在充要条件缺值域前提和双向证明。',
-    '§3.9 定理 T044：复合函数奇偶性缺少外层函数在对应区域上奇偶性的条件。',
-    '§3.10 定理 T046：对称变换缺 y=x 对称时反函数存在的说明，无反函数不能写 f⁻¹(x)。',
-    '§3.11 定理 T049：三次函数中心对称缺 a≠0 条件，证明被跳过。',
-    '§3.11 定理 T050：三次方程根与系数关系缺 a≠0 和按重数计根的前提。',
-    '§4.2 定理 T059：四类柯西方程的定义域/连续性假设不够严格，需收紧并补零函数分支。',
-    '§4.2 定理 T060：平移变式缺 f:ℝ→ℝ 连续的前提。',
-    '§4.2 定理 T061：带尺度因子的乘法型方程缺正定义域、非平凡解等条件。',
-    '§4.4 定理 T064：正切函数模型缺分母非零及正切极点的限制。<sup>★</sup>',
-    '§5.1 定理 T068：均值不等式链 H≤G 和 A≤Q 没写等号成立的条件。',
-    '§5.3 定理 T069：三段不等式的等号条件来源不明，没给推导。',
-    '§6.10 定理 T084：正切三倍角公式缺少 tanα、tan3α 有意义及分母非零的条件。<sup>★</sup>',
-    '§7.10 定理 T098：连乘相消缺数列各项非零条件，分母可能为零。',
-    '§7.10 定理 T099：二阶递推缺 q≠0 条件和通项唯一性证明。',
-    '§7.16 定理 T109：莱布尼茨判别法缺少 a_n&gt;0 的前提。',
-    '§9.1 定理 T112：乘法原理缺"后续每步选择数对任意前缀固定"的条件。',
-    '§9.3 定理 T115：二项式定理缺变量可交换的条件。',
-    '§9.4 定理 T117/T118：多项式定理缺可交换变量/数的前提。',
-    '§11.1 定理 T129：正弦定理缺非退化三角形前提和正弦非零说明。',
-    '§11.1 定理 T130：余弦定理缺非退化三角形前提。',
-    '§12.3 定理 T164：点到直线距离公式缺 A,B 不同时为 0 的条件。',
-    '§12.5 定理 T167：焦点-中心弦三角形面积范围没排除长轴退化。',
-    '§12.5 定理 T172：韦达定理缺 a≠0 条件和证明。',
-    '§12.5 定理 T173：弦长公式缺 a≠0, Δ&gt;0 条件和证明。',
-    '§12.5 定理 T174：弦中点斜率关系没处理竖直弦和 x_M=0 时分母为零的情况。',
-    '§13.2 定理 T181：交比射影不变性证明缺四线互异、截线非退化等条件。',
-    '§13.2 定理 T182：调和点列倒数关系缺有向线段非零条件。',
-    '§14.7 定理 T194：罗尔定理缺少 a&lt;b 的闭区间条件。',
-    '§14.7 定理 T195：拉格朗日中值定理缺少 a&lt;b 保证分母非零。',
-    '§14.7 定理 T196：函数单调性判定缺区间连续/内部可导前提。',
-    '§14.8 定理 T198：柯西中值定理缺 a&lt;b 前提与分母非零说明。<sup>★</sup>',
-    '§16.4 定理 T212：乘除法三角表示缺 z₁, z₂ 非零条件。',
-    '§17.1 公理 T219：两平面相交公理应限定为不同平面，重合时无交线。<sup>★</sup>',
-    '§17.3 定理 T223：线面平行性质定理缺少"经过该直线且与此平面相交"的前提。',
-    '§17.3 定理 T226：平行平面传递性没排除重合平面。',
-    '§19.3 定理 T234：第一类换元法则缺复合定义域前提 g(I)⊂J。',
-    '§19.5 定理 T237：连续函数可积性定理缺 a&lt;b 前提。',
-    '§19.6 定理 T240/T241：定积分线性性与积分中值定理缺 a&lt;b 前提。<sup>★</sup>',
-    '§20.3 定理 T243：一阶线性微分方程求解缺 P, Q 连续的前提。',
-    '§21.2 定理 T245-T247：矩阵运算律缺同阶矩阵/维数相容的前提。',
-    '§21.2 定理 T249：二次曲线分类准则缺 A, B, C 不全为零及退化情形说明。',
-    '§21.2 定理 T251：克拉默法则缺维数前提。',
-  ]},
-  { label: '第三档', title: '证明不完整', items: [
-    '§1.3 例题 E040：Lagrange 恒等式只证明了 n=3 的情形，没给出一般形式。',
-    '§1.6 例题 E080：证明用了"因子传递"的不严谨说法，应直接写成 2×整数，并覆盖 n=0 和负整数。',
-    '§1.2 定理 T008：一元二次分解公式没说明 Δ&lt;0 时不能实分解，结论不完整。',
-    '§1.2 定理 T009：齐次二次分解没处理 y=0 边界和 Δ&lt;0 情形，边界不完整。',
-    '§1.2 定理 T012：有理根定理缺少 p=0 的分支，a₀=0 时需要单独处理。',
-    '§1.3 定理 T013：说"n 次多项式"不够严谨，应为"次数不超过 n"。',
-    '§1.6 定理 T014：整除基本性质证明跳过了自反性和传递性，不该直接略证。',
-    '§1.6 定理 T016：gcd·lcm=ab 缺完整证明，完善。',
-    '§1.6 定理 T017：裴蜀定理充分性缺乏构造依据，扩展欧几里得的回代步骤要说明。',
-    '§1.6 定理 T019：本原毕达哥拉斯三元组参数化只给了形式，没验证充分性。',
-    '§2.1 命题 T020：集合相等判定缺双向证明，证明不完整。',
-    '§2.3 定理 T024：逆否等价用 Venn 图直观证明不够，应改为真值表证明。',
-    '§2.3 定理 T025：量词否定律只有直观理解，缺严格证明。',
-    '§3.4 推论 T030：常见对称形式推论直接给结论，没证明。',
-    '§3.5 定理 T032：对称性推出周期性漏掉了轴心重合时的边界情形。',
-    '§3.6 定理 T034：凹凸性等价结论只说"从略"，缺反向证明。',
-    '§3.6 推论 T037：Jensen 算术平均形式的证明循环引用了加权形式，应该直接由加权推。',
-    '§3.7 定理 T039：反函数性质四条只证了一条，缺后三条证明。',
-    '§3.9 定理 T042：复合函数定义域公式只给了公式，没证明内层值域落入外层定义域。',
-    '§3.10 定理 T045：平移伸缩变换原先没证明，需要补坐标变换证明。',
-    '§3.10 定理 T047：翻折变换没给分段/点集证明。',
-    '§3.11 定理 T051：切线条数判定原无证明。',
-    '§3.11 定理 T052：原函数与导函数对称性互换只证了一条，另一条没证。',
-    '§3.12 定理 T054：自然指数函数性质缺存在/唯一性证明和可导范围。',
-    '§3.14 定理 T055：对数运算法则只详细证了乘法，缺商和幂的证明。',
-    '§3.16 定理 T057：零点存在性定理缺介值定理证明。',
-    '§3.18 定理 T058：绝对值性质只证了三角不等式，缺其余性质证明。',
-    '§4.3 定理 T062：原证明只验证二次多项式是候选，没证唯一性。',
-    '§4.4 定理 T063：达朗贝尔方程缺零函数平凡解和反向验证。',
-    '§5.5 定理 T071：Engel 形式缺等号条件反向证明。',
-    '§5.5 定理 T072：闵可夫斯基不等式没说明等号何时成立。',
-    '§5.6 定理 T073：逆序和最小的证明缺对称论证，没完成下界证明。',
-    '§5.7 定理 T074：伯努利不等式整数形式没证等号条件。',
-    '§5.7 定理 T075：实数形式 α&lt;0 的证明用"类似"跳过了关键步骤。',
-    '§6.9 定理 T081：和差角公式大全没给证明环境，需补证明和正切分母条件。',
-    '§6.11 定理 T085：万能公式的证明缺少 tanα 公式的推导。',
-    '§6.13 定理 T086/T087：积化和差与和差化积公式缺推导证明。',
-    '§6.16 定理 T089：反正切加法公式在 ab&lt;1 时缺余弦符号的主值区间论证。',
-    '§7.10 定理 T097：累加法裂项相消没证明。',
-    '§7.11 定理 T100：压缩映射原理缺 Banach 完整证明。',
-    '§7.15 定理 T102：极限运算法则证明缺少显式 proof 环境。',
-    '§7.15 定理 T106：e 的极限原无收敛性证明。',
-    '§7.16 定理 T108：项趋零性证明缺少 S_{n-1} 与 S_n 同极限的平移说明。',
-    '§7.17 定理 T110：泰勒中值定理缺证明，假设也不够精确。',
-    '§10.1 定理 T119：德·摩根定律原无证明。',
-    '§10.1 定理 T125：错排数通项公式只依赖前例，缺容斥原理证明。',
-    '§10.1 定理 T126：错排数递推关系缺按元素 n 分类的证明。',
-    '§10.1 定理 T127：极限概率公式直接给结论，缺 e^{-1} 泰勒级数证明。',
-    '§10.1 定理 T128：最佳整数近似没证 |n!/e - D_n| &lt; 1/2 的余项界。',
-    '§11.1 定理 T131：外心位置特征原为略证，证明不完整。',
-    '§11.1 定理 T139：重心基本性质原为略证。',
-    '§11.1 定理 T142：边与中线平方和关系没有证明。',
-    '§11.1 定理 T143：垂心位置特征没有证明。',
-    '§11.1 定理 T144：垂足圆性质没证明，垂足来源也不明确。',
-    '§11.1 定理 T145：垂心与外心向量关系没有证明。',
-    '§11.1 定理 T150：高线长公式没有证明。',
-    '§12.1 定理 T154：平行四边形法则缺证明环境。',
-    '§12.1 定理 T156：极化恒等式推导正确，但缺显式证明环境。',
-    '§12.2 定理 T157：三点共线定理唯一性需排除 A=B 的退化情形。',
-    '§12.4 引理 T166：皮克定理证明从矩形到直角三角形过渡有跳跃。',
-    '§12.5 定理 T168/T169：椭圆反射性质和焦半径公式缺证明环境。',
-    '§12.5 定理 T170：椭圆导演圆只证了必要性，缺充分性及竖直切线特殊点。',
-    '§12.5 定理 T171：统一焦点-准线定义缺显式证明。',
-    '§13.3 定理 T184：极线方程原无显式证明。',
-    '§13.4 定理 T185：La Hire 定理原无显式证明。',
-    '§14.2 定理 T188：左右极限判定原无 ε-δ 证明。',
-    '§14.5 定理 T190：极限运算只证了和法则，略去了乘积、常数倍、倒数、商法则。',
-    '§14.8 定理 T197：线性近似误差公式缺 x=x₀ 平凡情形的说明。',
-    '§14.10 定理 T201/T202：凹凸性判定与极值第二充分条件缺证明。',
-    '§14.12 定理 T204/T205：端点分析法与局部保号性缺双向完整证明。',
-    '§15.4 定理 T208：圆锥曲线统一极坐标方程缺焦点-准线推导与 ρ≥0 分母条件。',
-    '§16.1 性质 T209：复数相等判定缺代数形式唯一性证明。',
-    '§16.1 性质 T210：模与共轭乘法性质证明循环依赖后续性质。',
-    '§16.3 定理 T211：共轭虚根公式缺定理标题与配方法证明。',
-    '§16.4 定理 T213：棣莫弗公式只证了正整数指数，缺负整数指数。',
-    '§16.5 推论 T215：复系数多项式按重数分解缺归纳法证明。',
-    '§17.1 定理 T220/T221：确定平面的定理缺标题和统一性证明。',
-    '§17.4 定理 T227-T230：线面垂直、三垂线等证明有跳步，应改写严格证明。',
-    '§19.1 定理 T232：连续函数原函数存在定理缺构造性证明。',
-    '§19.4 定理 T235：分部积分法仅有公式，缺乘积求导法则证明。',
-    '§19.4 定理 T236：分部求和法缺证明且标题格式不完整。',
-    '§20.2 定理 T242：指数增长模型证明除以 y 漏掉零解。',
-    '§20.4 定理 T244：微分方程法流程缺"微分仅给候选、最终需检验"的警示。',
-    '§21.2 定理 T248：面积变换定理缺 det(A)=0 情形与完整证明。',
-    '§21.2 定理 T250：逆矩阵公式缺充要性证明。',
-    '§21.2 定理 T252：秩定理缺行秩等于列秩的完整证明。',
-  ]},
-  { label: '第四档', title: '表述与格式问题', items: [
-    '§2.1 例题 E096：数轴图中 B 左侧区间起点画错了，和图文矛盾。',
-    '§2.1 例题 E098：同样问题，数轴图里 B 左侧区间起点不对。',
-    '§2.1 定理 T023：容斥原理最后一行求和简写与定理正文不一致。',
-    '§7.1 公理 T090：数学归纳法起始值没明确是正整数。',
-    '§14.6 定理 T191：无穷极限定义中"|x|无限增大"与 x&gt;M 表述不一致。',
-    '§14.7 定理 T193：费马引理证明中极大值定义的表述有歧义。',
-    '§19.2 定理 T233：不定积分线性性质没明确"积分常数重新合并"的理解。',
-  ]},
-];
-
-const funcErrata = [
-  { label: '第一档', title: '推导与结论错误', items: [
-    '§6.3 零点个数：符号判断错误导致零点个数错误，原函数有且仅有 2 个零点。',
-    '§6.3 零点讨论：a=0 时错误归入有 1 个零点，实际 f(x)=e^x &gt; 0，函数没有零点。',
-    '§6.3 区间总结：a=0 的归属错误，a 属于 (-∞,0) ∪ {e} 时有 1 个零点，a 属于 [0,e) 时有 0 个零点。',
-    '§6.4 定义域：x - 1/x 的值域判断错误，该式能取到所有实数，故 f(x)=x²+2 定义域为 ℝ。',
-    '§9.1 例题：对称性论证错误，极大值 f(-t)=t²(3+2t) &gt; 0 对任意 t&gt;0 恒成立。',
-    '§9.1 例题：题目陈述错误，已知条件中 a 的范围写错了。',
-    '§9.1 例题：公式错误，不等号方向或表达式有误。',
-    '§9.1 例题：函数 g(x) 写错，正确形式应为 g(x)=ln x - x + 1。',
-    '§9.1 例题：参数区间错误，t₁ 和 t₂ 的取值范围不对。',
-    '§9.1 例题：交点个数错误，曲线至少与该直线有三个公共点。',
-    '§11.3 例题：解答完全错误，原答案 a ≥ (3/2)(ln 3 - 1) 不成立。',
-    'A.4 解答：极限处理启发式错误，e^(1/x) - 1 ～ 1/x 乘 x 后趋于 1，原极限处理错误。',
-    'A.5 解答：解答完全错误，原方法无效且答案不对。',
-    '§5.2 幂函数定点：错误排除了 α=0，对任意实数 α，幂函数图像恒过定点 (1,1)。',
-    '§3.3 例题：f(u) ≥ 0 的解区间写错了。',
-  ]},
-  { label: '第二档', title: '缺少前提条件 / 适用范围过宽', items: [
-    '§1.2 例题：求对数时未说明底数的限制条件，由 log_b a 有意义知 b&gt;0 且 b≠1。',
-    '§2.1 例题：a=0 时仍称 x=0 为竖直渐近线，实际 a=0 时图像为去掉原点的直线 y=x。',
-    '§2.1 例题：a=0 时未说明与 x 轴交点情况，图像与 x 轴没有交点。',
-    '§2.1 例题：判别式分析不完整，遗漏了 a=5 和 a&gt;5 的情况。',
-    '§3.3 复合奇偶性：结论缺少外层函数必为偶函数或奇函数的前提。',
-    '§3.4 周期函数定义：未要求定义域的双向不变性，只要求了 x+T∈D，未要求 x∈D ⇔ x+T∈D。',
-    '§4.3 伸缩变换：未限制 ω&gt;0，当 ω&gt;0 时横坐标才变为原来的 1/ω 倍。',
-    '§4.3 纵向伸缩：未说明 A&lt;0 时还需叠加关于 x 轴的对称。',
-    '§5.2 幂函数定义域：未说明无理数指数的情况，若 α 为无理数通常取 (0,+∞)。',
-    '§5.4 对数定义：缺少 N&gt;0 的条件。',
-    '§5.4 对数函数：未明确写出定义域为 (0,+∞)。',
-    '§5.4 奇对数函数：缺少定义域对称性及对定义域内任意 x 有 g(x)&gt;0 的条件。',
-    '§6.1 模型①：未说明 b&gt;0，若表示增长则需 b&gt;0, a&gt;1。',
-    '§7.5 斜渐近线：缺少 m≠0 的条件，m=0 时不是斜渐近线。',
-    '§7.5 同阶定义：条件过宽，应要求 c&gt;0 而非仅 c≠0。',
-    '§8.1 切线定义：未排除竖直切线，极限存在且为有限实数时方为非竖直切线。',
-    '§8.2 可导定义：缺少极限必须为有限实数的条件。',
-    '§8.2 求导例题：未指明求导是在 x≠0 处。',
-    '§8.2 单调性定理：缺少函数在区间上连续并在内部可导的前提。',
-    '§8.2 Rolle 定理：缺少 a&lt;b 的条件，区间可能退化。',
-    '§9.1 例题：未处理 t=0 的退化情况，此时有限三角形不存在。',
-    '§10.1 误差项：未处理 x=x₀ 时等式两边均等于 f(x₀) 的平凡情况。',
-    '§10.2 Rolle 定理：缺少 a&lt;b 条件。',
-    '§10.3 L\'Hôpital 法则：缺少在 a 的某邻域内除 a 外 f,g 有定义的前提。',
-    '§10.4 例题：边界条件错误，f(0) 和 f(1) 的值写反了。',
-    '§10.4 例题：缺少正数条件 0&lt;a&lt;b。',
-    '§11.2 L\'Hôpital 法则：条件不精确，应说明 f,g 均趋于无穷大而非仅说极限不存在。',
-    '§11.2 例题：参数类型不精确，n 应为正整数而非任意实数。',
-    '§11.3 定理：可导性要求过强，实际上只需在 [m,+∞) 连续、(m,+∞) 可导且右导数存在。',
-    'A.3 解答：缺少 a=0 时原式恒为 0 的情况讨论。',
-    'A.4 解答：极限处理需分 x → +∞ 和 x → -∞ 讨论，原解答未区分。',
-    'A.4 解答：缺少定义域说明及负无穷情况讨论，该函数在 x&gt;0 或 x&lt;-1 时有定义。',
-    '§7.3 极限计算：化简后未排除 x=-1，分母可能为零。',
-    '§7.4 极限证明：缺少 a=0 时原式恒为 0 的讨论。',
-  ]},
-  { label: '第三档', title: '证明不完整', items: [
-    '§3.4 例题：未验证 π/2 不是周期，缺少直接代入检查的步骤。',
-    '§7.3 例题：选取的 δ&gt;0 未给出严格证明，直接断言 δ&gt;0 不够严谨。',
-    '§7.7 例题：分母的正数性未给出配方等证明过程。',
-    '§9.1 例题：缺少问题 (1) 的完整解答。',
-    '§10.2 证明：极值点论证不精确，M 和 m 不能同时只在端点取得。',
-    '§10.2 证明：仅证明了最大值情况，需补充最小值点情形的类似论证。',
-    '§11.1 例题：推理跳跃。',
-  ]},
-  { label: '第四档', title: '表述与格式问题', items: [
-    '§7.3 常见误区：描述不精确，左右极限均存在但未比较时不能断言双边极限。',
-    '§7.6 可导与连续：表述模糊，未明确说明极限存在则函数在该点连续。',
-    '§7.7 介值定理：未强调 M 是"严格"介于 f(a) 与 f(b) 之间。',
-    '§8.2 极值定义：使用了严格不等式，应使用非严格不等式 f(x) ≤ f(x₀)。',
-    '§8.2 单调性：术语不精确，未区分严格单调与非严格单调。',
-    '§9.3 定理：可导性条件过强，应修正为除可能的不可导点外均可导。',
-    'A.4 解答：图片的坐标错误，点坐标 (-1,2) 应为 (-1,-2)。',
-  ]},
-];
-
-
 ---
 
 <BaseLayout
-  title="数学之旅"
-  description="ProjectA 书籍落地页：展示《数学之旅：函数与导数》与《高中数学之旅》的目录、预览、版本对比、下载与支持入口。6 月 12 日重大更新：附完整勘误表。"
+  title={copy.title}
+  description={copy.description}
   locale={locale}
   canonicalPath="/books/"
   image="/images/books/covers/func-math-cover.png"
@@ -490,22 +38,17 @@ const funcErrata = [
     <section class="akari-books-hero-v2 glass-card" aria-labelledby="books-title">
       <div class="akari-books-hero-v2__content">
         <p class="akari-books-eyebrow">A Journey Through Mathematics</p>
-        <h1 id="books-title">数学之旅</h1>
+        <h1 id="books-title">{copy.title}</h1>
         <p class="akari-books-hero-v2__english">THE JOURNEY OF MATHEMATICS</p>
-        <p class="akari-books-hero-v2__lead">为中学数学而写的现代数学读物。函数、极限、导数一脉贯通，用 LaTeX 与 TikZ 把每一页都做成艺术品。</p>
-        <div class="akari-books-chips" aria-label="书籍关键词">
-          <span>LaTeX / XeLaTeX</span>
-          <span>TikZ 矢量图形</span>
-          <span>免费版内容完整</span>
-          <span>付费版仅去水印</span>
-          <span>6 月 12 日重大修订</span>
+        <p class="akari-books-hero-v2__lead">{copy.lead}</p>
+        <div class="akari-books-chips" aria-label={copy.aria.chips}>
+          {copy.chips.map((chip) => <span>{chip}</span>)}
         </div>
         <div class="akari-books-actions">
-          <a class="akari-button akari-button--filled" href="#akari-book-showcase"><i class="ph ph-book-open"></i>探索书稿</a>
-          <a class="akari-button" href="#akari-book-errata"><i class="ph ph-list-checks"></i>勘误表</a>
-          <a class="akari-button" href="#akari-book-versions"><i class="ph ph-arrows-left-right"></i>版本对比</a>
-          <a class="akari-button" href="#akari-book-screenshots"><i class="ph ph-images"></i>内页预览</a>
-          <a class="akari-button" href="https://app.rikka.moe/library" target="_blank" rel="noopener noreferrer"><i class="ph ph-book-open"></i>前往 app.rikka.moe 书库</a>
+          <a class="akari-button akari-button--filled" href={DOWNLOAD_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.downloadLabel}</a>
+          <a class="akari-button" href={AFDIAN_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-heart"></i>{copy.afdianLabel}</a>
+          <a class="akari-button" href="#akari-book-showcase"><i class="ph ph-book-open"></i>{copy.buttons.explore}</a>
+          <a class="akari-button" href="#akari-book-errata"><i class="ph ph-list-checks"></i>{copy.buttons.errata}</a>
         </div>
       </div>
       <div class="akari-books-hero-v2__covers" aria-hidden="true">
@@ -514,57 +57,54 @@ const funcErrata = [
       </div>
     </section>
 
+    <nav class="akari-books-anchor-nav glass-card" aria-label={copy.aria.nav}>
+      <a href="#akari-book-showcase"><i class="ph ph-books"></i><span>{copy.nav.overview}</span></a>
+      <a href="#akari-book-errata"><i class="ph ph-list-checks"></i><span>{copy.nav.errata}</span></a>
+      <a href="#akari-book-design"><i class="ph ph-pen-nib"></i><span>{copy.nav.design}</span></a>
+      <a href="#akari-book-versions"><i class="ph ph-download-simple"></i><span>{copy.nav.versions}</span></a>
+      <a href="#akari-book-method"><i class="ph ph-route"></i><span>{copy.nav.notes}</span></a>
+      <a href="#akari-book-support"><i class="ph ph-heart"></i><span>{copy.nav.support}</span></a>
+    </nav>
+
     <section class="akari-books-section akari-books-update-banner-section" aria-label="重大更新通知">
       <div class="akari-books-update-banner glass-card">
         <div class="akari-books-update-banner__icon"><i class="ph ph-megaphone-simple"></i></div>
         <div class="akari-books-update-banner__body">
-          <p class="akari-books-eyebrow">6 月 12 日重大更新</p>
-          <h2>2026 届高考落幕，本书迎来重大修订</h2>
-          <p>经过最近几个月断断续续的修订和 review，并将模板更换为 <strong>Elegantbook</strong> 后，《高中数学之旅》终于又出了新版本！日后每次更新都将配上勘误表，按严重程度从高往低排列——最严重的是推导和结论上的错误，最低是无伤大雅的优化。标记 <sup>★</sup> 号的条目来自读者反馈。</p>
-          <p>下方附有完整的勘误表，涵盖两本书共计 <strong>200+</strong> 项修正。</p>
+          <p class="akari-books-eyebrow">{copy.update.eyebrow}</p>
+          <h2>{copy.update.title}</h2>
+          <p>{copy.update.body}</p>
           <div class="akari-books-actions">
-            <a class="akari-button akari-button--filled" href="#akari-book-errata"><i class="ph ph-list-checks"></i>查看勘误表</a>
-            <a class="akari-button" href="https://c.rikka.moe/s/e4eeaJ2G2o7qcGf" target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>下载新版《高中数学之旅》</a>
+            <a class="akari-button akari-button--filled" href={DOWNLOAD_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.downloadLabel}</a>
+            <a class="akari-button" href="#akari-book-errata"><i class="ph ph-list-checks"></i>{copy.buttons.errata}</a>
           </div>
         </div>
       </div>
     </section>
 
-    <nav class="akari-books-anchor-nav glass-card" aria-label="书籍页导航">
-      <a href="#akari-book-showcase"><i class="ph ph-books"></i><span>书稿总览</span></a>
-      <a href="#akari-book-errata"><i class="ph ph-list-checks"></i><span>勘误表</span></a>
-      <a href="#akari-book-design"><i class="ph ph-pen-nib"></i><span>设计哲学</span></a>
-      <a href="#akari-book-versions"><i class="ph ph-download-simple"></i><span>下载版本</span></a>
-      <a href="#akari-book-method"><i class="ph ph-route"></i><span>写作说明</span></a>
-      <a href="#akari-book-support"><i class="ph ph-heart"></i><span>支持作者</span></a>
-    </nav>
-
     <section id="akari-book-showcase" class="akari-books-section">
       <header class="akari-books-section__header">
-        <p class="akari-books-eyebrow">书稿总览</p>
-        <h2>两个系列，一脉相承</h2>
-        <p>两个系列内容互相独立。免费版与付费版的内容完全一致，付费版仅去除了页面水印，阅读体验更纯净。</p>
+        <p class="akari-books-eyebrow">{copy.overview.eyebrow}</p>
+        <h2>{copy.overview.title}</h2>
+        <p>{copy.overview.lead}</p>
       </header>
 
       <div class="akari-books-showcase glass-card">
         <div class="akari-books-tabs" role="tablist" aria-label="书籍系列切换">
-          <button type="button" class="akari-books-tab akari-books-tab--active" role="tab" aria-selected="true" data-series-tab="func"><i class="ph ph-pen-nib"></i><span>数学之旅 · 函数与导数</span></button>
-          <button type="button" class="akari-books-tab" role="tab" aria-selected="false" data-series-tab="journey"><i class="ph ph-books"></i><span>高中数学之旅 · 旧版五册</span></button>
+          <button type="button" class="akari-books-tab akari-books-tab--active" role="tab" aria-selected="true" data-series-tab="func"><i class="ph ph-pen-nib"></i><span>{copy.seriesTabs.func}</span></button>
+          <button type="button" class="akari-books-tab" role="tab" aria-selected="false" data-series-tab="journey"><i class="ph ph-books"></i><span>{copy.seriesTabs.journey}</span></button>
         </div>
 
         <div class="akari-books-series-panel akari-books-series-panel--active" data-series-panel="func">
-          <div class="akari-books-note"><i class="ph ph-info"></i><p>数学之旅 是新启动的独立系列，作为《高中数学之旅》的精神续作进行全面重写。目前已出版第一册《函数与导数》。</p></div>
           <div class="akari-books-series-layout">
             <aside class="akari-books-cover-card">
               <img src="/images/books/covers/func-math-cover.png" alt="数学之旅：函数与导数 封面" loading="lazy" decoding="async" />
-              <div class="akari-books-update"><i class="ph ph-git-commit"></i><span>最近更新：</span><span data-github-latest="WritingMathBooks/func-math-book">加载中…</span></div>
-              <a class="akari-button akari-button--filled" href="https://c.rikka.moe/s/iopEsCAHqsXkemo" target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>免费下载《函数与导数》</a>
+              <div class="akari-books-update"><i class="ph ph-git-commit"></i><span>{copy.overview.latest}</span><span data-github-latest="WritingMathBooks/func-math-book">{copy.overview.loading}</span></div>
             </aside>
             <div class="akari-books-series-copy">
-              <p class="akari-books-badge">新系列 · 第一册</p>
-              <h3>数学之旅：函数与导数</h3>
-              <p>本书围绕中学阶段的「函数与导数」展开，按专题分册编排，呈现由函数观念通向极限思想、再延伸至导数方法的数学脉络。前半部分依次讨论函数的概念、定义域、单调性、奇偶性、周期性、图像变换以及若干常见函数模型，强调图像、性质与解析式之间的联系。后半部分进入极限、连续、导数、中值定理、高阶导数与相关应用。</p>
-              <div class="akari-books-meta"><span>LaTeX / XeLaTeX</span><span>持续迭代中</span><span>WritingMathBooks/func-math-book</span></div>
+              <p class="akari-books-badge">{copy.overview.funcBadge}</p>
+              <h3>{copy.overview.funcTitle}</h3>
+              <p>{copy.overview.funcBody}</p>
+              <div class="akari-books-meta"><span>LaTeX / XeLaTeX</span><span>持续迭代中</span></div>
               <h4>目录</h4>
               <div class="akari-book-toc"><Fragment set:html={renderTocHtml(funcToc)} /></div>
             </div>
@@ -572,7 +112,6 @@ const funcErrata = [
         </div>
 
         <div class="akari-books-series-panel" data-series-panel="journey" hidden>
-          <div class="akari-books-note"><i class="ph ph-info"></i><p>高中数学之旅 于 6 月 12 日发布重大修订，模板已更换为 Elegantbook。本页附有完整勘误表，新版下载链接已更新。</p></div>
           <div class="akari-books-series-layout">
             <aside class="akari-books-cover-card">
               <img id="akari-journey-cover-main" src="/images/books/covers/vol-1.png" alt="高中数学之旅 第一卷 封面" loading="lazy" decoding="async" />
@@ -583,14 +122,13 @@ const funcErrata = [
                   </button>
                 ))}
               </div>
-              <div class="akari-books-update"><i class="ph ph-git-commit"></i><span>最近更新：</span><span data-github-latest="ShinozakiKasumi/ProjectA-journey">加载中…</span></div>
-              <a class="akari-button akari-button--filled" href="https://c.rikka.moe/s/e4eeaJ2G2o7qcGf" target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>免费下载《高中数学之旅》</a>
+              <div class="akari-books-update"><i class="ph ph-git-commit"></i><span>{copy.overview.latest}</span><span data-github-latest="ShinozakiKasumi/ProjectA-journey">{copy.overview.loading}</span></div>
             </aside>
             <div class="akari-books-series-copy">
-              <p class="akari-books-badge">旧版 · 完整五册</p>
-              <h3>高中数学之旅</h3>
-              <p>本系列覆盖中学数学的大部分专题与常见题型，并对若干进阶内容进行了介绍与论述。从集合与逻辑用语出发，最终于概率一章结束，适合从基础到中档的学生阅读。该书面向对中学数学抱有兴趣，以及正在学习或复习中学数学的读者。</p>
-              <div class="akari-books-meta"><span>LaTeX / XeLaTeX</span><span>五册</span><span>6 月 12 日修订</span><span>ShinozakiKasumi/ProjectA-journey</span></div>
+              <p class="akari-books-badge">{copy.overview.journeyBadge}</p>
+              <h3>{copy.overview.journeyTitle}</h3>
+              <p>{copy.overview.journeyBody}</p>
+              <div class="akari-books-meta"><span>LaTeX / XeLaTeX</span><span>五册</span><span>6 月 12 日修订</span></div>
               <h4>目录</h4>
               <div class="akari-book-toc"><Fragment set:html={renderTocHtml(journeyToc)} /></div>
             </div>
@@ -599,64 +137,16 @@ const funcErrata = [
       </div>
     </section>
 
-    <section id="akari-book-design" class="akari-books-section">
-      <header class="akari-books-section__header">
-        <p class="akari-books-eyebrow">设计哲学</p>
-        <h2>理念与特征</h2>
-        <p>知识自由是我的起源。书稿以开放方式呈现，也用尽可能精细的排版保留数学内容的结构美。</p>
-      </header>
-      <div class="akari-books-stats glass-card">
-        <article><strong>21</strong><span>章</span><p>完整覆盖中学数学核心专题</p></article>
-        <article><strong>100%</strong><span>矢量</span><p>TikZ 驱动的精确图形渲染</p></article>
-        <article><strong>∞</strong><span>精度</span><p>LaTeX 排版，像素级数学公式</p></article>
-      </div>
-      <div class="akari-books-feature-grid">
-        {features.map((feature) => (
-          <article class="akari-books-card glass-card">
-            <i class={`ph ph-${feature.icon}`}></i>
-            <h3>{feature.title}</h3>
-            <p>{feature.desc}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section id="akari-book-versions" class="akari-books-section">
-      <header class="akari-books-section__header">
-        <p class="akari-books-eyebrow">版本对比</p>
-        <h2>选择你的版本</h2>
-        <p>免费版与付费版的内容完全一致。付费版仅去除页面水印，并作为对作者的一份支持。</p>
-      </header>
-      <div class="akari-books-version-grid">
-        <article class="akari-books-version glass-card">
-          <p class="akari-books-badge">Free Edition</p>
-          <h3>免费版</h3>
-          <ul>{freeFeatures.map((item) => <li><i class="ph ph-check"></i>{item}</li>)}</ul>
-          <div class="akari-books-actions akari-books-actions--stacked">
-            <a class="akari-button" href="https://c.rikka.moe/s/iopEsCAHqsXkemo" target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>下载《函数与导数》</a>
-            <a class="akari-button" href="https://c.rikka.moe/s/e4eeaJ2G2o7qcGf" target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>下载《高中数学之旅》</a>
-          </div>
-        </article>
-        <article class="akari-books-version akari-books-version--primary glass-card">
-          <p class="akari-books-badge">Watermark-Free Edition</p>
-          <h3>无水印版</h3>
-          <span class="akari-books-version__chip">内容相同 · 仅去水印</span>
-          <ul>{premiumFeatures.map((item) => <li><i class="ph ph-check-circle"></i>{item}</li>)}</ul>
-          <a class="akari-button akari-button--filled" href="https://afdian.com/a/writeamathbook" target="_blank" rel="noopener noreferrer"><i class="ph ph-heart"></i>前往爱发电支持</a>
-        </article>
-      </div>
-    </section>
-
     <section id="akari-book-errata" class="akari-books-section">
       <header class="akari-books-section__header">
-        <p class="akari-books-eyebrow">Errata · 6 月 12 日</p>
+        <p class="akari-books-eyebrow">{`Errata · 6 月 12 日`}</p>
         <h2>勘误表</h2>
         <p>以下勘误按严重程度分为四档：<strong>第一档</strong>为推导与结论错误，<strong>第二档</strong>为缺少前提条件或适用范围过宽，<strong>第三档</strong>为证明不完整，<strong>第四档</strong>为表述与格式问题。标记 <sup>★</sup> 的条目来自读者反馈。</p>
       </header>
       <div class="akari-books-showcase glass-card">
         <div class="akari-books-tabs" role="tablist" aria-label="勘误表书籍切换">
-          <button type="button" class="akari-books-tab akari-books-tab--active" role="tab" aria-selected="true" data-errata-tab="journey"><i class="ph ph-books"></i><span>高中数学之旅</span></button>
-          <button type="button" class="akari-books-tab" role="tab" aria-selected="false" data-errata-tab="func"><i class="ph ph-pen-nib"></i><span>函数与导数</span></button>
+          <button type="button" class="akari-books-tab akari-books-tab--active" role="tab" aria-selected="true" data-errata-tab="journey"><i class="ph ph-books"></i><span>{copy.errataTabs.journey}</span></button>
+          <button type="button" class="akari-books-tab" role="tab" aria-selected="false" data-errata-tab="func"><i class="ph ph-pen-nib"></i><span>{copy.errataTabs.func}</span></button>
         </div>
 
         <div class="akari-errata-panel akari-errata-panel--active" data-errata-panel="journey">
@@ -669,13 +159,54 @@ const funcErrata = [
       </div>
     </section>
 
+    <section id="akari-book-design" class="akari-books-section">
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">{copy.design.eyebrow}</p>
+        <h2>{copy.design.title}</h2>
+        <p>{copy.design.lead}</p>
+      </header>
+      <div class="akari-books-stats glass-card">
+        {copy.design.stats.map((stat) => <article><strong>{stat.value}</strong><span>{stat.label}</span><p>{stat.desc}</p></article>)}
+      </div>
+      <div class="akari-books-feature-grid">
+        {copy.design.features.map((feature) => (
+          <article class="akari-books-card glass-card">
+            <i class={`ph ph-${feature.icon}`}></i>
+            <h3>{feature.title}</h3>
+            <p>{feature.desc}</p>
+          </article>
+        ))}
+      </div>
+    </section>
 
+    <section id="akari-book-versions" class="akari-books-section">
+      <header class="akari-books-section__header">
+        <p class="akari-books-eyebrow">{copy.versions.eyebrow}</p>
+        <h2>{copy.versions.title}</h2>
+        <p>{copy.versions.lead}</p>
+      </header>
+      <div class="akari-books-version-grid">
+        <article class="akari-books-version glass-card">
+          <p class="akari-books-badge">Free Edition</p>
+          <h3>{copy.versions.freeTitle}</h3>
+          <ul>{copy.versions.freeItems.map((item) => <li><i class="ph ph-check"></i>{item}</li>)}</ul>
+          <a class="akari-button akari-button--filled" href={DOWNLOAD_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.downloadLabel}</a>
+        </article>
+        <article class="akari-books-version akari-books-version--primary glass-card">
+          <p class="akari-books-badge">Watermark-Free Edition</p>
+          <h3>{copy.versions.premiumTitle}</h3>
+          <span class="akari-books-version__chip">{copy.versions.premiumChip}</span>
+          <ul>{copy.versions.premiumItems.map((item) => <li><i class="ph ph-check-circle"></i>{item}</li>)}</ul>
+          <a class="akari-button akari-button--filled" href={AFDIAN_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-heart"></i>{copy.afdianLabel}</a>
+        </article>
+      </div>
+    </section>
 
     <section id="akari-book-screenshots" class="akari-books-section">
       <header class="akari-books-section__header">
-        <p class="akari-books-eyebrow">内页预览</p>
-        <h2>翻阅书页</h2>
-        <p>随机抽取两本书的一些页面，提前感受排版风格。</p>
+        <p class="akari-books-eyebrow">{copy.preview.eyebrow}</p>
+        <h2>{copy.preview.title}</h2>
+        <p>{copy.preview.lead}</p>
       </header>
       <div class="akari-books-screenshot-groups">
         {screenshotGroups.map((group) => (
@@ -689,69 +220,39 @@ const funcErrata = [
       </div>
     </section>
 
-    <section class="akari-books-section">
-      <header class="akari-books-section__header">
-        <p class="akari-books-eyebrow">使用指南</p>
-        <h2>下载与购买教程</h2>
-      </header>
-      <div class="akari-books-tutorial-grid">
-        <article class="akari-books-tutorial glass-card">
-          <i class="ph ph-cloud-arrow-down"></i>
-          <h3>如何在线预览与下载 PDF</h3>
-          <ol>{nextcloudSteps.map((step) => <li>{step}</li>)}</ol>
-        </article>
-        <article class="akari-books-tutorial glass-card">
-          <i class="ph ph-shopping-bag-open"></i>
-          <h3>如何在爱发电购买无水印版</h3>
-          <ol>{afdianSteps.map((step) => <li>{step}</li>)}</ol>
-        </article>
-      </div>
-      <p class="akari-books-notice"><i class="ph ph-globe-hemisphere-west"></i>提示：网盘服务器位于美国，部分地区下载速度可能较慢，请耐心等待或使用下载工具加速。</p>
-    </section>
-
     <section id="akari-book-method" class="akari-books-section">
       <header class="akari-books-section__header">
-        <p class="akari-books-eyebrow">Origin / Practice / Paused</p>
-        <h2>写作缘起、学习方式与暂停说明</h2>
-        <p>这一部分保留原书籍说明页中的背景文字，解释为什么写这本书，以及项目当前的状态。</p>
+        <p class="akari-books-eyebrow">{copy.notes.eyebrow}</p>
+        <h2>{copy.notes.title}</h2>
+        <p>{copy.notes.lead}</p>
       </header>
       <div class="akari-books-method-grid">
         <article class="akari-books-text-card glass-card">
-          <h3>写作缘起与方法论</h3>
-          <p>本书的起点源自我在高中三年学习数学期间使用 Obsidian 软件记的笔记，书稿最终使用 LaTeX 编排。写这本书的初衷很简单：我觉得市面上没有一本教辅可以真正满足我。</p>
-          <p>我观察到目前大部分教辅的形式，要不就是总结加一堆例题，有些比较良心的教辅，无非是在解析和答案上多下点功夫。直到我读了 Springer 出版社的《初等数学之旅》之后，我突然有感而发：为什么国内就没有一本这种能从初中一直讲到本科数学的大部头书呢？于是我写了这本书。</p>
-          <p>我更想强调的是：拥有另一种模式的学生，看到一道题，不是先去 Matching 是什么题型，而是看到整道题背后的逻辑流：从哪个定义或定理出发，经历哪些分支，最后如何收敛到答案。</p>
+          <h3>{copy.notes.originTitle}</h3>
+          {copy.notes.origin.map((paragraph) => <p>{paragraph}</p>)}
         </article>
         <article class="akari-books-text-card glass-card">
-          <h3>关于习题册、AI 与学习方式</h3>
-          <p>许多人问我为什么不继续编一个习题册：一是没时间且回报太少；二是我确实懒；三是市面上的习题与专题资源已经很多。</p>
-          <p>以前我也觉得解析册里的思路引导很重要，但现在我渐渐改变了想法。很多 AI 配合学习模式的一步步交互性引导，在效率上明显超过纸面答案。</p>
-          <p>我在高三后期就经常把错题思路交给模型继续推演，让它顺着我的错误路径解释“为什么错、为什么这个方法好而那个不好”。把真实思考过程交给可交互系统，效率更高。</p>
+          <h3>{copy.notes.practiceTitle}</h3>
+          {copy.notes.practice.map((paragraph) => <p>{paragraph}</p>)}
         </article>
         <article class="akari-books-text-card akari-books-text-card--wide glass-card">
-          <h3>为什么暂停更新</h3>
-          <p>这个项目曾进入无限期暂停，但经过最近几个月的修订，于 6 月 12 日发布了重大更新版本。模板已更换为 Elegantbook，并附有完整勘误表。此前的暂停原因包括：新增内容没有形成可持续回报；书稿被改名、拆分、低价倒卖持续消耗精力；大部头写作需要连续的大块时间且过于单向；以及有新的软件开发项目要做。</p>
-          <ol>
-            <li>把这本书的内容逐步迁移到软件中。由于底稿是 LaTeX，转为其他格式相对容易，也会尝试多语言版本。</li>
-            <li>继续开发软件，不管最终是否商业化，至少可以沉淀工程经验并形成可展示的作品集。</li>
-            <li>继续观察有没有新的写作切入点，未来不排除以新结构重写。</li>
-            <li>先实现可持续收益，改善财务状况，再谈更长期目标。</li>
-          </ol>
+          <h3>{copy.notes.pausedTitle}</h3>
+          {copy.notes.paused.map((paragraph) => <p>{paragraph}</p>)}
         </article>
       </div>
     </section>
 
     <section id="akari-book-support" class="akari-books-section">
       <header class="akari-books-section__header">
-        <p class="akari-books-eyebrow">支持作者</p>
-        <h2>在爱发电支持我</h2>
-        <p>在爱发电平台支持作者的创作。每一份支持都是持续写作的动力。付费版与免费版内容完全一致，付费仅去除水印。</p>
+        <p class="akari-books-eyebrow">{copy.support.eyebrow}</p>
+        <h2>{copy.support.title}</h2>
+        <p>{copy.support.lead}</p>
       </header>
       <div class="akari-books-support-card glass-card">
         <div>
-          <h3>感谢友情支持</h3>
-          <p>前往爱发电主页获取无水印版并支持作者。</p>
-          <a href="https://afdian.com/a/writeamathbook" target="_blank" rel="noopener noreferrer">afdian.com/a/writeamathbook ↗</a>
+          <h3>{copy.support.cardTitle}</h3>
+          <p>{copy.support.cardBody}</p>
+          <a href={AFDIAN_URL} target="_blank" rel="noopener noreferrer">afdian.com/a/writeamathbook ↗</a>
         </div>
         <iframe id="afdian_leaflet_writeamathbook" src="https://ifdian.net/leaflet?slug=writeamathbook" width="640" height="200" scrolling="no" frameborder="0" loading="lazy" title="爱发电赞助卡片"></iframe>
       </div>
@@ -761,13 +262,12 @@ const funcErrata = [
     <section class="akari-books-section akari-books-akari-card glass-card">
       <img src="/akari-logo.svg" width="64" height="64" alt="Project Akari" loading="lazy" decoding="async" />
       <p class="akari-books-eyebrow">Project Akari</p>
-      <h2>Illuminating the Path of Learning</h2>
-      <p>Project Akari 致力于重塑学习体验，提供更高效、更具亲和力的学习范式。项目名取自日文「あかり」(Akari)，意为灯/光，寓意照亮前行之路。</p>
-      <p>《高中数学之旅》以旅程为线索重构知识体系，《数学之旅》系列延伸广度与深度；配套软件提供个性化学习辅助。项目以普惠分发、极低价格或免费为原则，成本由书籍收入及开发兼职反哺。</p>
+      <h2>{copy.support.akariTitle}</h2>
+      {copy.support.akariBody.map((paragraph) => <p>{paragraph}</p>)}
     </section>
   </article>
 
-  <script is:inline>
+  <script is:inline define:vars={{ dateLocale: copy.dateLocale }}>
     (function () {
       var tabs = document.querySelectorAll('[data-series-tab]');
       var panels = document.querySelectorAll('[data-series-panel]');
@@ -807,7 +307,7 @@ const funcErrata = [
         if (!value) return '—';
         var date = new Date(value);
         if (Number.isNaN(date.getTime())) return '—';
-        return date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+        return date.toLocaleDateString(dateLocale, { year: 'numeric', month: 'long', day: 'numeric' });
       }
 
       document.querySelectorAll('[data-github-latest]').forEach(function (node) {
