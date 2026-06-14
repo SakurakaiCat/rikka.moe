@@ -98,13 +98,12 @@ const languageOptions = LOCALES.map((loc) => {
           <div class="akari-books-series-layout">
             <aside class="akari-books-cover-card">
               <img src="/images/books/covers/func-math-cover.png" alt="数学之旅：函数与导数 封面" loading="lazy" decoding="async" />
-              <div class="akari-books-update"><i class="ph ph-git-commit"></i><span>{copy.overview.latest}</span><span data-github-latest="WritingMathBooks/func-math-book">{copy.overview.loading}</span></div>
             </aside>
             <div class="akari-books-series-copy">
               <p class="akari-books-badge">{copy.overview.funcBadge}</p>
               <h3>{copy.overview.funcTitle}</h3>
               <p>{copy.overview.funcBody}</p>
-              <div class="akari-books-meta"><span>LaTeX / XeLaTeX</span><span>持续迭代中</span></div>
+              <div class="akari-books-meta"><span>{copy.chips[0]}</span><span>{copy.chips[2]}</span></div>
               <h4>目录</h4>
               <div class="akari-book-toc"><Fragment set:html={renderTocHtml(funcToc)} /></div>
             </div>
@@ -122,13 +121,12 @@ const languageOptions = LOCALES.map((loc) => {
                   </button>
                 ))}
               </div>
-              <div class="akari-books-update"><i class="ph ph-git-commit"></i><span>{copy.overview.latest}</span><span data-github-latest="ShinozakiKasumi/ProjectA-journey">{copy.overview.loading}</span></div>
             </aside>
             <div class="akari-books-series-copy">
               <p class="akari-books-badge">{copy.overview.journeyBadge}</p>
               <h3>{copy.overview.journeyTitle}</h3>
               <p>{copy.overview.journeyBody}</p>
-              <div class="akari-books-meta"><span>LaTeX / XeLaTeX</span><span>五册</span><span>6 月 12 日修订</span></div>
+              <div class="akari-books-meta"><span>{copy.chips[0]}</span><span>{copy.overview.journeyBadge}</span><span>6 月 12 日修订</span></div>
               <h4>目录</h4>
               <div class="akari-book-toc"><Fragment set:html={renderTocHtml(journeyToc)} /></div>
             </div>
@@ -267,7 +265,7 @@ const languageOptions = LOCALES.map((loc) => {
     </section>
   </article>
 
-  <script is:inline define:vars={{ dateLocale: copy.dateLocale }}>
+  <script is:inline>
     (function () {
       var tabs = document.querySelectorAll('[data-series-tab]');
       var panels = document.querySelectorAll('[data-series-panel]');
@@ -301,27 +299,6 @@ const languageOptions = LOCALES.map((loc) => {
             item.setAttribute('aria-pressed', active ? 'true' : 'false');
           });
         });
-      });
-
-      function formatDate(value) {
-        if (!value) return '—';
-        var date = new Date(value);
-        if (Number.isNaN(date.getTime())) return '—';
-        return date.toLocaleDateString(dateLocale, { year: 'numeric', month: 'long', day: 'numeric' });
-      }
-
-      document.querySelectorAll('[data-github-latest]').forEach(function (node) {
-        var repo = node.getAttribute('data-github-latest');
-        if (!repo) return;
-        fetch('https://api.github.com/repos/' + repo + '/commits?per_page=1', {
-          headers: { Accept: 'application/vnd.github.v3+json' },
-        })
-          .then(function (response) { return response.ok ? response.json() : Promise.reject(); })
-          .then(function (data) {
-            var date = Array.isArray(data) && data[0] && data[0].commit && data[0].commit.committer && data[0].commit.committer.date;
-            node.textContent = formatDate(date);
-          })
-          .catch(function () { node.textContent = '—'; });
       });
 
       var errataTabs = document.querySelectorAll('[data-errata-tab]');
