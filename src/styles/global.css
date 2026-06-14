@@ -1106,44 +1106,37 @@ img {
 }
 
 .post-comments .twikoo {
+  position: relative;
   font-family: var(--akari-font-sans);
   color: var(--akari-text);
 }
 
-.post-comments .tk-comments-title,
-.post-comments .tk-comments-count {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--akari-text);
+.post-comments .twikoo svg {
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.post-comments .tk-submit {
-  margin-bottom: 24px;
-}
-
-.post-comments .tk-row {
-  gap: 14px;
-}
-
-.post-comments .tk-avatar .tk-avatar-img {
+.post-comments .tk-submit .tk-avatar .tk-avatar-img {
   border-radius: var(--akari-radius);
   overflow: hidden;
+  width: 40px;
+  height: 40px;
 }
 
-.post-comments .tk-avatar .tk-avatar-img svg {
+.post-comments .tk-submit .tk-avatar .tk-avatar-img svg {
+  width: 100%;
+  height: 100%;
   border-radius: var(--akari-radius);
   background: rgba(255, 255, 255, 0.06);
+}
+
+.post-comments .tk-avatar {
+  flex-shrink: 0;
 }
 
 .post-comments .tk-col {
   flex: 1;
   min-width: 0;
-}
-
-.post-comments .tk-meta-input {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
 }
 
 .post-comments .el-input-group {
@@ -1220,9 +1213,9 @@ img {
   background: transparent !important;
 }
 
-.post-comments .tk-row.actions {
+.post-comments .tk-row.actions,
+.post-comments .tk-comments-container .tk-row.actions {
   margin-top: 12px;
-  gap: 10px;
   align-items: center;
 }
 
@@ -1236,7 +1229,6 @@ img {
   background-color: rgba(255, 255, 255, 0.06) !important;
   color: var(--akari-text) !important;
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
-  height: auto !important;
 }
 
 .post-comments .el-button:hover {
@@ -1334,8 +1326,11 @@ img {
   border-bottom-color: var(--akari-accent);
 }
 
-.post-comments .tk-comments-container {
-  margin-top: 20px;
+.post-comments .tk-comments-title,
+.post-comments .tk-comments-count {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--akari-text);
 }
 
 .post-comments .tk-comments-no {
@@ -1343,6 +1338,11 @@ img {
   font-size: 0.92rem;
   padding: 24px 0;
   text-align: center;
+}
+
+.post-comments .tk-admin-container {
+  position: relative;
+  inset: auto;
 }
 
 .post-comments .tk-comment {
@@ -1362,6 +1362,8 @@ img {
 .post-comments .tk-comment .tk-avatar .tk-avatar-img,
 .post-comments .tk-comment .tk-avatar img {
   border-radius: var(--akari-radius);
+  max-width: 40px;
+  max-height: 40px;
 }
 
 .post-comments .tk-comment .tk-nick {
