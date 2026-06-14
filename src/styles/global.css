@@ -1101,6 +1101,425 @@ img {
   padding: 28px;
 }
 
+.post-comments h2 {
+  margin-bottom: 20px;
+}
+
+.post-comments .twikoo {
+  font-family: var(--akari-font-sans);
+  color: var(--akari-text);
+}
+
+.post-comments .tk-comments-title,
+.post-comments .tk-comments-count {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--akari-text);
+}
+
+.post-comments .tk-submit {
+  margin-bottom: 24px;
+}
+
+.post-comments .tk-row {
+  gap: 14px;
+}
+
+.post-comments .tk-avatar .tk-avatar-img {
+  border-radius: var(--akari-radius);
+  overflow: hidden;
+}
+
+.post-comments .tk-avatar .tk-avatar-img svg {
+  border-radius: var(--akari-radius);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.post-comments .tk-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.post-comments .tk-meta-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.post-comments .el-input-group {
+  border-radius: var(--akari-radius) !important;
+  overflow: hidden !important;
+  border: 1px solid var(--akari-border) !important;
+  background-color: rgba(0, 0, 0, 0.18) !important;
+}
+
+.post-comments .el-input-group__prepend {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border: none !important;
+  border-right: 1px solid var(--akari-border) !important;
+  color: var(--akari-muted) !important;
+  font-size: 0.82rem !important;
+  padding: 0 12px !important;
+  white-space: nowrap !important;
+}
+
+.post-comments .el-input__inner {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--akari-text) !important;
+  font-family: var(--akari-font-sans) !important;
+  font-size: 0.88rem !important;
+  padding: 8px 12px !important;
+  border-radius: 0 !important;
+}
+
+.post-comments .el-input__inner::placeholder {
+  color: var(--akari-muted) !important;
+  opacity: 0.7;
+}
+
+.post-comments .el-input__inner:focus {
+  outline: none !important;
+  box-shadow: inset 0 0 0 1px var(--akari-accent) !important;
+}
+
+.post-comments .el-textarea {
+  border-radius: var(--akari-radius) !important;
+  overflow: hidden !important;
+  border: 1px solid var(--akari-border) !important;
+  background-color: rgba(0, 0, 0, 0.18) !important;
+  position: relative;
+}
+
+.post-comments .el-textarea__inner {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--akari-text) !important;
+  font-family: var(--akari-font-sans) !important;
+  font-size: 0.92rem !important;
+  line-height: 1.7 !important;
+  padding: 12px 14px !important;
+  border-radius: var(--akari-radius) !important;
+  resize: vertical !important;
+  min-height: 90px !important;
+}
+
+.post-comments .el-textarea__inner::placeholder {
+  color: var(--akari-muted) !important;
+  opacity: 0.7;
+}
+
+.post-comments .el-textarea__inner:focus {
+  outline: none !important;
+  box-shadow: inset 0 0 0 1px var(--akari-accent) !important;
+}
+
+.post-comments .el-input__count {
+  color: var(--akari-muted) !important;
+  font-size: 0.75rem !important;
+  background: transparent !important;
+}
+
+.post-comments .tk-row.actions {
+  margin-top: 12px;
+  gap: 10px;
+  align-items: center;
+}
+
+.post-comments .el-button {
+  border-radius: 999px !important;
+  font-family: var(--akari-font-sans) !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  padding: 8px 20px !important;
+  border: 1px solid var(--akari-border) !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: var(--akari-text) !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+  height: auto !important;
+}
+
+.post-comments .el-button:hover {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.20) !important;
+  color: #fff !important;
+}
+
+.post-comments .el-button--primary,
+.post-comments .el-button--primary:focus {
+  background-color: rgba(10, 132, 255, 0.85) !important;
+  border-color: rgba(10, 132, 255, 0.50) !important;
+  color: #fff !important;
+}
+
+.post-comments .el-button--primary:hover,
+.post-comments .el-button--primary:active,
+.post-comments .el-button--primary.is-active {
+  background-color: rgba(10, 132, 255, 1) !important;
+  border-color: rgba(10, 132, 255, 0.70) !important;
+  color: #fff !important;
+}
+
+.post-comments .tk-preview {
+  border-radius: 999px !important;
+  font-family: var(--akari-font-sans) !important;
+  font-size: 0.82rem !important;
+  padding: 8px 20px !important;
+  border: 1px solid var(--akari-border) !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: var(--akari-text) !important;
+}
+
+.post-comments .tk-send {
+  border-radius: 999px !important;
+  font-family: var(--akari-font-sans) !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  padding: 8px 22px !important;
+  background-color: rgba(10, 132, 255, 0.85) !important;
+  border-color: rgba(10, 132, 255, 0.50) !important;
+  color: #fff !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.post-comments .tk-send:hover {
+  background-color: rgba(10, 132, 255, 1) !important;
+}
+
+.post-comments .tk-submit-action-icon {
+  color: var(--akari-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.post-comments .tk-submit-action-icon:hover {
+  color: var(--akari-text);
+}
+
+.post-comments .OwO .OwO-logo {
+  color: var(--akari-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.post-comments .OwO .OwO-logo:hover {
+  color: var(--akari-text);
+}
+
+.post-comments .OwO .OwO-body {
+  border-radius: var(--akari-radius-xl);
+  border: 1px solid var(--akari-glass-border);
+  background: var(--akari-surface);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+}
+
+.post-comments .OwO .OwO-items {
+  background: transparent;
+}
+
+.post-comments .OwO .OwO-item {
+  border-radius: 8px;
+  color: var(--akari-text);
+  transition: background 0.15s ease;
+}
+
+.post-comments .OwO .OwO-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.post-comments .OwO .OwO-packages .OwO-package-active {
+  color: var(--akari-accent);
+  border-bottom-color: var(--akari-accent);
+}
+
+.post-comments .tk-comments-container {
+  margin-top: 20px;
+}
+
+.post-comments .tk-comments-no {
+  color: var(--akari-muted);
+  font-size: 0.92rem;
+  padding: 24px 0;
+  text-align: center;
+}
+
+.post-comments .tk-comment {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--akari-border);
+}
+
+.post-comments .tk-comment:last-child {
+  border-bottom: none;
+}
+
+.post-comments .tk-comment .tk-avatar {
+  border-radius: var(--akari-radius);
+  overflow: hidden;
+}
+
+.post-comments .tk-comment .tk-avatar .tk-avatar-img,
+.post-comments .tk-comment .tk-avatar img {
+  border-radius: var(--akari-radius);
+}
+
+.post-comments .tk-comment .tk-nick {
+  color: var(--akari-text);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.post-comments .tk-comment .tk-nick:hover {
+  color: var(--akari-accent);
+}
+
+.post-comments .tk-comment .tk-time {
+  color: var(--akari-muted);
+  font-size: 0.78rem;
+}
+
+.post-comments .tk-comment .tk-content {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin-top: 8px;
+}
+
+.post-comments .tk-comment .tk-content p {
+  margin: 0.4em 0;
+}
+
+.post-comments .tk-comment .tk-content a {
+  color: var(--akari-accent);
+  text-decoration: none;
+}
+
+.post-comments .tk-comment .tk-content a:hover {
+  text-decoration: underline;
+}
+
+.post-comments .tk-comment .tk-content img {
+  border-radius: var(--akari-radius);
+  max-width: 100%;
+}
+
+.post-comments .tk-comment .tk-content blockquote {
+  border-left: 3px solid var(--akari-accent);
+  margin: 8px 0;
+  padding: 4px 12px;
+  color: var(--akari-muted);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0 var(--akari-radius) var(--akari-radius) 0;
+}
+
+.post-comments .tk-comment .tk-content code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.85em;
+}
+
+.post-comments .tk-comment .tk-content pre {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 14px;
+  border-radius: var(--akari-radius);
+  overflow-x: auto;
+}
+
+.post-comments .tk-comment .tk-content pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+.post-comments .tk-comment .tk-reply {
+  color: var(--akari-muted);
+  font-size: 0.82rem;
+  transition: color 0.2s ease;
+}
+
+.post-comments .tk-comment .tk-reply:hover {
+  color: var(--akari-accent);
+}
+
+.post-comments .tk-comment .tk-replies {
+  margin-top: 12px;
+  padding-left: 24px;
+  border-left: 2px solid var(--akari-border);
+}
+
+.post-comments .tk-comment .tk-replies .tk-comment {
+  padding: 12px 0;
+}
+
+.post-comments .tk-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--akari-border);
+  color: var(--akari-muted);
+  font-size: 0.78rem;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.post-comments .tk-footer a {
+  color: var(--akari-accent);
+  text-decoration: none;
+}
+
+.post-comments .tk-footer a:hover {
+  text-decoration: underline;
+}
+
+.post-comments .tk-error-message {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  padding: 8px 0;
+}
+
+.post-comments .tk-loading {
+  color: var(--akari-muted);
+  font-size: 0.88rem;
+  padding: 24px 0;
+  text-align: center;
+}
+
+.post-comments .el-loading-mask {
+  background: rgba(14, 17, 23, 0.6);
+  border-radius: var(--akari-radius);
+}
+
+.post-comments .el-loading-spinner .circular {
+  stroke: var(--akari-accent);
+}
+
+.post-comments .tk-login {
+  margin-top: 4px;
+}
+
+.post-comments .tk-login a {
+  color: var(--akari-accent);
+  text-decoration: none;
+}
+
+.post-comments .tk-login a:hover {
+  text-decoration: underline;
+}
+
+.post-comments .tk-turnstile-container,
+.post-comments .tk-turnstile {
+  margin-top: 10px;
+}
+
+.post-comments .tk-input-image .el-input__inner {
+  border-radius: var(--akari-radius);
+}
+
+.post-comments .el-input__suffix {
+  color: var(--akari-muted);
+}
+
 .locale-chooser {
   max-width: 760px;
   margin: 8vh auto;
