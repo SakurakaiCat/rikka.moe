@@ -100,14 +100,12 @@ const languageOptions = LOCALES.map((loc) => {
           <p class="akari-books-badge">{copy.overview.funcBadge}</p>
           <h3>{copy.overview.funcTitle}</h3>
           <p>{copy.overview.funcBody}</p>
-          <div class="akari-books-update"><i class="ph ph-git-commit"></i><span>{copy.overview.latest}</span><span data-github-latest="WritingMathBooks/func-math-book">{copy.overview.loading}</span></div>
         </article>
         <article class="akari-books-card glass-card">
           <i class="ph ph-books"></i>
           <p class="akari-books-badge">{copy.overview.journeyBadge}</p>
           <h3>{copy.overview.journeyTitle}</h3>
           <p>{copy.overview.journeyBody}</p>
-          <div class="akari-books-update"><i class="ph ph-git-commit"></i><span>{copy.overview.latest}</span><span data-github-latest="ShinozakiKasumi/ProjectA-journey">{copy.overview.loading}</span></div>
         </article>
       </div>
     </section>
@@ -235,26 +233,8 @@ const languageOptions = LOCALES.map((loc) => {
     </section>
   </article>
 
-  <script is:inline define:vars={{ dateLocale: copy.dateLocale }}>
+  <script is:inline>
     (function () {
-      function formatDate(value) {
-        if (!value) return '—';
-        var date = new Date(value);
-        if (Number.isNaN(date.getTime())) return '—';
-        return date.toLocaleDateString(dateLocale, { year: 'numeric', month: 'long', day: 'numeric' });
-      }
-      document.querySelectorAll('[data-github-latest]').forEach(function (node) {
-        var repo = node.getAttribute('data-github-latest');
-        if (!repo) return;
-        fetch('https://api.github.com/repos/' + repo + '/commits?per_page=1', { headers: { Accept: 'application/vnd.github.v3+json' } })
-          .then(function (response) { return response.ok ? response.json() : Promise.reject(); })
-          .then(function (data) {
-            var date = Array.isArray(data) && data[0] && data[0].commit && data[0].commit.committer && data[0].commit.committer.date;
-            node.textContent = formatDate(date);
-          })
-          .catch(function () { node.textContent = '—'; });
-      });
-
       var errataTabs = document.querySelectorAll('[data-errata-tab]');
       var errataPanels = document.querySelectorAll('[data-errata-panel]');
       errataTabs.forEach(function (tab) {
