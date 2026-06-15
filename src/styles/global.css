@@ -1035,6 +1035,31 @@ img {
   background: rgba(0, 0, 0, 0.38);
 }
 
+.code-block {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.code-copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--akari-glass-border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--akari-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2;
+}
+
 .article-prose code {
   padding: 0.12em 0.35em;
   border-radius: 0.35em;
@@ -1837,6 +1862,86 @@ img {
   .article-prose {
     padding: 24px;
     font-size: 17px;
+  }
+
+  .post-comments {
+    padding: 18px;
+  }
+
+  .post-comments .twikoo,
+  .post-comments .tk-comments,
+  .post-comments .tk-comments-container,
+  .post-comments .tk-main {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .post-comments img,
+  .post-comments iframe,
+  .post-comments video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .article-appbar-rail {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .article-capsule--trailing {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .article-capsule--trailing a,
+  .article-capsule--trailing span {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+
+  .article-hero-card {
+    padding: clamp(20px, 5vw, 32px);
+  }
+
+  .article-hero-card h1 {
+    font-size: clamp(1.6rem, 7vw, 2.25rem);
+  }
+
+  .article-hero-card p {
+    font-size: clamp(0.95rem, 4vw, 1.1rem);
+  }
+
+  .article-prose img,
+  .article-prose video,
+  .article-prose iframe,
+  .article-prose embed,
+  .article-prose object {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .article-prose iframe {
+    display: block;
+  }
+
+  .article-prose table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+  }
+
+  .article-prose code {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .code-copy {
+    top: 6px;
+    right: 6px;
+    min-width: 40px;
+    min-height: 40px;
+    font-size: 0.7rem;
   }
 }
 
