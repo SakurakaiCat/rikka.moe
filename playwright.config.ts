@@ -7,7 +7,13 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'list',
+  webServer: {
+    command: 'npm run preview',
+    port: 4321,
+    reuseExistingServer: !process.env.CI,
+  },
   use: {
+    baseURL: 'http://localhost:4321',
     trace: 'on-first-retry',
   },
 });
