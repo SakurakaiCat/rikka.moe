@@ -1307,6 +1307,16 @@ img {
   color: var(--akari-muted);
   cursor: pointer;
   transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.post-comments .tk-submit-action-icon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .post-comments .tk-submit-action-icon:hover {
@@ -1368,6 +1378,8 @@ img {
 .post-comments .tk-admin-container {
   position: relative;
   inset: auto;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .post-comments .tk-comment {
@@ -1874,6 +1886,28 @@ img {
   .post-comments .tk-main {
     max-width: 100%;
     min-width: 0;
+  }
+
+  .post-comments .tk-meta-input {
+    flex-wrap: wrap;
+  }
+
+  .post-comments .tk-meta-input .el-input-group {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .post-comments .tk-admin {
+    max-width: 100%;
+    overflow-x: hidden;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  .post-comments .tk-login {
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .post-comments img,
