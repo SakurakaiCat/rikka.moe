@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+.omo/
+.playwright-mcp/
+test-results/
+.wrangler/
+twikoo-*.png
