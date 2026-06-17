@@ -1,0 +1,878 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic: ❆
+    - generic: ❆
+    - generic: •
+    - generic: •
+    - generic: ❆
+    - generic: ❅
+    - generic: ❄
+    - generic: ❄
+    - generic: •
+    - generic: ❅
+    - generic: ❄
+    - generic: •
+    - generic: ❅
+    - generic: ❄
+    - generic: ·
+    - generic: ❄
+    - generic: •
+    - generic: ❄
+    - generic: ❆
+    - generic: ❆
+    - generic: ❅
+    - generic: •
+    - generic: •
+    - generic: ❆
+    - generic: ❄
+    - generic: ❄
+    - generic: ·
+    - generic: ❆
+    - generic: ❆
+    - generic: •
+    - generic: ·
+    - generic: ❅
+    - generic: ❅
+    - generic: •
+    - generic: ❄
+    - generic: •
+    - generic: ❅
+    - generic: •
+    - generic: ·
+    - generic: ❆
+    - generic: ❄
+    - generic: ❄
+    - generic: ❄
+    - generic: •
+    - generic: ·
+    - generic: •
+    - generic: ❅
+    - generic: ❅
+    - generic: ❅
+    - generic: ·
+  - banner:
+    - generic:
+      - button "Open menu" [ref=e3] [cursor=pointer]:
+        - generic [ref=e4]: 
+      - link "The Complete Giffgaff UK SIM Card Guide" [ref=e6] [cursor=pointer]:
+        - /url: /en/
+        - generic [ref=e7]: The Complete Giffgaff UK SIM Card Guide
+      - generic [ref=e8]:
+        - button "Search" [ref=e9] [cursor=pointer]:
+          - generic [ref=e10]: 
+        - button "Switch language" [ref=e11] [cursor=pointer]:
+          - generic [ref=e12]: 
+        - button "Settings" [ref=e13] [cursor=pointer]:
+          - generic [ref=e14]: 
+  - text:  
+  - complementary:
+    - generic:
+      - generic:
+        - img
+        - generic:
+          - strong: Akari
+          - generic: Notes, fragments, and a little light left behind.
+        - button:
+          - generic: 
+      - navigation:
+        - link:
+          - /url: /en/
+          - generic: 
+          - generic: Home
+        - link:
+          - /url: /en/archives/
+          - generic: 
+          - generic: Archive
+        - link:
+          - /url: /en/categories/essays/
+          - generic: 
+          - generic: Categories
+        - link:
+          - /url: /en/about/
+          - generic: 
+          - generic: About
+        - link:
+          - /url: /en/books/
+          - generic: 
+          - generic: Books
+        - link:
+          - /url: /projects/
+          - generic: 
+          - generic: Projects
+        - link:
+          - /url: /en/guestbook/
+          - generic: 
+          - generic: Guestbook
+        - link:
+          - /url: https://github.com/ShinozakiKasumi
+          - generic: 
+          - generic: GitHub
+  - main [ref=e15]:
+    - article [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - link " Essays" [ref=e19] [cursor=pointer]:
+            - /url: /en/archives/
+            - generic [ref=e20]: 
+            - generic [ref=e21]: Essays
+          - generic [ref=e22]:
+            - generic [ref=e23]: 2026-05-17
+            - generic [ref=e24]: Akari / 篠崎香澄
+            - link "Essays" [ref=e25] [cursor=pointer]:
+              - /url: /en/categories/essays/
+        - generic [ref=e26]:
+          - generic [ref=e27]: Essays
+          - heading "The Complete Giffgaff UK SIM Card Guide" [level=1] [ref=e28]
+          - paragraph [ref=e29]: A UK physical SIM card — no ID required, zero monthly fees, free incoming texts. From activation and number-keeping to receiving verification codes and switching to eSIM, everything you need to know is here.
+        - figure [ref=e30]:
+          - img "The Complete Giffgaff UK SIM Card Guide" [ref=e31]
+      - generic [ref=e32]:
+        - navigation "Table of Contents" [ref=e33]:
+          - strong [ref=e34]: Table of Contents
+          - generic [ref=e35]:
+            - link "Foreword" [ref=e36] [cursor=pointer]:
+              - /url: "#foreword"
+            - link "1. What Is giffgaff?" [ref=e37] [cursor=pointer]:
+              - /url: "#1-what-is-giffgaff"
+            - link "Why Choose It" [ref=e38] [cursor=pointer]:
+              - /url: "#why-choose-it"
+            - link "Blank Cards vs Pre-loaded Cards" [ref=e39] [cursor=pointer]:
+              - /url: "#blank-cards-vs-pre-loaded-cards"
+            - link "2. Activation and Top-up" [ref=e40] [cursor=pointer]:
+              - /url: "#2-activation-and-top-up"
+            - link "What to Prepare Before Activation" [ref=e41] [cursor=pointer]:
+              - /url: "#what-to-prepare-before-activation"
+            - link "Activation Process" [ref=e42] [cursor=pointer]:
+              - /url: "#activation-process"
+            - link "3. Mainland China Roaming Tariffs" [ref=e43] [cursor=pointer]:
+              - /url: "#3-mainland-china-roaming-tariffs"
+            - link "Charged £0.01 (~¥0.09) After Activation?" [ref=e44] [cursor=pointer]:
+              - /url: "#charged-001-009-after-activation"
+            - link "4. Four Things to Do Immediately with a New Card" [ref=e45] [cursor=pointer]:
+              - /url: "#4-four-things-to-do-immediately-with-a-new-card"
+            - 'link "First: Disable Voicemail" [ref=e46] [cursor=pointer]':
+              - /url: "#first-disable-voicemail"
+            - 'link "Second: iPhone Users — Do NOT Activate iMessage and FaceTime" [ref=e47] [cursor=pointer]':
+              - /url: "#second-iphone-users--do-not-activate-imessage-and-facetime"
+            - 'link "Third: Turn Off Data Roaming" [ref=e48] [cursor=pointer]':
+              - /url: "#third-turn-off-data-roaming"
+            - 'link "Fourth: Understand the Number Format" [ref=e49] [cursor=pointer]':
+              - /url: "#fourth-understand-the-number-format"
+            - 'link "5. Number-Keeping Guide: The 180-Day Rule" [ref=e50] [cursor=pointer]':
+              - /url: "#5-number-keeping-guide-the-180-day-rule"
+            - link "What Counts as Balance Activity" [ref=e51] [cursor=pointer]:
+              - /url: "#what-counts-as-balance-activity"
+            - link "The Cheapest Number-Keeping Method" [ref=e52] [cursor=pointer]:
+              - /url: "#the-cheapest-number-keeping-method"
+            - link "How to Check Your Number-Keeping Deadline" [ref=e53] [cursor=pointer]:
+              - /url: "#how-to-check-your-number-keeping-deadline"
+            - link "Don’t Be Fooled by the “3 Months Until Expiry” on the Dashboard" [ref=e54] [cursor=pointer]:
+              - /url: "#dont-be-fooled-by-the-3-months-until-expiry-on-the-dashboard"
+            - link "What If You Forget to Keep the Number Active" [ref=e55] [cursor=pointer]:
+              - /url: "#what-if-you-forget-to-keep-the-number-active"
+            - link "6. Resetting Your Password and Changing Your Email" [ref=e56] [cursor=pointer]:
+              - /url: "#6-resetting-your-password-and-changing-your-email"
+            - link "Resetting Your Password" [ref=e57] [cursor=pointer]:
+              - /url: "#resetting-your-password"
+            - link "Changing Your Registered Email" [ref=e58] [cursor=pointer]:
+              - /url: "#changing-your-registered-email"
+            - link "7. Registering for Overseas Apps" [ref=e59] [cursor=pointer]:
+              - /url: "#7-registering-for-overseas-apps"
+            - link "Number Format Rules" [ref=e60] [cursor=pointer]:
+              - /url: "#number-format-rules"
+            - link "Troublesome Apps" [ref=e61] [cursor=pointer]:
+              - /url: "#troublesome-apps"
+            - link "Apps You Can Register" [ref=e62] [cursor=pointer]:
+              - /url: "#apps-you-can-register"
+            - link "Apps That Are Difficult to Register" [ref=e63] [cursor=pointer]:
+              - /url: "#apps-that-are-difficult-to-register"
+            - link "8. Converting Physical SIM to eSIM" [ref=e64] [cursor=pointer]:
+              - /url: "#8-converting-physical-sim-to-esim"
+            - link "Prerequisites" [ref=e65] [cursor=pointer]:
+              - /url: "#prerequisites"
+            - link "Conversion Steps" [ref=e66] [cursor=pointer]:
+              - /url: "#conversion-steps"
+            - link "Possible Errors" [ref=e67] [cursor=pointer]:
+              - /url: "#possible-errors"
+            - link "What to Do When You Get a New Phone" [ref=e68] [cursor=pointer]:
+              - /url: "#what-to-do-when-you-get-a-new-phone"
+            - link "eSIM Backup Phones Under ¥2000" [ref=e69] [cursor=pointer]:
+              - /url: "#esim-backup-phones-under-2000"
+            - link "9. Changing Your Number" [ref=e70] [cursor=pointer]:
+              - /url: "#9-changing-your-number"
+            - link "Before Changing" [ref=e71] [cursor=pointer]:
+              - /url: "#before-changing"
+            - link "Steps" [ref=e72] [cursor=pointer]:
+              - /url: "#steps"
+            - link "After Changing" [ref=e73] [cursor=pointer]:
+              - /url: "#after-changing"
+            - link "10. Frequently Asked Questions" [ref=e74] [cursor=pointer]:
+              - /url: "#10-frequently-asked-questions"
+            - link "Number Format" [ref=e75] [cursor=pointer]:
+              - /url: "#number-format"
+            - link "Signal and Texting" [ref=e76] [cursor=pointer]:
+              - /url: "#signal-and-texting"
+            - link "Tariffs and Pitfalls" [ref=e77] [cursor=pointer]:
+              - /url: "#tariffs-and-pitfalls"
+            - link "11. Quick Commands and Useful Links" [ref=e78] [cursor=pointer]:
+              - /url: "#11-quick-commands-and-useful-links"
+            - link "Phone Commands" [ref=e79] [cursor=pointer]:
+              - /url: "#phone-commands"
+            - link "Useful Web Links" [ref=e80] [cursor=pointer]:
+              - /url: "#useful-web-links"
+            - link "Quick Reference Card" [ref=e81] [cursor=pointer]:
+              - /url: "#quick-reference-card"
+        - generic [ref=e82]:
+          - generic [ref=e83]:
+            - generic [ref=e84]: AI summary
+            - text: "An end-to-end practical guide to giffgaff UK SIM cards, written for anyone who needs a long-term overseas phone number without paying Google Voice prices. The core takeaway: **giffgaff Pay as you go is currently the most cost-effective offshore number-keeping solution** — no ID required, zero monthly fees, free incoming texts, and keeping a number active costs roughly ¥5 (≈$0.70) per year."
+            - paragraph [ref=e85]: "Coverage:"
+            - list [ref=e86]:
+              - listitem [ref=e87]:
+                - strong [ref=e88]: Card type
+                - text: ": Blank vs pre-loaded, and why you should never use a virtual credit card"
+              - listitem [ref=e89]:
+                - strong [ref=e90]: Activation & top-up
+                - text: ": Use PAYG on the official site (ignore the default monthly plans), address field accepts Chinese pinyin"
+              - listitem [ref=e91]:
+                - strong [ref=e92]: Receiving verification codes for overseas apps
+                - text: ": Practical tips for ChatGPT, WhatsApp, Telegram, etc."
+              - listitem [ref=e93]:
+                - strong [ref=e94]: Number-keeping strategy
+                - text: ": One text every 6 months; £10 balance can theoretically last 25 years"
+              - listitem [ref=e95]:
+                - strong [ref=e96]: Advanced
+                - text: ": Converting to eSIM, changing numbers, enabling WiFi Calling domestically"
+            - paragraph [ref=e97]:
+              - text: Works as a reference manual for “long-term maintenance of a UK number.”
+              - strong [ref=e98]: For legal code-receiving and personal communication only — do not use for fraud.
+            - generic [ref=e99]: Summary powered by DeepSeek V4 Pro
+          - heading "Foreword" [level=2] [ref=e100]
+          - paragraph [ref=e101]: To register for overseas services like ChatGPT, WhatsApp, or Telegram from within China, you need a foreign phone number to receive verification codes. Google Voice is expensive and prone to reclamation; virtual code-receiving platforms tighten their risk controls year after year. After weighing the options, a physical giffgaff SIM card from the UK is probably the most cost-effective path — no ID required, no monthly fees, incoming texts are completely free, and keeping a number alive for a year costs only about five yuan.
+          - paragraph [ref=e102]: This article covers activation, top-up, number-keeping, tariffs, registering overseas apps, switching to eSIM, and changing your number.
+          - separator [ref=e103]
+          - heading "1. What Is giffgaff?" [level=2] [ref=e104]
+          - paragraph [ref=e105]: giffgaff is a UK low-cost mobile virtual network operator riding on O2, one of the UK’s three major carriers. Founded in 2009, it has no physical stores and no phone-based customer service — everything runs through the website and app. Operating costs are squeezed low, and so is the price for users.
+          - paragraph [ref=e106]:
+            - img "giffgaff Introduction and Features" [ref=e107]
+          - heading "Why Choose It" [level=3] [ref=e108]
+          - list [ref=e109]:
+            - listitem [ref=e110]: Issues a real UK physical number, not a virtual number range — regarded as “clean” by major platforms
+            - listitem [ref=e111]: Supports eSIM; devices from 2021 onwards can self-convert in the official app
+            - listitem [ref=e112]: Supports WiFi Calling (calling and texting over WiFi instead of cellular; available natively in the UK; can be enabled domestically with a UK IP or routing rules, but requires being physically in the UK)
+            - listitem [ref=e113]: Choose Pay as you go — zero monthly fees, no fixed charges whatsoever
+            - listitem [ref=e114]: No ID required; just fill in any non-duplicate Chinese pinyin address when topping up with official vouchers
+            - listitem [ref=e115]: "Incoming texts are completely free — this is the card’s primary use case in China: receiving verification codes at zero cost"
+            - listitem [ref=e116]: Roaming works in China on China Mobile or China Unicom towers
+            - listitem [ref=e117]: "Number-keeping cost is extremely low: send one text every six months to trigger a balance change; a £10 (~¥90) top-up can theoretically keep the number alive for 25 years"
+          - heading "Blank Cards vs Pre-loaded Cards" [level=3] [ref=e118]
+          - paragraph [ref=e119]: "Giffgaff cards available on the market come in two types:"
+          - table [ref=e120]:
+            - rowgroup [ref=e121]:
+              - row "Card Type Description" [ref=e122]:
+                - columnheader "Card Type" [ref=e123]
+                - columnheader "Description" [ref=e124]
+            - rowgroup [ref=e125]:
+              - row "Blank card A brand-new unactivated card with no balance and no phone number. You must top up at least £10 (~¥90) with a VISA or MasterCard to activate it" [ref=e126]:
+                - cell "Blank card" [ref=e127]
+                - cell "A brand-new unactivated card with no balance and no phone number. You must top up at least £10 (~¥90) with a VISA or MasterCard to activate it" [ref=e128]
+              - row "Pre-loaded card The seller tops up £15 (~¥135) and activates it on the day of purchase. Insert the card and use it directly — no personal information required" [ref=e129]:
+                - cell "Pre-loaded card" [ref=e130]
+                - cell "The seller tops up £15 (~¥135) and activates it on the day of purchase. Insert the card and use it directly — no personal information required" [ref=e131]
+          - paragraph [ref=e132]:
+            - img "Blank Card vs Pre-loaded Card" [ref=e133]
+          - separator [ref=e134]
+          - heading "2. Activation and Top-up" [level=2] [ref=e135]
+          - paragraph [ref=e136]: Strictly follow local laws and regulations. Do not use this card for telecom fraud or spam messaging — you bear all consequences.
+          - heading "What to Prepare Before Activation" [level=3] [ref=e137]
+          - list [ref=e138]:
+            - listitem [ref=e139]: A giffgaff SIM card with a 6-digit Activation Code printed on it
+            - listitem [ref=e140]: A credit or debit card with a VISA or MasterCard logo — UnionPay, JCB, and American Express are not accepted
+            - listitem [ref=e141]: Never use a virtual credit card. It may occasionally succeed, but easily triggers risk controls; if the card is locked and funds frozen, the loss far outweighs the gain
+            - listitem [ref=e142]: At least £10 in top-up budget
+          - paragraph [ref=e143]: If you don’t have a suitable foreign-currency card, you can use an activation proxy service.
+          - heading "Activation Process" [level=3] [ref=e144]
+          - paragraph [ref=e145]: "The logic is simple: top up £10 (~¥90), the system assigns you a random UK phone number, insert the card and you’re good to go."
+          - list [ref=e146]:
+            - listitem [ref=e147]:
+              - text: Open
+              - link "giffgaff.com/activate" [ref=e148] [cursor=pointer]:
+                - /url: https://www.giffgaff.com/activate
+              - text: ", enter the 6-digit code from your card, click Activate your SIM"
+            - listitem [ref=e149]: Enter your email, set a password, click Register
+            - listitem [ref=e150]: "Choose a plan — this step is critical: the page pushes a bunch of monthly plans. Ignore them, scroll to the bottom to find Pay as you go (pay-per-use, no monthly fee), select it and click Continue"
+            - listitem [ref=e151]: Select £10 (~¥90) as the top-up amount — this is the minimum activation threshold — click Pay now
+            - listitem [ref=e152]: "Fill in personal info: name in pinyin is fine; for the address, select China as the country so you don’t need to verify a UK address; just write your domestic address in pinyin in the street field"
+            - listitem [ref=e153]: Enter your card details, tick the agreement box, click Place order. Some banks will redirect to a 3DS verification page — just wait for it to load
+            - listitem [ref=e154]: After payment, the page shows your assigned UK number and balance. If you see “extra £5 credit,” the new-user bonus has also arrived
+          - paragraph [ref=e155]:
+            - img "Activation Steps Screenshot" [ref=e156]
+          - paragraph [ref=e157]: After activation, wait for a signal — usually less than an hour, but it can take up to a day. When your phone picks up a China Mobile or China Unicom signal after inserting the card, activation is confirmed.
+          - separator [ref=e158]
+          - heading "3. Mainland China Roaming Tariffs" [level=2] [ref=e159]
+          - paragraph [ref=e160]: Giffgaff’s roaming in China falls under the “Rest of the World” bracket, with no monthly plan applying — everything is deducted from your account balance.
+          - table [ref=e161]:
+            - rowgroup [ref=e162]:
+              - row "Service Tariff Approx. CNY Notes" [ref=e163]:
+                - columnheader "Service" [ref=e164]
+                - columnheader "Tariff" [ref=e165]
+                - columnheader "Approx. CNY" [ref=e166]
+                - columnheader "Notes" [ref=e167]
+            - rowgroup [ref=e168]:
+              - row "Incoming texts Free Free The card’s primary use in China — receive verification codes at no cost" [ref=e169]:
+                - cell "Incoming texts" [ref=e170]
+                - cell "Free" [ref=e171]
+                - cell "Free" [ref=e172]
+                - cell "The card’s primary use in China — receive verification codes at no cost" [ref=e173]
+              - row "Outgoing texts 30p/text ~¥2.7/text For number-keeping texts and occasional verification code sending" [ref=e174]:
+                - cell "Outgoing texts" [ref=e175]
+                - cell "30p/text" [ref=e176]
+                - cell "~¥2.7/text" [ref=e177]
+                - cell "For number-keeping texts and occasional verification code sending" [ref=e178]
+              - row "Outgoing MMS 30p/text ~¥2.7/text Sending pictures to UK/EU; other regions 24p (~¥2.2) — use WeChat/WhatsApp instead" [ref=e179]:
+                - cell "Outgoing MMS" [ref=e180]
+                - cell "30p/text" [ref=e181]
+                - cell "~¥2.7/text" [ref=e182]
+                - cell "Sending pictures to UK/EU; other regions 24p (~¥2.2) — use WeChat/WhatsApp instead" [ref=e183]
+              - row "Incoming calls £1/min ~¥9/min Per-minute billing; avoid answering unless necessary" [ref=e184]:
+                - cell "Incoming calls" [ref=e185]
+                - cell "£1/min" [ref=e186]
+                - cell "~¥9/min" [ref=e187]
+                - cell "Per-minute billing; avoid answering unless necessary" [ref=e188]
+              - row "Outgoing calls £1/min ~¥9/min Same rate for calls to China, UK, and voicemail" [ref=e189]:
+                - cell "Outgoing calls" [ref=e190]
+                - cell "£1/min" [ref=e191]
+                - cell "~¥9/min" [ref=e192]
+                - cell "Same rate for calls to China, UK, and voicemail" [ref=e193]
+              - row "Mobile data 20p/MB ~¥1.8/MB Works out to £200/GB, i.e., ~¥1800/GB. Turn off data roaming without fail" [ref=e194]:
+                - cell "Mobile data" [ref=e195]
+                - cell "20p/MB" [ref=e196]
+                - cell "~¥1.8/MB" [ref=e197]
+                - cell "Works out to £200/GB, i.e., ~¥1800/GB. Turn off data roaming without fail" [ref=e198]
+          - paragraph [ref=e199]:
+            - img "Roaming Rates Screenshot" [ref=e200]
+          - paragraph [ref=e201]: "Exchange rate reference: 100 pence (p) = £1; £1 ≈ ¥9. ”~¥” throughout the article refers to approximate CNY equivalents."
+          - heading "Charged £0.01 (~¥0.09) After Activation?" [level=3] [ref=e202]
+          - paragraph [ref=e203]: This is normal. When the SIM first registers on a domestic network, the phone sends a tiny handshake data packet — a few KB of data triggers a charge of 1p (~¥0.09). This only happens once; it won’t recur after you turn off data roaming.
+          - separator [ref=e204]
+          - heading "4. Four Things to Do Immediately with a New Card" [level=2] [ref=e205]
+          - 'heading "First: Disable Voicemail" [level=3] [ref=e206]'
+          - paragraph [ref=e207]: Giffgaff has voicemail enabled by default. Calls you don’t answer are automatically forwarded to it and billed at £1/min (~¥9/min) — even if you never listen to the message.
+          - paragraph [ref=e208]:
+            - strong [ref=e209]: Method 1
+            - text: ": Dial"
+            - code [ref=e210]: "##002#"
+            - text: from the dialer. This is the standard approach, but it often fails while roaming in mainland China, showing “connection error” or “invalid MMI code.”
+          - paragraph [ref=e211]:
+            - strong [ref=e212]: Method 2
+            - text: "(Recommended): Contact customer support. Log in at"
+            - link "giffgaff.com/support/ask" [ref=e213] [cursor=pointer]:
+              - /url: https://www.giffgaff.com/support/ask
+            - text: ", select Category: Account misuse and security issues → Other, and paste this into the description box:"
+          - blockquote [ref=e214]:
+            - paragraph [ref=e215]: "Hi team, I am unable to disable my voicemail via the code ##002# while roaming. I have tried multiple times but failed. Please assist me in disabling the voicemail feature from the system end to avoid roaming charges. Thank you!"
+          - paragraph [ref=e216]: Then click Send to agent. Support typically handles it within 24 hours and notifies you by email. After it’s disabled, test by calling yourself — if you get “number not available,” it worked; if you reach voicemail, it hasn’t been disabled yet.
+          - paragraph [ref=e217]:
+            - strong [ref=e218]: Method 3
+            - text: ": Some users report that"
+            - code [ref=e219]: "##002#"
+            - text: works when WiFi Calling is enabled, but this only applies when you’re physically in the UK with a valid plan or balance. It essentially doesn’t work in China.
+          - 'heading "Second: iPhone Users — Do NOT Activate iMessage and FaceTime" [level=3] [ref=e220]'
+          - paragraph [ref=e221]: After inserting the card, iOS will prompt you to activate both. You must tap Cancel. While activation itself is free, the phone sends a silent SMS to UK servers, which costs £0.30 (~¥2.7).
+          - 'heading "Third: Turn Off Data Roaming" [level=3] [ref=e222]'
+          - paragraph [ref=e223]: Disable data roaming for this card in your phone settings. Roaming data is £200/GB; any background app leaking a little data can cost several pounds in seconds.
+          - 'heading "Fourth: Understand the Number Format" [level=3] [ref=e224]'
+          - paragraph [ref=e225]: "This is the most common source of confusion for new users:"
+          - table [ref=e226]:
+            - rowgroup [ref=e227]:
+              - row "Scenario Format Example" [ref=e228]:
+                - columnheader "Scenario" [ref=e229]
+                - columnheader "Format" [ref=e230]
+                - columnheader "Example" [ref=e231]
+            - rowgroup [ref=e232]:
+              - row "Logging into giffgaff website or app 07xxxxxxxxx — keep the leading 0 07547123456" [ref=e233]:
+                - cell "Logging into giffgaff website or app" [ref=e234]
+                - cell "07xxxxxxxxx — keep the leading 0" [ref=e235]
+                - cell "07547123456" [ref=e236]
+              - row "Registering for overseas apps (Telegram, WhatsApp, etc.) +44 7xxxxxxxxx — drop the leading 0 +44 7547123456" [ref=e237]:
+                - cell "Registering for overseas apps (Telegram, WhatsApp, etc.)" [ref=e238]
+                - cell "+44 7xxxxxxxxx — drop the leading 0" [ref=e239]
+                - cell "+44 7547123456" [ref=e240]
+          - separator [ref=e241]
+          - 'heading "5. Number-Keeping Guide: The 180-Day Rule" [level=2] [ref=e242]'
+          - paragraph [ref=e243]: "Giffgaff numbers have zero monthly fees but are not permanently valid. The terms are clear: if a card has no balance activity for 180 consecutive days, the number is frozen, then deactivated, and the balance is forfeited — unrecoverable."
+          - heading "What Counts as Balance Activity" [level=3] [ref=e244]
+          - paragraph [ref=e245]: "Valid actions (any one suffices):"
+          - list [ref=e246]:
+            - listitem [ref=e247]: Send a text — the cheapest option, only £0.30 (~¥2.7)
+            - listitem [ref=e248]: Make a phone call (must connect)
+            - listitem [ref=e249]: Use mobile data, even just 1KB
+            - listitem [ref=e250]: Top up your account, minimum £10 (~¥90)
+          - paragraph [ref=e251]: "Invalid actions:"
+          - list [ref=e252]:
+            - listitem [ref=e253]: Logging into the website or app — no balance change, doesn’t count
+            - listitem [ref=e254]: Receiving texts only — incoming texts are free, no balance change
+            - listitem [ref=e255]: Browsing via WiFi — that goes through WiFi, unrelated to giffgaff balance
+          - heading "The Cheapest Number-Keeping Method" [level=3] [ref=e256]
+          - paragraph [ref=e257]:
+            - text: Every 5 months, manually send one text. To anyone — even your own domestic number. Each text costs £0.30 (
+            - deletion [ref=e258]: ¥2.7); twice a year is £0.60 (
+            - text: ¥5.4). A £10 (~¥90) top-up can theoretically keep your number alive for 16 years.
+          - heading "How to Check Your Number-Keeping Deadline" [level=3] [ref=e259]
+          - list [ref=e260]:
+            - listitem [ref=e261]:
+              - text: Log in at
+              - link "giffgaff.com/orders/history" [ref=e262] [cursor=pointer]:
+                - /url: https://www.giffgaff.com/orders/history
+              - text: ", click View, find the date of your most recent charge or top-up"
+            - listitem [ref=e263]: Count forward 170 days from that date (leaving a 10-day buffer), and set a recurring reminder in your phone’s calendar
+          - heading "Don’t Be Fooled by the “3 Months Until Expiry” on the Dashboard" [level=3] [ref=e264]
+          - paragraph [ref=e265]: The bottom of the official site often shows text like “Free giffgaff to giffgaff calls and texts expire on [date]” — that’s a countdown for the free intra-network calling perk, which has nothing to do with number-keeping. As long as you have balance and activity within 180 days, your number will not be deactivated. That red date is purely a scare tactic.
+          - heading "What If You Forget to Keep the Number Active" [level=3] [ref=e266]
+          - paragraph [ref=e267]:
+            - strong [ref=e268]: Warning period
+            - text: ": About a week before the 180-day mark, giffgaff sends a warning email to your registered address. Send a text immediately after seeing it to reset the 180-day clock."
+          - paragraph [ref=e269]:
+            - strong [ref=e270]: Frozen period
+            - text: ": If you exceed 180 days with no activity, the number may already be frozen. Try topping up £10 (~¥90) immediately — if the top-up succeeds, the number can usually be recovered. If the top-up fails, the number has been reclaimed and cannot be recovered."
+          - separator [ref=e271]
+          - heading "6. Resetting Your Password and Changing Your Email" [level=2] [ref=e272]
+          - heading "Resetting Your Password" [level=3] [ref=e273]
+          - list [ref=e274]:
+            - listitem [ref=e275]:
+              - text: Open
+              - link "giffgaff.com/auth/login" [ref=e276] [cursor=pointer]:
+                - /url: https://www.giffgaff.com/auth/login
+              - text: ", click Forgot your password"
+            - listitem [ref=e277]: Select the Phone number method, click Next
+            - listitem [ref=e278]: Enter your number using the UK domestic format starting with 07 (e.g., 07547123456)
+            - listitem [ref=e279]:
+              - text: Don’t know your number? Send a text with
+              - code [ref=e280]: NUMBER
+              - text: to
+              - code [ref=e281]: "43430"
+              - text: from the phone with the card inserted — you’ll get a reply in seconds
+            - listitem [ref=e282]: Select Text message verification, click Send a reset link
+            - listitem [ref=e283]: Click the link in the text and set a new password
+          - heading "Changing Your Registered Email" [level=3] [ref=e284]
+          - paragraph [ref=e285]: Giffgaff’s notifications — low balance, roaming alerts, password resets — all go to your email. It’s a good idea to link one of your commonly used domestic email addresses.
+          - list [ref=e286]:
+            - listitem [ref=e287]:
+              - text: Log in at
+              - link "giffgaff.com/profile/details" [ref=e288] [cursor=pointer]:
+                - /url: https://www.giffgaff.com/profile/details
+              - text: ", click Profile and settings"
+            - listitem [ref=e289]: In Personal details, find My email, click Open → Change email
+            - listitem [ref=e290]: The system asks for your current password to verify your identity — so reset your password first if needed
+            - listitem [ref=e291]: Enter your new email address, click Update email
+            - listitem [ref=e292]: Go to the new email, retrieve the verification code (6 digits), click Confirm
+          - paragraph [ref=e293]: QQ Mail, NetEase 163/126, Alibaba Cloud Mail, and other mainstream Chinese email providers can all receive giffgaff emails. Using a VPN to access the official site is recommended — otherwise the verification code may fail to load.
+          - separator [ref=e294]
+          - heading "7. Registering for Overseas Apps" [level=2] [ref=e295]
+          - paragraph [ref=e296]: Giffgaff is a native UK physical number with a high success rate for registering overseas services. As long as your network environment isn’t flagged, the vast majority of overseas apps can be registered smoothly.
+          - heading "Number Format Rules" [level=3] [ref=e297]
+          - paragraph [ref=e298]: Regardless of which app you register, select United Kingdom (+44) as the country/region, and enter 10 digits in the number field — drop the leading 0. For example, if your number is 07547123456, enter 7547123456 in the app.
+          - heading "Troublesome Apps" [level=3] [ref=e299]
+          - paragraph [ref=e300]:
+            - strong [ref=e301]: Telegram
+          - paragraph [ref=e302]: "Not receiving verification codes and “too many attempts” messages are common issues. Key points: first-time registration must be done via the mobile app, not desktop or web; don’t switch proxy nodes frequently; many China-market Android phones have GMS (Google Mobile Services) stripped out, and Telegram sometimes delivers codes through Google’s channel — use an iPhone or an Android phone with full GMS installed for more reliable results."
+          - paragraph [ref=e303]:
+            - strong [ref=e304]: LINE
+          - paragraph [ref=e305]:
+            - text: "LINE has extremely strict risk controls with high demands on IP purity; ordinary proxy nodes are often flagged as risky. If you can’t receive a code through any proxy node, try briefly enabling giffgaff’s data roaming to register using native UK data — but be quick: first disable network access for all background apps (keep only LINE), then enable data roaming and tap send verification code, and immediately turn off data roaming once the code arrives. Roaming data is £0.20/MB ("
+            - deletion [ref=e306]: ¥1.8/MB); if background apps aren’t blocked, several pounds (
+            - text: ¥9+) can be deducted in seconds.
+          - paragraph [ref=e307]:
+            - strong [ref=e308]: TikTok
+          - paragraph [ref=e309]: "Easily identified as a Chinese user. Solution: insert only the giffgaff card, remove your domestic China Mobile/Unicom/Telecom card; set phone language to English and timezone to London; avoid Hong Kong and Taiwan proxy nodes — use US, Singapore, or UK nodes."
+          - paragraph [ref=e310]:
+            - strong [ref=e311]: WeChat Account Transfer
+          - paragraph [ref=e312]: In theory you can rebind a domestic WeChat account to a giffgaff number, but after rebinding the account migrates to the international server — health code, facial recognition and similar interfaces may break, and RMB wallet and financial features become unusable. Don’t attempt this unless you fully understand the consequences.
+          - heading "Apps You Can Register" [level=3] [ref=e313]
+          - table [ref=e314]:
+            - rowgroup [ref=e315]:
+              - row "Category App Notes" [ref=e316]:
+                - columnheader "Category" [ref=e317]
+                - columnheader "App" [ref=e318]
+                - columnheader "Notes" [ref=e319]
+            - rowgroup [ref=e320]:
+              - row "AI/Tools ChatGPT / OpenAI Requires system-wide proxy" [ref=e321]:
+                - cell "AI/Tools" [ref=e322]
+                - cell "ChatGPT / OpenAI" [ref=e323]
+                - cell "Requires system-wide proxy" [ref=e324]
+              - row "Apple ID Good choice for a UK-region account" [ref=e325]:
+                - cell [ref=e326]
+                - cell "Apple ID" [ref=e327]
+                - cell "Good choice for a UK-region account" [ref=e328]
+              - row "Microsoft Outlook" [ref=e329]:
+                - cell [ref=e330]
+                - cell "Microsoft Outlook" [ref=e331]
+                - cell [ref=e332]
+              - row "Social/Messaging WhatsApp Verification code arrives instantly" [ref=e333]:
+                - cell "Social/Messaging" [ref=e334]
+                - cell "WhatsApp" [ref=e335]
+                - cell "Verification code arrives instantly" [ref=e336]
+              - 'row "Telegram Android: watch out for GMS issues" [ref=e337]':
+                - cell [ref=e338]
+                - cell "Telegram" [ref=e339]
+                - 'cell "Android: watch out for GMS issues" [ref=e340]'
+              - row "Facebook / Messenger" [ref=e341]:
+                - cell [ref=e342]
+                - cell "Facebook / Messenger" [ref=e343]
+                - cell [ref=e344]
+              - row "Twitter (X)" [ref=e345]:
+                - cell [ref=e346]
+                - cell "Twitter (X)" [ref=e347]
+                - cell [ref=e348]
+              - row "Instagram" [ref=e349]:
+                - cell [ref=e350]
+                - cell "Instagram" [ref=e351]
+                - cell [ref=e352]
+              - row "Signal" [ref=e353]:
+                - cell [ref=e354]
+                - cell "Signal" [ref=e355]
+                - cell [ref=e356]
+              - row "Finance/E-commerce PayPal (UK) Needed for UK-region PayPal registration" [ref=e357]:
+                - cell "Finance/E-commerce" [ref=e358]
+                - cell "PayPal (UK)" [ref=e359]
+                - cell "Needed for UK-region PayPal registration" [ref=e360]
+              - row "WISE Cross-border money transfer" [ref=e361]:
+                - cell [ref=e362]
+                - cell "WISE" [ref=e363]
+                - cell "Cross-border money transfer" [ref=e364]
+              - row "Amazon (UK)" [ref=e365]:
+                - cell [ref=e366]
+                - cell "Amazon (UK)" [ref=e367]
+                - cell [ref=e368]
+              - row "Monzo / Revolut Requires UK address proof" [ref=e369]:
+                - cell [ref=e370]
+                - cell "Monzo / Revolut" [ref=e371]
+                - cell "Requires UK address proof" [ref=e372]
+          - heading "Apps That Are Difficult to Register" [level=3] [ref=e373]
+          - list [ref=e374]:
+            - listitem [ref=e375]: Oldubil — Turkish virtual bank with an unstable system and low code-receiving success rate
+            - listitem [ref=e376]: Potato — A crypto-community messaging app, delisted from Google Play; unreliable code reception
+            - listitem [ref=e377]: Some domestic banking apps — reserved phone numbers don’t accept foreign numbers
+          - separator [ref=e378]
+          - heading "8. Converting Physical SIM to eSIM" [level=2] [ref=e379]
+          - paragraph [ref=e380]: Giffgaff launched eSIM support in 2023, and after two years of iteration, physical-to-eSIM conversion and eSIM device transfers through the official app are now smooth.
+          - heading "Prerequisites" [level=3] [ref=e381]
+          - list [ref=e382]:
+            - listitem [ref=e383]: Phone must support eSIM — China-market phones don’t support eSIM regardless of brand. US, Japanese, or European versions are required
+            - listitem [ref=e384]: You must have an already-activated giffgaff physical card — eSIMs can’t generate a number from scratch; they must be converted from a physical card
+            - listitem [ref=e385]: A stable proxy environment throughout; system-wide mode recommended with a UK or US node
+          - heading "Conversion Steps" [level=3] [ref=e386]
+          - paragraph [ref=e387]: The old physical card becomes invalid immediately during conversion, so ensure a stable network before starting and back up important data in advance.
+          - list [ref=e388]:
+            - listitem [ref=e389]: Download the latest giffgaff app, log in, tap Account → SIM
+            - listitem [ref=e390]: Tap Replace my SIM → Switch to a new eSIM
+            - listitem [ref=e391]:
+              - text: Accept the agreement, confirm → tap Install eSIM
+              - list [ref=e392]:
+                - listitem [ref=e393]: Android phones will directly show the system eSIM installation screen
+                - listitem [ref=e394]: iPhone may auto-redirect or provide a QR code or activation code
+            - listitem [ref=e395]: Wait for signal recovery. As fast as 30 minutes; at most one day
+          - heading "Possible Errors" [level=3] [ref=e396]
+          - table [ref=e397]:
+            - rowgroup [ref=e398]:
+              - row "Error Message Cause Solution" [ref=e399]:
+                - columnheader "Error Message" [ref=e400]
+                - columnheader "Cause" [ref=e401]
+                - columnheader "Solution" [ref=e402]
+            - rowgroup [ref=e403]:
+              - row "System busy / Service unavailable eSIM service has a daily maintenance window, or your proxy node is unstable Switch nodes, or try a different time (Beijing time afternoon or evening usually works)" [ref=e404]:
+                - cell "System busy / Service unavailable" [ref=e405]
+                - cell "eSIM service has a daily maintenance window, or your proxy node is unstable" [ref=e406]
+                - cell "Switch nodes, or try a different time (Beijing time afternoon or evening usually works)" [ref=e407]
+              - row "Device not supported Phone model is too old (early eSIM devices like Pixel 4, iPhone XR occasionally have compatibility issues) Update the system to the latest version; if that fails, use a newer phone" [ref=e408]:
+                - cell "Device not supported" [ref=e409]
+                - cell "Phone model is too old (early eSIM devices like Pixel 4, iPhone XR occasionally have compatibility issues)" [ref=e410]
+                - cell "Update the system to the latest version; if that fails, use a newer phone" [ref=e411]
+          - heading "What to Do When You Get a New Phone" [level=3] [ref=e412]
+          - paragraph [ref=e413]: "eSIMs can’t be popped out and inserted into another phone like physical cards. The process is the same as the initial conversion: download the giffgaff app on the new phone, log in, Account → SIM → Replace my SIM → Switch to a new eSIM. The old phone’s eSIM automatically deactivates, and the new phone downloads a fresh eSIM profile."
+          - heading "eSIM Backup Phones Under ¥2000" [level=3] [ref=e414]
+          - paragraph [ref=e415]: "If you’re buying a dedicated backup phone for giffgaff, you don’t need to spend much:"
+          - table [ref=e416]:
+            - rowgroup [ref=e417]:
+              - row "Model Approx. Used Price Pros Things to Watch" [ref=e418]:
+                - columnheader "Model" [ref=e419]
+                - columnheader "Approx. Used Price" [ref=e420]
+                - columnheader "Pros" [ref=e421]
+                - columnheader "Things to Watch" [ref=e422]
+            - rowgroup [ref=e423]:
+              - row "iPhone SE 3 (2022) ¥800-1200 A15 chip, single SIM + eSIM, perfect as backup Small screen, average battery" [ref=e424]:
+                - cell "iPhone SE 3 (2022)" [ref=e425]
+                - cell "¥800-1200" [ref=e426]
+                - cell "A15 chip, single SIM + eSIM, perfect as backup" [ref=e427]
+                - cell "Small screen, average battery" [ref=e428]
+              - row "iPhone 12 / 12 mini ¥1000-1400 Full screen, MagSafe support US iPhone 12 has decent 5G signal" [ref=e429]:
+                - cell "iPhone 12 / 12 mini" [ref=e430]
+                - cell "¥1000-1400" [ref=e431]
+                - cell "Full screen, MagSafe support" [ref=e432]
+                - cell "US iPhone 12 has decent 5G signal" [ref=e433]
+              - row "iPhone 13 mini ¥1600-1900 Last small flagship, better battery than 12 mini A bit pricey" [ref=e434]:
+                - cell "iPhone 13 mini" [ref=e435]
+                - cell "¥1600-1900" [ref=e436]
+                - cell "Last small flagship, better battery than 12 mini" [ref=e437]
+                - cell "A bit pricey" [ref=e438]
+              - row "Google Pixel 6 / 6a ¥700-900 Cheap, good eSIM compatibility, clean OS Tensor chip runs hot, signal is mediocre" [ref=e439]:
+                - cell "Google Pixel 6 / 6a" [ref=e440]
+                - cell "¥700-900" [ref=e441]
+                - cell "Cheap, good eSIM compatibility, clean OS" [ref=e442]
+                - cell "Tensor chip runs hot, signal is mediocre" [ref=e443]
+              - row "Google Pixel 7 / 7a ¥1200-1600 Improved thermics, strong camera Domestic 5G requires tinkering" [ref=e444]:
+                - cell "Google Pixel 7 / 7a" [ref=e445]
+                - cell "¥1200-1600" [ref=e446]
+                - cell "Improved thermics, strong camera" [ref=e447]
+                - cell "Domestic 5G requires tinkering" [ref=e448]
+              - row "Samsung S21 / S22 ¥1000-1500 Good screen and build quality Confirm the model supports eSIM" [ref=e449]:
+                - cell "Samsung S21 / S22" [ref=e450]
+                - cell "¥1000-1500" [ref=e451]
+                - cell "Good screen and build quality" [ref=e452]
+                - cell "Confirm the model supports eSIM" [ref=e453]
+              - row "Rakuten Hand 5G ¥200-300 Absurdly cheap, eSIM only (no SIM slot) Very weak performance, code-receiving only" [ref=e454]:
+                - cell "Rakuten Hand 5G" [ref=e455]
+                - cell "¥200-300" [ref=e456]
+                - cell "Absurdly cheap, eSIM only (no SIM slot)" [ref=e457]
+                - cell "Very weak performance, code-receiving only" [ref=e458]
+          - paragraph [ref=e459]: "When buying, confirm two things: whether it supports eSIM, and whether it’s carrier-unlocked. Locked phones with turbo SIMs are extremely problematic or unusable with eSIM. On Xianyu or Taobao, include version keywords in your search, e.g., “iPhone SE3 US version unlocked.”"
+          - separator [ref=e460]
+          - heading "9. Changing Your Number" [level=2] [ref=e461]
+          - paragraph [ref=e462]: "Giffgaff numbers are randomly assigned upon activation and cannot be chosen. You might encounter two issues: the number has too many “4”s (which feels unlucky), or the previous owner of the number abused it, causing WhatsApp or Telegram to report the number as already registered. Giffgaff gives each account two number-change opportunities, usually free."
+          - heading "Before Changing" [level=3] [ref=e463]
+          - list [ref=e464]:
+            - listitem [ref=e465]: The card must be activated
+            - listitem [ref=e466]: You must know your account password
+            - listitem [ref=e467]: A system-wide proxy is recommended
+            - listitem [ref=e468]: Number changes are irreversible — the old number is immediately voided and cannot be recovered
+            - listitem [ref=e469]: The new number is still randomly assigned, though in practice second-time assignments tend to be better
+            - listitem [ref=e470]: Signal will be lost during the change — as short as 30 minutes, as long as 4 hours
+          - heading "Steps" [level=3] [ref=e471]
+          - list [ref=e472]:
+            - listitem [ref=e473]:
+              - text: Log in at
+              - link "giffgaff.com/profile/details/getnumber" [ref=e474] [cursor=pointer]:
+                - /url: https://www.giffgaff.com/profile/details/getnumber
+            - listitem [ref=e475]: Click Get a new giffgaff number
+            - listitem [ref=e476]: Enter your password to confirm identity, click Change my number
+            - listitem [ref=e477]: The page redirects to show your new number; phone signal will temporarily disappear
+            - listitem [ref=e478]: Turn the phone off, wait 30 minutes, then turn it back on. Or restart/toggle airplane mode once per hour — signal usually recovers within 4 hours
+          - heading "After Changing" [level=3] [ref=e479]
+          - list [ref=e480]:
+            - listitem [ref=e481]: Log out of the giffgaff app and log back in to ensure it displays the new number
+            - listitem [ref=e482]: Important services registered with the old number (banks, WeChat, etc.) must be unbound before the change — the change takes effect immediately and the old number is no longer yours
+            - listitem [ref=e483]: If you’re still not satisfied with the new number and haven’t used both chances, you can change again, but don’t do it in quick succession — it can trigger risk controls
+          - separator [ref=e484]
+          - heading "10. Frequently Asked Questions" [level=2] [ref=e485]
+          - heading "Number Format" [level=3] [ref=e486]
+          - paragraph [ref=e487]:
+            - strong [ref=e488]: "Q: Website keeps saying my number format is wrong?"
+          - paragraph [ref=e489]: Use the UK domestic format (07 prefix, keep the leading 0, 11 digits total) for logging into the giffgaff website and app. Use the international format (+44 prefix, drop the leading 0) for registering with overseas apps.
+          - paragraph [ref=e490]:
+            - strong [ref=e491]: "Q: Don’t remember your number?"
+          - paragraph [ref=e492]:
+            - text: Send a text with
+            - code [ref=e493]: NUMBER
+            - text: to
+            - code [ref=e494]: "43430"
+            - text: — you’ll receive a reply in seconds. You can also check on the Dashboard homepage or in the app.
+          - paragraph [ref=e495]:
+            - strong [ref=e496]: "Q: Is ID verification required?"
+          - paragraph [ref=e497]: No. UK prepaid SIMs currently do not require ID registration.
+          - heading "Signal and Texting" [level=3] [ref=e498]
+          - paragraph [ref=e499]:
+            - strong [ref=e500]: "Q: No service after inserting the card?"
+          - paragraph [ref=e501]: "On first insertion, the phone uploads data for roaming registration — wait 1 to 5 minutes. If there’s still no signal after a long time, manually select a carrier in phone settings: Mobile Network → Network Selection → turn off Auto → manually select China Mobile or China Unicom. Restarting the phone is the most reliable fix."
+          - paragraph [ref=e502]:
+            - strong [ref=e503]: "Q: Not receiving app registration verification codes?"
+          - paragraph [ref=e504]: Usually not a card issue. Either the proxy node is low-quality or risk-flagged; or the registration method is wrong (e.g., Telegram requires mobile app registration); or an Android RCS channel issue — giffgaff increasingly sends codes via Google RCS, and domestic Android phones without full GMS may not receive them. Install Google Mobile Services or switch the card to an iPhone.
+          - paragraph [ref=e505]:
+            - strong [ref=e506]: "Q: Can’t send texts or make calls?"
+          - paragraph [ref=e507]:
+            - text: First check your balance — texts cost £0.30 (
+            - deletion [ref=e508]: ¥2.7) each, calls £1/min (
+            - text: "¥9). Then check the number format: add +86 before domestic Chinese numbers, add +44 before UK numbers and drop the leading 0. Also, texts to China Mobile numbers may be blocked by the anti-fraud system; Unicom and Telecom numbers have higher success rates."
+          - paragraph [ref=e509]:
+            - strong [ref=e510]: "Q: Can I use mobile data in China?"
+          - paragraph [ref=e511]: Roaming data costs £200/GB, roughly ¥1800. Turning off data roaming is an absolute must — otherwise several pounds can be deducted in seconds.
+          - heading "Tariffs and Pitfalls" [level=3] [ref=e512]
+          - paragraph [ref=e513]:
+            - strong [ref=e514]: "Q: Anything special iPhone users should watch out for?"
+          - paragraph [ref=e515]: After inserting the card, iOS prompts you to activate iMessage and FaceTime. Always tap Cancel. The consequence of tapping “activate” is that the phone sends an international SMS in the background, costing £0.30 (~¥2.7).
+          - paragraph [ref=e516]:
+            - strong [ref=e517]: "Q: How do I check my balance?"
+          - paragraph [ref=e518]:
+            - text: Dial
+            - code [ref=e519]: "*100#"
+            - text: from the dialer and press call — it displays on screen immediately.
+          - separator [ref=e520]
+          - heading "11. Quick Commands and Useful Links" [level=2] [ref=e521]
+          - heading "Phone Commands" [level=3] [ref=e522]
+          - table [ref=e523]:
+            - rowgroup [ref=e524]:
+              - row "Function Command" [ref=e525]:
+                - columnheader "Function" [ref=e526]
+                - columnheader "Command" [ref=e527]
+            - rowgroup [ref=e528]:
+              - row "Check your number Send text NUMBER to 43430" [ref=e529]:
+                - cell "Check your number" [ref=e530]
+                - cell "Send text NUMBER to 43430" [ref=e531]:
+                  - text: Send text
+                  - code [ref=e532]: NUMBER
+                  - text: to
+                  - code [ref=e533]: "43430"
+              - row "Check balance Dial *100#" [ref=e534]:
+                - cell "Check balance" [ref=e535]
+                - cell "Dial *100#" [ref=e536]:
+                  - text: Dial
+                  - code [ref=e537]: "*100#"
+              - 'row "Disable voicemail Dial ##002#" [ref=e538]':
+                - cell "Disable voicemail" [ref=e539]
+                - 'cell "Dial ##002#" [ref=e540]':
+                  - text: Dial
+                  - code [ref=e541]: "##002#"
+              - row "Enable voicemail Dial *61*443*10*20#" [ref=e542]:
+                - cell "Enable voicemail" [ref=e543]
+                - cell "Dial *61*443*10*20#" [ref=e544]:
+                  - text: Dial
+                  - code [ref=e545]: "*61*443*10*20#"
+              - row "Default PIN 5555" [ref=e546]:
+                - cell "Default PIN" [ref=e547]
+                - cell "5555" [ref=e548]
+          - paragraph [ref=e549]: The USSD codes above can all be dialed for free while roaming in China (except the voicemail disable code, which often doesn’t work domestically).
+          - heading "Useful Web Links" [level=3] [ref=e550]
+          - table [ref=e551]:
+            - rowgroup [ref=e552]:
+              - row "Function URL" [ref=e553]:
+                - columnheader "Function" [ref=e554]
+                - columnheader "URL" [ref=e555]
+            - rowgroup [ref=e556]:
+              - row "First-time activation giffgaff.com/activate" [ref=e557]:
+                - cell "First-time activation" [ref=e558]
+                - cell "giffgaff.com/activate" [ref=e559]
+              - row "Login / Reset password giffgaff.com/auth/login" [ref=e560]:
+                - cell "Login / Reset password" [ref=e561]
+                - cell "giffgaff.com/auth/login" [ref=e562]
+              - row "Dashboard (check balance and number) giffgaff.com/dashboard" [ref=e563]:
+                - cell "Dashboard (check balance and number)" [ref=e564]
+                - cell "giffgaff.com/dashboard" [ref=e565]
+              - row "Top up giffgaff.com/top-up" [ref=e566]:
+                - cell "Top up" [ref=e567]
+                - cell "giffgaff.com/top-up" [ref=e568]
+              - row "Usage statement giffgaff.com/profile/usage-statement" [ref=e569]:
+                - cell "Usage statement" [ref=e570]
+                - cell "giffgaff.com/profile/usage-statement" [ref=e571]
+              - row "Profile giffgaff.com/profile/details" [ref=e572]:
+                - cell "Profile" [ref=e573]
+                - cell "giffgaff.com/profile/details" [ref=e574]
+              - row "Change number giffgaff.com/profile/details/getnumber" [ref=e575]:
+                - cell "Change number" [ref=e576]
+                - cell "giffgaff.com/profile/details/getnumber" [ref=e577]
+              - row "PUK code lookup giffgaff.com/help/articles/i-blocked-my-sim-what-can-i-do" [ref=e578]:
+                - cell "PUK code lookup" [ref=e579]
+                - cell "giffgaff.com/help/articles/i-blocked-my-sim-what-can-i-do" [ref=e580]
+              - row "Report lost / Replace SIM giffgaff.com/support/lost/sim" [ref=e581]:
+                - cell "Report lost / Replace SIM" [ref=e582]
+                - cell "giffgaff.com/support/lost/sim" [ref=e583]
+              - row "Customer support giffgaff.com/support/ask" [ref=e584]:
+                - cell "Customer support" [ref=e585]
+                - cell "giffgaff.com/support/ask" [ref=e586]
+          - separator [ref=e587]
+          - heading "Quick Reference Card" [level=2] [ref=e588]
+          - table [ref=e589]:
+            - rowgroup [ref=e590]:
+              - row "Item Key Point" [ref=e591]:
+                - columnheader "Item" [ref=e592]
+                - columnheader "Key Point" [ref=e593]
+            - rowgroup [ref=e594]:
+              - row "Check number Send text NUMBER to 43430" [ref=e595]:
+                - cell "Check number" [ref=e596]
+                - cell "Send text NUMBER to 43430" [ref=e597]:
+                  - text: Send text
+                  - code [ref=e598]: NUMBER
+                  - text: to
+                  - code [ref=e599]: "43430"
+              - row "Check balance Dial *100#" [ref=e600]:
+                - cell "Check balance" [ref=e601]
+                - cell "Dial *100#" [ref=e602]:
+                  - text: Dial
+                  - code [ref=e603]: "*100#"
+              - row "Number-keeping Send one text every 180 days, cost £0.30 (~¥2.7)" [ref=e604]:
+                - cell "Number-keeping" [ref=e605]
+                - cell "Send one text every 180 days, cost £0.30 (~¥2.7)" [ref=e606]
+              - row "Domestic roaming Incoming texts free, outgoing texts £0.30 (¥2.7), data £200/GB (¥1800/GB)" [ref=e607]:
+                - cell "Domestic roaming" [ref=e608]
+                - cell "Incoming texts free, outgoing texts £0.30 (¥2.7), data £200/GB (¥1800/GB)" [ref=e609]:
+                  - text: Incoming texts free, outgoing texts £0.30 (
+                  - deletion [ref=e610]: ¥2.7), data £200/GB (
+                  - text: ¥1800/GB)
+              - 'row "New card essentials Choose Pay as you go (no monthly fee); disable data roaming; tap Cancel on iOS prompt; dial ##002# to disable voicemail" [ref=e611]':
+                - cell "New card essentials" [ref=e612]
+                - 'cell "Choose Pay as you go (no monthly fee); disable data roaming; tap Cancel on iOS prompt; dial ##002# to disable voicemail" [ref=e613]':
+                  - text: Choose Pay as you go (no monthly fee); disable data roaming; tap Cancel on iOS prompt; dial
+                  - code [ref=e614]: "##002#"
+                  - text: to disable voicemail
+              - 'row "Number format Login: 07xxx (drop +44); App registration: +44 7xxx (drop 0)" [ref=e615]':
+                - cell "Number format" [ref=e616]
+                - 'cell "Login: 07xxx (drop +44); App registration: +44 7xxx (drop 0)" [ref=e617]'
+              - row "Website entry giffgaff.com/dashboard" [ref=e618]:
+                - cell "Website entry" [ref=e619]
+                - cell "giffgaff.com/dashboard" [ref=e620]
+      - navigation [ref=e621]:
+        - link "PreviousDowngraded to OVHcloud's Cheapest US VPS-1" [ref=e622] [cursor=pointer]:
+          - /url: /en/2026/05/19/ovhcloud-vps-1/
+          - text: Previous
+          - strong [ref=e623]: Downgraded to OVHcloud's Cheapest US VPS-1
+        - link "NextThe Campus Cell Tower Is Insanely Fast" [ref=e624] [cursor=pointer]:
+          - /url: /en/2026/05/15/the-campus-cell-tower-is-insanely-fast/
+          - text: Next
+          - strong [ref=e625]: The Campus Cell Tower Is Insanely Fast
+      - generic [ref=e626]:
+        - heading "Comments" [level=2] [ref=e627]
+        - generic [ref=e628]:
+          - generic [ref=e629]:
+            - generic [ref=e630]:
+              - generic [ref=e631]:
+                - img [ref=e634]
+                - generic [ref=e636]:
+                  - generic [ref=e637]:
+                    - generic [ref=e638]:
+                      - generic [ref=e639]: Nickname
+                      - textbox "Required" [ref=e640]
+                    - generic [ref=e641]:
+                      - generic [ref=e642]: Email
+                      - textbox "Required" [ref=e643]
+                    - generic [ref=e644]:
+                      - generic [ref=e645]: Website
+                      - textbox "Optional" [ref=e646]
+                  - generic [ref=e647]:
+                    - textbox [ref=e648]
+                    - generic [ref=e649]: 0/500
+              - generic [ref=e650]:
+                - link [ref=e652] [cursor=pointer]:
+                  - /url: https://guides.github.com/features/mastering-markdown/
+                  - img [ref=e653]
+                - button "Preview" [ref=e655] [cursor=pointer]
+                - button "Send" [disabled] [ref=e656]
+            - img [ref=e661]
+          - generic [ref=e663]:
+            - text: Powered by
+            - link "Twikoo" [ref=e664] [cursor=pointer]:
+              - /url: https://twikoo.js.org
+            - text: v1.7.11
+  - contentinfo [ref=e665]:
+    - paragraph
+    - paragraph [ref=e666]:
+      - link "Atom Feed" [ref=e667] [cursor=pointer]:
+        - /url: /en/atom.xml
+    - paragraph [ref=e668]:
+      - link "Moe ICP No. 20260097" [ref=e669] [cursor=pointer]:
+        - /url: https://icp.gov.moe/?keyword=20260097
+    - paragraph [ref=e670]:
+      - generic [ref=e671]: Powered by
+      - img "Cloudflare" [ref=e672]
+      - generic [ref=e677]: Cloudflare CDN
+    - paragraph [ref=e678]:
+      - text: © 2026 Akari / 篠崎香澄 ·
+      - link "Atom" [ref=e679] [cursor=pointer]:
+        - /url: /en/atom.xml

@@ -111,7 +111,29 @@ const sectionLabels = {
             <article id="akari-domains-panel" class="akari-info-panel akari-info-panel--wide">
               <h3>{model.domains.title}</h3>
               <p>{model.domains.intro}</p>
-              <div class="akari-info-domain__items">{model.domains.groups.flatMap((group: any) => group.items).map((item: any) => <section><strong>{item.name}</strong><span>{item.status}</span><p>{item.note}</p></section>)}</div>
+              <details class="akari-info-domain__toggle" data-open={model.domains.openLabel} data-close={model.domains.closeLabel}>
+                <summary>{model.domains.openLabel}</summary>
+                {
+                  model.domains.groups.map((group: any) => (
+                    <section class="akari-info-domain-group">
+                      <h4>{group.title}</h4>
+                      <div class="akari-info-domain__items">
+                        {group.items.map((item: any) => (
+                          <a class="akari-info-domain-item" href={item.href} target="_blank" rel="noopener noreferrer">
+                            <div class="akari-info-domain-item__top">
+                              <strong>{item.name}</strong>
+                              <span>{item.status}</span>
+                            </div>
+                            <p>{item.note}</p>
+                            {item.whois && <pre class="akari-info-domain-item__whois">{item.whois}</pre>}
+                            <small class="akari-info-domain-item__action">{item.action}</small>
+                          </a>
+                        ))}
+                      </div>
+                    </section>
+                  ))
+                }
+              </details>
             </article>
           </div>
         </div>
@@ -286,5 +308,18 @@ const sectionLabels = {
   script.onload = loadComments;
   script.onerror = function() { list.textContent = list.dataset.empty; };
   document.head.appendChild(script);
+})();
+</script>
+<script is:inline>
+(function() {
+  var toggle = document.querySelector('.akari-info-domain__toggle');
+  if (!toggle) return;
+  var openLabel = toggle.dataset.open || 'Open';
+  var closeLabel = toggle.dataset.close || 'Close';
+  var summary = toggle.querySelector('summary');
+  if (!summary) return;
+  toggle.addEventListener('toggle', function() {
+    summary.textContent = toggle.open ? closeLabel : openLabel;
+  });
 })();
 </script>
