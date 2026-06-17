@@ -11,6 +11,10 @@ description: "The duck leg lady vanished from Zhihu's trending list. What algori
 keywords: "Zhihu, trending, duck leg lady, algorithm, heat, long tail, Chinese internet"
 ---
 
+<div class="ai-summary">
+A topic with millions of heat points vanished from Zhihu's trending list overnight, leaving behind the absurd frontend text: "0 People Are Discussing This Hotly." **The author starts from this farcical bug and thinks seriously for two minutes: what algorithm can drop heat from millions to absolute zero?** Linear decay can't do it. Cliff-based decay can't either — people are clearly still interacting, yet the heat has vanished into thin air. *This means the heat algorithm doesn't look at interaction volume at all — so what does it look at?* Unanswerable. He gives up — not because he figured it out, but because he realizes it might not be an algorithm problem at all. It ends on a faint regret: whatever the nature of the topic itself, an abrupt vanishing act just feels wrong. Like a song reaching its climax and someone yanking the audio cable. An empty theater, a light someone forgot to turn off.
+</div>
+
 I opened Zhihu's trending list today and found the duck leg gone.
 
 Yes, the "Duck Leg Lady" — the incident that blew up over a portion of duck leg rice, triggering who knows how many discussions across the Chinese internet — had vanished from the trending list. Not dropped in ranking. Not cooled down. Just gone. As if it had never existed.
