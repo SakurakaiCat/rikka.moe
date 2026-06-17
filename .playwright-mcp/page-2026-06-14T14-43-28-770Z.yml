@@ -1,0 +1,161 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic: ·
+    - generic: •
+    - generic: ❄
+    - generic: •
+    - generic: •
+    - generic: ·
+    - generic: ❄
+    - generic: ·
+    - generic: ❆
+    - generic: ❆
+    - generic: ·
+    - generic: ❄
+    - generic: •
+    - generic: •
+    - generic: ❅
+    - generic: ❅
+    - generic: ·
+    - generic: ·
+    - generic: •
+    - generic: ❆
+    - generic: ·
+    - generic: ·
+    - generic: •
+    - generic: ❆
+    - generic: ·
+    - generic: •
+    - generic: ❆
+    - generic: ❅
+    - generic: ❅
+    - generic: ·
+    - generic: ❅
+    - generic: ❅
+    - generic: ❅
+    - generic: ❄
+    - generic: ·
+    - generic: ❄
+    - generic: •
+    - generic: ❄
+    - generic: ❆
+    - generic: ❄
+    - generic: ❆
+    - generic: ❆
+    - generic: ❄
+    - generic: •
+    - generic: ·
+    - generic: ❄
+    - generic: •
+    - generic: ·
+    - generic: •
+    - generic: •
+  - banner:
+    - generic:
+      - button "打开菜单" [ref=e3] [cursor=pointer]:
+        - generic [ref=e4]: 
+      - link "关于" [ref=e6] [cursor=pointer]:
+        - /url: /zh-cn/
+        - generic [ref=e7]: 关于
+      - generic [ref=e8]:
+        - button "搜索" [ref=e9] [cursor=pointer]:
+          - generic [ref=e10]: 
+        - button "切换语言" [ref=e11] [cursor=pointer]:
+          - generic [ref=e12]: 
+        - button "设置" [ref=e13] [cursor=pointer]:
+          - generic [ref=e14]: 
+  - text:  
+  - complementary:
+    - generic:
+      - generic:
+        - img
+        - generic:
+          - strong: Akari
+          - generic: 写一点字，留一点光。
+        - button:
+          - generic: 
+      - navigation:
+        - link:
+          - /url: /zh-cn/
+          - generic: 
+          - generic: 首页
+        - link:
+          - /url: /zh-cn/archives/
+          - generic: 
+          - generic: 文章归档
+        - link:
+          - /url: /zh-cn/categories/长文/
+          - generic: 
+          - generic: 文章分类
+        - link:
+          - /url: /zh-cn/about/
+          - generic: 
+          - generic: 关于
+        - link:
+          - /url: /books/
+          - generic: 
+          - generic: 书籍
+        - link:
+          - /url: /projects/
+          - generic: 
+          - generic: 项目
+        - link:
+          - /url: /zh-cn/guestbook/
+          - generic: 
+          - generic: 留言板
+        - link:
+          - /url: https://github.com/ShinozakiKasumi
+          - generic: 
+          - generic: GitHub
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - heading "关于" [level=1] [ref=e17]
+      - generic [ref=e18]:
+        - heading "评论" [level=2] [ref=e19]
+        - generic [ref=e20]:
+          - generic [ref=e21]:
+            - generic [ref=e22]:
+              - generic [ref=e23]:
+                - img [ref=e26]
+                - generic [ref=e28]:
+                  - generic [ref=e29]:
+                    - generic [ref=e30]:
+                      - generic [ref=e31]: 昵称
+                      - textbox "必填" [ref=e32]
+                    - generic [ref=e33]:
+                      - generic [ref=e34]: 邮箱
+                      - textbox "必填" [ref=e35]
+                    - generic [ref=e36]:
+                      - generic [ref=e37]: 网址
+                      - textbox "选填" [ref=e38]
+                  - generic [ref=e39]:
+                    - textbox [ref=e40]
+                    - generic [ref=e41]: 0/500
+              - generic [ref=e42]:
+                - link [ref=e44] [cursor=pointer]:
+                  - /url: https://guides.github.com/features/mastering-markdown/
+                  - img [ref=e45]
+                - button "预览" [ref=e47] [cursor=pointer]
+                - button "发送" [disabled] [ref=e48]
+            - img [ref=e53]
+          - generic [ref=e55]:
+            - text: Powered by
+            - link "Twikoo" [ref=e56] [cursor=pointer]:
+              - /url: https://twikoo.js.org
+            - text: v1.7.11
+  - contentinfo [ref=e57]:
+    - paragraph
+    - paragraph [ref=e58]:
+      - link "Atom Feed" [ref=e59] [cursor=pointer]:
+        - /url: /zh-cn/atom.xml
+    - paragraph [ref=e60]:
+      - link "萌ICP备20260097号" [ref=e61] [cursor=pointer]:
+        - /url: https://icp.gov.moe/?keyword=20260097
+    - paragraph [ref=e62]:
+      - generic [ref=e63]: 本站由
+      - img "Cloudflare" [ref=e64]
+      - generic [ref=e69]: Cloudflare CDN 驱动
+    - paragraph [ref=e70]:
+      - text: © 2026 Akari / 篠崎香澄 ·
+      - link "Atom" [ref=e71] [cursor=pointer]:
+        - /url: /zh-cn/atom.xml

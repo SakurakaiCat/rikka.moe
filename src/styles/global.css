@@ -637,7 +637,8 @@ img {
 .akari-info-panel,
 .mini-card,
 .station,
-.akari-info-domain__items section {
+.akari-info-domain__items section,
+.akari-info-domain-item {
   display: block;
   padding: 18px;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -702,6 +703,53 @@ img {
   color: #0a84ff;
   font-size: 0.8rem;
   font-weight: 600;
+}
+
+.akari-info-domain-group {
+  margin-bottom: 18px;
+}
+
+.akari-info-domain-group h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--akari-muted);
+}
+
+.akari-info-domain-item {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.akari-info-domain-item:hover {
+  border-color: rgba(10, 132, 255, 0.18);
+}
+
+.akari-info-domain-item__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.akari-info-domain-item__action {
+  display: inline-flex;
+  margin-top: 6px;
+  color: #0a84ff;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.akari-info-domain-item__whois {
+  margin: 6px 0 0 0;
+  padding: 6px 8px;
+  font-size: 0.72rem;
+  color: var(--akari-muted);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  white-space: pre-wrap;
+  line-height: 1.5;
 }
 
 .mini-card header {

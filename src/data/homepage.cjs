@@ -127,63 +127,192 @@ const COVER_ALT_SUFFIX = {
 const DOMAIN_NOTES = {
   'zh-CN': {
     title: '域名小记',
-    intro: '以后大概只会认真续费 rikka.moe 和 chronorise.com。其他多半是一时兴起买下来的。',
+    intro: '以后大概只会认真续费 rikka.moe 和 luck.moe。其他多半是一时兴起买下来的。',
     groups: [
       {
         title: '会继续续费',
         items: [
-          { name: 'rikka.moe', status: '会续费', note: '个人主页和主入口。rikka 来自《中二病也要谈恋爱！》的女主角小鸟游六花。', href: 'https://rikka.moe', action: '打开' },
-          { name: 'b.rikka.moe', status: '会续费', note: '独立书籍站，承载《中学数学之旅》等长篇内容。', href: 'https://b.rikka.moe', action: '打开' },
-          { name: 'next.rikka.moe', status: '会续费', note: '在线学习工具箱，正在持续开发的小工具集合。', href: 'https://next.rikka.moe', action: '打开' },
-          { name: 'chronorise.com', status: '会续费', note: '产品相关入口。', href: 'https://chronorise.com', action: '打开' }
+          {
+            name: 'rikka.moe',
+            status: '会续费',
+            note: '个人主页和主入口。rikka 来自《中二病也要谈恋爱！》的女主角小鸟游六花。',
+            href: 'https://rikka.moe',
+            action: '打开',
+            whois: '注册日期: 2025-03-09\n到期日期: 2028-03-09\n注册商: Porkbun\nDNS: nena.ns.cloudflare.com / harvey.ns.cloudflare.com'
+          },
+          {
+            name: 'luck.moe',
+            status: '会续费',
+            note: '个人收藏的短域名，暂无用途。',
+            href: 'https://luck.moe',
+            action: '打开',
+            whois: '注册日期: 2024-05-11\n到期日期: 2027-05-11\n注册商: Porkbun\nDNS: cruz.ns.cloudflare.com / memphis.ns.cloudflare.com'
+          }
         ]
       },
-        {
-        title: '可能不续',
+      {
+        title: '确定不续',
         items: [
-          { name: 'zutomayo.org', status: '可能不续', note: '当时觉得好听。', href: 'https://zutomayo.org', action: '打开' }
+          {
+            name: 'chronorise.com',
+            status: '不续费',
+            note: '产品相关入口，暂无实际产品。',
+            href: 'https://chronorise.com',
+            action: '打开',
+            whois: '注册日期: 2026-03-26\n到期日期: 2027-03-26\n注册商: Spaceship\nDNS: harvey.ns.cloudflare.com / nena.ns.cloudflare.com'
+          },
+          {
+            name: 'zutomayo.org',
+            status: '不续费',
+            note: '当时觉得好听买的，没有实际用途。',
+            href: 'https://zutomayo.org',
+            action: '打开',
+            whois: '注册日期: 2025-11-04\n到期日期: 2026-11-04\n注册商: Porkbun\nDNS: aaron.ns.cloudflare.com / faye.ns.cloudflare.com'
+          }
         ]
       }
     ]
   },
   'zh-TW': {
     title: '域名小記',
-    intro: '以後大概只會認真續費 rikka.moe 和 chronorise.com。其他多半是一時興起買下來的。',
+    intro: '以後大概只會認真續費 rikka.moe 和 luck.moe。其他多半是一時興起買下來的。',
     groups: [
       {
         title: '會繼續續費',
         items: [
-          { name: 'rikka.moe', status: '會續費', note: '個人主頁和主入口。rikka 來自《中二病也要談戀愛！》的女主角小鳥遊六花。', href: 'https://rikka.moe', action: '打開' },
-          { name: 'b.rikka.moe', status: '會續費', note: '獨立書籍站，承載《中學數學之旅》等長篇內容。', href: 'https://b.rikka.moe', action: '打開' },
-          { name: 'next.rikka.moe', status: '會續費', note: '線上學習工具箱，持續開發中的小工具集合。', href: 'https://next.rikka.moe', action: '打開' },
-          { name: 'chronorise.com', status: '會續費', note: '產品相關入口。', href: 'https://chronorise.com', action: '打開' }
+          {
+            name: 'rikka.moe',
+            status: '會續費',
+            note: '個人主頁和主入口。rikka 來自《中二病也要談戀愛！》的女主角小鳥遊六花。',
+            href: 'https://rikka.moe',
+            action: '打開',
+            whois: '註冊日期: 2025-03-09\n到期日期: 2028-03-09\n註冊商: Porkbun\nDNS: nena.ns.cloudflare.com / harvey.ns.cloudflare.com'
+          },
+          {
+            name: 'luck.moe',
+            status: '會續費',
+            note: '個人收藏的短域名，暫無用途。',
+            href: 'https://luck.moe',
+            action: '打開',
+            whois: '註冊日期: 2024-05-11\n到期日期: 2027-05-11\n註冊商: Porkbun\nDNS: cruz.ns.cloudflare.com / memphis.ns.cloudflare.com'
+          }
         ]
       },
-        {
-        title: '可能不續',
+      {
+        title: '確定不續',
         items: [
-          { name: 'zutomayo.org', status: '可能不續', note: '當時覺得好聽。', href: 'https://zutomayo.org', action: '打開' }
+          {
+            name: 'chronorise.com',
+            status: '不續費',
+            note: '產品相關入口，暫無實際產品。',
+            href: 'https://chronorise.com',
+            action: '打開',
+            whois: '註冊日期: 2026-03-26\n到期日期: 2027-03-26\n註冊商: Spaceship\nDNS: harvey.ns.cloudflare.com / nena.ns.cloudflare.com'
+          },
+          {
+            name: 'zutomayo.org',
+            status: '不續費',
+            note: '當時覺得好聽買的，沒有實際用途。',
+            href: 'https://zutomayo.org',
+            action: '打開',
+            whois: '註冊日期: 2025-11-04\n到期日期: 2026-11-04\n註冊商: Porkbun\nDNS: aaron.ns.cloudflare.com / faye.ns.cloudflare.com'
+          }
         ]
       }
     ]
   },
   en: {
     title: 'Domain Notes',
-    intro: 'I will probably keep rikka.moe and chronorise.com. Most of the others were impulse buys.',
+    intro: 'I will probably only keep renewing rikka.moe and luck.moe. Most of the others were impulse buys.',
     groups: [
       {
         title: 'Keeping',
         items: [
-          { name: 'rikka.moe', status: 'keep', note: 'Homepage and main entry. Rikka comes from Rikka Takanashi, the heroine of Love, Chunibyo & Other Delusions.', href: 'https://rikka.moe', action: 'Open' },
-          { name: 'b.rikka.moe', status: 'keep', note: 'Standalone book site hosting Secondary Math Journey and other long-form work.', href: 'https://b.rikka.moe', action: 'Open' },
-          { name: 'next.rikka.moe', status: 'keep', note: 'Online study toolbox, a growing collection of small learning utilities.', href: 'https://next.rikka.moe', action: 'Open' },
-          { name: 'chronorise.com', status: 'keep', note: 'Product-related entry.', href: 'https://chronorise.com', action: 'Open' }
+          {
+            name: 'rikka.moe',
+            status: 'keep',
+            note: "Homepage and main entry. Rikka comes from Rikka Takanashi, the heroine of Love, Chunibyo & Other Delusions.",
+            href: 'https://rikka.moe',
+            action: 'Open',
+            whois: "Registered: 2025-03-09\nExpires: 2028-03-09\nRegistrar: Porkbun\nDNS: nena.ns.cloudflare.com / harvey.ns.cloudflare.com"
+          },
+          {
+            name: 'luck.moe',
+            status: 'keep',
+            note: 'A short domain kept for personal collection, no current use.',
+            href: 'https://luck.moe',
+            action: 'Open',
+            whois: "Registered: 2024-05-11\nExpires: 2027-05-11\nRegistrar: Porkbun\nDNS: cruz.ns.cloudflare.com / memphis.ns.cloudflare.com"
+          }
         ]
       },
-        {
-        title: 'Probably not keeping',
+      {
+        title: 'Not renewing',
         items: [
-          { name: 'zutomayo.org', status: 'maybe', note: 'It sounded nice then.', href: 'https://zutomayo.org', action: 'Open' }
+          {
+            name: 'chronorise.com',
+            status: 'dropping',
+            note: 'Product-related entry, no actual product yet.',
+            href: 'https://chronorise.com',
+            action: 'Open',
+            whois: "Registered: 2026-03-26\nExpires: 2027-03-26\nRegistrar: Spaceship\nDNS: harvey.ns.cloudflare.com / nena.ns.cloudflare.com"
+          },
+          {
+            name: 'zutomayo.org',
+            status: 'dropping',
+            note: 'Bought because it sounded nice, no real use.',
+            href: 'https://zutomayo.org',
+            action: 'Open',
+            whois: "Registered: 2025-11-04\nExpires: 2026-11-04\nRegistrar: Porkbun\nDNS: aaron.ns.cloudflare.com / faye.ns.cloudflare.com"
+          }
+        ]
+      }
+    ]
+  },
+  ja: {
+    title: 'ドメインメモ',
+    intro: '今後はおそらく rikka.moe と luck.moe だけを更新するつもり。他はだいたい衝動買い。',
+    groups: [
+      {
+        title: '更新する',
+        items: [
+          {
+            name: 'rikka.moe',
+            status: '更新する',
+            note: '個人ホームページとメインエントランス。rikka は『中二病でも恋がしたい！』のヒロイン小鳥遊六花から。',
+            href: 'https://rikka.moe',
+            action: '開く',
+            whois: '登録日: 2025-03-09\n有効期限: 2028-03-09\nレジストラ: Porkbun\nDNS: nena.ns.cloudflare.com / harvey.ns.cloudflare.com'
+          },
+          {
+            name: 'luck.moe',
+            status: '更新する',
+            note: '個人コレクション用の短いドメイン、今のところ用途なし。',
+            href: 'https://luck.moe',
+            action: '開く',
+            whois: '登録日: 2024-05-11\n有効期限: 2027-05-11\nレジストラ: Porkbun\nDNS: cruz.ns.cloudflare.com / memphis.ns.cloudflare.com'
+          }
+        ]
+      },
+      {
+        title: '更新しない',
+        items: [
+          {
+            name: 'chronorise.com',
+            status: '更新しない',
+            note: '製品関連の入口、まだ実際の製品はなし。',
+            href: 'https://chronorise.com',
+            action: '開く',
+            whois: '登録日: 2026-03-26\n有効期限: 2027-03-26\nレジストラ: Spaceship\nDNS: harvey.ns.cloudflare.com / nena.ns.cloudflare.com'
+          },
+          {
+            name: 'zutomayo.org',
+            status: '更新しない',
+            note: '当時いいなと思って買ったが、特に用途なし。',
+            href: 'https://zutomayo.org',
+            action: '開く',
+            whois: '登録日: 2025-11-04\n有効期限: 2026-11-04\nレジストラ: Porkbun\nDNS: aaron.ns.cloudflare.com / faye.ns.cloudflare.com'
+          }
         ]
       }
     ]

@@ -1,0 +1,651 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic: ·
+    - generic: ❅
+    - generic: ❆
+    - generic: •
+    - generic: ❄
+    - generic: •
+    - generic: ❅
+    - generic: ❆
+    - generic: ·
+    - generic: ❅
+    - generic: •
+    - generic: •
+    - generic: ·
+    - generic: ❄
+    - generic: ❅
+    - generic: ❄
+    - generic: ❄
+    - generic: ❆
+    - generic: ❄
+    - generic: ❄
+    - generic: ❄
+    - generic: ❄
+    - generic: ·
+    - generic: ·
+    - generic: ❄
+    - generic: ❄
+    - generic: ❄
+    - generic: ❆
+    - generic: •
+    - generic: •
+    - generic: •
+    - generic: ❄
+    - generic: ❆
+    - generic: ·
+    - generic: ❆
+    - generic: ❆
+    - generic: ❆
+    - generic: ·
+    - generic: •
+    - generic: ·
+    - generic: ❅
+    - generic: ·
+    - generic: ❅
+    - generic: •
+    - generic: ·
+    - generic: ·
+    - generic: ❄
+    - generic: •
+    - generic: ❄
+    - generic: ❆
+  - banner:
+    - generic:
+      - button "打开菜单" [ref=e3] [cursor=pointer]:
+        - generic [ref=e4]: 
+      - link "Akari" [ref=e6] [cursor=pointer]:
+        - /url: /zh-cn/
+        - generic [ref=e7]: Akari
+      - generic [ref=e8]:
+        - button "搜索" [ref=e9] [cursor=pointer]:
+          - generic [ref=e10]: 
+        - button "切换语言" [ref=e11] [cursor=pointer]:
+          - generic [ref=e12]: 
+        - button "设置" [ref=e13] [cursor=pointer]:
+          - generic [ref=e14]: 
+  - text:  
+  - complementary:
+    - generic:
+      - generic:
+        - img
+        - generic:
+          - strong: Akari
+          - generic: 写一点字，留一点光。
+        - button:
+          - generic: 
+      - navigation:
+        - link:
+          - /url: /zh-cn/
+          - generic: 
+          - generic: 首页
+        - link:
+          - /url: /zh-cn/archives/
+          - generic: 
+          - generic: 文章归档
+        - link:
+          - /url: /zh-cn/categories/长文/
+          - generic: 
+          - generic: 文章分类
+        - link:
+          - /url: /zh-cn/about/
+          - generic: 
+          - generic: 关于
+        - link:
+          - /url: /books/
+          - generic: 
+          - generic: 书籍
+        - link:
+          - /url: /projects/
+          - generic: 
+          - generic: 项目
+        - link:
+          - /url: /zh-cn/guestbook/
+          - generic: 
+          - generic: 留言板
+        - link:
+          - /url: https://github.com/ShinozakiKasumi
+          - generic: 
+          - generic: GitHub
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e21]:
+        - generic [ref=e22]: Rikka.moe
+        - heading "篠崎香澄头像 Akari" [level=1] [ref=e23]:
+          - img "篠崎香澄头像" [ref=e24]
+          - generic [ref=e25]: Akari
+        - paragraph [ref=e26]: 灯里
+        - paragraph [ref=e27]: 写一点字，留一点光。
+        - generic "Tags" [ref=e28]:
+          - generic [ref=e29]: 学生
+          - generic [ref=e30]: Web
+          - generic [ref=e31]: 学习工具
+          - generic [ref=e32]: 二次元
+        - navigation "Hero actions" [ref=e33]:
+          - link "阅读文章" [ref=e34] [cursor=pointer]:
+            - /url: "#akari-blog-feed"
+          - link "查看归档" [ref=e35] [cursor=pointer]:
+            - /url: /zh-cn/archives/
+          - link "GitHub" [ref=e36] [cursor=pointer]:
+            - /url: https://github.com/ShinozakiKasumi
+      - generic [ref=e37]:
+        - complementary [ref=e38]:
+          - generic [ref=e39]:
+            - generic [ref=e40]: 
+            - generic [ref=e41]:
+              - heading "最近评论" [level=2] [ref=e42]
+              - paragraph [ref=e43]: 全博客评论区最新新增的留言。
+          - generic [ref=e44]:
+            - link "rikka 2026/05/09 测试评论|´・ω・)ノ" [ref=e317] [cursor=pointer]:
+              - /url: /zh-cn/2026/04/07/%E5%B0%8F%E9%95%87%E5%81%9A%E9%A2%98%E5%AE%B6%E5%9B%9E%E6%9D%91/
+              - generic [ref=e318]:
+                - strong [ref=e319]: rikka
+                - time [ref=e320]: 2026/05/09
+              - generic [ref=e321]: 测试评论|´・ω・)ノ
+            - link "rikka 2026/05/09 测试评论|´・ω・)ノ" [ref=e322] [cursor=pointer]:
+              - /url: /zh-cn/2026/05/09/%E6%9C%89%E9%99%90%E8%B4%A3%E4%BB%BB%E4%B8%8E%E8%87%AA%E7%94%B1%E7%94%9F%E6%B4%BB/
+              - generic [ref=e323]:
+                - strong [ref=e324]: rikka
+                - time [ref=e325]: 2026/05/09
+              - generic [ref=e326]: 测试评论|´・ω・)ノ
+            - link "rikka 2026/05/10 测试评论OωO" [ref=e327] [cursor=pointer]:
+              - /url: /zh-cn/2026/05/09/%E6%9C%89%E9%99%90%E8%B4%A3%E4%BB%BB%E4%B8%8E%E8%87%AA%E7%94%B1%E7%94%9F%E6%B4%BB/
+              - generic [ref=e328]:
+                - strong [ref=e329]: rikka
+                - time [ref=e330]: 2026/05/10
+              - generic [ref=e331]: 测试评论OωO
+            - link "Takina 2026/05/18 站长你好! 想问问有没有好用的海外服务器推荐?也许是海外吧…moe域名不能在国内备案 TT 求求惹" [ref=e332] [cursor=pointer]:
+              - /url: /zh-cn/about/
+              - generic [ref=e333]:
+                - strong [ref=e334]: Takina
+                - time [ref=e335]: 2026/05/18
+              - generic [ref=e336]: 站长你好! 想问问有没有好用的海外服务器推荐?也许是海外吧…moe域名不能在国内备案 TT 求求惹
+            - link "大飞鸽 2026/05/27 抱抱，建议去看看心理医生，读一些心理学书籍" [ref=e337] [cursor=pointer]:
+              - /url: /zh-cn/2026/05/25/%E5%BE%80%E4%BA%8B%E5%A6%82%E7%83%9F/
+              - generic [ref=e338]:
+                - strong [ref=e339]: 大飞鸽
+                - time [ref=e340]: 2026/05/27
+              - generic [ref=e341]: 抱抱，建议去看看心理医生，读一些心理学书籍
+        - region "站点导航" [ref=e45]:
+          - group [ref=e46]:
+            - generic "Home 站点导航 +" [ref=e47] [cursor=pointer]:
+              - generic [ref=e48]:
+                - text: Home
+                - heading "站点导航" [level=2] [ref=e49]
+              - text: +
+        - generic [ref=e50]:
+          - heading "主页分区" [level=2] [ref=e51]
+          - paragraph [ref=e52]: 长文、随想和相册在这里分开浏览。
+    - article [ref=e54]:
+      - generic [ref=e55]:
+        - text: 个人
+        - heading "自我介绍" [level=2] [ref=e56]
+        - paragraph [ref=e57]: 以下是我的简单回忆录，没润色过。最底下是我的基础标签。
+      - generic [ref=e58]:
+        - figure "配图是用手机拍的一张，挺有意境的。" [ref=e59]:
+          - img "冬天拍的照片" [ref=e60]
+          - generic [ref=e61]: 配图是用手机拍的一张，挺有意境的。
+        - generic [ref=e62]:
+          - paragraph [ref=e63]: 哦嗨哟，我是香澄，来自广西柳州，现在东北上学，普通的大一学生。
+          - paragraph [ref=e64]: 我来自广西柳州，初中后搬至南宁上学。
+          - paragraph [ref=e65]: 小学时期，因为一系列家庭和学校的因素，给我留下不少的创伤，好几年过去了，我还记得，举个例子，被推到卫生间里欺负，东西被丢进里面等。导致我连小学数学都学不明白，一度被拉去检测智商（我至今记得好像是在一家医院里，其中一个环节是对着一个电脑屏幕，好像是做什么类似消消乐点图找不同的东西），当然后面还是过了，可能白花钱了。
+          - paragraph [ref=e66]: 我的性格大抵就是在这时开始成型，那时的我就比较独处了。我还记得有一次，我在学校闯祸了，当时我不敢回家，不然要被打，被老师发现的话就被抓起来留校挨骂，当时我就在学校里找了一个地方，类似会议室的地方，躲在桌底，什么都没吃在那里躲了几个小时，最后没法才出来。
+          - paragraph [ref=e67]: 小学几年属实是给我留下了严重的心理创伤，导致我很早就开始沉迷网上冲浪，折腾计算机和手机。度过了小学的垃圾时间，上了初中以后，初一的时候，家里又闹掰了，每天就是打架和吵着要离婚，那时一系列操作把我整得半死不活，学校和家里都不是什么好地方，我也特别讨厌任何程度的亲情。回忆起这些事情也有点让我大脑发热。
+          - paragraph [ref=e68]: 省略了一大堆垃圾时间后，直到初二上学期，我才开始迈向和自己和解的道路。其一是，我吃上了舍曲林（一种抗抑郁药），稍微给我一些喘息空间了；其二是初二第二次分班的时候，我遇到了很好的班主任、老师和同学。班主任见到我的状况以后，对我很包容，甚至时不时叫我去办公室鼓励我，老师也是给我灌了一堆鸡汤。
+          - paragraph [ref=e69]: 还有几个同学，主动找到我邀请我一起玩，甚至开故事会，聊天，而不是嘲笑我是废物。自那之后，我就开始努力学习了，努力跳出恶性循环。这段学习过程可以写很长（包括自学、老师帮我补习和同学帮助我），不过总的来说，到初三的时候我学得已经挺不错了，我记得我中考最好的科目是数学和英语，最差的是化学。
+          - paragraph [ref=e70]: 总之，经过一系列可被省略不谈的变故后，我进了某重点高中读，进去的时候被被进普通班了。进入高中的第一个星期，我还尝试「开启人生新篇章」，不吃药也不天天网络冲浪，结果第一个星期我就差点被折磨没了，后来还是顺应自然了。
+          - paragraph [ref=e71]: 我高中三年可以写很长，不过简单来说就是：高一不知道干嘛，糊里糊涂选了文科（因为化学不好，虽然我当时物理和生物非常不错，这是我人生最后悔的几个决定之一），高二以后开始努力。高中三年把我人生前十几年强行扭转了，大抵是因为我继续吃药，然后高二的时候我开始吃鱼油和一堆补品（还真的有用，不是尬吹）。
+          - paragraph [ref=e72]: 吃这些药，把我整得一点情绪都没，直接导致我对一切事情都失去兴趣，不知道真正的快乐是什么，甚至连去郊游、被拉去游乐园玩或者是大家经常做的事情，比如探店，说哪里有什么好玩好吃的，社团活动和社交，我全部都觉得一点意思都没，不能理解。但是我发现，我考试考得好，老师会鼓励我，同学们钦佩我，走在路上都有人讨论我，亲戚也对我改观，我就开始对学习上瘾了，整个高中三年我以学习为乐，我最开心有活力的时刻是，考试成绩排名出来的那一瞬间。我记得高二的时候，我数学就一百多分，英语也差不多。后来我就自己找书和网课看，发现还挺有意思，于是反倒成了我的爱好。
+          - paragraph [ref=e73]: 这一个正循环直接让我在几个月里就提了好几十分，让我顺便了解到了数学以及次之的经济学（初中的时候我更喜欢计算机和心理学）是多么有意思。那时的我比较疯狂，躺在床上睡觉都在算题，入魔了。我高中也碰上了比较好的班主任，比较包容我，给我很多的自由，我过得还是很舒服的。
+          - paragraph [ref=e74]: 高中三年给我的感觉就是，每一刻压力都很大，有时压力大到想吐，但是学习起来很开心。我之后甚至自己就成为了别人的灯塔，正如我之前发过的一篇回忆，有位同学每次晚自习结束都最晚留下来，陪我一起走，时不时还互相鼓励，挺好的。
+          - paragraph [ref=e75]: 当然，关于回忆录似乎还有很多可写的。但是每当尝试回想起这些事情，容易使我脑子发热，触发躁狂，我想还是算了，好不容易缓过来。另一条线是，我家庭整体是走下坡路的，这条线也很痛苦，不过就写到这吧。
+          - paragraph [ref=e76]: 上了大学，直到现在，老实说我也没快乐过几次，我的情绪状态大抵就在平静、躁狂和抑郁之间徘徊。我比较喜欢平静，什么情绪都没，即便包括快乐，但至少意味着我无需动用太多精力来压抑，挺好的。
+      - generic [ref=e77]:
+        - heading "基础标签" [level=3] [ref=e78]
+        - list [ref=e79]:
+          - listitem [ref=e80]: 感兴趣的东西：经济学 > 计算机 = 数学 > 心理学
+          - listitem [ref=e81]: 业余爱好：音乐、二次元和写作
+          - listitem [ref=e82]: 最喜欢的地方：我在南宁的小窝（因为在这里有我可以独居的小窝，独处很安静自由，半夜凌晨三点搬椅子到天台看夜空发呆都行），大自然乡下的树林、河流和草原
+          - listitem [ref=e83]: 最希望得到的东西：快乐和自由
+          - listitem [ref=e84]: 性格：社恐、内向、比较忧郁和焦虑，在意别人的看法、敏感，总是想当「老好人」
+    - generic [ref=e85]:
+      - generic [ref=e86]:
+        - generic [ref=e87]:
+          - generic [ref=e88]:
+            - text: Essays
+            - heading "长文" [level=2] [ref=e89]
+          - generic [ref=e90]: "8"
+        - generic [ref=e91]:
+          - article [ref=e92]:
+            - link "2026-06-17 长文 认知的边界 这些问题都触及到了我们认知的边界，无论是文字、语言的，还是我们视野界限之外的。" [ref=e93] [cursor=pointer]:
+              - /url: /zh-cn/2026/06/17/认知的边界/
+              - figure [ref=e94]
+              - generic [ref=e95]:
+                - time [ref=e96]: 2026-06-17
+                - generic [ref=e97]: 长文
+              - heading "认知的边界" [level=3] [ref=e98]
+              - paragraph [ref=e99]: 这些问题都触及到了我们认知的边界，无论是文字、语言的，还是我们视野界限之外的。
+          - article [ref=e100]:
+            - link "2026-06-17 长文 稻草人站在田里 也许我就是那个纸人。眼睛是两个洞。笑容是缝上去的。立在恰当的位置，等一个不会来的人。" [ref=e101] [cursor=pointer]:
+              - /url: /zh-cn/2026/06/17/稻草人站在田里/
+              - figure [ref=e102]
+              - generic [ref=e103]:
+                - time [ref=e104]: 2026-06-17
+                - generic [ref=e105]: 长文
+              - heading "稻草人站在田里" [level=3] [ref=e106]
+              - paragraph [ref=e107]: 也许我就是那个纸人。眼睛是两个洞。笑容是缝上去的。立在恰当的位置，等一个不会来的人。
+          - article [ref=e108]:
+            - link "2026-05-19 长文 闲暇是稀缺物 短视频不过是开给忙碌现代人的一剂药剂，而闲暇，才是真正的稀缺物。" [ref=e109] [cursor=pointer]:
+              - /url: /zh-cn/2026/05/19/闲暇是稀缺物/
+              - figure [ref=e110]
+              - generic [ref=e111]:
+                - time [ref=e112]: 2026-05-19
+                - generic [ref=e113]: 长文
+              - heading "闲暇是稀缺物" [level=3] [ref=e114]
+              - paragraph [ref=e115]: 短视频不过是开给忙碌现代人的一剂药剂，而闲暇，才是真正的稀缺物。
+          - article [ref=e116]:
+            - link "2026-05-17 长文 Giffgaff 英国 SIM 卡完全指南：从入门到精通 一张英国实体卡，免实名、0 月租、收短信免费，从激活、保号、接码注册到转 eSIM，你想知道的一切都在这里。" [ref=e117] [cursor=pointer]:
+              - /url: /zh-cn/2026/05/17/giffgaff-英国SIM卡完全指南/
+              - figure [ref=e118]
+              - generic [ref=e119]:
+                - time [ref=e120]: 2026-05-17
+                - generic [ref=e121]: 长文
+              - heading "Giffgaff 英国 SIM 卡完全指南：从入门到精通" [level=3] [ref=e122]
+              - paragraph [ref=e123]: 一张英国实体卡，免实名、0 月租、收短信免费，从激活、保号、接码注册到转 eSIM，你想知道的一切都在这里。
+          - article [ref=e124]:
+            - link "2026-05-09 长文 有限责任与自由生活 关于亲人的期待、有限责任，以及一个十九岁的人对自由生活的想象。" [ref=e125] [cursor=pointer]:
+              - /url: /zh-cn/2026/05/09/有限责任与自由生活/
+              - figure [ref=e126]
+              - generic [ref=e127]:
+                - time [ref=e128]: 2026-05-09
+                - generic [ref=e129]: 长文
+              - heading "有限责任与自由生活" [level=3] [ref=e130]
+              - paragraph [ref=e131]: 关于亲人的期待、有限责任，以及一个十九岁的人对自由生活的想象。
+          - article [ref=e132]:
+            - link "2026-04-29 长文 又到了我最喜欢的午夜，写完这一篇就睡觉 写在午夜的一段自白：关于爽文、疲惫和对人生走向的预感。" [ref=e133] [cursor=pointer]:
+              - /url: /zh-cn/2026/04/29/午夜写完就睡觉/
+              - figure [ref=e134]
+              - generic [ref=e135]:
+                - time [ref=e136]: 2026-04-29
+                - generic [ref=e137]: 长文
+              - heading "又到了我最喜欢的午夜，写完这一篇就睡觉" [level=3] [ref=e138]
+              - paragraph [ref=e139]: 写在午夜的一段自白：关于爽文、疲惫和对人生走向的预感。
+          - article [ref=e140]:
+            - link "2026-04-07 长文 叮咚鸡时代 一辆几万块的小车，被一对寻常夫妇当成日子往上走的凭据，也终于在债务与失业里悄悄卖掉。" [ref=e141] [cursor=pointer]:
+              - /url: /zh-cn/2026/04/07/叮咚鸡时代/
+              - figure [ref=e142]
+              - generic [ref=e143]:
+                - time [ref=e144]: 2026-04-07
+                - generic [ref=e145]: 长文
+              - heading "叮咚鸡时代" [level=3] [ref=e146]
+              - paragraph [ref=e147]: 一辆几万块的小车，被一对寻常夫妇当成日子往上走的凭据，也终于在债务与失业里悄悄卖掉。
+          - article [ref=e148]:
+            - link "2026-04-07 长文 「小镇做题家回村」 回到村里的饭桌上，学校、专业与体面被一遍遍拿来评说，而真正的委屈与失去从来无人追问。" [ref=e149] [cursor=pointer]:
+              - /url: /zh-cn/2026/04/07/小镇做题家回村/
+              - figure [ref=e150]
+              - generic [ref=e151]:
+                - time [ref=e152]: 2026-04-07
+                - generic [ref=e153]: 长文
+              - heading "「小镇做题家回村」" [level=3] [ref=e154]
+              - paragraph [ref=e155]: 回到村里的饭桌上，学校、专业与体面被一遍遍拿来评说，而真正的委屈与失去从来无人追问。
+      - generic [ref=e156]:
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - text: Timeline
+            - heading "随想" [level=2] [ref=e159]
+          - generic [ref=e160]: "17"
+        - generic [ref=e161]:
+          - article [ref=e162]:
+            - link "2026-06-17 假自我与拼好文 宁要一地的真实的玻璃碎渣，也不要一尊虚假的完美塑料雕像。从小学作文到高考作文，写作何时堕落为「拼好文」？" [ref=e163] [cursor=pointer]:
+              - /url: /zh-cn/2026/06/17/假自我与拼好文/
+              - time [ref=e164]: 2026-06-17
+              - figure [ref=e165]
+              - generic [ref=e166]:
+                - heading "假自我与拼好文" [level=3] [ref=e167]
+                - paragraph [ref=e168]: 宁要一地的真实的玻璃碎渣，也不要一尊虚假的完美塑料雕像。从小学作文到高考作文，写作何时堕落为「拼好文」？
+          - article [ref=e169]:
+            - link "2026-06-17 零万人正在热议 知乎热榜上鸭腿不见了，热度归零。什么算法能在几天内从几百万掉到零？" [ref=e170] [cursor=pointer]:
+              - /url: /zh-cn/2026/06/17/鸭腿女士与知乎热榜/
+              - time [ref=e171]: 2026-06-17
+              - figure [ref=e172]
+              - generic [ref=e173]:
+                - heading "零万人正在热议" [level=3] [ref=e174]
+                - paragraph [ref=e175]: 知乎热榜上鸭腿不见了，热度归零。什么算法能在几天内从几百万掉到零？
+          - article [ref=e176]:
+            - link "2026-06-15 上线三个月，1320 个陌生人来到了这里 三个月，1320 个访客。后台数据摊开看，中英双语各自站稳，知乎和必应是主力渠道，一篇 SIM 卡指南成了流量王牌。" [ref=e177] [cursor=pointer]:
+              - /url: /zh-cn/2026/06/15/上线三个月，1320 个陌生人来到了这里/
+              - time [ref=e178]: 2026-06-15
+              - figure [ref=e179]
+              - generic [ref=e180]:
+                - heading "上线三个月，1320 个陌生人来到了这里" [level=3] [ref=e181]
+                - paragraph [ref=e182]: 三个月，1320 个访客。后台数据摊开看，中英双语各自站稳，知乎和必应是主力渠道，一篇 SIM 卡指南成了流量王牌。
+          - article [ref=e183]:
+            - link "2026-06-13 鸭腿姐与三亿灵活就业 清北鸭腿姐和三亿灵活就业同列一个热搜榜，大抵不是巧合——当高考性价比走低，痛苦和焦虑必然需要释放。" [ref=e184] [cursor=pointer]:
+              - /url: /zh-cn/2026/06/13/鸭腿姐与三亿灵活就业/
+              - time [ref=e185]: 2026-06-13
+              - figure [ref=e186]
+              - generic [ref=e187]:
+                - heading "鸭腿姐与三亿灵活就业" [level=3] [ref=e188]
+                - paragraph [ref=e189]: 清北鸭腿姐和三亿灵活就业同列一个热搜榜，大抵不是巧合——当高考性价比走低，痛苦和焦虑必然需要释放。
+          - article [ref=e190]:
+            - link "2026-06-13 鸭腿鹅腿与我十块钱一餐的大学生活 知乎榜一是清华鸭腿鹅腿，而我的大学生活是一餐饭精打细算到十块钱以下——家庭资源在中学阶段被消耗殆尽后的省钱生存记录。" [ref=e191] [cursor=pointer]:
+              - /url: /zh-cn/2026/06/13/鸭腿鹅腿与我十块钱一餐的大学生活/
+              - time [ref=e192]: 2026-06-13
+              - figure [ref=e193]
+              - generic [ref=e194]:
+                - heading "鸭腿鹅腿与我十块钱一餐的大学生活" [level=3] [ref=e195]
+                - paragraph [ref=e196]: 知乎榜一是清华鸭腿鹅腿，而我的大学生活是一餐饭精打细算到十块钱以下——家庭资源在中学阶段被消耗殆尽后的省钱生存记录。
+          - article [ref=e197]:
+            - link "2026-06-13 鸭腿鹅腿背后的心理防御机制 高考生烧香拜佛、穿旗袍、顶粽子、崇拜状元——弱者在面对巨大生存压力时的心理防御机制，为了缓解非理性焦虑，获得一些控制感。" [ref=e198] [cursor=pointer]:
+              - /url: /zh-cn/2026/06/13/鸭腿鹅腿背后的心理防御机制/
+              - time [ref=e199]: 2026-06-13
+              - figure [ref=e200]
+              - generic [ref=e201]:
+                - heading "鸭腿鹅腿背后的心理防御机制" [level=3] [ref=e202]
+                - paragraph [ref=e203]: 高考生烧香拜佛、穿旗袍、顶粽子、崇拜状元——弱者在面对巨大生存压力时的心理防御机制，为了缓解非理性焦虑，获得一些控制感。
+          - article [ref=e204]:
+            - link "2026-06-08 继续完善 Project Akari 吉祥物灯里酱 继续完善项目吉祥物灯里酱 Akari-chan，抽卡图的难处就是保持角色一致性。" [ref=e205] [cursor=pointer]:
+              - /url: /zh-cn/2026/06/08/project-akari-mascot-card-art/
+              - time [ref=e206]: 2026-06-08
+              - figure [ref=e207]
+              - generic [ref=e208]:
+                - heading "继续完善 Project Akari 吉祥物灯里酱" [level=3] [ref=e209]
+                - paragraph [ref=e210]: 继续完善项目吉祥物灯里酱 Akari-chan，抽卡图的难处就是保持角色一致性。
+          - article [ref=e211]:
+            - link "2026-06-07 高考噩梦还没消化 要高考了要不要紧张我不知道，反正我现在还是时不时做高考噩梦。" [ref=e212] [cursor=pointer]:
+              - /url: /zh-cn/2026/06/07/高考噩梦还没消化/
+              - time [ref=e213]: 2026-06-07
+              - figure [ref=e214]
+              - generic [ref=e215]:
+                - heading "高考噩梦还没消化" [level=3] [ref=e216]
+                - paragraph [ref=e217]: 要高考了要不要紧张我不知道，反正我现在还是时不时做高考噩梦。
+          - article [ref=e218]:
+            - link "2026-06-05 Project Akari 吉祥物——灯里酱 Project Akari 的吉祥物 Akari-chan 灯里酱，抽卡了好久看着还行，日后再完善一下🥺🥺" [ref=e219] [cursor=pointer]:
+              - /url: /zh-cn/2026/06/05/project-akari-mascot/
+              - time [ref=e220]: 2026-06-05
+              - figure [ref=e221]
+              - generic [ref=e222]:
+                - heading "Project Akari 吉祥物——灯里酱" [level=3] [ref=e223]
+                - paragraph [ref=e224]: Project Akari 的吉祥物 Akari-chan 灯里酱，抽卡了好久看着还行，日后再完善一下🥺🥺
+          - article [ref=e225]:
+            - link "2026-06-02 AI链条下的大学荒诞 老师用AI做课件，学生用AI写作业，AI批改AI的题——大学里这条荒诞的AI链条，以及随之而来的订阅军备竞赛。" [ref=e226] [cursor=pointer]:
+              - /url: /zh-cn/2026/06/02/AI链条下的大学荒诞/
+              - time [ref=e227]: 2026-06-02
+              - figure [ref=e228]
+              - generic [ref=e229]:
+                - heading "AI链条下的大学荒诞" [level=3] [ref=e230]
+                - paragraph [ref=e231]: 老师用AI做课件，学生用AI写作业，AI批改AI的题——大学里这条荒诞的AI链条，以及随之而来的订阅军备竞赛。
+          - article [ref=e232]:
+            - link "2026-05-25 封存说说，少发泔水 决定将之前的说说封存，且以后少发泔水说说了，原因有四。" [ref=e233] [cursor=pointer]:
+              - /url: /zh-cn/2026/05/25/封存说说少发泔水/
+              - time [ref=e234]: 2026-05-25
+              - figure [ref=e235]
+              - generic [ref=e236]:
+                - heading "封存说说，少发泔水" [level=3] [ref=e237]
+                - paragraph [ref=e238]: 决定将之前的说说封存，且以后少发泔水说说了，原因有四。
+          - article [ref=e239]:
+            - link "2026-05-25 往事如烟 往事如烟。" [ref=e240] [cursor=pointer]:
+              - /url: /zh-cn/2026/05/25/往事如烟/
+              - time [ref=e241]: 2026-05-25
+              - figure [ref=e242]
+              - generic [ref=e243]:
+                - heading "往事如烟" [level=3] [ref=e244]
+                - paragraph [ref=e245]: 往事如烟。
+          - article [ref=e246]:
+            - link "2026-05-23 差点买了经济金融直播讲堂的课 今晚听完一场关于经济和金融的直播讲堂，差点想买课开会员，但最后还是看了看钱包算了。" [ref=e247] [cursor=pointer]:
+              - /url: /zh-cn/2026/05/23/差点买了经济金融直播讲堂的课/
+              - time [ref=e248]: 2026-05-23
+              - figure [ref=e249]
+              - generic [ref=e250]:
+                - heading "差点买了经济金融直播讲堂的课" [level=3] [ref=e251]
+                - paragraph [ref=e252]: 今晚听完一场关于经济和金融的直播讲堂，差点想买课开会员，但最后还是看了看钱包算了。
+          - article [ref=e253]:
+            - link "2026-05-19 消费降级了，换了OVHcloud美区最便宜的VPS-1 消费降级了，换了OVHcloud美区最便宜的VPS-1，性能就仁者见仁了，反正就八美元" [ref=e254] [cursor=pointer]:
+              - /url: /zh-cn/2026/05/19/ovhcloud-vps-1/
+              - time [ref=e255]: 2026-05-19
+              - figure [ref=e256]
+              - generic [ref=e257]:
+                - heading "消费降级了，换了OVHcloud美区最便宜的VPS-1" [level=3] [ref=e258]
+                - paragraph [ref=e259]: 消费降级了，换了OVHcloud美区最便宜的VPS-1，性能就仁者见仁了，反正就八美元
+          - article [ref=e260]:
+            - link "2026-05-15 大学基站好给力 5GA连香港，105MB/s，震惊了，太伟大了中国电信。" [ref=e261] [cursor=pointer]:
+              - /url: /zh-cn/2026/05/15/大学基站好给力/
+              - time [ref=e262]: 2026-05-15
+              - figure [ref=e263]
+              - generic [ref=e264]:
+                - heading "大学基站好给力" [level=3] [ref=e265]
+                - paragraph [ref=e266]: 5GA连香港，105MB/s，震惊了，太伟大了中国电信。
+          - article [ref=e267]:
+            - link "2026-05-15 生活成本低的骄傲 几块钱就能指挥一个外卖员跑上楼，消费让人感到舒适的原因，是顾客是上帝赋予你一种短暂的、高高在上的权力感。" [ref=e268] [cursor=pointer]:
+              - /url: /zh-cn/2026/05/15/生活成本低的骄傲/
+              - time [ref=e269]: 2026-05-15
+              - figure [ref=e270]
+              - generic [ref=e271]:
+                - heading "生活成本低的骄傲" [level=3] [ref=e272]
+                - paragraph [ref=e273]: 几块钱就能指挥一个外卖员跑上楼，消费让人感到舒适的原因，是顾客是上帝赋予你一种短暂的、高高在上的权力感。
+          - article [ref=e274]:
+            - link "2026-05-15 大学生活图一乐galgame 大学生活galgame开场，想做的事+1，有时间就做哈哈。" [ref=e275] [cursor=pointer]:
+              - /url: /zh-cn/2026/05/15/大学生活图一乐galgame/
+              - time [ref=e276]: 2026-05-15
+              - figure [ref=e277]
+              - generic [ref=e278]:
+                - heading "大学生活图一乐galgame" [level=3] [ref=e279]
+                - paragraph [ref=e280]: 大学生活galgame开场，想做的事+1，有时间就做哈哈。
+      - generic [ref=e281]:
+        - generic [ref=e282]:
+          - generic [ref=e283]:
+            - text: Gallery
+            - heading "相册" [level=2] [ref=e284]
+          - generic [ref=e285]: "1"
+        - article [ref=e287]:
+          - link "2026-05-20 夜间航班 之前拍的一张我挺喜欢的照片，夜间航班。" [ref=e288] [cursor=pointer]:
+            - /url: /zh-cn/2026/05/20/夜间航班/
+            - generic [ref=e290]:
+              - time [ref=e291]: 2026-05-20
+              - heading "夜间航班" [level=3] [ref=e292]
+              - paragraph [ref=e293]: 之前拍的一张我挺喜欢的照片，夜间航班。
+    - region "赞助者墙" [ref=e294]:
+      - generic [ref=e295]:
+        - generic [ref=e296]: 感谢支持
+        - heading "赞助者墙" [level=2] [ref=e297]
+        - paragraph [ref=e298]: 感谢通过爱发电支持我的写作与开源项目的每一位朋友。 · 629 位赞助者
+      - list [ref=e342]:
+        - listitem [ref=e343]:
+          - generic "meta" [ref=e344]:
+            - generic [ref=e345]: meta
+        - listitem [ref=e346]:
+          - generic "槿灵兮" [ref=e347]:
+            - generic [ref=e348]: 槿灵兮
+        - listitem [ref=e349]:
+          - generic "爱发电用户_f0121" [ref=e350]:
+            - generic [ref=e351]: 爱发电用户_f0121
+        - listitem [ref=e352]:
+          - generic "爱发电用户_00562" [ref=e353]:
+            - generic [ref=e354]: 爱发电用户_00562
+        - listitem [ref=e355]:
+          - generic "爱发电用户_067a5" [ref=e356]:
+            - generic [ref=e357]: 爱发电用户_067a5
+        - listitem [ref=e358]:
+          - generic "爱发电用户_mC96" [ref=e359]:
+            - generic [ref=e360]: 爱发电用户_mC96
+        - listitem [ref=e361]:
+          - generic "爱发电用户_0a0d4" [ref=e362]:
+            - generic [ref=e363]: 爱发电用户_0a0d4
+        - listitem [ref=e364]:
+          - generic "derstand" [ref=e365]:
+            - generic [ref=e366]: derstand
+        - listitem [ref=e367]:
+          - generic "Determinantulo" [ref=e368]:
+            - generic [ref=e369]: Determinantulo
+        - listitem [ref=e370]:
+          - generic "爱发电用户_FCHB" [ref=e371]:
+            - generic [ref=e372]: 爱发电用户_FCHB
+        - listitem [ref=e373]:
+          - generic "爱发电用户_45094" [ref=e374]:
+            - generic [ref=e375]: 爱发电用户_45094
+        - listitem [ref=e376]:
+          - generic "静观" [ref=e377]:
+            - generic [ref=e378]: 静观
+        - listitem [ref=e379]:
+          - generic "茂才公" [ref=e380]:
+            - generic [ref=e381]: 茂才公
+        - listitem [ref=e382]:
+          - generic "爱发电用户_8f895" [ref=e383]:
+            - generic [ref=e384]: 爱发电用户_8f895
+        - listitem [ref=e385]:
+          - generic "GHS" [ref=e386]:
+            - generic [ref=e387]: GHS
+        - listitem [ref=e388]:
+          - generic "oasis" [ref=e389]:
+            - generic [ref=e390]: oasis
+        - listitem [ref=e391]:
+          - generic "爱发电用户_HQr3" [ref=e392]:
+            - generic [ref=e393]: 爱发电用户_HQr3
+        - listitem [ref=e394]:
+          - generic "爱发电用户_ced5b" [ref=e395]:
+            - generic [ref=e396]: 爱发电用户_ced5b
+        - listitem [ref=e397]:
+          - generic "wanpeng" [ref=e398]:
+            - generic [ref=e399]: wanpeng
+        - listitem [ref=e400]:
+          - generic "爱发电用户_eabee" [ref=e401]:
+            - generic [ref=e402]: 爱发电用户_eabee
+        - listitem [ref=e403]:
+          - generic "爱发电用户_91099" [ref=e404]:
+            - generic [ref=e405]: 爱发电用户_91099
+        - listitem [ref=e406]:
+          - generic "爱发电用户_243f8" [ref=e407]:
+            - generic [ref=e408]: 爱发电用户_243f8
+        - listitem [ref=e409]:
+          - generic "爱发电用户_jgTe" [ref=e410]:
+            - generic [ref=e411]: 爱发电用户_jgTe
+        - listitem [ref=e412]:
+          - generic "一米阳光" [ref=e413]:
+            - generic [ref=e414]: 一米阳光
+        - listitem [ref=e415]:
+          - generic "爱发电用户_snuR" [ref=e416]:
+            - generic [ref=e417]: 爱发电用户_snuR
+        - listitem [ref=e418]:
+          - generic "爱发电用户_39406" [ref=e419]:
+            - generic [ref=e420]: 爱发电用户_39406
+        - listitem [ref=e421]:
+          - generic "爱发电用户_vNEQ" [ref=e422]:
+            - generic [ref=e423]: 爱发电用户_vNEQ
+        - listitem [ref=e424]:
+          - generic "爱发电用户_anvQ" [ref=e425]:
+            - generic [ref=e426]: 爱发电用户_anvQ
+        - listitem [ref=e427]:
+          - generic "爱发电用户_tPFv" [ref=e428]:
+            - generic [ref=e429]: 爱发电用户_tPFv
+        - listitem [ref=e430]:
+          - generic "爱发电用户_a6104" [ref=e431]:
+            - generic [ref=e432]: 爱发电用户_a6104
+        - listitem [ref=e433]:
+          - generic "光灯管" [ref=e434]:
+            - generic [ref=e435]: 光灯管
+        - listitem [ref=e436]:
+          - generic "猫鼬" [ref=e437]:
+            - generic [ref=e438]: 猫鼬
+        - listitem [ref=e439]:
+          - generic "爱发电用户_978e1" [ref=e440]:
+            - generic [ref=e441]: 爱发电用户_978e1
+        - listitem [ref=e442]:
+          - generic "爱发电用户_jRMy" [ref=e443]:
+            - generic [ref=e444]: 爱发电用户_jRMy
+        - listitem [ref=e445]:
+          - generic "阿飞鸟" [ref=e446]:
+            - generic [ref=e447]: 阿飞鸟
+        - listitem [ref=e448]:
+          - generic "爱发电用户_d785b" [ref=e449]:
+            - generic [ref=e450]: 爱发电用户_d785b
+        - listitem [ref=e451]:
+          - generic "爱发电用户_DEU5" [ref=e452]:
+            - generic [ref=e453]: 爱发电用户_DEU5
+        - listitem [ref=e454]:
+          - generic "爱发电用户_E6p4" [ref=e455]:
+            - generic [ref=e456]: 爱发电用户_E6p4
+        - listitem [ref=e457]:
+          - generic "wrx11111" [ref=e458]:
+            - generic [ref=e459]: wrx11111
+        - listitem [ref=e460]:
+          - generic "sniperHW" [ref=e461]:
+            - generic [ref=e462]: sniperHW
+        - listitem [ref=e463]:
+          - generic "Jeffreyg1228" [ref=e464]:
+            - generic [ref=e465]: Jeffreyg1228
+        - listitem [ref=e466]:
+          - generic "爱发电用户_k94F" [ref=e467]:
+            - generic [ref=e468]: 爱发电用户_k94F
+        - listitem [ref=e469]:
+          - generic "Maxyin" [ref=e470]:
+            - generic [ref=e471]: Maxyin
+        - listitem [ref=e472]:
+          - generic "爱发电用户_396e1" [ref=e473]:
+            - generic [ref=e474]: 爱发电用户_396e1
+        - listitem [ref=e475]:
+          - generic "爱发电用户_eaf3c" [ref=e476]:
+            - generic [ref=e477]: 爱发电用户_eaf3c
+        - listitem [ref=e478]:
+          - generic "爱发电用户_8d329" [ref=e479]:
+            - generic [ref=e480]: 爱发电用户_8d329
+        - listitem [ref=e481]:
+          - generic "爱发电用户_qnCb" [ref=e482]:
+            - generic [ref=e483]: 爱发电用户_qnCb
+        - listitem [ref=e484]:
+          - generic "爱发电用户_b927a" [ref=e485]:
+            - generic [ref=e486]: 爱发电用户_b927a
+        - listitem [ref=e487]:
+          - generic "爱发电用户_86f92" [ref=e488]:
+            - generic [ref=e489]: 爱发电用户_86f92
+        - listitem [ref=e490]:
+          - generic "爱发电用户_rF4W" [ref=e491]:
+            - generic [ref=e492]: 爱发电用户_rF4W
+        - listitem [ref=e493]:
+          - generic "Kerpen" [ref=e494]:
+            - generic [ref=e495]: Kerpen
+        - listitem [ref=e496]:
+          - generic "爱发电用户_5b541" [ref=e497]:
+            - generic [ref=e498]: 爱发电用户_5b541
+        - listitem [ref=e499]:
+          - generic "爱发电用户_uMj3" [ref=e500]:
+            - generic [ref=e501]: 爱发电用户_uMj3
+        - listitem [ref=e502]:
+          - generic "枯凡" [ref=e503]:
+            - generic [ref=e504]: 枯凡
+        - listitem [ref=e505]:
+          - generic "果酱z" [ref=e506]:
+            - generic [ref=e507]: 果酱z
+        - listitem [ref=e508]:
+          - generic "Danshu" [ref=e509]:
+            - generic [ref=e510]: Danshu
+        - listitem [ref=e511]:
+          - generic "疯子" [ref=e512]:
+            - generic [ref=e513]: 疯子
+        - listitem [ref=e514]:
+          - generic "爱发电用户_b6fe3" [ref=e515]:
+            - generic [ref=e516]: 爱发电用户_b6fe3
+        - listitem [ref=e517]:
+          - generic "激激激社人" [ref=e518]:
+            - generic [ref=e519]: 激激激社人
+        - listitem [ref=e520]:
+          - generic "爱发电用户_a337d" [ref=e521]:
+            - generic [ref=e522]: 爱发电用户_a337d
+      - button "展开全部 629 位" [ref=e524] [cursor=pointer]
+      - link "在爱发电上赞助" [ref=e301] [cursor=pointer]:
+        - /url: https://afdian.com/a/writeamathbook
+  - contentinfo [ref=e302]:
+    - paragraph
+    - paragraph [ref=e303]:
+      - link "Atom Feed" [ref=e304] [cursor=pointer]:
+        - /url: /zh-cn/atom.xml
+    - paragraph [ref=e305]:
+      - link "萌ICP备20260097号" [ref=e306] [cursor=pointer]:
+        - /url: https://icp.gov.moe/?keyword=20260097
+    - paragraph [ref=e307]:
+      - generic [ref=e308]: 本站由
+      - img "Cloudflare" [ref=e309]
+      - generic [ref=e314]: Cloudflare CDN 驱动
+    - paragraph [ref=e315]:
+      - text: © 2026 Akari / 篠崎香澄 ·
+      - link "Atom" [ref=e316] [cursor=pointer]:
+        - /url: /zh-cn/atom.xml
