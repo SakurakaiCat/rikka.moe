@@ -1,5 +1,6 @@
 export const DOWNLOAD_URL = 'https://cloud.rikka.moe/s/Wpi0/9awg5moc';
 export const AFDIAN_URL = 'https://afdian.com/a/writeamathbook';
+export const LANZOU_URL = 'https://sakura10.lanzn.com/ibbX93t3sngd';
 
 export interface TocChild {
   label: string;

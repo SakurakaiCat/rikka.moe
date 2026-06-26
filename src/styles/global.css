@@ -3575,6 +3575,57 @@ body.akari-drawer-open {
   border-color: rgba(10, 132, 255, 0.15) !important;
 }
 
+.akari-premium-download {
+  display: grid;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.akari-premium-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.akari-premium-input:focus {
+  border-color: rgba(10, 132, 255, 0.5);
+}
+
+.akari-premium-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.akari-premium-message {
+  font-size: 0.875rem;
+  min-height: 1.4em;
+  transition: color 0.2s;
+}
+
+.akari-premium-message--success a {
+  color: #30d158;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin-right: 12px;
+}
+
+.akari-premium-message--success a:hover {
+  color: #5be67a;
+}
+
+.akari-premium-message--success {
+  color: #30d158;
+}
+
+.akari-premium-message--error {
+  color: #ff453a;
+}
+
 .akari-books-screenshot-groups {
   display: grid;
   gap: 18px;

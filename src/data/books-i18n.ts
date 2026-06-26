@@ -7,6 +7,7 @@ export interface BookCopy {
   chips: string[];
   downloadLabel: string;
   afdianLabel: string;
+  lanzouLabel: string;
   buttons: { explore: string; errata: string; versions: string; preview: string };
   nav: { overview: string; errata: string; design: string; versions: string; notes: string; support: string };
   update: { eyebrow: string; title: string; body: string; errataCount: string };
@@ -57,6 +58,7 @@ const copies: Record<BookLang, BookCopy> = {
     chips: ['专题分册', '精绘图表', '免费版内容完整', '付费版仅去水印'],
     downloadLabel: '前往网盘下载',
     afdianLabel: '前往爱发电支持',
+    lanzouLabel: '蓝奏云下载（国内推荐）',
     buttons: { explore: '探索书稿', errata: '勘误表', versions: '版本对比', preview: '内页预览' },
     nav: { overview: '书稿总览', errata: '勘误表', design: '设计哲学', versions: '下载版本', notes: '写作说明', support: '支持作者' },
     update: {
@@ -139,6 +141,7 @@ const copies: Record<BookLang, BookCopy> = {
     chips: ['專題分冊', '精繪圖表', '免費版內容完整', '付費版僅去水印'],
     downloadLabel: '前往網盤下載',
     afdianLabel: '前往愛發電支持',
+    lanzouLabel: '藍奏雲下載（國內推薦）',
     buttons: { explore: '探索書稿', errata: '勘誤表', versions: '版本對比', preview: '內頁預覽' },
     nav: { overview: '書稿總覽', errata: '勘誤表', design: '設計哲學', versions: '下載版本', notes: '寫作說明', support: '支持作者' },
     update: {
@@ -221,6 +224,7 @@ const copies: Record<BookLang, BookCopy> = {
     chips: ['Topic-based volumes', 'Precise diagrams', 'Complete free edition', 'Paid only removes watermark'],
     downloadLabel: 'Download from cloud',
     afdianLabel: 'Support on Afdian',
+    lanzouLabel: 'Lanzou Cloud (CN mirror)',
     buttons: { explore: 'Explore the manuscripts', errata: 'Errata', versions: 'Version comparison', preview: 'Page previews' },
     nav: { overview: 'Overview', errata: 'Errata', design: 'Design', versions: 'Download', notes: 'Notes', support: 'Support' },
     update: {
@@ -303,6 +307,7 @@ const copies: Record<BookLang, BookCopy> = {
     chips: ['テーマ別分冊', '精密な図表', '無料版も本文完全', '有料版は透かしのみ削除'],
     downloadLabel: 'クラウドからダウンロード',
     afdianLabel: '愛発電で支援する',
+    lanzouLabel: '藍奏雲からダウンロード（中国国内向け）',
     buttons: { explore: '原稿を見る', errata: '正誤表', versions: '版の比較', preview: '紙面プレビュー' },
     nav: { overview: '概要', errata: '正誤表', design: '設計思想', versions: 'ダウンロード', notes: '執筆メモ', support: '支援' },
     update: {
