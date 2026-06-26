@@ -1,35 +1,50 @@
 import { createHash } from 'crypto';
 
-const ARTIC_IIIF_BASE = 'https://www.artic.edu/iiif/2';
-const ARTIC_API_BASE = 'https://api.artic.edu/api/v1';
+const MET_API_BASE = 'https://collectionapi.metmuseum.org/public/collection/v1';
 
 interface ArtworkEntry {
-  id: number;
   title: string;
-  image_id: string;
+  imageUrl: string;
 }
 
 let _pool: ArtworkEntry[] | null = null;
 
+async function fetchObjectImage(objectID: number): Promise<ArtworkEntry | null> {
+  try {
+    const res = await fetch(`${MET_API_BASE}/objects/${objectID}`);
+    if (!res.ok) return null;
+    const data: any = await res.json();
+    const imageUrl = data?.primaryImageSmall || data?.primaryImage || '';
+    if (!imageUrl) return null;
+    return { title: data.title || '', imageUrl };
+  } catch {
+    return null;
+  }
+}
+
 async function ensurePool(): Promise<ArtworkEntry[]> {
   if (_pool) return _pool;
 
-  const pageSize = 100;
-  const url = `${ARTIC_API_BASE}/artworks/search?` +
-    `query[term][is_public_domain]=true` +
-    `&fields=id,title,image_id` +
-    `&limit=${pageSize}` +
-    `&page=1`;
-
   try {
-    const res = await fetch(url);
-    if (!res.ok) {
+    const searchRes = await fetch(
+      `${MET_API_BASE}/search?hasImages=true&q=painting&isPublicDomain=true`,
+    );
+    if (!searchRes.ok) {
       _pool = [];
       return _pool;
     }
-    const json: any = await res.json();
-    const items: ArtworkEntry[] = (json.data || []).filter((item: ArtworkEntry) => item.image_id);
-    _pool = items;
+    const searchData: any = await searchRes.json();
+    const objectIDs: number[] = searchData.objectIDs || [];
+
+    const batchResults = await Promise.allSettled(
+      objectIDs.map((id) => fetchObjectImage(id)),
+    );
+
+    _pool = batchResults
+      .filter((r): r is { status: 'fulfilled'; value: ArtworkEntry | null } =>
+        r.status === 'fulfilled' && r.value !== null,
+      )
+      .map((r) => r.value!);
   } catch {
     _pool = [];
   }
@@ -42,25 +57,20 @@ function hashSlug(slug: string): number {
   return h.readUInt32BE(0);
 }
 
-export function articImageUrl(imageId: string, width = 800): string {
-  return `${ARTIC_IIIF_BASE}/${imageId}/full/${width},/0/default.jpg`;
-}
-
-export async function artFallbackForSlug(slug: string, width = 800): Promise<string> {
+export async function artFallbackForSlug(slug: string): Promise<string> {
   const pool = await ensurePool();
   if (!pool.length) return '/images/profile/background.jpg';
   const idx = hashSlug(slug) % pool.length;
-  return articImageUrl(pool[idx].image_id, width);
+  return pool[idx].imageUrl;
 }
 
 export async function resolveArtFallbacks(
   slugs: string[],
-  width = 800,
 ): Promise<Map<string, string>> {
   await ensurePool();
   const map = new Map<string, string>();
   for (const slug of slugs) {
-    map.set(slug, await artFallbackForSlug(slug, width));
+    map.set(slug, await artFallbackForSlug(slug));
   }
   return map;
 }
