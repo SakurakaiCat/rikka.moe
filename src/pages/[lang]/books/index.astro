@@ -4,7 +4,7 @@ import SponsorWall from '../../../components/SponsorWall.astro';
 import { LOCALES, toAbsoluteUrl, type Locale } from '../../../lib/content';
 import { getBookCopy, type BookLang } from '../../../data/books-i18n';
 import {
-  DOWNLOAD_URL, AFDIAN_URL,
+  DOWNLOAD_URL, AFDIAN_URL, LANZOU_URL,
   screenshotGroups,
   journeyErrata, funcErrata,
   renderErrataTier,
@@ -54,6 +54,7 @@ const languageOptions = LOCALES.map((loc) => {
         <div class="akari-books-actions">
           <a class="akari-button akari-button--filled" href={DOWNLOAD_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.downloadLabel}</a>
           <a class="akari-button" href={AFDIAN_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-heart"></i>{copy.afdianLabel}</a>
+          <a class="akari-button" href={LANZOU_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-cloud"></i>{copy.lanzouLabel}</a>
           <a class="akari-button" href="#akari-book-showcase"><i class="ph ph-book-open"></i>{copy.buttons.explore}</a>
           <a class="akari-button" href="#akari-book-versions"><i class="ph ph-download-simple"></i>{copy.buttons.versions}</a>
         </div>
@@ -82,6 +83,7 @@ const languageOptions = LOCALES.map((loc) => {
           <p>{copy.update.body}</p>
           <div class="akari-books-actions">
             <a class="akari-button akari-button--filled" href={DOWNLOAD_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.downloadLabel}</a>
+            <a class="akari-button" href={LANZOU_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-cloud"></i>{copy.lanzouLabel}</a>
             <a class="akari-button" href="#akari-book-errata"><i class="ph ph-list-checks"></i>{copy.buttons.errata}</a>
           </div>
         </div>
@@ -161,13 +163,18 @@ const languageOptions = LOCALES.map((loc) => {
           <h3>{copy.versions.freeTitle}</h3>
           <ul>{copy.versions.freeItems.map((item) => <li><i class="ph ph-check"></i>{item}</li>)}</ul>
           <a class="akari-button akari-button--filled" href={DOWNLOAD_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.downloadLabel}</a>
+          <a class="akari-button" href={LANZOU_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-cloud"></i>{copy.lanzouLabel}</a>
         </article>
         <article class="akari-books-version akari-books-version--primary glass-card">
           <p class="akari-books-badge">Watermark-Free Edition</p>
           <h3>{copy.versions.premiumTitle}</h3>
           <span class="akari-books-version__chip">{copy.versions.premiumChip}</span>
           <ul>{copy.versions.premiumItems.map((item) => <li><i class="ph ph-check-circle"></i>{item}</li>)}</ul>
-          <a class="akari-button akari-button--filled" href={AFDIAN_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-heart"></i>{copy.afdianLabel}</a>
+          <div class="akari-premium-download">
+            <input type="text" id="premium-key" placeholder="输入爱发电密钥" class="akari-premium-input" />
+            <button id="premium-verify" class="akari-button akari-button--filled"><i class="ph ph-lock-key-open"></i>验证并下载</button>
+            <div id="premium-message" class="akari-premium-message"></div>
+          </div>
         </article>
       </div>
     </section>
@@ -252,6 +259,53 @@ const languageOptions = LOCALES.map((loc) => {
           });
         });
       });
+
+      // Premium key verification
+      var premiumKeyInput = document.getElementById('premium-key');
+      var premiumVerifyBtn = document.getElementById('premium-verify');
+      var premiumMessage = document.getElementById('premium-message');
+
+      if (premiumVerifyBtn && premiumKeyInput) {
+        premiumVerifyBtn.addEventListener('click', function () {
+          var key = premiumKeyInput.value.trim();
+          if (!key) {
+            premiumMessage.textContent = '请填写爱发电密钥';
+            premiumMessage.className = 'akari-premium-message akari-premium-message--error';
+            return;
+          }
+          premiumMessage.textContent = '正在验证……';
+          premiumMessage.className = 'akari-premium-message';
+          fetch('/api/books/verify', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ key: key })
+          })
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (data.success && data.labels && data.labels.length > 0) {
+              var links = data.labels.map(function (label, i) {
+                return '<a href="/api/books/download/' + i + '" target="_blank" rel="noopener noreferrer">' + label + '</a>';
+              }).join(' ');
+              premiumMessage.innerHTML = links;
+              premiumMessage.className = 'akari-premium-message akari-premium-message--success';
+            } else {
+              premiumMessage.textContent = data.message || '密钥无效，请检查后重试';
+              premiumMessage.className = 'akari-premium-message akari-premium-message--error';
+            }
+          })
+          .catch(function () {
+            premiumMessage.textContent = '验证服务暂时不可用，请稍后重试';
+            premiumMessage.className = 'akari-premium-message akari-premium-message--error';
+          });
+        });
+
+        premiumKeyInput.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            premiumVerifyBtn.click();
+          }
+        });
+      }
     })();
   </script>
 </BaseLayout>
