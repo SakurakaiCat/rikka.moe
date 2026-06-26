@@ -43,6 +43,22 @@ export interface BookCopy {
     premiumChip: string;
     premiumItems: string[];
   };
+  downloadGuide: {
+    eyebrow: string;
+    title: string;
+    step1Title: string;
+    step1Body: string[];
+    step2Title: string;
+    step2Free: string;
+    step2Premium: string;
+    step2PremiumHint: string;
+    step3Title: string;
+    step3Body: string[];
+    browserTitle: string;
+    browserItems: string[];
+    readerTitle: string;
+    readerItems: string[];
+  };
   preview: { eyebrow: string; title: string; lead: string; func: string; journey: string };
   notes: { eyebrow: string; title: string; lead: string; originTitle: string; origin: string[]; practiceTitle: string; practice: string[]; pausedTitle: string; paused: string[] };
   support: { eyebrow: string; title: string; lead: string; cardTitle: string; cardBody: string; akariTitle: string; akariBody: string[] };
@@ -101,14 +117,30 @@ const copies: Record<BookLang, BookCopy> = {
       ],
     },
     versions: {
-      eyebrow: '版本对比',
-      title: '选择你的版本',
-      lead: '免费版与付费版的内容完全一致。付费版仅去除页面水印，并作为对作者的一份支持。',
+      eyebrow: '下载',
+      title: '如何下载',
+      lead: '两本书均有免费版和付费版。免费版内容完整，含水印；付费版内容相同，仅去水印。按以下步骤下载即可。',
       freeTitle: '免费版',
       freeItems: ['完整章节内容（含水印）', '全部图形与公式', '全部目录与内容提要', '作者简介与前言'],
       premiumTitle: '无水印版',
       premiumChip: '内容相同 · 仅去水印',
       premiumItems: ['与免费版内容完全相同', '去除页面水印，阅读纯净', '所有专题分册独立下载', '优先获得后续修订', '作为对作者的一份支持'],
+    },
+    downloadGuide: {
+      eyebrow: '使用指南',
+      title: '下载后怎么用',
+      step1Title: '第一步：下载 PDF',
+      step1Body: ['点击上方按钮下载 PDF 文件。国内用户推荐使用蓝奏云链接，速度更快。', '如果无法打开蓝奏云链接，请尝试更换浏览器（推荐 Chrome），或将链接中的 lanzn 替换为 lanzou 或 lanzoux 再试。'],
+      step2Title: '第二步：选择版本',
+      step2Free: '免费版：直接点击下载按钮，跳转到网盘页面后保存文件即可。',
+      step2Premium: '付费版：在爱发电购买后会收到一个密钥，将它填入输入框并点击"验证并下载"，验证通过后即可下载。',
+      step2PremiumHint: '还没有密钥？前往爱发电赞助获取。',
+      step3Title: '第三步：打开并阅读',
+      step3Body: ['下载完成后，用下方推荐的 PDF 阅读器打开文件即可正常阅读。', '请不要用浏览器直接打开 PDF，浏览器内置阅读器不支持部分数学字体，会导致公式显示异常。'],
+      browserTitle: '推荐浏览器',
+      browserItems: ['Google Chrome（推荐）', 'Microsoft Edge', 'Firefox'],
+      readerTitle: '推荐 PDF 阅读器',
+      readerItems: ['Windows: Sumatra PDF（免费、轻量）', 'macOS: 系统自带「预览」', 'Android: Microsoft Edge 或 Google Chrome', 'iOS / iPadOS: 系统自带「文件」或「图书」'],
     },
     preview: { eyebrow: '内页预览', title: '翻阅书页', lead: '随机抽取两本书的一些页面，提前感受排版风格。', func: '《函数与导数》', journey: '《高中数学之旅》' },
     notes: {
@@ -193,6 +225,22 @@ const copies: Record<BookLang, BookCopy> = {
       premiumChip: '內容相同 · 僅去水印',
       premiumItems: ['與免費版內容完全相同', '去除頁面水印，閱讀純淨', '所有專題分冊獨立下載', '優先取得後續修訂', '作為對作者的一份支持'],
     },
+    downloadGuide: {
+      eyebrow: '使用指南',
+      title: '下載後怎麼用',
+      step1Title: '第一步：下載 PDF',
+      step1Body: ['點擊上方按鈕下載 PDF 檔案。國內使用者推薦使用藍奏雲連結，速度更快。', '如果無法打開藍奏雲連結，請嘗試更換瀏覽器（推薦 Chrome），或將連結中的 lanzn 替換為 lanzou 或 lanzoux 再試。'],
+      step2Title: '第二步：選擇版本',
+      step2Free: '免費版：直接點擊下載按鈕，跳轉到網盤頁面後儲存檔案即可。',
+      step2Premium: '付費版：在愛發電購買後會收到一個密鑰，將它填入輸入框並點擊「驗證並下載」，驗證通過後即可下載。',
+      step2PremiumHint: '還沒有密鑰？前往愛發電贊助獲取。',
+      step3Title: '第三步：打開並閱讀',
+      step3Body: ['下載完成後，用下方推薦的 PDF 閱讀器打開檔案即可正常閱讀。', '請不要用瀏覽器直接打開 PDF，瀏覽器內建閱讀器不支援部分數學字型，會導致公式顯示異常。'],
+      browserTitle: '推薦瀏覽器',
+      browserItems: ['Google Chrome（推薦）', 'Microsoft Edge', 'Firefox'],
+      readerTitle: '推薦 PDF 閱讀器',
+      readerItems: ['Windows: Sumatra PDF（免費、輕量）', 'macOS: 系統自帶「預覽」', 'Android: Microsoft Edge 或 Google Chrome', 'iOS / iPadOS: 系統自帶「檔案」或「圖書」'],
+    },
     preview: { eyebrow: '內頁預覽', title: '翻閱書頁', lead: '隨機抽取兩本書的一些頁面，提前感受排版風格。', func: '《函數與導數》', journey: '《高中數學之旅》' },
     notes: {
       eyebrow: '緣起、學習與近況',
@@ -276,6 +324,22 @@ const copies: Record<BookLang, BookCopy> = {
       premiumChip: 'Same content · watermark removed',
       premiumItems: ['Exactly the same content as the free edition', 'Cleaner pages without watermarks', 'All topic-based volumes available separately', 'Priority access to future revisions', 'A way to support the author'],
     },
+    downloadGuide: {
+      eyebrow: 'How to use',
+      title: 'How to download and read',
+      step1Title: 'Step 1: Download the PDF',
+      step1Body: ['Click the download button above. Users in China should use the Lanzou Cloud link for faster speeds.', 'If the Lanzou Cloud link does not open, try a different browser (Chrome recommended), or replace "lanzn" with "lanzou" or "lanzoux" in the URL.'],
+      step2Title: 'Step 2: Choose your edition',
+      step2Free: 'Free edition: click the download button, then save the file from the cloud storage page.',
+      step2Premium: 'Paid edition: after purchasing on Afdian, you will receive a key. Enter it in the input field and click "Verify & Download".',
+      step2PremiumHint: "Don't have a key yet? Sponsor on Afdian to get one.",
+      step3Title: 'Step 3: Open and read',
+      step3Body: ['Once downloaded, open the file with one of the recommended PDF readers below.', 'Do not open PDFs directly in your browser — the built-in reader cannot render some mathematical fonts correctly.'],
+      browserTitle: 'Recommended browsers',
+      browserItems: ['Google Chrome (recommended)', 'Microsoft Edge', 'Firefox'],
+      readerTitle: 'Recommended PDF readers',
+      readerItems: ['Windows: Sumatra PDF (free, lightweight)', 'macOS: Built-in Preview', 'Android: Microsoft Edge or Google Chrome', 'iOS / iPadOS: Built-in Files or Books app'],
+    },
     preview: { eyebrow: 'Page previews', title: 'Flip through the pages', lead: 'A few sample pages from the two books, showing the visual style before you download or read them.', func: 'Functions and Derivatives', journey: 'Secondary Math Journey' },
     notes: {
       eyebrow: 'Origin, learning, and status',
@@ -358,6 +422,22 @@ const copies: Record<BookLang, BookCopy> = {
       premiumTitle: '透かしなし版',
       premiumChip: '本文は同じ · 透かしのみ削除',
       premiumItems: ['無料版と本文は完全に同じ', '透かしを削除した読みやすいページ', 'テーマ別分冊を個別にダウンロード', '今後の改訂を優先して利用可能', '作者への支援になります'],
+    },
+    downloadGuide: {
+      eyebrow: '使い方ガイド',
+      title: 'ダウンロード後の読み方',
+      step1Title: 'ステップ1：PDFをダウンロード',
+      step1Body: ['上のボタンをクリックしてPDFをダウンロードしてください。中国国内の利用者は藍奏雲リンクが速いです。', '藍奏雲リンクが開けない場合は、ブラウザを変えてみてください（Chrome推奨）。'],
+      step2Title: 'ステップ2：版を選ぶ',
+      step2Free: '無料版：ダウンロードボタンをクリックし、クラウドストレージページから保存してください。',
+      step2Premium: '有料版：愛発電で購入後、キーを受け取ります。入力欄にキーを入力して「検証してダウンロード」をクリックしてください。',
+      step2PremiumHint: 'キーをお持ちでない方は、愛発電でスポンサーになると取得できます。',
+      step3Title: 'ステップ3：開いて読む',
+      step3Body: ['ダウンロード後、下記の推奨PDFリーダーで開いてください。', 'ブラウザ内蔵のPDFリーダーは一部の数式フォントに対応していないため、ブラウザで直接開かないでください。'],
+      browserTitle: '推奨ブラウザ',
+      browserItems: ['Google Chrome（推奨）', 'Microsoft Edge', 'Firefox'],
+      readerTitle: '推奨PDFリーダー',
+      readerItems: ['Windows: Sumatra PDF（無料・軽量）', 'macOS: 標準「プレビュー」', 'Android: Microsoft Edge または Google Chrome', 'iOS / iPadOS: 標準「ファイル」または「ブック」'],
     },
     preview: { eyebrow: '紙面プレビュー', title: 'ページを少しだけ見る', lead: '二つの本からいくつかのページを抜き出し、組版の雰囲気を先に確認できるようにしました。', func: '『関数と導数』', journey: '『高校数学の旅』' },
     notes: {
