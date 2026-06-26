@@ -3626,6 +3626,43 @@ body.akari-drawer-open {
   color: #ff453a;
 }
 
+.akari-books-guide-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.akari-books-guide-grid .akari-books-text-card h3 {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.akari-books-recommend-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 14px;
+}
+
+.akari-books-recommend-grid h4 {
+  margin: 0 0 8px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.akari-books-recommend-grid ul {
+  margin: 0;
+  padding: 0 0 0 1.2em;
+  list-style: disc;
+  display: grid;
+  gap: 4px;
+}
+
+.akari-books-recommend-grid li {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
 .akari-books-screenshot-groups {
   display: grid;
   gap: 18px;
@@ -3811,6 +3848,7 @@ body.akari-drawer-open {
   .akari-books-screenshot-grid,
   .akari-books-tutorial-grid,
   .akari-books-method-grid,
+  .akari-books-recommend-grid,
   .akari-book-toc__sub {
     grid-template-columns: 1fr;
   }
