@@ -36,11 +36,15 @@ const sectionLabels = {
 <div class="akari-bento-grid">
   <section class="akari-hero-banner">
     <div class="akari-hero-card glass-card">
-      <picture class="akari-hero-media" aria-hidden="true">
-        <source media="(min-width: 1200px)" srcset={model.hero.sources.desktop} />
-        <source media="(min-width: 700px)" srcset={model.hero.sources.tablet} />
-        <img src={model.hero.sources.mobile} alt="" fetchpriority="high" decoding="async" />
-      </picture>
+      <video class="akari-hero-media akari-hero-media--desktop" autoplay muted loop playsinline preload="metadata" poster={model.hero.posters.desktop} aria-hidden="true">
+        <source src={model.hero.sources.desktop} type="video/webm" />
+      </video>
+      <video class="akari-hero-media akari-hero-media--tablet" autoplay muted loop playsinline preload="metadata" poster={model.hero.posters.tablet} aria-hidden="true">
+        <source src={model.hero.sources.tablet} type="video/webm" />
+      </video>
+      <video class="akari-hero-media akari-hero-media--mobile" autoplay muted loop playsinline preload="metadata" poster={model.hero.posters.mobile} aria-hidden="true">
+        <source src={model.hero.sources.mobile} type="video/webm" />
+      </video>
       <div class="akari-hero-overlay"></div>
       <div class="akari-hero-content">
         <div class="akari-hero-content__inner">

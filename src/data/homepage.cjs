@@ -926,9 +926,14 @@ function getHomepageModel(page) {
       avatarSrc: '/images/profile/avatar.jpg',
       avatarAlt: copy.portraitAlt,
       sources: {
-        desktop: '/images/profile/sp_mainc4ca.jpg',
-        tablet: '/images/profile/sp_mainc4ca.jpg',
-        mobile: '/images/profile/sp_mainc4ca.jpg'
+        desktop: '/assets/images/profile/hero-clip-desktop.webm',
+        tablet: '/assets/images/profile/hero-clip-tablet.webm',
+        mobile: '/assets/images/profile/hero-clip-mobile.webm'
+      },
+      posters: {
+        desktop: '/assets/images/profile/poster-desktop.jpg',
+        tablet: '/assets/images/profile/poster-tablet.jpg',
+        mobile: '/assets/images/profile/poster-mobile.jpg'
       },
       ctas: [
         { label: copy.primaryCta, href: '#akari-blog-feed', primary: true },
