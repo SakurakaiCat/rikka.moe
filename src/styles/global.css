@@ -391,7 +391,9 @@ img {
   isolation: isolate;
 }
 
-.akari-hero-media {
+.akari-hero-media,
+.akari-hero-media img,
+.akari-hero-media picture {
   position: absolute;
   inset: 0;
   display: block;
@@ -400,21 +402,6 @@ img {
   object-fit: cover;
   object-position: 50% 30%;
   opacity: 0.95;
-}
-
-.akari-hero-media--tablet,
-.akari-hero-media--mobile {
-  display: none;
-}
-
-@media (max-width: 1199px) {
-  .akari-hero-media--desktop { display: none; }
-  .akari-hero-media--tablet { display: block; }
-}
-
-@media (max-width: 699px) {
-  .akari-hero-media--tablet { display: none; }
-  .akari-hero-media--mobile { display: block; }
 }
 
 .akari-hero-overlay {

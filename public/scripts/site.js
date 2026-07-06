@@ -256,20 +256,7 @@ document.addEventListener('astro:page-load', function() {
     });
   } catch {}
 
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.akari-hero-media').forEach((v) => {
-      v.pause();
-      v.removeAttribute('autoplay');
-    });
-  }
 });
-
-if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.querySelectorAll('video.akari-hero-media').forEach(function(v) {
-    v.pause();
-    v.removeAttribute('autoplay');
-  });
-}
 
 // Restore preferences
 try {
