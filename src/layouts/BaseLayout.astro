@@ -69,13 +69,34 @@ const localeRoutingConfig = {
 };
 ---
 <!doctype html>
-<html lang={locale.html_lang} class="mdui-theme-dark" data-font-locale={locale.lang_path} transition:animate="none">
+<html lang={locale.html_lang} data-font-locale={locale.lang_path} transition:animate="none">
   <head>
     <meta charset="UTF-8" />
     <meta name="renderer" content="webkit" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+        <script is:inline>
+    (function() {
+      try {
+        var stored = localStorage.getItem('akari-theme');
+        var theme = (stored === 'parchment' || stored === 'dark' || stored === 'auto') ? stored : 'auto';
+        var root = document.documentElement;
+        if (theme === 'auto') {
+          root.removeAttribute('data-theme');
+        } else {
+          root.setAttribute('data-theme', theme);
+        }
+        var light = (theme === 'parchment') || (theme === 'auto' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
+        var mdui = light ? 'mdui-theme-light' : 'mdui-theme-dark';
+        root.classList.remove('mdui-theme-light', 'mdui-theme-dark');
+        root.classList.add(mdui);
+        root.dataset.themeReady = '1';
+      } catch (e) {
+        document.documentElement.classList.add('mdui-theme-dark');
+      }
+    })();
+  </script>
     <meta name="robots" content={indexing ? 'index, follow' : 'noindex, nofollow'} />
     <meta name="author" content="Akari / 篠崎香澄" />
     <meta name="description" content={seoDescription} />
@@ -104,7 +125,7 @@ const localeRoutingConfig = {
     <script is:inline set:html={`window.__AKARI_LOCALE_ROUTING__ = ${JSON.stringify(localeRoutingConfig)}; window.__AKARI_SITE_COPY__ = ${JSON.stringify(siteCopy)}; window.__AKARI_AI_SUMMARY_COPY__ = ${JSON.stringify(aiSummaryCopy)};`}></script>
     <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': type === 'article' ? 'BlogPosting' : 'WebSite', name: title || siteTitle, headline: title || siteTitle, url: canonical, inLanguage: locale.html_lang, description: seoDescription, author: { '@type': 'Person', name: 'Akari / 篠崎香澄' } })}></script>
   </head>
-  <body class="mdui-theme-dark">
+  <body>
     <div class="akari-snow" aria-hidden="true"></div>
     <script is:inline>
     (function() {

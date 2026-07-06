@@ -59,6 +59,14 @@ const { locale, title, section = '', languageOptions } = Astro.props;
       </div>
     </div>
     <div class="akari-settings-section">
+      <h3>{label('ui', 'theme', locale)}</h3>
+      <div class="akari-settings-theme" role="group" aria-label={label('ui', 'theme', locale)}>
+        <button class="akari-settings-theme__btn akari-settings-theme__btn--active" data-theme="auto" type="button">{label('ui', 'themeAuto', locale)}</button>
+        <button class="akari-settings-theme__btn" data-theme="dark" type="button">{label('ui', 'themeDark', locale)}</button>
+        <button class="akari-settings-theme__btn" data-theme="parchment" type="button">{label('ui', 'themeParchment', locale)}</button>
+      </div>
+    </div>
+    <div class="akari-settings-section">
       <h3>{label('ui', 'fontSize', locale)}</h3>
       <div class="akari-settings-font-size">
         <button class="akari-settings-font-size__btn" data-size="small" type="button">{label('ui', 'fontSmall', locale)}</button>
