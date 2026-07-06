@@ -236,6 +236,17 @@ function applyAkariTheme(theme) {
   root.classList.add(light ? 'mdui-theme-light' : 'mdui-theme-dark');
 }
 
+if (window.matchMedia) {
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+    try {
+      var saved = localStorage.getItem('akari-theme');
+      if (saved === 'auto' || !saved) {
+        applyAkariTheme('auto');
+      }
+    } catch {}
+  });
+}
+
 document.querySelectorAll('.akari-settings-theme__btn').forEach((btn) => {
   btn.addEventListener('click', () => {
     var theme = btn.getAttribute('data-theme') || 'auto';
