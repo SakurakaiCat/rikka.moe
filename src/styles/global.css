@@ -16,6 +16,8 @@
   --akari-glass: rgba(var(--akari-shadow-rgb) / 0.20);
   --akari-glass-strong: rgba(var(--akari-shadow-rgb) / 0.35);
   --akari-glass-bg: rgba(var(--akari-shadow-rgb) / 0.22);
+  --akari-glass-strong-bg: rgba(var(--akari-shadow-rgb) / 0.30);
+  --akari-drawer-overlay: rgba(var(--akari-shadow-rgb) / 0.55);
   --akari-bg: #0e1117;
   --akari-bg-gradient-end: #121620;
   --akari-surface: #161a22;
@@ -52,6 +54,8 @@
   --akari-bg-card: rgba(var(--akari-shadow-rgb) / 0.08);
   --akari-bg-subtle: rgba(var(--akari-shadow-rgb) / 0.04);
   --akari-glass-bg: color-mix(in srgb, var(--akari-surface) 78%, transparent);
+  --akari-glass-strong-bg: color-mix(in srgb, var(--akari-surface) 90%, transparent);
+  --akari-drawer-overlay: rgba(var(--akari-shadow-rgb) / 0.25);
   --akari-glass-border: rgba(var(--akari-ink-rgb) / 0.18);
   --akari-shadow-card:
     0 1px 3px rgba(var(--akari-shadow-rgb) / 0.10),
@@ -78,6 +82,8 @@
     --akari-bg-card: rgba(var(--akari-shadow-rgb) / 0.04);
     --akari-bg-subtle: rgba(var(--akari-shadow-rgb) / 0.02);
     --akari-glass-bg: color-mix(in srgb, var(--akari-surface) 82%, transparent);
+    --akari-glass-strong-bg: color-mix(in srgb, var(--akari-surface) 92%, transparent);
+    --akari-drawer-overlay: rgba(0, 0, 0, 0.22);
     --akari-glass-border: rgba(var(--akari-ink-rgb) / 0.12);
     --akari-shadow-card:
       0 1px 2px rgb(0 0 0 / 0.06),
@@ -275,7 +281,7 @@ img {
   min-height: 52px;
   border: 1px solid var(--akari-glass-border);
   border-radius: 999px;
-  background: rgba(var(--akari-shadow-rgb) / 0.30);
+  background: var(--akari-glass-strong-bg);
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
   box-shadow: var(--akari-shadow-card);
@@ -356,7 +362,7 @@ img {
   max-width: calc(100vw - 24px);
   border: 1px solid var(--akari-glass-border);
   border-radius: 20px;
-  background: rgba(var(--akari-shadow-rgb) / 0.35);
+  background: var(--akari-glass-strong-bg);
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
   box-shadow: var(--akari-shadow-card);
@@ -379,7 +385,7 @@ img {
 }
 
 .akari-popover__item--active {
-  color: #0a84ff;
+  color: var(--akari-accent);
   font-weight: 600;
 }
 
@@ -1072,7 +1078,7 @@ img {
   padding: 0 18px;
   border: 1px solid var(--akari-glass-border);
   border-radius: 999px;
-  background: rgba(var(--akari-shadow-rgb) / 0.30);
+  background: var(--akari-glass-strong-bg);
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
   box-shadow: var(--akari-shadow-card);
@@ -1147,7 +1153,7 @@ img {
   overflow: auto;
   padding: 16px;
   border-radius: 14px;
-  background: rgba(var(--akari-shadow-rgb) / 0.38);
+  background: var(--akari-bg-card);
 }
 
 .code-block {
@@ -1575,7 +1581,7 @@ img {
 }
 
 .post-comments .tk-comment .tk-content pre {
-  background: rgba(var(--akari-shadow-rgb) / 0.3);
+  background: var(--akari-bg-card);
   padding: 14px;
   border-radius: var(--akari-radius);
   overflow-x: auto;
@@ -2098,7 +2104,7 @@ img {
   position: fixed;
   inset: 0;
   z-index: 10001;
-  background: rgba(var(--akari-shadow-rgb) / 0.55);
+  background: var(--akari-drawer-overlay);
 }
 
 .akari-sidebar {
@@ -2124,7 +2130,7 @@ img {
   height: 100%;
   border: 1px solid var(--akari-glass-border);
   border-radius: 20px;
-  background: rgba(var(--akari-shadow-rgb) / 0.35);
+  background: var(--akari-glass-strong-bg);
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
   box-shadow: var(--akari-shadow-card);
@@ -2556,7 +2562,7 @@ body.akari-drawer-open {
 .akari-search-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(var(--akari-shadow-rgb) / 0.6);
+  background: var(--akari-drawer-overlay);
 }
 
 .akari-search-modal__content {
@@ -2564,7 +2570,7 @@ body.akari-drawer-open {
   width: min(560px, calc(100vw - 2rem));
   border: 1px solid var(--akari-glass-border);
   border-radius: 20px;
-  background: rgba(var(--akari-shadow-rgb) / 0.35);
+  background: var(--akari-glass-strong-bg);
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
   box-shadow: var(--akari-shadow-card);
@@ -2727,9 +2733,9 @@ body.akari-drawer-open {
 }
 
 .akari-settings-font-size__btn--active {
-  border-color: rgba(10, 132, 255, 0.50);
-  background: rgba(10, 132, 255, 0.12);
-  color: #0a84ff;
+  border-color: color-mix(in srgb, var(--akari-accent) 50%, transparent);
+  background: color-mix(in srgb, var(--akari-accent) 12%, transparent);
+  color: var(--akari-accent);
   font-weight: 600;
 }
 
