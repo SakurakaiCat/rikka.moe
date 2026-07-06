@@ -9,10 +9,13 @@
   --akari-ink-rgb: 255 255 255;
   --akari-shadow-rgb: 0 0 0;
   --akari-text: rgba(var(--akari-ink-rgb) / 0.95);
+  --akari-text-secondary: rgba(var(--akari-ink-rgb) / 0.70);
   --akari-muted: rgba(var(--akari-ink-rgb) / 0.55);
   --akari-border: rgba(var(--akari-ink-rgb) / 0.10);
+  --akari-border-strong: rgba(var(--akari-ink-rgb) / 0.18);
   --akari-glass: rgba(var(--akari-shadow-rgb) / 0.20);
   --akari-glass-strong: rgba(var(--akari-shadow-rgb) / 0.35);
+  --akari-glass-bg: rgba(var(--akari-shadow-rgb) / 0.22);
   --akari-bg: #0e1117;
   --akari-bg-gradient-end: #121620;
   --akari-surface: #161a22;
@@ -31,9 +34,8 @@
 }
 
 /* ============================================================
-   Parchment "light" theme
-   - data-theme="parchment" wins (manual override)
-   - data-theme unset + prefers-color-scheme: light (auto)
+   Parchment theme — manual override (data-theme="parchment")
+   Warm sepia/cream palette with brown ink
    ============================================================ */
 :root[data-theme='parchment'] {
   --akari-ink-rgb: 47 36 18;
@@ -44,30 +46,42 @@
   --akari-bg-gradient-end: #e8d9b8;
   --akari-surface: #ecdcb8;
   --akari-surface-soft: #e3d2a8;
-  --akari-bg-card: rgba(var(--akari-shadow-rgb) / 0.10);
-  --akari-bg-subtle: rgba(var(--akari-shadow-rgb) / 0.05);
+  --akari-text-secondary: rgba(var(--akari-ink-rgb) / 0.68);
+  --akari-border: rgba(var(--akari-ink-rgb) / 0.12);
+  --akari-border-strong: rgba(var(--akari-ink-rgb) / 0.22);
+  --akari-bg-card: rgba(var(--akari-shadow-rgb) / 0.08);
+  --akari-bg-subtle: rgba(var(--akari-shadow-rgb) / 0.04);
+  --akari-glass-bg: color-mix(in srgb, var(--akari-surface) 78%, transparent);
   --akari-glass-border: rgba(var(--akari-ink-rgb) / 0.18);
   --akari-shadow-card:
-    0 8px 32px rgba(var(--akari-shadow-rgb) / 0.18),
-    0 2px 8px rgba(var(--akari-shadow-rgb) / 0.10);
+    0 1px 3px rgba(var(--akari-shadow-rgb) / 0.10),
+    0 8px 24px rgba(var(--akari-shadow-rgb) / 0.08);
 }
 
+/* ============================================================
+   Light theme — auto mode (prefers-color-scheme: light)
+   CPA-style warm-gray paper palette
+   ============================================================ */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
-    --akari-ink-rgb: 47 36 18;
-    --akari-shadow-rgb: 92 60 18;
-    --akari-accent: #b6630f;
-    --akari-accent-strong: #d97a18;
-    --akari-bg: #f3e7cf;
-    --akari-bg-gradient-end: #e8d9b8;
-    --akari-surface: #ecdcb8;
-    --akari-surface-soft: #e3d2a8;
-    --akari-bg-card: rgba(var(--akari-shadow-rgb) / 0.10);
-    --akari-bg-subtle: rgba(var(--akari-shadow-rgb) / 0.05);
-    --akari-glass-border: rgba(var(--akari-ink-rgb) / 0.18);
+    --akari-ink-rgb: 45 42 38;
+    --akari-shadow-rgb: 0 0 0;
+    --akari-accent: #0a84ff;
+    --akari-accent-strong: #409cff;
+    --akari-bg: #faf9f5;
+    --akari-bg-gradient-end: #f0eee8;
+    --akari-surface: #f0eee8;
+    --akari-surface-soft: #e9e6df;
+    --akari-text-secondary: rgba(var(--akari-ink-rgb) / 0.65);
+    --akari-border: rgba(var(--akari-ink-rgb) / 0.10);
+    --akari-border-strong: rgba(var(--akari-ink-rgb) / 0.16);
+    --akari-bg-card: rgba(var(--akari-shadow-rgb) / 0.04);
+    --akari-bg-subtle: rgba(var(--akari-shadow-rgb) / 0.02);
+    --akari-glass-bg: color-mix(in srgb, var(--akari-surface) 82%, transparent);
+    --akari-glass-border: rgba(var(--akari-ink-rgb) / 0.12);
     --akari-shadow-card:
-      0 8px 32px rgba(var(--akari-shadow-rgb) / 0.18),
-      0 2px 8px rgba(var(--akari-shadow-rgb) / 0.10);
+      0 1px 2px rgb(0 0 0 / 0.06),
+      0 8px 24px rgb(0 0 0 / 0.05);
   }
 }
 
@@ -169,14 +183,14 @@ body::after {
 }
 
 :root[data-theme='parchment'] body::after {
-  opacity: 0.30;
-  filter: blur(14px) saturate(90%) sepia(0.4) grayscale(0.1);
+  opacity: 0.28;
+  filter: blur(14px) saturate(85%) sepia(0.35) grayscale(0.08);
 }
 
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) body::after {
-    opacity: 0.30;
-    filter: blur(14px) saturate(90%) sepia(0.4) grayscale(0.1);
+    opacity: 0.15;
+    filter: blur(12px) saturate(70%) grayscale(0.4);
   }
 }
 
@@ -200,7 +214,7 @@ img {
 .glass-card {
   border: 1px solid var(--akari-glass-border);
   border-radius: 20px;
-  background: rgba(var(--akari-shadow-rgb) / 0.22);
+  background: var(--akari-glass-bg, rgba(var(--akari-shadow-rgb) / 0.22));
   backdrop-filter: blur(20px) saturate(120%);
   -webkit-backdrop-filter: blur(20px) saturate(120%);
   box-shadow: var(--akari-shadow-card);
@@ -2742,7 +2756,7 @@ body.akari-drawer-open {
 
 .akari-settings-theme__btn--active {
   border-color: var(--akari-accent);
-  background: rgba(10, 132, 255, 0.12);
+  background: color-mix(in srgb, var(--akari-accent) 12%, transparent);
   color: var(--akari-accent);
   font-weight: 600;
 }
