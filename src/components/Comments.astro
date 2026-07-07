@@ -10,27 +10,49 @@ interface Props {
 const { locale, path = '' } = Astro.props;
 const twikooContainerId = `twikoo-${locale.lang_path}`;
 ---
-<section class="post-comments glass-card" data-twikoo-lang={twikooLang(locale)} data-twikoo-path={path}>
+<section class="post-comments glass-card" data-twikoo-lang={twikooLang(locale)} data-twikoo-path={path} data-twikoo-env-id="https://comment.rikka.moe">
   <h2>{label('post', 'comment', locale)}</h2>
   <div id={twikooContainerId} data-twikoo-container></div>
-  <script is:inline src="https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js"></script>
   <script is:inline>
   (function() {
-    var script = document.currentScript;
-    var root = script && script.closest ? script.closest('.post-comments') : null;
-    if (!root) return;
-    var container = root.querySelector('[data-twikoo-container]');
-    if (!container || !container.id) return;
+    var TWIKOO_CDN = 'https://cdn.jsdelivr.net/npm/twikoo@1.7.13/dist/twikoo.all.min.js';
+
     function initTwikoo() {
+      var root = document.querySelector('.post-comments[data-twikoo-env-id]');
+      if (!root) return;
+      var container = root.querySelector('[data-twikoo-container]');
+      if (!container || !container.id) return;
       if (!window.twikoo || !window.twikoo.init) return;
       window.twikoo.init({
-        envId: 'https://comment.rikka.moe',
+        envId: root.getAttribute('data-twikoo-env-id'),
         el: '#' + container.id,
         path: root.getAttribute('data-twikoo-path') || window.location.pathname,
         lang: root.getAttribute('data-twikoo-lang') || document.documentElement.lang || 'en'
       });
     }
-    initTwikoo();
+
+    function loadTwikoo() {
+      if (window.twikoo && window.twikoo.init) {
+        initTwikoo();
+        return;
+      }
+      var existing = document.querySelector('script[data-akari-twikoo="true"]');
+      if (existing) {
+        if (window.twikoo) initTwikoo();
+        else existing.addEventListener('load', initTwikoo, { once: true });
+        return;
+      }
+      var script = document.createElement('script');
+      script.src = TWIKOO_CDN;
+      script.async = true;
+      script.dataset.akariTwikoo = 'true';
+      script.addEventListener('load', initTwikoo, { once: true });
+      script.addEventListener('error', function() { console.error('[twikoo] failed to load:', TWIKOO_CDN); });
+      document.head.appendChild(script);
+    }
+
+    loadTwikoo();
+    document.addEventListener('astro:page-load', loadTwikoo);
   })();
   </script>
 </section>
