@@ -3121,13 +3121,11 @@ body.akari-drawer-open {
 }
 
 .akari-books-landing h2 {
-  font-family: var(--akari-font-display);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 .akari-books-landing h3 {
-  font-family: var(--akari-font-display);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
 }
 
 .akari-books-landing .akari-books-section__header p,
@@ -3183,27 +3181,18 @@ body.akari-drawer-open {
 .akari-books-hero-v2 h1 {
   margin: 0;
   color: var(--akari-text);
-  font-family: var(--akari-font-display);
-  font-size: clamp(4.5rem, 11vw, 9.2rem);
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
   font-weight: 700;
-  letter-spacing: -0.075em;
-  line-height: 0.88;
-}
-
-.akari-books-hero-v2__english {
-  margin: 1rem 0 2rem;
-  color: rgba(var(--akari-ink-rgb) / 0.50);
-  font-size: clamp(0.72rem, 1.5vw, 0.95rem);
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
 .akari-books-hero-v2__lead {
   max-width: 640px;
-  margin: 0;
+  margin: 1.25rem 0 0;
   color: var(--akari-muted);
-  font-size: clamp(1.08rem, 1.7vw, 1.34rem);
-  line-height: 1.95;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.85;
   letter-spacing: 0.01em;
 }
 
@@ -3216,7 +3205,7 @@ body.akari-drawer-open {
 }
 
 .akari-books-chips {
-  margin: 28px 0;
+  margin: 24px 0;
 }
 
 .akari-books-chips span,
@@ -3288,16 +3277,16 @@ body.akari-drawer-open {
 .akari-books-hero-v2__cover--front {
   right: 8%;
   top: 6%;
-  transform: rotate(4deg);
+  transform: rotate(2deg);
   z-index: 2;
 }
 
 .akari-books-hero-v2__cover--back {
   left: 2%;
   bottom: 2%;
-  opacity: 0.88;
-  transform: rotate(-7deg) scale(0.86);
-  filter: saturate(0.88) brightness(0.78);
+  opacity: 0.92;
+  transform: rotate(-4deg) scale(0.86);
+  filter: saturate(0.95);
 }
 
 .akari-books-anchor-nav {
@@ -3341,18 +3330,18 @@ body.akari-drawer-open {
 .akari-books-akari-card h2 {
   margin: 0.2rem 0 0.6rem;
   color: var(--akari-text);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 .akari-books-series-copy h3,
 .akari-books-version h3 {
   margin: 0.2rem 0 0.6rem;
   color: var(--akari-text);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.08;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  line-height: 1.25;
+  letter-spacing: -0.005em;
 }
 
 .akari-books-section__header p,
@@ -3488,7 +3477,7 @@ body.akari-drawer-open {
 }
 
 .akari-books-series-copy h3 {
-  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
 }
 
 .akari-books-series-copy h4 {
@@ -3638,8 +3627,7 @@ body.akari-drawer-open {
 .akari-books-support-card h3 {
   margin: 0.9rem 0 0.45rem;
   color: var(--akari-text);
-  font-family: var(--akari-font-display);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
 }
 
 .akari-books-version-grid {
@@ -3680,6 +3668,30 @@ body.akari-drawer-open {
   display: grid;
   gap: 12px;
   margin-top: 6px;
+}
+
+.akari-premium-hint {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(10, 132, 255, 0.08);
+  border: 1px solid rgba(10, 132, 255, 0.18);
+  color: var(--akari-text);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.akari-premium-howto {
+  justify-self: start;
+  color: #0a84ff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.akari-premium-howto:hover {
+  color: #0066cc;
 }
 
 .akari-premium-input {
@@ -3931,7 +3943,7 @@ body.akari-drawer-open {
   }
 
   .akari-books-hero-v2 h1 {
-    font-size: clamp(4rem, 22vw, 6.4rem);
+    font-size: clamp(2rem, 9vw, 2.8rem);
   }
 
   .akari-books-hero-v2__covers {
@@ -3959,20 +3971,22 @@ body.akari-drawer-open {
     padding-inline: 16px;
   }
 
-  .akari-books-anchor-nav span {
-    display: none;
+  .akari-books-anchor-nav {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .akari-books-anchor-nav a {
-    min-width: 44px;
-    padding-inline: 0;
+    flex: 0 0 auto;
+    padding-inline: 14px;
+    white-space: nowrap;
   }
 
   .akari-books-section__header h2,
   .akari-books-series-copy h3,
   .akari-books-version h3,
   .akari-books-akari-card h2 {
-    font-size: clamp(1.9rem, 10vw, 2.7rem);
+    font-size: clamp(1.5rem, 7vw, 2rem);
   }
 }
 

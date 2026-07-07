@@ -42,6 +42,10 @@ export interface BookCopy {
     premiumTitle: string;
     premiumChip: string;
     premiumItems: string[];
+    premiumHint: string;
+    premiumKeyPlaceholder: string;
+    premiumVerifyLabel: string;
+    premiumHowToGet: string;
   };
   downloadGuide: {
     eyebrow: string;
@@ -125,6 +129,10 @@ const copies: Record<BookLang, BookCopy> = {
       premiumTitle: '无水印版',
       premiumChip: '内容相同 · 仅去水印',
       premiumItems: ['与免费版内容完全相同', '去除页面水印，阅读纯净', '所有专题分册独立下载', '优先获得后续修订', '作为对作者的一份支持'],
+      premiumHint: '在爱发电赞助后会收到一串密钥，把它粘贴到下方框中，点击「验证并下载」即可获取无水印版。',
+      premiumKeyPlaceholder: '请粘贴爱发电密钥',
+      premiumVerifyLabel: '验证并下载',
+      premiumHowToGet: '如何获取密钥？',
     },
     downloadGuide: {
       eyebrow: '使用指南',
@@ -224,6 +232,10 @@ const copies: Record<BookLang, BookCopy> = {
       premiumTitle: '無水印版',
       premiumChip: '內容相同 · 僅去水印',
       premiumItems: ['與免費版內容完全相同', '去除頁面水印，閱讀純淨', '所有專題分冊獨立下載', '優先取得後續修訂', '作為對作者的一份支持'],
+      premiumHint: '在愛發電贊助後會收到一串密鑰，把它貼到下方框中，點擊「驗證並下載」即可取得無水印版。',
+      premiumKeyPlaceholder: '請貼上愛發電密鑰',
+      premiumVerifyLabel: '驗證並下載',
+      premiumHowToGet: '如何取得密鑰？',
     },
     downloadGuide: {
       eyebrow: '使用指南',
@@ -323,6 +335,10 @@ const copies: Record<BookLang, BookCopy> = {
       premiumTitle: 'Watermark-free edition',
       premiumChip: 'Same content · watermark removed',
       premiumItems: ['Exactly the same content as the free edition', 'Cleaner pages without watermarks', 'All topic-based volumes available separately', 'Priority access to future revisions', 'A way to support the author'],
+      premiumHint: 'After sponsoring on Afdian you will receive a key. Paste it into the box below and click "Verify & Download" to get the watermark-free edition.',
+      premiumKeyPlaceholder: 'Paste your Afdian key',
+      premiumVerifyLabel: 'Verify & Download',
+      premiumHowToGet: 'How do I get a key?',
     },
     downloadGuide: {
       eyebrow: 'How to use',
@@ -422,6 +438,10 @@ const copies: Record<BookLang, BookCopy> = {
       premiumTitle: '透かしなし版',
       premiumChip: '本文は同じ · 透かしのみ削除',
       premiumItems: ['無料版と本文は完全に同じ', '透かしを削除した読みやすいページ', 'テーマ別分冊を個別にダウンロード', '今後の改訂を優先して利用可能', '作者への支援になります'],
+      premiumHint: '愛発電でスポンサーになるとキーが届きます。下の入力欄に貼り付けて「検証してダウンロード」をクリックすると、透かしなし版を取得できます。',
+      premiumKeyPlaceholder: '愛発電のキーを貼り付けてください',
+      premiumVerifyLabel: '検証してダウンロード',
+      premiumHowToGet: 'キーの取得方法は？',
     },
     downloadGuide: {
       eyebrow: '使い方ガイド',

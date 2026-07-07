@@ -37,19 +37,14 @@ const languageOptions = LOCALES.map((loc) => {
   <article class="akari-books-landing">
     <section class="akari-books-hero-v2 glass-card" aria-labelledby="books-title">
       <div class="akari-books-hero-v2__content">
-        <p class="akari-books-eyebrow">A Journey Through Mathematics</p>
         <h1 id="books-title">{copy.title}</h1>
-        <p class="akari-books-hero-v2__english">THE JOURNEY OF MATHEMATICS</p>
         <p class="akari-books-hero-v2__lead">{copy.lead}</p>
         <div class="akari-books-chips" aria-label={copy.aria.chips}>
           {copy.chips.map((chip) => <span>{chip}</span>)}
         </div>
         <div class="akari-books-actions">
           <a class="akari-button akari-button--filled" href={DOWNLOAD_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.downloadLabel}</a>
-          <a class="akari-button" href={AFDIAN_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-heart"></i>{copy.afdianLabel}</a>
           <a class="akari-button" href={LANZOU_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-cloud"></i>{copy.lanzouLabel}</a>
-          <a class="akari-button" href="#akari-book-showcase"><i class="ph ph-book-open"></i>{copy.buttons.explore}</a>
-          <a class="akari-button" href="#akari-book-errata"><i class="ph ph-list-checks"></i>{copy.buttons.errata}</a>
         </div>
       </div>
       <div class="akari-books-hero-v2__covers" aria-hidden="true">
@@ -88,9 +83,10 @@ const languageOptions = LOCALES.map((loc) => {
           <span class="akari-books-version__chip">{copy.versions.premiumChip}</span>
           <ul>{copy.versions.premiumItems.map((item) => <li><i class="ph ph-check-circle"></i>{item}</li>)}</ul>
           <div class="akari-premium-download">
-            <input type="text" id="premium-key" placeholder="输入爱发电密钥" class="akari-premium-input" />
-            <button id="premium-verify" class="akari-button akari-button--filled"><i class="ph ph-lock-key-open"></i>验证并下载</button>
-            <a class="akari-button" href={AFDIAN_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-heart"></i>{copy.downloadGuide.step2PremiumHint}</a>
+            <p class="akari-premium-hint">{copy.versions.premiumHint}</p>
+            <input type="text" id="premium-key" placeholder={copy.versions.premiumKeyPlaceholder} class="akari-premium-input" />
+            <button id="premium-verify" class="akari-button akari-button--filled"><i class="ph ph-lock-key-open"></i>{copy.versions.premiumVerifyLabel}</button>
+            <a class="akari-premium-howto" href={AFDIAN_URL} target="_blank" rel="noopener noreferrer">{copy.versions.premiumHowToGet} ↗</a>
             <div id="premium-message" class="akari-premium-message"></div>
           </div>
         </article>
@@ -106,10 +102,6 @@ const languageOptions = LOCALES.map((loc) => {
         <article class="akari-books-text-card glass-card">
           <h3>{copy.downloadGuide.step1Title}</h3>
           {copy.downloadGuide.step1Body.map((p) => <p>{p}</p>)}
-          <div class="akari-books-actions" style="margin-top:12px">
-            <a class="akari-button akari-button--filled" href={DOWNLOAD_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.downloadLabel}</a>
-            <a class="akari-button" href={LANZOU_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-cloud"></i>{copy.lanzouLabel}</a>
-          </div>
         </article>
         <article class="akari-books-text-card glass-card">
           <h3>{copy.downloadGuide.step2Title}</h3>
@@ -141,8 +133,6 @@ const languageOptions = LOCALES.map((loc) => {
           <h2>{copy.update.title}</h2>
           <p>{copy.update.body}</p>
           <div class="akari-books-actions">
-            <a class="akari-button akari-button--filled" href={DOWNLOAD_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-download-simple"></i>{copy.downloadLabel}</a>
-            <a class="akari-button" href={LANZOU_URL} target="_blank" rel="noopener noreferrer"><i class="ph ph-cloud"></i>{copy.lanzouLabel}</a>
             <a class="akari-button" href="#akari-book-errata"><i class="ph ph-list-checks"></i>{copy.buttons.errata}</a>
           </div>
         </div>
