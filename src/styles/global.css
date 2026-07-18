@@ -4,8 +4,9 @@
 @import url('/fonts/dingtalk/DingTalk.css');
 
 :root {
-  --akari-accent: #0a84ff;
-  --akari-accent-strong: #409cff;
+  --akari-accent: #8b7cf6;
+  --akari-accent-strong: #a79bff;
+  --akari-accent-rgb: 139 124 246;
   --akari-ink-rgb: 255 255 255;
   --akari-shadow-rgb: 0 0 0;
   --akari-text: rgba(var(--akari-ink-rgb) / 0.95);
@@ -18,10 +19,10 @@
   --akari-glass-bg: rgba(var(--akari-shadow-rgb) / 0.22);
   --akari-glass-strong-bg: rgba(var(--akari-shadow-rgb) / 0.30);
   --akari-drawer-overlay: rgba(var(--akari-shadow-rgb) / 0.55);
-  --akari-bg: #0e1117;
-  --akari-bg-gradient-end: #121620;
-  --akari-surface: #161a22;
-  --akari-surface-soft: #1c2030;
+  --akari-bg: #0c0a18;
+  --akari-bg-gradient-end: #16122e;
+  --akari-surface: #151226;
+  --akari-surface-soft: #1d1936;
   --akari-radius: 12px;
   --akari-radius-xl: 20px;
   --akari-font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'pingfang', 'PingFang SC', 'PingFang HK', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
@@ -35,65 +36,9 @@
   --akari-shadow-card: 0 8px 32px rgba(var(--akari-shadow-rgb) / 0.40), 0 2px 8px rgba(var(--akari-shadow-rgb) / 0.20);
 }
 
-/* ============================================================
-   Parchment theme — manual override (data-theme="parchment")
-   Warm sepia/cream palette with brown ink
-   ============================================================ */
-:root[data-theme='parchment'] {
-  --akari-ink-rgb: 47 36 18;
-  --akari-shadow-rgb: 92 60 18;
-  --akari-accent: #b6630f;
-  --akari-accent-strong: #d97a18;
-  --akari-bg: #f3e7cf;
-  --akari-bg-gradient-end: #e8d9b8;
-  --akari-surface: #ecdcb8;
-  --akari-surface-soft: #e3d2a8;
-  --akari-text-secondary: rgba(var(--akari-ink-rgb) / 0.68);
-  --akari-border: rgba(var(--akari-ink-rgb) / 0.12);
-  --akari-border-strong: rgba(var(--akari-ink-rgb) / 0.22);
-  --akari-bg-card: rgba(var(--akari-shadow-rgb) / 0.08);
-  --akari-bg-subtle: rgba(var(--akari-shadow-rgb) / 0.04);
-  --akari-glass-bg: color-mix(in srgb, var(--akari-surface) 78%, transparent);
-  --akari-glass-strong-bg: color-mix(in srgb, var(--akari-surface) 90%, transparent);
-  --akari-drawer-overlay: rgba(var(--akari-shadow-rgb) / 0.25);
-  --akari-glass-border: rgba(var(--akari-ink-rgb) / 0.18);
-  --akari-shadow-card:
-    0 1px 3px rgba(var(--akari-shadow-rgb) / 0.10),
-    0 8px 24px rgba(var(--akari-shadow-rgb) / 0.08);
-}
-
-/* ============================================================
-   Light theme — auto mode (prefers-color-scheme: light)
-   CPA-style warm-gray paper palette
-   ============================================================ */
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) {
-    --akari-ink-rgb: 45 42 38;
-    --akari-shadow-rgb: 0 0 0;
-    --akari-accent: #0a84ff;
-    --akari-accent-strong: #409cff;
-    --akari-bg: #faf9f5;
-    --akari-bg-gradient-end: #f0eee8;
-    --akari-surface: #f0eee8;
-    --akari-surface-soft: #e9e6df;
-    --akari-text-secondary: rgba(var(--akari-ink-rgb) / 0.65);
-    --akari-border: rgba(var(--akari-ink-rgb) / 0.10);
-    --akari-border-strong: rgba(var(--akari-ink-rgb) / 0.16);
-    --akari-bg-card: rgba(var(--akari-shadow-rgb) / 0.04);
-    --akari-bg-subtle: rgba(var(--akari-shadow-rgb) / 0.02);
-    --akari-glass-bg: color-mix(in srgb, var(--akari-surface) 82%, transparent);
-    --akari-glass-strong-bg: color-mix(in srgb, var(--akari-surface) 92%, transparent);
-    --akari-drawer-overlay: rgba(0, 0, 0, 0.22);
-    --akari-glass-border: rgba(var(--akari-ink-rgb) / 0.12);
-    --akari-shadow-card:
-      0 1px 2px rgb(0 0 0 / 0.06),
-      0 8px 24px rgb(0 0 0 / 0.05);
-  }
-}
-
 html {
   scroll-behavior: smooth;
-  color-scheme: light dark;
+  color-scheme: dark;
 }
 
 html[data-font-locale='ja'] {
@@ -126,10 +71,12 @@ html[data-font-locale='en'] {
   font-style: italic;
 }
 
+/* body 自身不设背景色：mdui 给 html 设了深色背景，body 背景会因此不再传播到
+   canvas，转而绘制在负 z-index 层（body::before 渐变 / body::after 背景图 /
+   .akari-stars 星空）之上，把它们全部遮盖。底色由 html(mdui) 与 body::before 承担。 */
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--akari-bg);
   color: var(--akari-text);
   font-family: var(--akari-font-sans);
 }
@@ -175,7 +122,11 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -3;
-  background: linear-gradient(180deg, var(--akari-bg), var(--akari-bg) 42%, var(--akari-bg-gradient-end));
+  background:
+    radial-gradient(ellipse 60% 45% at 78% 6%, rgb(124 108 240 / 0.16), transparent 70%),
+    radial-gradient(ellipse 55% 40% at 10% 32%, rgb(69 162 214 / 0.10), transparent 70%),
+    radial-gradient(ellipse 75% 55% at 55% 98%, rgb(176 106 214 / 0.12), transparent 70%),
+    linear-gradient(180deg, var(--akari-bg), var(--akari-bg) 42%, var(--akari-bg-gradient-end));
 }
 
 body::after {
@@ -183,20 +134,14 @@ body::after {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background: url('/images/profile/background.jpg') center / cover no-repeat;
-  opacity: 0.12;
-  filter: blur(10px) saturate(80%) grayscale(0.3);
+  background: url('/images/space/nebula-carina.webp') center / cover no-repeat;
+  opacity: 0.38;
+  filter: blur(2px) saturate(125%) brightness(1.08);
 }
 
-:root[data-theme='parchment'] body::after {
-  opacity: 0.28;
-  filter: blur(14px) saturate(85%) sepia(0.35) grayscale(0.08);
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) body::after {
-    opacity: 0.15;
-    filter: blur(12px) saturate(70%) grayscale(0.4);
+@media (max-width: 720px) {
+  body::after {
+    background-image: url('/images/space/nebula-carina-mobile.webp');
   }
 }
 
@@ -248,13 +193,13 @@ img {
 }
 
 .button--primary {
-  background: rgba(10, 132, 255, 0.85);
+  background: rgb(var(--akari-accent-rgb) / 0.85);
   color: #fff;
-  border-color: rgba(10, 132, 255, 0.50);
+  border-color: rgb(var(--akari-accent-rgb) / 0.50);
 }
 
 .button--primary:hover {
-  background: rgba(10, 132, 255, 1);
+  background: rgb(var(--akari-accent-rgb) / 1);
 }
 
 .akari-appbar {
@@ -568,9 +513,9 @@ img {
 
 .akari-hero-language:hover,
 .akari-hero-language--active {
-  border-color: rgba(10, 132, 255, 0.50);
-  background: rgba(10, 132, 255, 0.12);
-  color: #0a84ff;
+  border-color: rgb(var(--akari-accent-rgb) / 0.50);
+  background: rgb(var(--akari-accent-rgb) / 0.12);
+  color: var(--akari-accent);
 }
 
 .akari-hero-actions {
@@ -696,9 +641,9 @@ img {
 
 .akari-info-tabs__bar a[aria-current="true"],
 .akari-info-tabs__bar a:target {
-  border: 1px solid rgba(10, 132, 255, 0.40);
-  color: #0a84ff;
-  background: rgba(10, 132, 255, 0.10);
+  border: 1px solid rgb(var(--akari-accent-rgb) / 0.40);
+  color: var(--akari-accent);
+  background: rgb(var(--akari-accent-rgb) / 0.10);
 }
 
 .akari-info-panels {
@@ -772,8 +717,8 @@ img {
 .akari-section summary > span:last-child {
   padding: 0.22rem 0.55rem;
   border-radius: 999px;
-  background: rgba(10, 132, 255, 0.12);
-  color: #0a84ff;
+  background: rgb(var(--akari-accent-rgb) / 0.12);
+  color: var(--akari-accent);
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -796,7 +741,7 @@ img {
 }
 
 .akari-info-domain-item:hover {
-  border-color: rgba(10, 132, 255, 0.18);
+  border-color: rgb(var(--akari-accent-rgb) / 0.18);
 }
 
 .akari-info-domain-item__top {
@@ -809,7 +754,7 @@ img {
 .akari-info-domain-item__action {
   display: inline-flex;
   margin-top: 6px;
-  color: #0a84ff;
+  color: var(--akari-accent);
   font-size: 0.75rem;
   font-weight: 500;
 }
@@ -1385,16 +1330,16 @@ img {
 
 .post-comments .el-button--primary,
 .post-comments .el-button--primary:focus {
-  background-color: rgba(10, 132, 255, 0.85) !important;
-  border-color: rgba(10, 132, 255, 0.50) !important;
+  background-color: rgb(var(--akari-accent-rgb) / 0.85) !important;
+  border-color: rgb(var(--akari-accent-rgb) / 0.50) !important;
   color: #fff !important;
 }
 
 .post-comments .el-button--primary:hover,
 .post-comments .el-button--primary:active,
 .post-comments .el-button--primary.is-active {
-  background-color: rgba(10, 132, 255, 1) !important;
-  border-color: rgba(10, 132, 255, 0.70) !important;
+  background-color: rgb(var(--akari-accent-rgb) / 1) !important;
+  border-color: rgb(var(--akari-accent-rgb) / 0.70) !important;
   color: #fff !important;
 }
 
@@ -1414,14 +1359,14 @@ img {
   font-size: 0.88rem !important;
   font-weight: 600 !important;
   padding: 8px 22px !important;
-  background-color: rgba(10, 132, 255, 0.85) !important;
-  border-color: rgba(10, 132, 255, 0.50) !important;
+  background-color: rgb(var(--akari-accent-rgb) / 0.85) !important;
+  border-color: rgb(var(--akari-accent-rgb) / 0.50) !important;
   color: #fff !important;
   transition: background-color 0.2s ease !important;
 }
 
 .post-comments .tk-send:hover {
-  background-color: rgba(10, 132, 255, 1) !important;
+  background-color: rgb(var(--akari-accent-rgb) / 1) !important;
 }
 
 .post-comments .tk-submit-action-icon {
@@ -1729,7 +1674,7 @@ img {
   padding: 12px 18px;
   border: 0;
   border-radius: 999px;
-  background: rgba(10, 132, 255, 0.85);
+  background: rgb(var(--akari-accent-rgb) / 0.85);
   color: #fff;
   font-weight: 600;
 }
@@ -1967,8 +1912,8 @@ img {
   }
 
   .akari-hero-language--active {
-    border-color: rgba(10, 132, 255, 0.82);
-    background: rgba(10, 132, 255, 0.22);
+    border-color: rgb(var(--akari-accent-rgb) / 0.82);
+    background: rgb(var(--akari-accent-rgb) / 0.22);
     color: white;
   }
 
@@ -2690,27 +2635,6 @@ body.akari-drawer-open {
   letter-spacing: 0.02em;
 }
 
-.akari-settings-palette {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.akari-settings-palette__item {
-  width: 28px;
-  height: 28px;
-  border: 2px solid transparent;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: transform 0.15s ease, border-color 0.15s ease;
-}
-
-.akari-settings-palette__item:hover,
-.akari-settings-palette__item:focus {
-  transform: scale(1.15);
-  border-color: rgba(var(--akari-ink-rgb) / 0.8);
-}
-
 .akari-settings-font-size {
   display: flex;
   gap: 6px;
@@ -2734,34 +2658,6 @@ body.akari-drawer-open {
 
 .akari-settings-font-size__btn--active {
   border-color: color-mix(in srgb, var(--akari-accent) 50%, transparent);
-  background: color-mix(in srgb, var(--akari-accent) 12%, transparent);
-  color: var(--akari-accent);
-  font-weight: 600;
-}
-
-.akari-settings-theme {
-  display: flex;
-  gap: 6px;
-}
-
-.akari-settings-theme__btn {
-  flex: 1;
-  padding: 6px 10px;
-  border: 1px solid rgba(var(--akari-ink-rgb) / 0.12);
-  border-radius: 10px;
-  background: rgba(var(--akari-ink-rgb) / 0.05);
-  color: var(--akari-text);
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background 0.18s ease, border-color 0.18s ease;
-}
-
-.akari-settings-theme__btn:hover {
-  background: rgba(var(--akari-ink-rgb) / 0.1);
-}
-
-.akari-settings-theme__btn--active {
-  border-color: var(--akari-accent);
   background: color-mix(in srgb, var(--akari-accent) 12%, transparent);
   color: var(--akari-accent);
   font-weight: 600;
@@ -2936,7 +2832,7 @@ body.akari-drawer-open {
   gap: 0.4rem;
   padding: 0.55rem 1.1rem;
   border-radius: 999px;
-  background: rgba(10, 132, 255, 0.85);
+  background: rgb(var(--akari-accent-rgb) / 0.85);
   color: #fff;
   font-weight: 600;
   font-size: 0.9rem;
@@ -2946,7 +2842,7 @@ body.akari-drawer-open {
 
 .akari-sponsor-wall__cta:hover,
 .akari-sponsor-wall__cta:focus-visible {
-  background: rgba(10, 132, 255, 1);
+  background: rgb(var(--akari-accent-rgb) / 1);
   transform: translateY(-1px);
   outline: none;
 }
@@ -3246,14 +3142,14 @@ body.akari-drawer-open {
 }
 
 .akari-button--filled {
-  border-color: rgba(10, 132, 255, 0.50);
-  background: rgba(10, 132, 255, 0.85);
+  border-color: rgb(var(--akari-accent-rgb) / 0.50);
+  background: rgb(var(--akari-accent-rgb) / 0.85);
   color: #fff;
 }
 
 .akari-button--filled:hover,
 .akari-button--filled:focus-visible {
-  background: rgba(10, 132, 255, 1);
+  background: rgb(var(--akari-accent-rgb) / 1);
   color: #fff;
 }
 
@@ -3382,9 +3278,9 @@ body.akari-drawer-open {
 }
 
 .akari-books-tab--active {
-  border-bottom-color: #0a84ff;
-  color: #0a84ff;
-  background: rgba(10, 132, 255, 0.06);
+  border-bottom-color: var(--akari-accent);
+  color: var(--akari-accent);
+  background: rgb(var(--akari-accent-rgb) / 0.06);
 }
 
 .akari-books-series-panel {
@@ -3660,8 +3556,8 @@ body.akari-drawer-open {
 }
 
 .akari-books-version--primary {
-  background: rgba(10, 132, 255, 0.06) !important;
-  border-color: rgba(10, 132, 255, 0.15) !important;
+  background: rgb(var(--akari-accent-rgb) / 0.06) !important;
+  border-color: rgb(var(--akari-accent-rgb) / 0.15) !important;
 }
 
 .akari-premium-download {
@@ -3674,8 +3570,8 @@ body.akari-drawer-open {
   margin: 0;
   padding: 12px 14px;
   border-radius: 10px;
-  background: rgba(10, 132, 255, 0.08);
-  border: 1px solid rgba(10, 132, 255, 0.18);
+  background: rgb(var(--akari-accent-rgb) / 0.08);
+  border: 1px solid rgb(var(--akari-accent-rgb) / 0.18);
   color: var(--akari-text);
   font-size: 0.9rem;
   line-height: 1.7;
@@ -3683,7 +3579,7 @@ body.akari-drawer-open {
 
 .akari-premium-howto {
   justify-self: start;
-  color: #0a84ff;
+  color: var(--akari-accent);
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: underline;
@@ -3707,7 +3603,7 @@ body.akari-drawer-open {
 }
 
 .akari-premium-input:focus {
-  border-color: rgba(10, 132, 255, 0.5);
+  border-color: rgb(var(--akari-accent-rgb) / 0.5);
 }
 
 .akari-premium-input::placeholder {
@@ -4017,7 +3913,7 @@ body.akari-drawer-open {
   align-items: center;
   justify-content: center;
   border-radius: 14px;
-  background: rgba(10, 132, 255, 0.85);
+  background: rgb(var(--akari-accent-rgb) / 0.85);
   color: #fff;
   font-size: 1.5rem;
 }
@@ -4107,7 +4003,7 @@ body.akari-drawer-open {
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
-  background: rgba(10, 132, 255, 0.85);
+  background: rgb(var(--akari-accent-rgb) / 0.85);
   color: #fff;
 }
 
@@ -4220,6 +4116,52 @@ body.akari-drawer-open {
 }
 
 /* ──────────────────────────────────────────────
+   Starfield effect
+   ────────────────────────────────────────────── */
+
+.akari-stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.akari-stars .star {
+  position: absolute;
+  border-radius: 50%;
+  background: currentColor;
+  animation: star-twinkle ease-in-out infinite;
+}
+
+.akari-stars .star--glow {
+  box-shadow: 0 0 6px 1px currentColor;
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.12; transform: scale(0.8); }
+  50% { opacity: var(--star-max-opacity, 0.9); transform: scale(1.15); }
+}
+
+.akari-stars .shooting-star {
+  position: absolute;
+  width: 120px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgb(255 255 255 / 0.95), transparent);
+  filter: drop-shadow(0 0 6px rgb(196 181 253 / 0.8));
+  opacity: 0;
+  transform: rotate(-35deg);
+  animation: shooting-star-flight 1.1s ease-out forwards;
+}
+
+@keyframes shooting-star-flight {
+  0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-35deg); }
+  8% { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(-42vw, 30vh, 0) rotate(-35deg); }
+}
+
+/* ──────────────────────────────────────────────
    Motion: Read progress bar
    ────────────────────────────────────────────── */
 
@@ -4265,6 +4207,10 @@ body.akari-drawer-open {
   }
 
   .akari-snow {
+    display: none;
+  }
+
+  .akari-stars {
     display: none;
   }
 }

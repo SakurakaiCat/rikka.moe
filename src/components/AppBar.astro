@@ -48,25 +48,6 @@ const { locale, title, section = '', languageOptions } = Astro.props;
 <div id="akari-settings-popover" class="akari-popover akari-settings-popover" aria-hidden="true" style="display:none">
   <div class="akari-popover__content">
     <div class="akari-settings-section">
-      <h3>{label('ui', 'colorScheme', locale)}</h3>
-      <div class="akari-settings-palette">
-        <button class="akari-settings-palette__item" data-color="#0a84ff" style="background:#0a84ff" aria-label="Blue"></button>
-        <button class="akari-settings-palette__item" data-color="#5e5ce6" style="background:#5e5ce6" aria-label="Indigo"></button>
-        <button class="akari-settings-palette__item" data-color="#98989d" style="background:#98989d" aria-label="Graphite"></button>
-        <button class="akari-settings-palette__item" data-color="#ff375f" style="background:#ff375f" aria-label="Rose"></button>
-        <button class="akari-settings-palette__item" data-color="#30d158" style="background:#30d158" aria-label="Mint"></button>
-        <button class="akari-settings-palette__item" data-color="#64d2ff" style="background:#64d2ff" aria-label="Cyan"></button>
-      </div>
-    </div>
-    <div class="akari-settings-section">
-      <h3>{label('ui', 'theme', locale)}</h3>
-      <div class="akari-settings-theme" role="group" aria-label={label('ui', 'theme', locale)}>
-        <button class="akari-settings-theme__btn akari-settings-theme__btn--active" data-theme="auto" type="button">{label('ui', 'themeAuto', locale)}</button>
-        <button class="akari-settings-theme__btn" data-theme="dark" type="button">{label('ui', 'themeDark', locale)}</button>
-        <button class="akari-settings-theme__btn" data-theme="parchment" type="button">{label('ui', 'themeParchment', locale)}</button>
-      </div>
-    </div>
-    <div class="akari-settings-section">
       <h3>{label('ui', 'fontSize', locale)}</h3>
       <div class="akari-settings-font-size">
         <button class="akari-settings-font-size__btn" data-size="small" type="button">{label('ui', 'fontSmall', locale)}</button>

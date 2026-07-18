@@ -198,17 +198,6 @@ if (toc) {
   }).join('');
 }
 
-// Color palette
-document.querySelectorAll('.akari-settings-palette__item').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const color = btn.getAttribute('data-color');
-    if (color) {
-      document.documentElement.style.setProperty('--akari-accent', color);
-      try { localStorage.setItem('akari-accent-color', color); } catch {}
-    }
-  });
-});
-
 // Font size
 document.querySelectorAll('.akari-settings-font-size__btn').forEach((btn) => {
   btn.addEventListener('click', () => {
@@ -223,56 +212,8 @@ document.querySelectorAll('.akari-settings-font-size__btn').forEach((btn) => {
   });
 });
 
-// Theme switcher (auto / dark / parchment)
-function applyAkariTheme(theme) {
-  var root = document.documentElement;
-  if (theme === 'auto') {
-    root.removeAttribute('data-theme');
-  } else {
-    root.setAttribute('data-theme', theme);
-  }
-  var light = (theme === 'parchment') || (theme === 'auto' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
-  root.classList.remove('mdui-theme-light', 'mdui-theme-dark');
-  root.classList.add(light ? 'mdui-theme-light' : 'mdui-theme-dark');
-}
-
-if (window.matchMedia) {
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
-    try {
-      var saved = localStorage.getItem('akari-theme');
-      if (saved === 'auto' || !saved) {
-        applyAkariTheme('auto');
-      }
-    } catch {}
-  });
-}
-
-document.querySelectorAll('.akari-settings-theme__btn').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    var theme = btn.getAttribute('data-theme') || 'auto';
-    document.querySelectorAll('.akari-settings-theme__btn').forEach((b) => b.classList.remove('akari-settings-theme__btn--active'));
-    btn.classList.add('akari-settings-theme__btn--active');
-    applyAkariTheme(theme);
-    try { localStorage.setItem('akari-theme', theme); } catch {}
-  });
-});
-
-// Restore theme preference on page-load
-document.addEventListener('astro:page-load', function() {
-  try {
-    var saved = localStorage.getItem('akari-theme');
-    var theme = (saved === 'parchment' || saved === 'dark' || saved === 'auto') ? saved : 'auto';
-    document.querySelectorAll('.akari-settings-theme__btn').forEach((b) => {
-      b.classList.toggle('akari-settings-theme__btn--active', b.getAttribute('data-theme') === theme);
-    });
-  } catch {}
-
-});
-
 // Restore preferences
 try {
-  const savedColor = localStorage.getItem('akari-accent-color');
-  if (savedColor) document.documentElement.style.setProperty('--akari-accent', savedColor);
   const savedSize = localStorage.getItem('akari-font-size');
   if (savedSize) {
     let fontSize = '16px';
