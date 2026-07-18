@@ -79,19 +79,12 @@ const localeRoutingConfig = {
         <script is:inline>
     (function() {
       try {
-        var stored = localStorage.getItem('akari-theme');
-        var theme = (stored === 'parchment' || stored === 'dark' || stored === 'auto') ? stored : 'auto';
         var root = document.documentElement;
-        if (theme === 'auto') {
-          root.removeAttribute('data-theme');
-        } else {
-          root.setAttribute('data-theme', theme);
-        }
-        var light = (theme === 'parchment') || (theme === 'auto' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
-        var mdui = light ? 'mdui-theme-light' : 'mdui-theme-dark';
-        root.classList.remove('mdui-theme-light', 'mdui-theme-dark');
-        root.classList.add(mdui);
+        root.classList.remove('mdui-theme-light');
+        root.classList.add('mdui-theme-dark');
         root.dataset.themeReady = '1';
+        localStorage.removeItem('akari-theme');
+        localStorage.removeItem('akari-accent-color');
       } catch (e) {
         document.documentElement.classList.add('mdui-theme-dark');
       }
@@ -126,6 +119,52 @@ const localeRoutingConfig = {
     <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': type === 'article' ? 'BlogPosting' : 'WebSite', name: title || siteTitle, headline: title || siteTitle, url: canonical, inLanguage: locale.html_lang, description: seoDescription, author: { '@type': 'Person', name: 'Akari / 篠崎香澄' } })}></script>
   </head>
   <body>
+    <div class="akari-stars" aria-hidden="true"></div>
+    <script is:inline>
+    (function() {
+      var shootingStarTimer = null;
+      function createStars() {
+        var container = document.querySelector('.akari-stars');
+        if (!container) return;
+        container.innerHTML = '';
+        if (shootingStarTimer) {
+          clearTimeout(shootingStarTimer);
+          shootingStarTimer = null;
+        }
+        var colors = ['#ffffff', '#dbeafe', '#e9d5ff', '#c4b5fd'];
+        var count = 120;
+        for (var i = 0; i < count; i++) {
+          var star = document.createElement('span');
+          star.className = 'star';
+          star.style.left = Math.random() * 100 + 'vw';
+          star.style.top = Math.random() * 100 + 'vh';
+          var size = Math.random() * 2 + 1;
+          star.style.width = size + 'px';
+          star.style.height = size + 'px';
+          star.style.color = colors[Math.floor(Math.random() * colors.length)];
+          var twinkleDuration = Math.random() * 4 + 2;
+          star.style.animationDuration = twinkleDuration + 's';
+          star.style.animationDelay = (-Math.random() * twinkleDuration) + 's';
+          star.style.setProperty('--star-max-opacity', (Math.random() * 0.5 + 0.5).toFixed(2));
+          if (size > 2.2 && Math.random() < 0.5) star.classList.add('star--glow');
+          container.appendChild(star);
+        }
+        function launchShootingStar() {
+          if (!document.body.contains(container)) return;
+          var meteor = document.createElement('span');
+          meteor.className = 'shooting-star';
+          meteor.style.left = (Math.random() * 55 + 45) + 'vw';
+          meteor.style.top = (Math.random() * 30) + 'vh';
+          meteor.addEventListener('animationend', function() { meteor.remove(); });
+          container.appendChild(meteor);
+          shootingStarTimer = setTimeout(launchShootingStar, Math.random() * 6000 + 4000);
+        }
+        shootingStarTimer = setTimeout(launchShootingStar, Math.random() * 3000 + 2000);
+      }
+      createStars();
+      document.addEventListener('astro:page-load', createStars);
+    })();
+    </script>
     <div class="akari-snow" aria-hidden="true"></div>
     <script is:inline>
     (function() {
@@ -134,7 +173,7 @@ const localeRoutingConfig = {
         if (!container) return;
         container.innerHTML = '';
         var snowflakes = ['❄', '❅', '❆', '·', '•'];
-        var colors = ['#ffffff', '#e0f7fa', '#f4abba', '#c5e1ff'];
+        var colors = ['#ffffff', '#e0f7fa', '#d6c9ff', '#c5e1ff'];
         var count = 50;
         for (var i = 0; i < count; i++) {
           var flake = document.createElement('span');
