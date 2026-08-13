@@ -1,7 +1,7 @@
 ---
 import type { PostEntry } from '../lib/content';
 import { asDate, postCategories, postUrl, resolveLocale } from '../lib/content';
-import { categoryName } from '../lib/i18n';
+import { categoryName, categoryKeyFromName } from '../lib/i18n';
 import { artFallbackForSlug } from '../lib/art';
 const { post } = Astro.props as { post: PostEntry };
 const date = asDate(post.data.date);
@@ -10,9 +10,12 @@ const locale = resolveLocale(post.data);
 const leadCategory = categories[0] ? categoryName(categories[0], locale) : '';
 const slug = post.id.replace(/\.mdx?$/, '').split('/').pop() || post.id;
 const coverSrc = post.data.cover || post.data.thumbnail || post.data.banner || post.data.image || await artFallbackForSlug(slug);
+const categoryKeys = categories.map(categoryKeyFromName).filter(Boolean) as string[];
+const showStats = categoryKeys.some((key) => key === 'articles' || key === 'thoughts');
+const url = postUrl(post);
 ---
 <article class="post-card" data-motion="fade-up">
-  <a href={postUrl(post)}>
+  <a href={url}>
     <img src={coverSrc} alt="" loading="lazy" decoding="async" />
     <div class="post-card__body">
       <div class="post-card__meta">
@@ -21,6 +24,12 @@ const coverSrc = post.data.cover || post.data.thumbnail || post.data.banner || p
       </div>
       <h3>{post.data.title}</h3>
       {post.data.description && <p>{post.data.description}</p>}
+      {showStats && (
+        <div class="post-stats" data-post-url={url}>
+          <span class="post-stats__item"><i class="ph ph-eye"></i><span data-stats-views>0</span></span>
+          <span class="post-stats__item"><i class="ph ph-chat-circle"></i><span data-stats-comments>0</span></span>
+        </div>
+      )}
     </div>
   </a>
 </article>
