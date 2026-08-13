@@ -3,7 +3,7 @@ import { render } from 'astro:content';
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
 import Comments from '../../../../../../components/Comments.astro';
 import { adjacentPosts, asDate, dateParts, getAllPosts, getPostsByLocale, languageOptions, postCategories, postUrl, resolveLocale } from '../../../../../../lib/content';
-import { categoryName, categorySlugForLocale, label } from '../../../../../../lib/i18n';
+import { categoryName, categorySlugForLocale, categoryKeyFromName, label } from '../../../../../../lib/i18n';
 import { artFallbackForSlug } from '../../../../../../lib/art';
 
 export async function getStaticPaths() {
@@ -25,6 +25,8 @@ const currentUrl = postUrl(post);
 const options = languageOptions(currentUrl, locale, post.data.translation_key, allPosts);
 const date = asDate(post.data.date);
 const categories = postCategories(post);
+const categoryKeys = postCategories(post).map(categoryKeyFromName).filter(Boolean) as string[];
+const showStats = categoryKeys.some((key) => key === 'articles' || key === 'thoughts');
 const leadCategoryRaw = categories[0] || label('common', 'archive', locale);
 const leadCategory = categoryName(leadCategoryRaw, locale);
 const slugId = post.data.url_slug || post.data.slug || post.id.replace(/\.mdx?$/, '').split('/').pop() || post.id;
@@ -45,6 +47,12 @@ const cover = post.data.cover || post.data.thumbnail || post.data.banner || post
         <div class="article-hero-kicker">{leadCategory}</div>
         <h1>{post.data.title}</h1>
         {post.data.description && <p>{post.data.description}</p>}
+        {showStats && (
+          <div class="post-stats" data-post-url={currentUrl}>
+            <span class="post-stats__item"><i class="ph ph-eye"></i><span data-stats-views>0</span></span>
+            <span class="post-stats__item"><i class="ph ph-chat-circle"></i><span data-stats-comments>0</span></span>
+          </div>
+        )}
       </section>
       <figure class="article-hero-cover"><img src={cover} alt={post.data.title} loading="lazy" decoding="async" /></figure>
       <div class="akari-read-progress" data-motion="read-progress"></div>
