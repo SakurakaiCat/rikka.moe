@@ -182,6 +182,10 @@ const sectionLabels = {
               <div class="akari-article-glass-card__meta"><time>{dateLabel(post)}</time><span>{categoryLabel(post)}</span></div>
               <h3>{post.data.title}</h3>
               {post.data.description && <p>{post.data.description}</p>}
+              <div class="post-stats" data-post-url={postUrl(post)}>
+                <span class="post-stats__item"><i class="ph ph-eye"></i><span data-stats-views>0</span></span>
+                <span class="post-stats__item"><i class="ph ph-chat-circle"></i><span data-stats-comments>0</span></span>
+              </div>
             </a>
           </article>
         );
@@ -205,6 +209,10 @@ const sectionLabels = {
               <div>
                 <h3>{post.data.title}</h3>
                 {post.data.description && <p>{post.data.description}</p>}
+                <div class="post-stats" data-post-url={postUrl(post)}>
+                  <span class="post-stats__item"><i class="ph ph-eye"></i><span data-stats-views>0</span></span>
+                  <span class="post-stats__item"><i class="ph ph-chat-circle"></i><span data-stats-comments>0</span></span>
+                </div>
               </div>
             </a>
           </article>
