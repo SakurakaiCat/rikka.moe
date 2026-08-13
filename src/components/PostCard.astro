@@ -1,7 +1,7 @@
 ---
 import type { PostEntry } from '../lib/content';
 import { asDate, postCategories, postUrl, resolveLocale } from '../lib/content';
-import { categoryName, categoryKeyFromName } from '../lib/i18n';
+import { categoryName, categoryKeyFromName, label } from '../lib/i18n';
 import { artFallbackForSlug } from '../lib/art';
 const { post } = Astro.props as { post: PostEntry };
 const date = asDate(post.data.date);
@@ -26,8 +26,8 @@ const url = postUrl(post);
       {post.data.description && <p>{post.data.description}</p>}
       {showStats && (
         <div class="post-stats" data-post-url={url}>
-          <span class="post-stats__item"><i class="ph ph-eye"></i><span data-stats-views>0</span></span>
-          <span class="post-stats__item"><i class="ph ph-chat-circle"></i><span data-stats-comments>0</span></span>
+          <span class="post-stats__item" aria-label={label('post', 'views', locale)}><i class="ph ph-eye" aria-hidden="true"></i><span data-stats-views>0</span></span>
+          <span class="post-stats__item" aria-label={label('post', 'comments', locale)}><i class="ph ph-chat-circle" aria-hidden="true"></i><span data-stats-comments>0</span></span>
         </div>
       )}
     </div>
