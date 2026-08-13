@@ -28,6 +28,8 @@ export const t = {
     next: { 'zh-CN': '下一篇', 'zh-TW': '下一篇', en: 'Next', ja: '次の記事' },
     none: { 'zh-CN': '没有了', 'zh-TW': '沒有了', en: 'None', ja: 'なし' },
     comment: { 'zh-CN': '评论', 'zh-TW': '評論', en: 'Comments', ja: 'コメント' },
+    views: { 'zh-CN': '浏览量', 'zh-TW': '瀏覽量', en: 'Views', ja: '閲覧数' },
+    comments: { 'zh-CN': '评论数', 'zh-TW': '評論數', en: 'Comments', ja: 'コメント数' },
   },
   ui: {
     menu: { 'zh-CN': '打开菜单', 'zh-TW': '打開選單', en: 'Open menu', ja: 'メニューを開く' },

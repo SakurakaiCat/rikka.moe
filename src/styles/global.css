@@ -1000,6 +1000,26 @@ img {
   color: rgba(var(--akari-ink-rgb) / 0.7);
 }
 
+.post-stats {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  font-size: 0.82rem;
+  color: rgba(var(--akari-ink-rgb) / 0.56);
+  margin-top: 0.5rem;
+}
+
+.post-stats__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.post-stats__item i {
+  font-size: 1em;
+  line-height: 1;
+}
+
 .article-shell {
   display: grid;
   gap: 26px;
