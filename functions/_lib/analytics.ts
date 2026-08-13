@@ -4,6 +4,7 @@ export interface D1PreparedStatementLike {
   bind(...values: unknown[]): D1PreparedStatementLike;
   run(): Promise<{ success: boolean }>;
   first<T>(): Promise<T | null>;
+  all<T>(): Promise<{ results: T[]; success: boolean }>;
 }
 
 export interface D1DatabaseLike {
