@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: limited-responsibility-and-free-life
 categories: [长文]
+topics: [生活, 随笔]
 description: "On the expectations of family, limited liability, and a nineteen-year-old's imagination of a free life."
 ---
 

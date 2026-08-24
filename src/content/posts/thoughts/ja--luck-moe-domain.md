@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: luck-moe-domain
 categories: [随想]
+topics: [技术, 生活]
 description: "蜜雪氷城で1元クーポンを探しまわる貧乏大学生が、Porkbunオークションで7ドットで luck.moe を落札した話。"
 ---
 

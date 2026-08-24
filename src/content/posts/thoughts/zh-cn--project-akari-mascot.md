@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: project-akari-mascot
 categories: [随想]
+topics: [二次元, 技术]
 description: "Project Akari 的吉祥物 Akari-chan 灯里酱，抽卡了好久看着还行，日后再完善一下🥺🥺"
 ---
 

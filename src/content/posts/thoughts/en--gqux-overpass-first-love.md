@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: gqux-overpass-first-love
 categories: [随想]
+topics: [二次元, 生活]
 description: "After watching GQuuuuuuX, I remembered my first love. He pursued me actively; I was too socially anxious to respond, so I took him to my favorite overpass — the place where nobody else ever stood, just me spacing out. Watching the traffic, heart rate slowly rising, body temperature going up a little, and then we got thirsty."
 keywords: "GQuuuuuuX, overpass, first love, aviation obstruction light, HSP, junior high"
 ---

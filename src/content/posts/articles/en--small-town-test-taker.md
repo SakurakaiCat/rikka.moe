@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: small-town-test-taker-homecoming
 categories: [长文]
+topics: [校园, 社会]
 description: "At a village dinner table, schools, majors, salaries, and usefulness are weighed aloud, while the things truly endured go unasked."
 ---
 

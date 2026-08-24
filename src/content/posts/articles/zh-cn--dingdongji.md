@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: dingdongji-era
 categories: [长文]
+topics: [经济, 生活]
 description: "一辆几万块的小车，被一对寻常夫妇当成日子往上走的凭据，也终于在债务与失业里悄悄卖掉。"
 alias: /2026/04/07/%e5%8f%ae%e5%92%9a%e9%b8%a1%e6%97%b6%e4%bb%a3/
 ---

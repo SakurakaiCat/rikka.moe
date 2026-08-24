@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: ovhcloud-vps-1
 categories: [随想]
+topics: [技术, 经济]
 description: "節約モードでOVHcloud米国最安のVPS-1に切り替え。性能は人それぞれの評価で、とにかく8ドル。"
 ---
 

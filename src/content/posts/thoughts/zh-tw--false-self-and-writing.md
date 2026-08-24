@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: false-self-and-writing
 categories: [随想]
+topics: [随笔]
 description: "寧要一地的真實的玻璃碎渣，也不要一尊虛假的完美塑膠雕像。從小學作文到大學入學考試作文，寫作何時墮落為「拼好文」？"
 keywords: "假自我,溫尼科特,學測作文,述情障礙,寫作,真實"
 ---

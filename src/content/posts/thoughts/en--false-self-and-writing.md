@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: false-self-and-writing
 categories: [随想]
+topics: [随笔]
 description: "Better a floor of real shattered glass than a perfect plastic statue. When did writing's core spirit degenerate into a patchwork of pre-approved parts?"
 keywords: "false self, Winnicott, gaokao essay, alexithymia, writing, authenticity, Chinese education"
 ---

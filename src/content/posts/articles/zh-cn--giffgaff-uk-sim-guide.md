@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: giffgaff-uk-sim-guide
 categories: [长文]
+topics: [技术]
 description: "一张英国实体卡，免实名、0 月租、收短信免费，从激活、保号、接码注册到转 eSIM，你想知道的一切都在这里。"
 ---
 

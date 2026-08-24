@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: limited-responsibility-and-free-life
 categories: [长文]
+topics: [生活, 随笔]
 description: "親族の期待、有限責任、そして19歳の若者が思い描く自由な生活について。"
 ---
 

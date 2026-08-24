@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: project-akari-mascot
 categories: [Thoughts]
+topics: [二次元, 技术]
 description: "After tinkering for a while, it's finally taking shape — the mascot of my software project Project Akari, Akari-chan. Took quite a few gacha pulls but she looks pretty good; will refine more later 🥺🥺"
 ---
 

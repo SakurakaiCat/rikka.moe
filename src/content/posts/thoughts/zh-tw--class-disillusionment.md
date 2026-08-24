@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: class-disillusionment
 categories: [随想]
+topics: [社会, 生活]
 description: "我經歷的家庭是一個極其痛苦的階級跌落的過程，緩慢而痛苦，看著曾經正常擁有的一切慢慢地消失。"
 keywords: "階級跌落,幻滅,高考,家庭,意義"
 ---

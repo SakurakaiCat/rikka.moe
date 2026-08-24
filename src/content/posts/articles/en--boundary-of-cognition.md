@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: boundary-of-cognition
 categories: [长文]
+topics: [随笔]
 description: "These questions all touch upon the boundaries of our cognition — whether the boundaries of words, of language, or those beyond our field of vision."
 keywords: "Wayne Booth, The Rhetoric of Fiction, unreliable narrator, curiosity, boundaries of cognition, reading"
 ---

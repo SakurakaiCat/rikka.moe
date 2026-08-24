@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: scarcity-of-leisure
 categories: [长文]
+topics: [经济, 随笔]
 description: "短編動画は忙しい現代人への処方箋に過ぎない。本当に希少なのは余暇そのものだ。"
 ---
 

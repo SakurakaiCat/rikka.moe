@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: duck-leg-and-ten-yuan-meals
 categories: [随想]
+topics: [校园, 经济]
 description: "知乎榜一是清华鸭腿鹅腿，而我的大学生活是一餐饭精打细算到十块钱以下——家庭资源在中学阶段被消耗殆尽后的省钱生存记录。"
 ---
 

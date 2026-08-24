@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: duck-leg-lady-zhihu-heat
 categories: [随想]
+topics: [社会]
 description: "The duck leg lady vanished from Zhihu's trending list. What algorithm can drop from millions to zero in days?"
 keywords: "Zhihu, trending, duck leg lady, algorithm, heat, long tail, Chinese internet"
 ---

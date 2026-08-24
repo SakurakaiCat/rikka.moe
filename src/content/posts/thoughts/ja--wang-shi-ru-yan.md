@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: wang-shi-ru-yan
 categories: [随想]
+topics: [随笔, 生活]
 description: "過ぎ去ったことは、煙のように消えていく。"
 ---
 

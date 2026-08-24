@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: boundary-of-cognition
 categories: [长文]
+topics: [随笔]
 description: "これらの問いはすべて、私たちの認識の境界に触れている——文字や言語の境界であれ、視野の限界の彼方であれ。"
 keywords: "ウェイン・ブース,小説修辞学,信頼できない語り手,知的好奇心,認識の境界,読書"
 ---

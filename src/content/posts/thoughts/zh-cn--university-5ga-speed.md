@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: university-5ga-speed
 categories: [随想]
+topics: [技术]
 description: "5GA连香港，105MB/s，震惊了，太伟大了中国电信。"
 ---
 

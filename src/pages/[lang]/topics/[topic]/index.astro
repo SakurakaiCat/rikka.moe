@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import type { Locale, PostEntry } from '../../../../lib/content';
+import { asDate, getPostsByLocale, LOCALES, normalizeRoutePath, postUrl } from '../../../../lib/content';
+import { categoryKeyFromName, categoryName, label } from '../../../../lib/i18n';
+import { collectTopicSummaries, postsByTopic, topicIcon, topicKeyFromSlug, topicName, topicSlugForKey } from '../../../../lib/topics';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const locale of LOCALES) {
+    const posts = await getPostsByLocale(locale);
+    for (const { key } of collectTopicSummaries(posts)) {
+      paths.push({ params: { lang: locale.lang_path, topic: topicSlugForKey(key, locale) }, props: { locale, topicKey: key } });
+    }
+  }
+  return paths;
+}
+
+const { locale, topicKey } = Astro.props as { locale: Locale; topicKey: string };
+const topicSlug = topicSlugForKey(topicKey, locale);
+const allPosts = await getPostsByLocale(locale);
+const posts = postsByTopic(allPosts, topicKey);
+
+const yearGroups = new Map<string, PostEntry[]>();
+for (const post of posts) {
+  const date = asDate(post.data.date);
+  const year = date ? String(date.getFullYear()) : '—';
+  if (!yearGroups.has(year)) yearGroups.set(year, []);
+  yearGroups.get(year)!.push(post);
+}
+const years = [...yearGroups.keys()].sort((a, b) => b.localeCompare(a));
+const otherTopics = collectTopicSummaries(allPosts).filter(({ key }) => key !== topicKey);
+---
+<BaseLayout title={`${topicName(topicKey, locale)} - ${label('common', 'topics', locale)}`} description={`${topicName(topicKey, locale)} - Akari`} locale={locale} canonicalPath={normalizeRoutePath(`${locale.lang_path}/topics/${topicSlug}`)}>
+  <section class="archive-page glass-card">
+    <header class="topic-page__head">
+      <p class="topic-page__eyebrow"><i class={`ph ph-${topicIcon(topicKey)}`}></i> {label('common', 'topics', locale)}</p>
+      <h1>{topicName(topicKey, locale)}</h1>
+      <p class="topic-page__count">{posts.length} {label('common', 'postsCount', locale)}</p>
+    </header>
+    <nav class="chips topic-page__others" aria-label={label('common', 'allTopics', locale)}>
+      {otherTopics.map(({ key }) => <a href={normalizeRoutePath(`${locale.lang_path}/topics/${topicSlugForKey(key, locale)}/`)}>{topicName(key, locale)}</a>)}
+    </nav>
+    <div class="timeline-by-year">
+      {years.map((year) => (
+        <section class="timeline-by-year__group">
+          <h2 class="timeline-by-year__year">{year}</h2>
+          <ul class="timeline-by-year__list" data-motion="fade-up-children">
+            {yearGroups.get(year)!.map((post) => {
+              const date = asDate(post.data.date);
+              const kind = categoryKeyFromName(post.data.categories?.[0] || '');
+              return (
+                <li>
+                  <a href={postUrl(post)}>
+                    <time datetime={date?.toISOString()}>{date ? date.toISOString().slice(0, 10) : ''}</time>
+                    {kind && <span class="timeline-by-year__kind timeline-by-year__kind--{kind}">{categoryName(post.data.categories![0], locale)}</span>}
+                    <h3>{post.data.title}</h3>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: hermes-lobster-agent
 categories: [随想]
+topics: [AI]
 description: "LLM context attention dilution and the absence of physical mutual exclusion — when variables meet the void where state machines and mutex locks should be."
 keywords: "LLM, attention dilution, physical mutual exclusion, state machine, hallucination, mutex lock"
 ---

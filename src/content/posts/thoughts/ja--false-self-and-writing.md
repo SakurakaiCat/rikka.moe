@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: false-self-and-writing
 categories: [随想]
+topics: [随笔]
 description: "本物の砕けたガラスの床のほうが、偽物の完璧なプラスチック像よりましだ。書くことの核心はいつ「つぎはぎ作文」に堕ちたのか。"
 keywords: "偽りの自己,ウィニコット,入試作文,失感情症,書くこと,真実性,中国教育"
 ---

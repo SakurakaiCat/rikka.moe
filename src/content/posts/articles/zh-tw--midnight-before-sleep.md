@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: midnight-before-sleep
 categories: [长文]
+topics: [随笔, 生活]
 description: "寫在午夜的一段自白：關於爽文、疲憊和對人生走向的預感。"
 ---
 

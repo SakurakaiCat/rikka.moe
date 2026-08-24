@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: giffgaff-uk-sim-guide
 categories: [长文]
+topics: [技术]
 description: "A UK physical SIM card — no ID required, zero monthly fees, free incoming texts. From activation and number-keeping to receiving verification codes and switching to eSIM, everything you need to know is here."
 ---
 

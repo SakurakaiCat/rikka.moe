@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: dingdongji-era
 categories: [长文]
+topics: [经济, 生活]
 description: "一輛幾萬塊的小車，曾被一對尋常夫婦當作日子往上走的憑據，也終於在債務與失業裡悄悄賣掉。"
 ---
 

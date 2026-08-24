@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: low-cost-of-living
 categories: [随想]
+topics: [经济, 生活]
 description: "幾塊錢就能指揮一個外賣員跑上樓，消費讓人感到舒適的原因，是顧客是上帝賦予你一種短暫的、高高在上的權力感。"
 ---
 

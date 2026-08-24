@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: straw-man-in-the-field
 categories: [长文]
+topics: [随笔]
 description: "あるいは私はあの紙の人形なのかもしれない。目は二つの穴。笑顔は縫い付けられたもの。然るべき場所に立ち、来るはずのない誰かを待っている。"
 keywords: "案山子,帰郷,葬式,不条理,存在,夢,農村中国"
 ---

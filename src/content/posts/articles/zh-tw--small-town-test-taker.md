@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: small-town-test-taker-homecoming
 categories: [长文]
+topics: [校园, 社会]
 description: "回到村裡的飯桌上，學校、專業與體面被一遍遍拿來評說，而真正的委屈與失去從來無人追問。"
 ---
 

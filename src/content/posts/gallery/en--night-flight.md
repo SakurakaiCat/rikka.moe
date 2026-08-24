@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: night-flight
 categories: [相册]
+topics: [生活]
 description: "A photo I took that I really like — a night flight."
 ---
 

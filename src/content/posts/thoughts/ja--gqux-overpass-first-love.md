@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: gqux-overpass-first-love
 categories: [随想]
+topics: [二次元, 生活]
 description: "GQuuuuuuX を見て初恋のことを思い出した。彼の方からアプローチしてくれたけど、社恐の私はどう返せばいいかわからなくて、一番好きな歩道橋に連れて行った——普段は私一人しかいない、ぼんやりするための場所。橋から車の流れを見ていたら、心拍がゆっくり速くなって、体温も少し上がって、それから喉が渇いた。"
 keywords: "GQuuuuuuX,歩道橋,初恋,航空障害灯,HSP,中学"
 ---

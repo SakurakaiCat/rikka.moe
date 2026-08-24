@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: archive-old-posts
 categories: [随想]
+topics: [生活]
 description: "決定將之前的說說封存，且以後少發泔水說說了，原因有四。"
 ---
 

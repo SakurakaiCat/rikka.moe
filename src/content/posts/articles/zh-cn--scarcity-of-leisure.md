@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: scarcity-of-leisure
 categories: [长文]
+topics: [经济, 随笔]
 description: "短视频不过是开给忙碌现代人的一剂药剂，而闲暇，才是真正的稀缺物。"
 keywords: "闲暇,短视频,极简主义,内卷,放松"
 ---

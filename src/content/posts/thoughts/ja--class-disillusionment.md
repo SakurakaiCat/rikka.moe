@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: class-disillusionment
 categories: [随想]
+topics: [社会, 生活]
 description: "私の家族が経験したのは、極めて苦しい階級の没落の過程だった。緩やかで、苦しく、かつて当たり前に持っていたすべてが、ゆっくりと消えていくのを見ていた。"
 keywords: "階級没落,幻滅,高考,家族,意味"
 ---

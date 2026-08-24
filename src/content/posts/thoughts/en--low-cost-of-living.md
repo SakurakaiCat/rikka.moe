@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: low-cost-of-living
 categories: [随想]
+topics: [经济, 生活]
 description: "A few coins to send a delivery rider upstairs — the comfort of being a consumer is a brief taste of the power that comes with being king."
 ---
 

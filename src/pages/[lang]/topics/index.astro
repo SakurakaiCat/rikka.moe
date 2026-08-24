@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import type { Locale, PostEntry } from '../../../lib/content';
+import { asDate, getPostsByLocale, LOCALES, normalizeRoutePath, postUrl } from '../../../lib/content';
+import { categoryKeyFromName, categoryName, label } from '../../../lib/i18n';
+import { collectTopicSummaries, topicIcon, topicName, topicSlugForKey, postsByTopic } from '../../../lib/topics';
+
+export async function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { lang: locale.lang_path }, props: { locale } }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+const posts = await getPostsByLocale(locale);
+const summaries = collectTopicSummaries(posts);
+
+const entries = summaries.map(({ key, count }) => {
+  const topicPosts = postsByTopic(posts, key);
+  const latest = topicPosts
+    .map((post: PostEntry) => ({ post, date: asDate(post.data.date)?.getTime() || 0 }))
+    .sort((a, b) => b.date - a.date)[0]?.post;
+  const kinds = [...new Set(topicPosts.map((post) => categoryKeyFromName(post.data.categories?.[0] || '') || ''))].filter(Boolean);
+  return {
+    key,
+    count,
+    name: topicName(key, locale),
+    icon: topicIcon(key),
+    href: normalizeRoutePath(`${locale.lang_path}/topics/${topicSlugForKey(key, locale)}/`),
+    latestTitle: latest?.data.title || '',
+    latestHref: latest ? postUrl(latest) : '',
+    kindLabels: kinds.map((kind) => label('category', kind, locale)),
+  };
+});
+---
+<BaseLayout title={label('common', 'allTopics', locale)} description={label('common', 'allTopics', locale)} locale={locale} canonicalPath={normalizeRoutePath(`${locale.lang_path}/topics/`)}>
+  <section class="archive-page glass-card">
+    <header class="topics-index__head">
+      <h1>{label('common', 'allTopics', locale)}</h1>
+      <p>{entries.length} {locale.lang === 'en' ? 'topics' : locale.lang === 'ja' ? 'トピック' : '个话题'} · {posts.length} {label('common', 'postsCount', locale)}</p>
+    </header>
+    <div class="topics-index__grid" data-motion="fade-up-children">
+      {entries.map((entry) => (
+        <a class="topic-tile glass-card" href={entry.href}>
+          <div class="topic-tile__top">
+            <i class={`ph ph-${entry.icon}`}></i>
+            <span class="topic-tile__count">{entry.count} {label('common', 'postsCount', locale)}</span>
+          </div>
+          <h2>{entry.name}</h2>
+          {entry.kindLabels.length > 0 && <p class="topic-tile__kinds">{entry.kindLabels.join(' · ')}</p>}
+          {entry.latestTitle && <p class="topic-tile__latest">{entry.latestTitle}</p>}
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

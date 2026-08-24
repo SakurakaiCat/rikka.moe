@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: midnight-before-sleep
 categories: [长文]
+topics: [随笔, 生活]
 description: "真夜中の告白——爽文と疲労と、人生の行方についての予感。"
 ---
 

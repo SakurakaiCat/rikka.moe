@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: night-flight
 categories: [相册]
+topics: [生活]
 description: "以前撮ったとても気に入っている写真——夜間フライト。"
 ---
 

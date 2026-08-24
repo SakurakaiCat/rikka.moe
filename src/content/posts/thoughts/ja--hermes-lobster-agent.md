@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: hermes-lobster-agent
 categories: [随想]
+topics: [AI]
 description: "LLMのコンテキスト注意希釈と物理的排他性の欠如——変数が状態機械とミューテックスロックの不在に出会うとき。"
 keywords: "LLM,注意希釈,物理的排他性,状態機械,ハルシネーション,ミューテックスロック"
 ---

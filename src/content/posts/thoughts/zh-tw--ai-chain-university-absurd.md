@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: ai-chain-university-absurd
 categories: [随想]
+topics: [AI, 校园]
 description: "老師用AI做課件，學生用AI寫作業，AI批改AI的題——大學裡這條荒誕的AI鏈條，以及隨之而來的訂閱軍備競賽。"
 ---
 

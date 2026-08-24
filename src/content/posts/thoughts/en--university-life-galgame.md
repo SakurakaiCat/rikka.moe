@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: university-life-galgame
 categories: [随想]
+topics: [二次元, 校园]
 description: "University life galgame opening scene — added to the to-do list. Will work on it when I have time, haha."
 ---
 

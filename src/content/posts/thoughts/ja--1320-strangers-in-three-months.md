@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: 1320-strangers-in-three-months
 categories: [随想]
+topics: [技术, 生活]
 description: "3ヶ月で1320人の訪問者。分析ダッシュボードを開いてみると、二言語がそれぞれ自立し、知乎とBingが主要な流入元、SIMカードガイドがトラフィックの王手だった。"
 keywords: "独立ブログ,ブログ分析,訪問者統計,知乎流入,Bing検索,相互リンク"
 ---

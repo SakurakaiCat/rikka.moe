@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: wang-shi-ru-yan
 categories: [随想]
+topics: [随笔, 生活]
 description: "往事如煙。"
 ---
 

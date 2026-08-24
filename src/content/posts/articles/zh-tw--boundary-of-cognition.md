@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: boundary-of-cognition
 categories: [长文]
+topics: [随笔]
 description: "這些問題都觸及到了我們認知的邊界，無論是文字、語言的，還是我們視野界限之外的。"
 keywords: "韋恩·布斯,小說修辭學,不可靠敘事者,求知慾,認知邊界,閱讀"
 ---

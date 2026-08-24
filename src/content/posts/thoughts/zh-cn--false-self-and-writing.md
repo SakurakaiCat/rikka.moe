@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: false-self-and-writing
 categories: [随想]
+topics: [随笔]
 description: "宁要一地的真实的玻璃碎渣，也不要一尊虚假的完美塑料雕像。从小学作文到高考作文，写作何时堕落为「拼好文」？"
 keywords: "假自我,温尼科特,高考作文,述情障碍,写作,真实"
 ---

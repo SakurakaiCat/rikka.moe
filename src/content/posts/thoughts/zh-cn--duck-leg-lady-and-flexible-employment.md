@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: duck-leg-lady-and-flexible-employment
 categories: [随想]
+topics: [经济, 社会]
 description: "清北鸭腿姐和三亿灵活就业同列一个热搜榜，大抵不是巧合——当高考性价比走低，痛苦和焦虑必然需要释放。"
 ---
 

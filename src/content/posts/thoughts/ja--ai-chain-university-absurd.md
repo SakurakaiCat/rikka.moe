@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: ai-chain-university-absurd
 categories: [随想]
+topics: [AI, 校园]
 description: "先生はAIで教材を作り、学生はAIで課題を書き、AIがAIの問題を採点する——大学におけるこの不条理なAIチェーンと、それに続くサブスクリプションの軍拡競争。"
 ---
 

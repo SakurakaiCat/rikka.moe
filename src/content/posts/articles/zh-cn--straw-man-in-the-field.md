@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: straw-man-in-the-field
 categories: [长文]
+topics: [随笔]
 description: "也许我就是那个纸人。眼睛是两个洞。笑容是缝上去的。立在恰当的位置，等一个不会来的人。"
 keywords: "稻草人,返乡,丧礼,荒诞,存在,梦境"
 ---

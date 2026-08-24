@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: 1320-strangers-in-three-months
 categories: [隨想]
+topics: [技术, 生活]
 description: "三個月，1320 位訪客。後台數據攤開來看，中英雙語各自站穩，知乎和必應是主力渠道，一篇 SIM 卡指南成了流量王牌。"
 keywords: "獨立博客,博客數據,訪客統計,知乎引流,必應搜尋,友情連結"
 ---

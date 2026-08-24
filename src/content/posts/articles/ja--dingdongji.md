@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: dingdongji-era
 categories: [长文]
+topics: [经济, 生活]
 description: "数万元の小さな車は、ありふれた夫婦にとって暮らしが上向く証しだったが、借金と失業の中でとうとう静かに手放された。"
 ---
 

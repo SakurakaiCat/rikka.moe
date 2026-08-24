@@ -13,6 +13,7 @@ const commonSchema = z.object({
   translation_key: z.string().optional(),
   description: z.string().optional(),
   categories: z.array(z.string()).optional(),
+  topics: z.array(z.string()).optional(),
   tags: z.array(z.string()).optional(),
   keywords: z.union([z.string(), z.array(z.string())]).optional(),
   alias: z.union([z.string(), z.array(z.string())]).optional(),

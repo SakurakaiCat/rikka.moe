@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: dingdongji-era
 categories: [长文]
+topics: [经济, 生活]
 description: "A cheap family car once stood for a modest rise in life; debt and job loss turned it into something that quietly disappeared."
 ---
 

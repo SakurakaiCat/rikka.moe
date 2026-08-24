@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: luck-moe-domain
 categories: [随想]
+topics: [技术, 生活]
 description: "作为一个连喝蜜雪冰城都要找一块钱优惠券的大一穷学生，在 Porkbun 拍卖区 7 美元捡到了 luck.moe 域名的故事。"
 ---
 

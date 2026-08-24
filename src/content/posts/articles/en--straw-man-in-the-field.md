@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: straw-man-in-the-field
 categories: [长文]
+topics: [随笔]
 description: "Maybe I am the paper effigy. Eyes are two holes. The smile is sewn on. Standing in the right spot, waiting for someone who will never come."
 keywords: "straw man, homecoming, funeral, absurdity, existence, dream, rural China"
 ---

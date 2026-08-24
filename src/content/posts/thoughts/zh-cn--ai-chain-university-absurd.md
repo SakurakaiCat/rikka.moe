@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: ai-chain-university-absurd
 categories: [随想]
+topics: [AI, 校园]
 description: "老师用AI做课件，学生用AI写作业，AI批改AI的题——大学里这条荒诞的AI链条，以及随之而来的订阅军备竞赛。"
 ---
 

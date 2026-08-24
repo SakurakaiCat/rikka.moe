@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: scarcity-of-leisure
 categories: [长文]
+topics: [经济, 随笔]
 description: "Short videos are nothing more than a prescription for busy modern people — leisure is the truly scarce resource."
 ---
 

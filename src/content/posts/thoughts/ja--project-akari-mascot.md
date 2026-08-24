@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: project-akari-mascot
 categories: [つぶやき]
+topics: [二次元, 技术]
 description: "いじってるうちにやっと形になった、自分のソフトウェアプロジェクト Project Akari のマスコット、灯里ちゃん。ガチャを回しまくったけどまあまあいい感じ、後でまた直そう🥺🥺"
 ---
 

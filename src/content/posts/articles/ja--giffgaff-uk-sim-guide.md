@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: giffgaff-uk-sim-guide
 categories: [长文]
+topics: [技术]
 description: "英国の物理 SIM カード。本人確認不要、月額ゼロ、受信 SMS 無料。有効化、番号維持、確認コード受信から eSIM への移行まで、知りたいことはすべてここに。"
 ---
 

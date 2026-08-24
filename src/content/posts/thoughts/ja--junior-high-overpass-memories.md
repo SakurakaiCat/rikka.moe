@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: junior-high-overpass-memories
 categories: [随想]
+topics: [生活, 校园]
 description: "以前はいつもつらい方ばかり書いていたけど、中学にも美好的な思い出があった。夜に歩道橋で車の流れを見て、友達に連れ出されて遊びに行って、探検に行ったり——大部分の美好的なことは中学に集中している。高校は全寮制の半衡水モデル、大学は自由があったけど青春はもうなかった。"
 keywords: "中学,歩道橋,思い出,青春,衡水モデル,成長,自由"
 ---

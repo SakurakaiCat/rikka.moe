@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: duck-leg-psychological-defense
 categories: [随想]
+topics: [社会]
 description: "高考生烧香拜佛、穿旗袍、顶粽子、崇拜状元——弱者在面对巨大生存压力时的心理防御机制，为了缓解非理性焦虑，获得一些控制感。"
 ---
 

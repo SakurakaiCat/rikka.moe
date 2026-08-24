@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: limited-responsibility-and-free-life
 categories: [长文]
+topics: [生活, 随笔]
 description: "關於親人的期待、有限責任，以及一個十九歲的人對自由生活的想像。"
 ---
 

@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: economic-finance-livestream-course
 categories: [随想]
+topics: [经济]
 description: "経済と金融のライブ講座を聞いた後、会員登録をしそうになったが、最後は財布を見てやめた。"
 ---
 

@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: luck-moe-domain
 categories: [随想]
+topics: [技术, 生活]
 description: "As a broke freshman who scrounges for one-yuan coupons at Mixue, I snagged luck.moe on Porkbun's auction for $7 — a story of luck, moe, and eating grass for a month."
 ---
 

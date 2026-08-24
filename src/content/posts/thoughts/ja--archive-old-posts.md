@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: archive-old-posts
 categories: [随想]
+topics: [生活]
 description: "以前のQQ投稿をアーカイブし、今後ジャンク投稿を控えることにした。理由は四つ。"
 ---
 

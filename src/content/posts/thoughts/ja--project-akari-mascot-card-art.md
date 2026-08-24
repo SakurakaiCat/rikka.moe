@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: project-akari-mascot-card-art
 categories: [つぶやき]
+topics: [二次元, 技术]
 description: "Project Akari のマスコット、灯里ちゃん Akari-chan をさらに調整。ガチャカード絵の難しさは、キャラの一貫性を保つこと。"
 ---
 

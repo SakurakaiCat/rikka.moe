@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: ai-chain-university-absurd
 categories: [随想]
+topics: [AI, 校园]
 description: "Teachers use AI to make courseware, students use AI to churn out homework, AI grades AI's exam questions — the absurd AI chain in universities, and the subscription arms race that follows."
 ---
 

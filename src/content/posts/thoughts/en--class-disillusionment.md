@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: class-disillusionment
 categories: [随想]
+topics: [社会, 生活]
 description: "The family I experienced was an extremely painful process of class descent — slow and agonizing, watching everything that was once normally ours gradually disappear."
 keywords: "class descent, disillusionment, gaokao, family, meaning"
 ---

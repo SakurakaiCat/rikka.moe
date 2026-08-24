@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: university-5ga-speed
 categories: [随想]
+topics: [技术]
 description: "5G-A で香港 IP に接続、105MB/s。中国電信、すごすぎる。"
 ---
 

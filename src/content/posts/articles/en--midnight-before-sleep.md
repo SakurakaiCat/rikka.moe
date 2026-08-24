@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: midnight-before-sleep
 categories: [长文]
+topics: [随笔, 生活]
 description: "A midnight confession: on power fantasies, exhaustion, and a premonition of how life is going to turn out."
 ---
 

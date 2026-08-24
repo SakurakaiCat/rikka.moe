@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: ovhcloud-vps-1
 categories: [随想]
+topics: [技术, 经济]
 description: "消費降級了，換了OVHcloud美區最便宜的VPS-1，性能就仁者見仁了，反正就八美元"
 ---
 

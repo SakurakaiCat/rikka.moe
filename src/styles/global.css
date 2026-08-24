@@ -336,10 +336,8 @@ img {
 
 .akari-hero-banner {
   --akari-section-gap: 2.5rem;
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100%;
+  max-width: 100%;
   padding-inline: 0;
   color: var(--akari-text);
 }
@@ -1795,13 +1793,6 @@ img {
     padding-top: 82px;
   }
 
-  .akari-hero-banner {
-    width: 100%;
-    max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
   .akari-appbar {
     top: 8px;
     left: 0.5rem;
@@ -1854,7 +1845,7 @@ img {
     margin: 0;
     border: none;
     border-radius: 0;
-    padding: clamp(120px, 22vh, 200px) 20px 24px;
+    padding: clamp(64px, 14vh, 130px) 16px 22px;
     background: none;
     box-shadow: none;
     backdrop-filter: none;
@@ -2228,6 +2219,10 @@ body.akari-drawer-open {
   min-height: 280px;
 }
 
+.akari-article-glass-card--wide {
+  grid-column: span 2;
+}
+
 .akari-article-glass-card a {
   position: relative;
   z-index: 1;
@@ -2366,7 +2361,7 @@ body.akari-drawer-open {
 
 .akari-gallery-mosaic {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -2443,7 +2438,8 @@ body.akari-drawer-open {
     grid-template-columns: 1fr;
   }
 
-  .akari-article-glass-card--featured {
+  .akari-article-glass-card--featured,
+  .akari-article-glass-card--wide {
     grid-column: auto;
   }
 
@@ -4257,4 +4253,597 @@ body.akari-drawer-open {
 @keyframes akari-slide-to-right {
   from { transform: translateX(0); opacity: 1; }
   to { transform: translateX(30px); opacity: 0; }
+}
+
+/* ──────────────────────────────────────────────
+   Homepage v2: profile cards / memoir / topic chips
+   ────────────────────────────────────────────── */
+
+.akari-section__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 0.32rem 0.85rem;
+  border: 1px solid rgba(var(--akari-ink-rgb) / 0.10);
+  border-radius: 999px;
+  background: rgba(var(--akari-ink-rgb) / 0.05);
+  color: rgba(var(--akari-ink-rgb) / 0.72);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.akari-section__more:hover {
+  background: rgba(var(--akari-accent-rgb) / 0.14);
+  border-color: rgba(var(--akari-accent-rgb) / 0.45);
+  color: var(--akari-accent);
+}
+
+/* 自我介绍信息卡片 */
+
+.akari-profile-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  gap: 12px;
+}
+
+.akari-profile-card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--akari-glass-border);
+  border-radius: 14px;
+  background: rgba(var(--akari-shadow-rgb) / 0.30);
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.akari-profile-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--akari-accent-rgb) / 0.40);
+}
+
+.akari-profile-card > i {
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 1.35rem;
+  color: var(--akari-accent);
+}
+
+.akari-profile-card small {
+  display: block;
+  margin-bottom: 3px;
+  color: rgba(var(--akari-ink-rgb) / 0.48);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.akari-profile-card p {
+  margin: 0;
+  color: rgba(var(--akari-ink-rgb) / 0.86);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+/* 回忆录折叠 */
+
+.akari-personal-intro__figure-row {
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.akari-personal-intro__memoir {
+  min-width: 0;
+  border: 1px solid rgba(var(--akari-ink-rgb) / 0.08);
+  border-radius: 16px;
+  background: rgba(var(--akari-shadow-rgb) / 0.22);
+}
+
+.akari-personal-intro__memoir summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.akari-personal-intro__memoir summary::-webkit-details-marker {
+  display: none;
+}
+
+.akari-personal-intro__memoir-toggle {
+  font-weight: 600;
+  color: rgba(var(--akari-ink-rgb) / 0.80);
+}
+
+.akari-personal-intro__memoir summary i {
+  color: rgba(var(--akari-ink-rgb) / 0.50);
+  transition: transform 0.22s ease;
+}
+
+.akari-personal-intro__memoir[open] summary i {
+  transform: rotate(180deg);
+}
+
+.akari-personal-intro__memoir .akari-personal-intro__body {
+  padding: 4px 20px 20px;
+  border-top: 1px dashed rgba(var(--akari-ink-rgb) / 0.10);
+}
+
+.akari-personal-intro__memoir .akari-personal-intro__tags {
+  margin-top: 18px;
+}
+
+/* 随想话题筛选 chips */
+
+.akari-thought-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.akari-thought-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 14px;
+  border: 1px solid rgba(var(--akari-ink-rgb) / 0.12);
+  border-radius: 999px;
+  background: rgba(var(--akari-ink-rgb) / 0.04);
+  color: rgba(var(--akari-ink-rgb) / 0.70);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.akari-thought-chip span {
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: rgba(var(--akari-ink-rgb) / 0.08);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.akari-thought-chip:hover {
+  border-color: rgba(var(--akari-accent-rgb) / 0.45);
+  color: var(--akari-accent);
+}
+
+.akari-thought-chip.is-active {
+  border-color: rgba(var(--akari-accent-rgb) / 0.60);
+  background: rgba(var(--akari-accent-rgb) / 0.16);
+  color: var(--akari-accent);
+}
+
+.akari-thought-chip.is-active span {
+  background: rgba(var(--akari-accent-rgb) / 0.22);
+}
+
+/* 随想按年份分组列表 */
+
+.akari-thought-years {
+  display: grid;
+  gap: 8px;
+}
+
+.akari-thought-year-group[hidden] {
+  display: none;
+}
+
+.akari-thought-year-label {
+  position: sticky;
+  top: 76px;
+  z-index: 1;
+  margin: 0;
+  padding: 6px 0;
+  color: rgba(var(--akari-ink-rgb) / 0.32);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.akari-thought-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.akari-thought-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  padding: 13px 4px;
+  border-bottom: 1px solid rgba(var(--akari-ink-rgb) / 0.07);
+}
+
+.akari-thought-item[hidden] {
+  display: none;
+}
+
+.akari-thought-item:last-child {
+  border-bottom: none;
+}
+
+.akari-thought-item > a {
+  display: block;
+  min-width: 0;
+  color: inherit;
+}
+
+.akari-thought-item time {
+  display: inline-block;
+  margin-right: 12px;
+  color: rgba(var(--akari-ink-rgb) / 0.42);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.akari-thought-item h3 {
+  display: inline;
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  transition: color 0.18s ease;
+}
+
+.akari-thought-item a:hover h3 {
+  color: var(--akari-accent);
+}
+
+.akari-thought-item p {
+  margin: 4px 0 0;
+  color: rgba(var(--akari-ink-rgb) / 0.58);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.akari-thought-item__side {
+  flex-shrink: 0;
+  display: grid;
+  gap: 6px;
+  justify-items: end;
+}
+
+.akari-thought-item__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.akari-thought-item__topics a {
+  padding: 2px 10px;
+  border: 1px solid rgba(var(--akari-accent-rgb) / 0.28);
+  border-radius: 999px;
+  color: rgba(var(--akari-accent-rgb) / 0.92);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.18s ease;
+}
+
+.akari-thought-item__topics a:hover {
+  background: rgba(var(--akari-accent-rgb) / 0.14);
+}
+
+.akari-thought-item__side .post-stats .post-stats__item {
+  font-size: 0.74rem;
+}
+
+/* 平板区间过渡断点 */
+
+@media (max-width: 1279px) and (min-width: 1025px) {
+  .akari-article-glass-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1180px) and (min-width: 721px) {
+  .akari-sidebar-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .akari-sidebar-stack > .akari-info-tabs {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .akari-personal-intro__figure-row {
+    grid-template-columns: 1fr;
+  }
+
+  .akari-personal-intro__figure img {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 720px) {
+  .akari-thought-filter {
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .akari-thought-chip {
+    min-height: 38px;
+    padding: 0 13px;
+  }
+
+  .akari-thought-year-label {
+    top: 68px;
+    font-size: 0.95rem;
+  }
+
+  .akari-thought-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 14px 2px;
+  }
+
+  .akari-thought-item time {
+    display: block;
+    margin: 0 0 2px;
+  }
+
+  .akari-thought-item h3 {
+    display: block;
+  }
+
+  .akari-thought-item__side {
+    justify-items: start;
+  }
+
+  .akari-thought-item__topics {
+    justify-content: flex-start;
+  }
+
+  .akari-section__head--split .akari-section__more {
+    padding: 0.26rem 0.65rem;
+    font-size: 0.76rem;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   Topics pages
+   ────────────────────────────────────────────── */
+
+.topics-index__head {
+  margin-bottom: 24px;
+}
+
+.topics-index__head h1 {
+  margin: 0;
+}
+
+.topics-index__head p {
+  margin: 8px 0 0;
+  color: rgba(var(--akari-ink-rgb) / 0.52);
+  font-size: 0.9rem;
+}
+
+.topics-index__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+  gap: 14px;
+}
+
+.topic-tile {
+  display: block;
+  padding: 18px 20px;
+  color: inherit;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.topic-tile:hover {
+  transform: translateY(-3px);
+  border-color: rgba(var(--akari-accent-rgb) / 0.45);
+}
+
+.topic-tile__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.topic-tile__top i {
+  font-size: 1.5rem;
+  color: var(--akari-accent);
+}
+
+.topic-tile__count {
+  color: rgba(var(--akari-ink-rgb) / 0.46);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.topic-tile h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.topic-tile__kinds {
+  margin: 6px 0 0;
+  color: rgba(var(--akari-ink-rgb) / 0.48);
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+}
+
+.topic-tile__latest {
+  margin: 10px 0 0;
+  color: rgba(var(--akari-ink-rgb) / 0.62);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.topic-page__head {
+  margin-bottom: 18px;
+}
+
+.topic-page__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--akari-accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.topic-page__eyebrow i {
+  font-size: 1.1rem;
+}
+
+.topic-page__head h1 {
+  margin: 6px 0 0;
+}
+
+.topic-page__count {
+  margin: 8px 0 0;
+  color: rgba(var(--akari-ink-rgb) / 0.50);
+  font-size: 0.86rem;
+}
+
+.topic-page__others {
+  margin-bottom: 22px;
+}
+
+.topic-page__others a {
+  padding: 5px 14px;
+  border: 1px solid rgba(var(--akari-ink-rgb) / 0.10);
+  border-radius: 999px;
+  background: rgba(var(--akari-ink-rgb) / 0.04);
+  color: rgba(var(--akari-ink-rgb) / 0.66);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.topic-page__others a:hover {
+  border-color: rgba(var(--akari-accent-rgb) / 0.45);
+  color: var(--akari-accent);
+}
+
+.timeline-by-year__group + .timeline-by-year__group {
+  margin-top: 26px;
+}
+
+.timeline-by-year__year {
+  position: sticky;
+  top: 76px;
+  z-index: 1;
+  margin: 0 0 6px;
+  padding: 6px 0;
+  color: rgba(var(--akari-ink-rgb) / 0.34);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.timeline-by-year__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline-by-year__list li {
+  border-bottom: 1px solid rgba(var(--akari-ink-rgb) / 0.07);
+}
+
+.timeline-by-year__list li:last-child {
+  border-bottom: none;
+}
+
+.timeline-by-year__list a {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 12px;
+  padding: 13px 2px;
+  color: inherit;
+}
+
+.timeline-by-year__list time {
+  color: rgba(var(--akari-ink-rgb) / 0.42);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.timeline-by-year__kind {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(var(--akari-ink-rgb) / 0.06);
+  color: rgba(var(--akari-ink-rgb) / 0.60);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.timeline-by-year__kind--articles {
+  background: rgba(var(--akari-accent-rgb) / 0.14);
+  color: rgba(var(--akari-accent-rgb) / 0.95);
+}
+
+.timeline-by-year__list h3 {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: color 0.18s ease;
+}
+
+.timeline-by-year__list a:hover h3 {
+  color: var(--akari-accent);
+}
+
+@media (max-width: 720px) {
+  .timeline-by-year__year {
+    top: 68px;
+    font-size: 0.95rem;
+  }
+
+  .timeline-by-year__list a {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+    padding: 14px 2px;
+  }
+
+  .timeline-by-year__list time,
+  .timeline-by-year__kind {
+    justify-self: start;
+  }
 }

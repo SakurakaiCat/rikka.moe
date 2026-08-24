@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: university-5ga-speed
 categories: [随想]
+topics: [技术]
 description: "5G-A connecting to a Hong Kong IP at 105 MB/s — China Telecom, you have my respect."
 ---
 

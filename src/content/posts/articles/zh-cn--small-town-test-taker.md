@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: small-town-test-taker-homecoming
 categories: [长文]
+topics: [校园, 社会]
 description: 回到村里的饭桌上，学校、专业与体面被一遍遍拿来评说，而真正的委屈与失去从来无人追问。
 alias: /2026/04/07/%e3%80%8c%e5%b0%8f%e9%95%87%e5%81%9a%e9%a2%98%e5%ae%b6%e5%9b%9e%e6%9d%91%e3%80%8d/
 ---

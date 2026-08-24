@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: 1320-strangers-in-three-months
 categories: [随想]
+topics: [技术, 生活]
 description: "Three months, 1,320 visitors. The analytics panel tells the story — bilingual content stood on its own, Zhihu and Bing led the charge, and a SIM card guide became the traffic king."
 keywords: "indie blog,blog analytics,visitor stats,Zhihu referral,Bing search,blogroll"
 ---

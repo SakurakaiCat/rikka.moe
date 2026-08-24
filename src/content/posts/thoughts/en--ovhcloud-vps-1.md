@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: ovhcloud-vps-1
 categories: [随想]
+topics: [技术, 经济]
 description: "A budget downgrade: switched to OVHcloud's cheapest US VPS-1. Performance is what it is for eight bucks."
 ---
 

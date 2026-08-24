@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: junior-high-overpass-memories
 categories: [随想]
+topics: [生活, 校园]
 description: "I used to write only about the bad parts, but junior high had beautiful memories too — standing on the overpass at night watching traffic, getting dragged out by friends, going on adventures. Most of the good things were concentrated in junior high. High school was fully closed, semi-Hengshui model. University gave freedom but youth was already gone."
 keywords: "junior high, overpass, memories, youth, Hengshui model, growing up, freedom"
 ---

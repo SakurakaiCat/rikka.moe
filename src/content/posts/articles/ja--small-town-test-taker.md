@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: small-town-test-taker-homecoming
 categories: [长文]
+topics: [校园, 社会]
 description: "村の食卓では、学校も専攻も体面も値踏みされるのに、ほんとうに失ったものや耐えてきたものは誰にも問われない。"
 ---
 

@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: university-life-galgame
 categories: [随想]
+topics: [二次元, 校园]
 description: "大学生活ギャルゲーのオープニング。やりたいこと+1、時間があったらやろう。"
 ---
 

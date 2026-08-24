@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: low-cost-of-living
 categories: [随想]
+topics: [经济, 生活]
 description: "几块钱就能指挥一个外卖员跑上楼，消费让人感到舒适的原因，是顾客是上帝赋予你一种短暂的、高高在上的权力感。"
 ---
 

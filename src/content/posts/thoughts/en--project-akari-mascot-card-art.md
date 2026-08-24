@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: project-akari-mascot-card-art
 categories: [Thoughts]
+topics: [二次元, 技术]
 description: "Further refining Project Akari's mascot Akari-chan — the hard part of gacha-style card art is keeping the character consistent."
 ---
 

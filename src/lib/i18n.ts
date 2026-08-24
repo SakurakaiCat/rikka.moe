@@ -13,6 +13,11 @@ export const t = {
     home: { 'zh-CN': '首页', 'zh-TW': '首頁', en: 'Home', ja: 'ホーム' },
     archive: { 'zh-CN': '文章归档', 'zh-TW': '文章歸檔', en: 'Archive', ja: 'アーカイブ' },
     categories: { 'zh-CN': '文章分类', 'zh-TW': '文章分類', en: 'Categories', ja: 'カテゴリー' },
+    topics: { 'zh-CN': '话题', 'zh-TW': '話題', en: 'Topics', ja: 'トピック' },
+    allTopics: { 'zh-CN': '全部话题', 'zh-TW': '全部話題', en: 'All Topics', ja: 'すべてのトピック' },
+    postsCount: { 'zh-CN': '篇内容', 'zh-TW': '篇內容', en: 'posts', ja: '件' },
+    viewAll: { 'zh-CN': '查看全部', 'zh-TW': '查看全部', en: 'View all', ja: 'すべて見る' },
+    filterAll: { 'zh-CN': '全部', 'zh-TW': '全部', en: 'All', ja: 'すべて' },
     about: { 'zh-CN': '关于', 'zh-TW': '關於', en: 'About', ja: 'About' },
     guestbook: { 'zh-CN': '留言板', 'zh-TW': '留言板', en: 'Guestbook', ja: 'ゲストブック' },
     books: { 'zh-CN': '书籍', 'zh-TW': '書籍', en: 'Books', ja: 'Books' },
@@ -22,6 +27,7 @@ export const t = {
     articles: { 'zh-CN': '长文', 'zh-TW': '長文', en: 'Essays', ja: '記事' },
     thoughts: { 'zh-CN': '随想', 'zh-TW': '隨想', en: 'Thoughts', ja: '断章' },
     gallery: { 'zh-CN': '相册', 'zh-TW': '相冊', en: 'Gallery', ja: 'ギャラリー' },
+    moments: { 'zh-CN': '说说备注', 'zh-TW': '說說備註', en: 'Moments', ja: 'モーメンツ' },
   },
   post: {
     prev: { 'zh-CN': '上一篇', 'zh-TW': '上一篇', en: 'Previous', ja: '前の記事' },
@@ -91,6 +97,7 @@ const categoryAliases: Record<string, string[]> = {
   articles: ['长文', '長文', 'Essays', 'Essay', 'Articles', '記事'],
   thoughts: ['随想', '隨想', 'Thoughts', 'Thought', 'つぶやき', '断章'],
   gallery: ['相册', '相冊', 'Gallery', 'ギャラリー'],
+  moments: ['说说备注', '說說備註', 'Moments', 'モーメンツ'],
 };
 
 export function categoryKeyFromName(category?: string) {
@@ -115,6 +122,7 @@ const categorySlugByLocale: Record<string, Record<string, string>> = {
   articles: { 'zh-CN': '长文', 'zh-TW': '長文', en: 'essays', ja: 'articles' },
   thoughts: { 'zh-CN': '随想', 'zh-TW': '隨想', en: 'thoughts', ja: 'thoughts' },
   gallery: { 'zh-CN': '相册', 'zh-TW': '相冊', en: 'gallery', ja: 'gallery' },
+  moments: { 'zh-CN': '说说备注', 'zh-TW': '說說備註', en: 'moments', ja: 'moments' },
 };
 
 export function categorySlugForKey(key: string, locale: Locale) {

@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: university-life-galgame-design
 categories: [随想]
+topics: [二次元, 校园]
 description: "把大學四年做成一款 GalGame：從填志願、網課、水課、親戚壓力，到墮落線、認命線、年薪百萬線與隱藏 True Ending。"
 ---
 

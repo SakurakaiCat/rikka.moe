@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: duck-leg-lady-zhihu-heat
 categories: [随想]
+topics: [社会]
 description: "知乎熱榜上鴨腿不見了，熱度歸零。什麼演算法能在幾天內從幾百萬掉到零？"
 keywords: "知乎,熱榜,鴨腿女士,演算法,熱度,長尾效應"
 ---

@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: university-life-galgame
 categories: [随想]
+topics: [二次元, 校园]
 description: "大學生活galgame開場，想做的事+1，有時間就做哈哈。"
 ---
 

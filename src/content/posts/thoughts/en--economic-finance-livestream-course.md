@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: economic-finance-livestream-course
 categories: [随想]
+topics: [经济]
 description: "After listening to an economics and finance livestream, I almost paid for a membership — until I checked my wallet."
 ---
 

@@ -1,7 +1,8 @@
 ---
 import type { Locale, PostEntry } from '../lib/content';
 import { asDate, postCategories, postUrl } from '../lib/content';
-import { categoryName, label, getHomepageModel } from '../lib/i18n';
+import { categoryName, categorySlugForKey, label, getHomepageModel } from '../lib/i18n';
+import { collectTopicSummaries, postTopics, topicName, topicSlugForKey } from '../lib/topics';
 import { resolveArtFallbacks } from '../lib/art';
 import SponsorWall from './SponsorWall.astro';
 
@@ -32,6 +33,33 @@ const sectionLabels = {
   thoughts: label('category', 'thoughts', locale),
   gallery: label('category', 'gallery', locale),
 };
+const archiveHref = `/${locale.lang_path}/archives/`;
+const galleryHref = `/${locale.lang_path}/categories/${encodeURIComponent(categorySlugForKey('gallery', locale))}/`;
+const topicsIndexHref = `/${locale.lang_path}/topics/`;
+
+// 随想按年份分组(倒序)
+const thoughtYearGroups = (() => {
+  const map = new Map<string, PostEntry[]>();
+  for (const post of thoughtPosts) {
+    const year = asDate(post.data.date)?.getFullYear() ?? 0;
+    const key = String(year);
+    if (!map.has(key)) map.set(key, []);
+    map.get(key)!.push(post);
+  }
+  return [...map.entries()].sort((a, b) => Number(b[0]) - Number(a[0]));
+})();
+
+// 随想中出现的话题(用于筛选 chips)
+const thoughtTopicChips = collectTopicSummaries(thoughtPosts).map(({ key }) => ({
+  key,
+  name: topicName(key, locale),
+  count: thoughtPosts.filter((post) => postTopics(post).includes(key)).length,
+}));
+const topicMetaOf = (post: PostEntry) =>
+  postTopics(post).map((key) => ({ key, name: topicName(key, locale), href: `${topicsIndexHref}${encodeURIComponent(topicSlugForKey(key, locale))}/` }));
+
+const FEATURED_ARTICLE_COUNT = 5;
+const GALLERY_COUNT = 2;
 ---
 <div class="akari-bento-grid">
   <section class="akari-hero-banner">
@@ -151,16 +179,39 @@ const sectionLabels = {
       <h2>{model.personalIntro.title}</h2>
       <p class="akari-personal-intro__memoir-note">{model.personalIntro.memoirNote}</p>
     </header>
-    <div class="akari-personal-intro__content">
+    {model.personalIntro.cards?.length > 0 && (
+      <div class="akari-profile-cards" data-motion="fade-up-children">
+        {model.personalIntro.cards.map((card: any) => (
+          <div class="akari-profile-card">
+            <i class={`ph ph-${card.icon}`} aria-hidden="true"></i>
+            <div>
+              <small>{card.label}</small>
+              <p>{card.value}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+    <div class="akari-personal-intro__figure-row">
       <figure class="akari-personal-intro__figure">
         <img src={model.personalIntro.image} alt={model.personalIntro.imageAlt} loading="lazy" />
         <figcaption>{model.personalIntro.closing}</figcaption>
       </figure>
-      <div class="akari-personal-intro__body">{model.personalIntro.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}</div>
-    </div>
-    <div class="akari-personal-intro__tags">
-      <h3>{model.personalIntro.tagHeader}</h3>
-      <ul>{model.personalIntro.tags.map((tag: string) => <li>{tag}</li>)}</ul>
+      <details class="akari-personal-intro__memoir" open>
+        <summary>
+          <span class="akari-personal-intro__memoir-toggle" data-open={model.personalIntro.memoirToggleOpen} data-close={model.personalIntro.memoirToggleClose}>{model.personalIntro.memoirToggleClose}</span>
+          <i class="ph ph-caret-down" aria-hidden="true"></i>
+        </summary>
+        <div class="akari-personal-intro__body">
+          {model.personalIntro.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}
+          {model.personalIntro.tags?.length > 0 && (
+            <div class="akari-personal-intro__tags">
+              <h3>{model.personalIntro.tagHeader}</h3>
+              <ul>{model.personalIntro.tags.map((tag: string) => <li>{tag}</li>)}</ul>
+            </div>
+          )}
+        </div>
+      </details>
     </div>
   </article>
 </section>}
@@ -169,13 +220,13 @@ const sectionLabels = {
   <section class="akari-section akari-section--articles akari-mosaic-block">
     <header class="akari-section__head akari-section__head--split">
       <div><small>Essays</small><h2>{sectionLabels.articles}</h2></div>
-      <span>{articlePosts.length}</span>
+      <a class="akari-section__more" href={archiveHref}>{label('common', 'viewAll', locale)} · {articlePosts.length}</a>
     </header>
     <div class="akari-article-glass-grid" data-motion="fade-up-children">
-      {articlePosts.map((post, index) => {
+      {articlePosts.slice(0, FEATURED_ARTICLE_COUNT).map((post, index) => {
         const image = firstImageOf(post);
         return (
-          <article class:list={["akari-article-glass-card", index === 0 && "akari-article-glass-card--featured"]}>
+          <article class:list={["akari-article-glass-card", index === 0 && "akari-article-glass-card--featured", index === FEATURED_ARTICLE_COUNT - 1 && "akari-article-glass-card--wide"]}>
             <a href={postUrl(post)}>
               <div class="akari-article-glass-card__shine"></div>
               <figure class="akari-article-glass-card__cover"><img src={image} alt="" loading="lazy" decoding="async" /></figure>
@@ -196,38 +247,53 @@ const sectionLabels = {
   <section class="akari-section akari-section--thoughts akari-mosaic-block">
     <header class="akari-section__head akari-section__head--split">
       <div><small>Timeline</small><h2>{sectionLabels.thoughts}</h2></div>
-      <span>{thoughtPosts.length}</span>
+      <a class="akari-section__more" href={topicsIndexHref}>{label('common', 'allTopics', locale)}</a>
     </header>
-    <div class="akari-thought-timeline" data-motion="fade-up-children">
-      {thoughtPosts.map((post) => {
-        const image = firstImageOf(post);
-        return (
-          <article class="akari-thought-timeline__item">
-            <a href={postUrl(post)}>
-              <time>{dateLabel(post)}</time>
-              <figure><img src={image} alt="" loading="lazy" decoding="async" /></figure>
-              <div>
-                <h3>{post.data.title}</h3>
-                {post.data.description && <p>{post.data.description}</p>}
-                <div class="post-stats" data-post-url={postUrl(post)}>
-                  <span class="post-stats__item" aria-label={label('post', 'views', locale)}><i class="ph ph-eye" aria-hidden="true"></i><span data-stats-views>0</span></span>
-                  <span class="post-stats__item" aria-label={label('post', 'comments', locale)}><i class="ph ph-chat-circle" aria-hidden="true"></i><span data-stats-comments>0</span></span>
-                </div>
-              </div>
-            </a>
-          </article>
-        );
-      })}
+    <div class="akari-thought-filter" role="group" aria-label={sectionLabels.thoughts}>
+      <button type="button" class="akari-thought-chip is-active" data-topic-filter="*">{label('common', 'filterAll', locale)}<span>{thoughtPosts.length}</span></button>
+      {thoughtTopicChips.map((chip) => (
+        <button type="button" class="akari-thought-chip" data-topic-filter={chip.key}>{chip.name}<span>{chip.count}</span></button>
+      ))}
+    </div>
+    <div class="akari-thought-years" data-motion="fade-up-children">
+      {thoughtYearGroups.map(([year, yearPosts]) => (
+        <section class="akari-thought-year-group">
+          <h3 class="akari-thought-year-label">{year}</h3>
+          <ul class="akari-thought-list">
+            {yearPosts.map((post) => {
+              const topics = topicMetaOf(post);
+              return (
+                <li class="akari-thought-item" data-topics={topics.map((topic) => topic.key).join(' ')}>
+                  <a href={postUrl(post)}>
+                    <time>{dateLabel(post)}</time>
+                    <h3>{post.data.title}</h3>
+                    {post.data.description && <p>{post.data.description}</p>}
+                  </a>
+                  <div class="akari-thought-item__side">
+                    <div class="akari-thought-item__topics">
+                      {topics.map((topic) => <a href={topic.href}>{topic.name}</a>)}
+                    </div>
+                    <div class="post-stats" data-post-url={postUrl(post)}>
+                      <span class="post-stats__item" aria-label={label('post', 'views', locale)}><i class="ph ph-eye" aria-hidden="true"></i><span data-stats-views>0</span></span>
+                      <span class="post-stats__item" aria-label={label('post', 'comments', locale)}><i class="ph ph-chat-circle" aria-hidden="true"></i><span data-stats-comments>0</span></span>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))}
     </div>
   </section>
 
   <section class="akari-section akari-section--gallery akari-mosaic-block">
     <header class="akari-section__head akari-section__head--split">
       <div><small>Gallery</small><h2>{sectionLabels.gallery}</h2></div>
-      <span>{galleryPosts.length}</span>
+      <a class="akari-section__more" href={galleryHref}>{label('common', 'viewAll', locale)} · {galleryPosts.length}</a>
     </header>
     <div class="akari-gallery-mosaic" data-motion="scale-up-children">
-      {galleryPosts.map((post) => {
+      {galleryPosts.slice(0, GALLERY_COUNT).map((post) => {
         const images = imagesOf(post).slice(0, 6);
         const slug = slugOf(post);
         const galleryFallback = artFallbackMap.get(slug) || '/images/profile/background.jpg';
@@ -336,5 +402,47 @@ const sectionLabels = {
   toggle.addEventListener('toggle', function() {
     summary.textContent = toggle.open ? closeLabel : openLabel;
   });
+})();
+</script>
+<script is:inline>
+(function() {
+  function initThoughtFilter(root) {
+    var scope = root || document;
+    var filterBar = scope.querySelector('.akari-thought-filter');
+    if (!filterBar || filterBar.dataset.filterBound === 'true') return;
+    filterBar.dataset.filterBound = 'true';
+    var chips = filterBar.querySelectorAll('.akari-thought-chip');
+    var items = scope.querySelectorAll('.akari-thought-item');
+    var groups = scope.querySelectorAll('.akari-thought-year-group');
+    if (!chips.length || !items.length) return;
+
+    filterBar.addEventListener('click', function(event) {
+      var chip = event.target.closest('.akari-thought-chip');
+      if (!chip) return;
+      chips.forEach(function(node) { node.classList.toggle('is-active', node === chip); });
+      var topic = chip.dataset.topicFilter || '*';
+      items.forEach(function(item) {
+        var topics = (item.dataset.topics || '').split(/\s+/).filter(Boolean);
+        item.hidden = topic !== '*' && !topics.includes(topic);
+      });
+      groups.forEach(function(group) {
+        var visible = group.querySelectorAll('.akari-thought-item:not([hidden])').length;
+        group.hidden = visible === 0;
+      });
+    });
+
+    var memoir = scope.querySelector('.akari-personal-intro__memoir');
+    if (memoir) {
+      var label = memoir.querySelector('.akari-personal-intro__memoir-toggle');
+      var openText = label.dataset.open;
+      var closeText = label.dataset.close;
+      memoir.addEventListener('toggle', function() {
+        label.textContent = memoir.open ? closeText : openText;
+      });
+    }
+  }
+
+  initThoughtFilter(document);
+  document.addEventListener('astro:page-load', function() { initThoughtFilter(document); });
 })();
 </script>

@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: night-flight
 categories: [相册]
+topics: [生活]
 description: "之前拍的一張我挺喜歡的照片，夜間航班。"
 ---
 

@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: gaokao-nightmares
 categories: [随想]
+topics: [校园, 生活]
 description: "高考が近づいて緊張すべきかは知らないけれど、今でもときどき高考の悪夢を見る。"
 ---
 

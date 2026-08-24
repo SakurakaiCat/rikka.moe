@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: gaokao-nightmares
 categories: [随想]
+topics: [校园, 生活]
 description: "要高考了要不要緊張我不知道，反正我現在還是時不時做高考噩夢。"
 ---
 

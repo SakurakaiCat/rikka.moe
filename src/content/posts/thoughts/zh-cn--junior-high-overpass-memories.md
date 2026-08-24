@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: junior-high-overpass-memories
 categories: [随想]
+topics: [生活, 校园]
 description: "以前写来写去都是比较惨的一面，但初中也有美好的回忆。夜晚站在天桥上看车流、被朋友拉出去玩、去探险——大部分的美好的事都集中在初中。高中全封闭半衡水模式，大学有了自由但青春没了。现在天天愁找工作。"
 keywords: "初中,天桥,回忆,青春,衡水模式,成长,自由"
 ---

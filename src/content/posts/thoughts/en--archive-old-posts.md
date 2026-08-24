@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: archive-old-posts
 categories: [随想]
+topics: [生活]
 description: "Decided to archive my old QQ posts and share less junk in the future — four reasons."
 ---
 

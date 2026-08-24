@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: economic-finance-livestream-course
 categories: [随想]
+topics: [经济]
 description: "今晚听完一场关于经济和金融的直播讲堂，差点想买课开会员，但最后还是看了看钱包算了。"
 ---
 

@@ -7,6 +7,7 @@ lang: zh-CN
 lang_path: zh-cn
 translation_key: hermes-lobster-agent
 categories: [随想]
+topics: [AI]
 description: "LLM的上下文注意力稀释与物理排他性缺失——当变量遇上状态机与互斥锁的缺席。"
 keywords: "LLM,注意力稀释,物理排他性,状态机,幻觉,互斥锁"
 ---

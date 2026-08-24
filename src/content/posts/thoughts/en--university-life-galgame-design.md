@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: university-life-galgame-design
 categories: [随想]
+topics: [二次元, 校园]
 description: "Turning four years of university into a GalGame: from college applications and online lectures to family pressure, the Fall Line, the Surrender Line, the Million-Yuan Line and a hidden True Ending."
 ---
 

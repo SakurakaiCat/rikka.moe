@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: wang-shi-ru-yan
 categories: [Thoughts]
+topics: [随笔, 生活]
 description: "The past fades away like smoke."
 ---
 

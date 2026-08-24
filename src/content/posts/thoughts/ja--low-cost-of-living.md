@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: low-cost-of-living
 categories: [随想]
+topics: [经济, 生活]
 description: "数円で配達員を階段まで走らせられる。消費が心地よいのは、「お客様は神様」が一時的な優越感を与えてくれるからだ。"
 ---
 

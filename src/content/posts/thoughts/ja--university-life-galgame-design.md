@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: university-life-galgame-design
 categories: [随想]
+topics: [二次元, 校园]
 description: "大学4年間をギャルゲーに：志望校記入からオンライン授業、水授業、親戚圧、堕落ルート・諦めルート・年収1000万円ルート、隠しTrue Endingまで。"
 ---
 

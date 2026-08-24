@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: scarcity-of-leisure
 categories: [长文]
+topics: [经济, 随笔]
 description: "短視頻不過是開給忙碌現代人的一劑藥劑，而閒暇，才是真正的稀缺物。"
 ---
 

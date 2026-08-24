@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: project-akari-mascot-card-art
 categories: [隨想]
+topics: [二次元, 技术]
 description: "繼續完善專案吉祥物燈里醬 Akari-chan，抽卡圖的難處就是保持角色一致性。"
 ---
 

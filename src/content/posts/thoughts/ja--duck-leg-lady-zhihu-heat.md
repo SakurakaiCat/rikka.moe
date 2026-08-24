@@ -7,6 +7,7 @@ lang: ja
 lang_path: ja
 translation_key: duck-leg-lady-zhihu-heat
 categories: [随想]
+topics: [社会]
 description: "知乎の話題ランキングから鴨腿女士が消えた。数日で数百万からゼロに落ちるアルゴリズムとは？"
 keywords: "知乎,話題ランキング,鴨腿女士,アルゴリズム,熱度,ロングテール,中国インターネット"
 ---

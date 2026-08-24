@@ -7,6 +7,7 @@ lang: en
 lang_path: en
 translation_key: gaokao-nightmares
 categories: [随想]
+topics: [校园, 生活]
 description: "I don't know whether people should be nervous about the Gaokao, but I still have Gaokao nightmares from time to time."
 ---
 

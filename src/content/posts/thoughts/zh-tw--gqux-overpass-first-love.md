@@ -7,6 +7,7 @@ lang: zh-TW
 lang_path: zh-tw
 translation_key: gqux-overpass-first-love
 categories: [随想]
+topics: [二次元, 生活]
 description: "看了 GQuuuuuuX 以後想起了初戀。那時候他很主動，我社恐不知道怎麼回應，就帶他去我最愛的天橋——那個平時只有我一個人發呆的地方。橋上看著車流，心跳慢慢快了一點，體溫也高了一點，然後就渴了。"
 keywords: "GQuuuuuuX,天橋,初戀,航空障礙燈,HSP,國中"
 ---
