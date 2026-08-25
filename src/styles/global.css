@@ -1102,6 +1102,14 @@ img {
   flex-direction: column;
 }
 
+.article-prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.2em auto;
+  border-radius: 10px;
+}
+
 .ai-summary-title {
   font-size: 1rem;
   font-weight: 600;
@@ -4191,53 +4199,95 @@ body.akari-drawer-open {
   line-height: 1.5;
 }
 
-.moments-card__list {
+/* 说说时间线：像 QQ 空间/推特时间线一样在主页内嵌展示正文与图片 */
+.moments-card__timeline {
   display: grid;
-  gap: 8px;
+  gap: 10px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.moments-card__list a {
-  display: block;
-  min-width: 0;
+.moments-item {
   padding: 12px 14px;
   border: 1px solid rgba(var(--akari-ink-rgb) / 0.07);
   border-radius: 14px;
   background: rgba(var(--akari-ink-rgb) / 0.045);
-  color: inherit;
   transition: background 0.18s ease, border-color 0.18s ease;
 }
 
-.moments-card__list a:hover {
+.moments-item:hover {
   background: rgba(var(--akari-ink-rgb) / 0.08);
   border-color: rgba(var(--akari-accent-rgb) / 0.35);
 }
 
-.moments-card__list time {
-  display: block;
-  margin-bottom: 4px;
+.moments-item time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
   color: rgba(var(--akari-ink-rgb) / 0.42);
   font-size: 0.76rem;
   font-variant-numeric: tabular-nums;
 }
 
-.moments-card__list h3 {
-  margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.5;
+.moments-item time::before {
+  content: '';
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--akari-accent);
+  opacity: 0.75;
 }
 
-.moments-card__list p {
-  margin: 6px 0 0;
-  color: rgba(var(--akari-ink-rgb) / 0.58);
-  font-size: 0.82rem;
+.moments-item__text {
+  display: block;
+  margin: 0;
+  color: inherit;
+  text-decoration: none;
+  white-space: pre-line;
+  font-size: 0.9rem;
   line-height: 1.6;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+}
+
+.moments-item__text:hover {
+  color: var(--akari-accent);
+}
+
+.moments-item__gallery {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.moments-item__gallery--multi {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.moments-item__gallery a {
+  display: block;
+  min-width: 0;
+}
+
+.moments-item__gallery img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 1px solid rgba(var(--akari-ink-rgb) / 0.08);
+  border-radius: 10px;
+  background: rgba(var(--akari-ink-rgb) / 0.05);
+}
+
+.moments-item__gallery:not(.moments-item__gallery--multi) img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 300px;
+  aspect-ratio: auto;
+  object-fit: contain;
 }
 
 .moments-card__more {
@@ -4259,7 +4309,7 @@ body.akari-drawer-open {
 }
 
 @media (max-width: 720px) {
-  .moments-card__list a {
+  .moments-item {
     padding: 12px;
   }
 

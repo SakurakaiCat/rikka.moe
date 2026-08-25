@@ -28,6 +28,17 @@ const artFallbackMap = await resolveArtFallbacks(
   [...articlePosts, ...thoughtPosts, ...galleryPosts].map((p) => slugOf(p)),
 );
 const firstImageOf = (post: PostEntry) => imagesOf(post)[0] || artFallbackMap.get(slugOf(post)) || '/images/profile/background.jpg';
+// 说说时间线：取正文纯文本(去掉备份说明引用块与图片语法)作为动态内容
+const momentTextOf = (post: PostEntry) => {
+  const lines: string[] = [];
+  for (const raw of (post.body || '').split('\n')) {
+    const line = raw.trim();
+    if (!line || line.startsWith('>') || line === '---' || /^!\[[^\]]*\]\(/.test(line)) continue;
+    // 仅剥离真正的 markdown 标题(# 后有空格)，保留 #话题# 式标签
+    lines.push(line.replace(/^#{1,6}\s+/, ''));
+  }
+  return lines.join('\n').trim() || post.data.description || post.data.title;
+};
 const dateLabel = (post: PostEntry) => asDate(post.data.date)?.toISOString().slice(0, 10) || '';
 const categoryLabel = (post: PostEntry) => categoryName(postCategories(post)[0] || '', locale);
 const sectionLabels = {
@@ -220,16 +231,25 @@ const allTopicChips = collectTopicSummaries(posts);
             <p>{model.moments.subtitle}</p>
           </div>
         </div>
-        <ul class="moments-card__list">
-          {momentsPosts.slice(0, 5).map((post) => (
-            <li>
-              <a href={postUrl(post)}>
+        <ul class="moments-card__timeline">
+          {momentsPosts.slice(0, 5).map((post) => {
+            const momentImages = imagesOf(post).slice(0, 4);
+            return (
+              <li class="moments-item">
                 <time>{dateLabel(post)}</time>
-                <h3>{post.data.title}</h3>
-                {post.data.description && <p>{post.data.description}</p>}
-              </a>
-            </li>
-          ))}
+                <a class="moments-item__text" href={postUrl(post)}>{momentTextOf(post)}</a>
+                {momentImages.length > 0 && (
+                  <div class={`moments-item__gallery${momentImages.length > 1 ? ' moments-item__gallery--multi' : ''}`}>
+                    {momentImages.map((src) => (
+                      <a href={postUrl(post)}>
+                        <img src={src} alt="" loading="lazy" decoding="async" />
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </li>
+            );
+          })}
         </ul>
         <a class="moments-card__more" href={momentsHref}>{label('common', 'viewAll', locale)} · {momentsPosts.length}</a>
       </aside>
