@@ -242,17 +242,12 @@ const allTopicChips = collectTopicSummaries(posts);
   </div>
 </section>
 
-<div class="akari-duo-stack akari-duo-stack--secondary" data-motion="fade-up-children">
-  <section class="akari-info-tabs glass-card" aria-labelledby="akari-info-tabs-title">
-    <details class="akari-info-tabs__details">
-      <summary class="akari-info-tabs__summary">
-        <div class="akari-info-tabs__header">
-          <small>{model.tabs.eyebrow}</small>
-          <h2 id="akari-info-tabs-title">{model.tabs.title}</h2>
-        </div>
-      </summary>
-      <div class="akari-info-tabs__content">
-        <div class="akari-info-tabs__bar" role="tablist" aria-label={model.tabs.label}>
+<section class="akari-info-mosaic" aria-labelledby="akari-info-tabs-title">
+  <header class="akari-info-tabs__header">
+    <small>{model.tabs.eyebrow}</small>
+    <h2 id="akari-info-tabs-title">{model.tabs.title}</h2>
+  </header>
+  <div class="akari-info-tabs__bar" role="tablist" aria-label={model.tabs.label}>
           <a href="#akari-nav-panel">{model.tabs.nav}</a>
           <a href="#akari-now-panel">{model.tabs.now}</a>
           <a href="#akari-projects-panel">{model.tabs.projects}</a>
@@ -260,7 +255,7 @@ const allTopicChips = collectTopicSummaries(posts);
           <a href="#akari-albums-panel">{model.tabs.albums}</a>
           <a href="#akari-domains-panel">{model.tabs.domains}</a>
         </div>
-        <div class="akari-info-panels">
+        <div class="akari-info-panels akari-info-panels--mosaic" data-motion="fade-up-children">
           <article id="akari-nav-panel" class="akari-info-panel akari-info-panel--wide">
             <h3>{model.nav.title}</h3>
             <p>{model.nav.subtitle}</p>
@@ -268,24 +263,24 @@ const allTopicChips = collectTopicSummaries(posts);
               {model.nav.stations.map((station: any) => <a class="station" href={station.href} target={station.href.startsWith('#') ? undefined : '_blank'} rel={station.href.startsWith('#') ? undefined : 'noopener noreferrer'}><span>[{station.number}]</span><strong>{station.name}</strong><code>{station.code}</code><small>{station.description}</small></a>)}
             </div>
           </article>
-          <article id="akari-now-panel" class="akari-info-panel">
+          <article id="akari-now-panel" class="akari-info-panel akari-span-2">
             <h3>{model.personal.now.title}</h3>
             <ul class="akari-info-now__list">{model.personal.now.items.map((item: any) => <li><span>{item.status}</span><p>{item.text}</p></li>)}</ul>
           </article>
-          <article id="akari-projects-panel" class="akari-info-panel">
+          <article id="akari-projects-panel" class="akari-info-panel akari-span-4">
             <h3>{model.personal.projects.title}</h3>
             <div class="akari-info-project__grid">{model.personal.projects.items.map((project: any) => <section class="mini-card"><header><strong>{project.title}</strong><span>{project.status}</span></header><p>{project.description}</p><div>{project.tags.map((tag: string) => <em>{tag}</em>)}</div></section>)}</div>
           </article>
-          <article id="akari-places-panel" class="akari-info-panel">
+          <article id="akari-places-panel" class="akari-info-panel akari-span-2">
             <h3>{model.personal.places.title}</h3>
             <p>{model.personal.places.countLabel}</p>
             <div class="chips">{model.personal.places.cities.map((city: string) => <span>{city}</span>)}</div>
           </article>
-          <article id="akari-albums-panel" class="akari-info-panel akari-info-panel--wide">
+          <article id="akari-albums-panel" class="akari-info-panel akari-span-4">
             <h3>{model.gallery.title}</h3>
             <div class="akari-info-gallery__grid">{model.gallery.sections.flatMap((section: any) => section.albums.slice(0, 4)).map((album: any) => <a class="akari-info-album" href={album.externalHref || '#'} target="_blank" rel="noopener noreferrer"><img src={album.coverSrc} alt={album.coverAlt} loading="lazy" /><span>{album.artist}</span><strong>{album.title}</strong></a>)}</div>
           </article>
-          <article id="akari-domains-panel" class="akari-info-panel akari-info-panel--wide">
+          <article id="akari-domains-panel" class="akari-info-panel akari-span-3">
             <h3>{model.domains.title}</h3>
             <p>{model.domains.intro}</p>
             <details class="akari-info-domain__toggle" data-open={model.domains.openLabel} data-close={model.domains.closeLabel}>
@@ -312,13 +307,10 @@ const allTopicChips = collectTopicSummaries(posts);
               }
             </details>
           </article>
-        </div>
-      </div>
-    </details>
-  </section>
 
-  <section class="akari-feed-intro glass-card"><h2>{model.feed.title}</h2><p>{model.feed.text}</p></section>
-</div>
+    <section class="akari-feed-intro glass-card akari-info-mosaic__feed"><h2>{model.feed.title}</h2><p>{model.feed.text}</p></section>
+  </div>
+</section>
 
 {model.personalIntro && <section class="akari-personal-intro glass-card" data-motion="fade-up">
   <article>
