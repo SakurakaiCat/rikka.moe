@@ -6,7 +6,7 @@ date: "2026-08-25 17:14:00"
 lang: ja
 lang_path: ja
 translation_key: moments-cet6-passed-without-prep
-categories: [说说备注]
+categories: [说说备份]
 topics: [校园]
 description: "QQ モーメントからの転載：#裸考四六级一次过、CET-6 は 583 点。"
 ---

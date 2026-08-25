@@ -6,7 +6,7 @@ date: "2026-08-25 17:14:00"
 lang: zh-TW
 lang_path: zh-tw
 translation_key: moments-cet6-passed-without-prep
-categories: [说说备注]
+categories: [说说备份]
 topics: [校园]
 description: "轉發自 QQ 說說：#裸考四六級一次過，六級 583 分。"
 ---

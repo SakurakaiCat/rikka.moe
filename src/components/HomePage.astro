@@ -1,7 +1,7 @@
 ---
 import type { Locale, PostEntry } from '../lib/content';
 import { asDate, postCategories, postUrl } from '../lib/content';
-import { categoryName, categorySlugForKey, label, getHomepageModel } from '../lib/i18n';
+import { categoryName, categoryKeyFromName, categorySlugForKey, label, getHomepageModel } from '../lib/i18n';
 import { collectTopicSummaries, postTopics, topicName, topicSlugForKey } from '../lib/topics';
 import { resolveArtFallbacks } from '../lib/art';
 import SponsorWall from './SponsorWall.astro';
@@ -12,6 +12,8 @@ const byCategory = (names: string[]) => posts.filter((post) => post.data.categor
 const articlePosts = byCategory(['长文', '長文', 'Essays', '記事']);
 const thoughtPosts = byCategory(['随想', '隨想', 'Thoughts', 'つぶやき']);
 const galleryPosts = byCategory(['相册', '相冊', 'Gallery', 'ギャラリー']);
+const momentsPosts = posts.filter((post) => (post.data.categories || []).some((category) => categoryKeyFromName(category) === 'moments'));
+const momentsHref = `/${locale.lang_path}/categories/${encodeURIComponent(categorySlugForKey('moments', locale))}/`;
 const imagePattern = /!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)|<img[^>]+src=["']([^"']+)["']/g;
 const imagesOf = (post: PostEntry) => {
   const images = [post.data.cover, post.data.thumbnail, post.data.banner, post.data.image].filter(Boolean) as string[];
@@ -89,6 +91,29 @@ const GALLERY_COUNT = 2;
   </section>
 
   <div class="akari-sidebar-stack" data-motion="fade-up-children">
+    {momentsPosts.length > 0 && (
+      <aside class="moments-card glass-card">
+        <div class="moments-card__head">
+          <i class="ph ph-note-pencil" aria-hidden="true"></i>
+          <div>
+            <h2>{model.moments.title}</h2>
+            <p>{model.moments.subtitle}</p>
+          </div>
+        </div>
+        <ul class="moments-card__list">
+          {momentsPosts.slice(0, 5).map((post) => (
+            <li>
+              <a href={postUrl(post)}>
+                <time>{dateLabel(post)}</time>
+                <h3>{post.data.title}</h3>
+                {post.data.description && <p>{post.data.description}</p>}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a class="moments-card__more" href={momentsHref}>{label('common', 'viewAll', locale)} · {momentsPosts.length}</a>
+      </aside>
+    )}
     <aside class="recent-comments-card glass-card" data-twikoo-env-id="https://comment.rikka.moe" data-twikoo-src="https://cdn.jsdelivr.net/npm/twikoo@1.7.13/dist/twikoo.all.min.js">
       <div class="recent-comments-card__head"><i class="ph ph-chat-circle-dots"></i><div><h2>{model.comments.title}</h2><p>{model.comments.subtitle}</p></div></div>
       <div class="recent-comments-card__list" data-empty={model.comments.empty} data-loading={model.comments.loading}>{model.comments.loading}</div>

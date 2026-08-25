@@ -6,7 +6,7 @@ date: "2026-08-25 17:14:00"
 lang: en
 lang_path: en
 translation_key: moments-cet6-passed-without-prep
-categories: [说说备注]
+categories: [说说备份]
 topics: [校园]
 description: "Reposted from my QQ post: passed CET-6 with 583, no prep at all."
 ---

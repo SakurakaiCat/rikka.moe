@@ -27,7 +27,7 @@ export const t = {
     articles: { 'zh-CN': '长文', 'zh-TW': '長文', en: 'Essays', ja: '記事' },
     thoughts: { 'zh-CN': '随想', 'zh-TW': '隨想', en: 'Thoughts', ja: '断章' },
     gallery: { 'zh-CN': '相册', 'zh-TW': '相冊', en: 'Gallery', ja: 'ギャラリー' },
-    moments: { 'zh-CN': '说说备注', 'zh-TW': '說說備註', en: 'Moments', ja: 'モーメンツ' },
+    moments: { 'zh-CN': '说说备份', 'zh-TW': '說說備份', en: 'Moments', ja: 'モーメンツ' },
   },
   post: {
     prev: { 'zh-CN': '上一篇', 'zh-TW': '上一篇', en: 'Previous', ja: '前の記事' },
@@ -97,7 +97,7 @@ const categoryAliases: Record<string, string[]> = {
   articles: ['长文', '長文', 'Essays', 'Essay', 'Articles', '記事'],
   thoughts: ['随想', '隨想', 'Thoughts', 'Thought', 'つぶやき', '断章'],
   gallery: ['相册', '相冊', 'Gallery', 'ギャラリー'],
-  moments: ['说说备注', '說說備註', 'Moments', 'モーメンツ'],
+  moments: ['说说备份', '說說備份', '说说备注', '說說備註', 'Moments', 'モーメンツ'],
 };
 
 export function categoryKeyFromName(category?: string) {
@@ -122,7 +122,7 @@ const categorySlugByLocale: Record<string, Record<string, string>> = {
   articles: { 'zh-CN': '长文', 'zh-TW': '長文', en: 'essays', ja: 'articles' },
   thoughts: { 'zh-CN': '随想', 'zh-TW': '隨想', en: 'thoughts', ja: 'thoughts' },
   gallery: { 'zh-CN': '相册', 'zh-TW': '相冊', en: 'gallery', ja: 'gallery' },
-  moments: { 'zh-CN': '说说备注', 'zh-TW': '說說備註', en: 'moments', ja: 'moments' },
+  moments: { 'zh-CN': '说说备份', 'zh-TW': '說說備份', en: 'moments', ja: 'moments' },
 };
 
 export function categorySlugForKey(key: string, locale: Locale) {

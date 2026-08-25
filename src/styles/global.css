@@ -4259,6 +4259,115 @@ body.akari-drawer-open {
    Homepage v2: profile cards / memoir / topic chips
    ────────────────────────────────────────────── */
 
+.moments-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.moments-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.moments-card__head i {
+  flex-shrink: 0;
+  color: rgba(var(--akari-ink-rgb) / 0.55);
+  font-size: 1.8rem;
+}
+
+.moments-card__head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.moments-card__head p {
+  margin: 4px 0 0;
+  color: rgba(var(--akari-ink-rgb) / 0.50);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.moments-card__list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.moments-card__list a {
+  display: block;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(var(--akari-ink-rgb) / 0.07);
+  border-radius: 14px;
+  background: rgba(var(--akari-ink-rgb) / 0.045);
+  color: inherit;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.moments-card__list a:hover {
+  background: rgba(var(--akari-ink-rgb) / 0.08);
+  border-color: rgba(var(--akari-accent-rgb) / 0.35);
+}
+
+.moments-card__list time {
+  display: block;
+  margin-bottom: 4px;
+  color: rgba(var(--akari-ink-rgb) / 0.42);
+  font-size: 0.76rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.moments-card__list h3 {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.moments-card__list p {
+  margin: 6px 0 0;
+  color: rgba(var(--akari-ink-rgb) / 0.58);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.moments-card__more {
+  align-self: flex-start;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid rgba(var(--akari-ink-rgb) / 0.10);
+  border-radius: 999px;
+  background: rgba(var(--akari-ink-rgb) / 0.05);
+  color: rgba(var(--akari-ink-rgb) / 0.72);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.moments-card__more:hover {
+  background: rgba(var(--akari-accent-rgb) / 0.14);
+  border-color: rgba(var(--akari-accent-rgb) / 0.45);
+  color: var(--akari-accent);
+}
+
+@media (max-width: 720px) {
+  .moments-card__list a {
+    padding: 12px;
+  }
+
+  .moments-card__more {
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
 .akari-section__more {
   display: inline-flex;
   align-items: center;

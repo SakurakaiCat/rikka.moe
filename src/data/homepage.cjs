@@ -377,6 +377,8 @@ const COPY = {
     commentsSubtitle: '全博客评论区最新新增的留言。',
     commentsLoading: '正在加载评论……',
     commentsEmpty: '暂时还没有新的评论。',
+    momentsTitle: '说说备份',
+    momentsSubtitle: 'QQ 说说与动态的备份存档。',
     portraitAlt: '篠崎香澄头像',
     nowItems: [
       { status: '开发中', text: '继续开发 Akari 的 Web 版本。' },
@@ -520,6 +522,8 @@ const COPY = {
     commentsSubtitle: '全博客評論區最新新增的留言。',
     commentsLoading: '正在載入評論……',
     commentsEmpty: '暫時還沒有新的評論。',
+    momentsTitle: '說說備份',
+    momentsSubtitle: 'QQ 說說與動態的備份存檔。',
     portraitAlt: '篠崎香澄頭像',
     nowItems: [
       { status: '開發中', text: '繼續開發 Akari 的 Web 版本。' },
@@ -663,6 +667,8 @@ const COPY = {
     commentsSubtitle: 'Newest comments from across the blog.',
     commentsLoading: 'Loading comments…',
     commentsEmpty: 'No recent comments yet.',
+    momentsTitle: 'Moments',
+    momentsSubtitle: 'Archived backups of my QQ moments and status posts.',
     portraitAlt: 'Kasumi Shinozaki portrait',
     nowItems: [
       { status: 'Building', text: 'Continuing the Web version of Akari.' },
@@ -806,6 +812,8 @@ const COPY = {
     commentsSubtitle: 'ブログ全体に届いた最新コメント。',
     commentsLoading: 'コメントを読み込み中…',
     commentsEmpty: '新しいコメントはまだありません。',
+    momentsTitle: 'モーメンツ',
+    momentsSubtitle: 'QQ のモーメンツと投稿のバックアップ。',
     portraitAlt: '篠崎香澄のポートレート',
     nowItems: [
       { status: 'Building', text: 'Continuing the Web version of Akari.' },
@@ -1058,6 +1066,10 @@ function getHomepageModel(page) {
       subtitle: copy.commentsSubtitle,
       loading: copy.commentsLoading,
       empty: copy.commentsEmpty
+    },
+    moments: {
+      title: copy.momentsTitle,
+      subtitle: copy.momentsSubtitle
     },
     feed: {
       title: copy.feedTitle,
