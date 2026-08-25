@@ -445,8 +445,7 @@ const COPY = {
       { icon: 'ph-map-pin', label: '坐标', value: '广西柳州人 · 南宁长大 · 东北上学' },
       { icon: 'ph-compass', label: '兴趣', value: '经济学 > 计算机 = 数学 > 心理学' },
       { icon: 'ph-music-notes', label: '爱好', value: '音乐 · 二次元 · 写作' },
-      { icon: 'ph-butterfly', label: '性格', value: '社恐、内向、敏感，总想当「老好人」' },
-      { icon: 'ph-terminal-window', label: '折腾', value: '从刷机少年到 CachyOS / Arch 用户' }
+      { icon: 'ph-butterfly', label: '性格', value: '社恐、内向、敏感，总想当「老好人」' }
     ],
     personalIntroParagraphs: [
       '哦嗨哟，我是香澄，来自广西柳州，现在东北上学，普通的大一学生。',
@@ -590,8 +589,7 @@ const COPY = {
       { icon: 'ph-map-pin', label: '座標', value: '廣西柳州人 · 南寧長大 · 東北上學' },
       { icon: 'ph-compass', label: '興趣', value: '經濟學 > 計算機 = 數學 > 心理學' },
       { icon: 'ph-music-notes', label: '愛好', value: '音樂 · 二次元 · 寫作' },
-      { icon: 'ph-butterfly', label: '性格', value: '社恐、內向、敏感，總想當「老好人」' },
-      { icon: 'ph-terminal-window', label: '折騰', value: '從刷機少年到 CachyOS / Arch 用戶' }
+      { icon: 'ph-butterfly', label: '性格', value: '社恐、內向、敏感，總想當「老好人」' }
     ],
     personalIntroParagraphs: [
       '哦嗨喲，我是香澄，來自廣西柳州，現在東北上學，普通的大一學生。',
@@ -735,8 +733,7 @@ const COPY = {
       { icon: 'ph-map-pin', label: 'Where', value: 'Liuzhou, Guangxi · raised in Nanning · studying in NE China' },
       { icon: 'ph-compass', label: 'Into', value: 'Economics > CS = Math > Psychology' },
       { icon: 'ph-music-notes', label: 'Hobbies', value: 'Music · Anime · Writing' },
-      { icon: 'ph-butterfly', label: 'Personality', value: 'Shy, introverted, sensitive peacemaker' },
-      { icon: 'ph-terminal-window', label: 'Tinkering', value: 'From phone rooting to CachyOS / Arch Linux' }
+      { icon: 'ph-butterfly', label: 'Personality', value: 'Shy, introverted, sensitive peacemaker' }
     ],
     personalIntroParagraphs: [
       'Good morning — I am Kasumi, from Liuzhou, Guangxi. Right now I am a freshman studying in the northeast. Just an ordinary university student.',
@@ -880,8 +877,7 @@ const COPY = {
       { icon: 'ph-map-pin', label: '場所', value: '広西柳州出身 · 南寧育ち · 東北で就学' },
       { icon: 'ph-compass', label: '興味', value: '経済学 > 情報科学 = 数学 > 心理学' },
       { icon: 'ph-music-notes', label: '趣味', value: '音楽 · 二次元 · 執筆' },
-      { icon: 'ph-butterfly', label: '性格', value: '社交不安・内向的・敏感な「いい人」' },
-      { icon: 'ph-terminal-window', label: '趣味工作', value: 'ROM 書き換えから CachyOS / Arch へ' }
+      { icon: 'ph-butterfly', label: '性格', value: '社交不安・内向的・敏感な「いい人」' }
     ],
     personalIntroParagraphs: [
       'おはようございます、香澄です。広西チワン族自治区柳州出身で、今は東北の大学に通う普通の一年生です。',
