@@ -534,47 +534,52 @@ img {
   padding-inline: 0;
 }
 
-.akari-sidebar-stack {
-  grid-column: 1 / -1;
+.akari-duo-stack {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
+  margin-top: 24px;
   min-width: 0;
+  align-items: start;
 }
 
-.akari-sidebar-stack > .recent-comments-card {
+.akari-duo-stack--secondary {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+
+.akari-duo-stack > .recent-comments-card {
   display: flex;
   flex-direction: column;
 }
 
-.akari-sidebar-stack > .recent-comments-card .recent-comments-card__list {
+.akari-duo-stack > .recent-comments-card .recent-comments-card__list {
   flex: 1;
   overflow-y: auto;
 }
 
-.akari-sidebar-stack > .akari-info-tabs {
+.akari-duo-stack > .akari-info-tabs {
   display: flex;
   flex-direction: column;
   min-height: 0;
   overflow: hidden;
 }
 
-.akari-sidebar-stack > .akari-info-tabs .akari-info-tabs__details {
+.akari-duo-stack > .akari-info-tabs .akari-info-tabs__details {
   display: flex;
   flex-direction: column;
   flex: 1;
   min-height: 0;
 }
 
-.akari-sidebar-stack > .akari-info-tabs .akari-info-tabs__details[open] {
+.akari-duo-stack > .akari-info-tabs .akari-info-tabs__details[open] {
   flex: 1;
 }
 
-.akari-sidebar-stack > .akari-info-tabs .akari-info-tabs__summary {
+.akari-duo-stack > .akari-info-tabs .akari-info-tabs__summary {
   flex-shrink: 0;
 }
 
-.akari-sidebar-stack > .akari-info-tabs .akari-info-tabs__content {
+.akari-duo-stack > .akari-info-tabs .akari-info-tabs__content {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -584,13 +589,9 @@ img {
   scrollbar-color: rgba(var(--akari-ink-rgb) / 0.15) transparent;
 }
 
-.akari-sidebar-stack > .akari-info-tabs .akari-info-panels {
+.akari-duo-stack > .akari-info-tabs .akari-info-panels {
   flex: 1;
   align-content: start;
-}
-
-.akari-sidebar-stack > .akari-feed-intro {
-  margin-top: 0;
 }
 
 .akari-info-tabs,
@@ -1767,13 +1768,8 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .akari-bento-grid > .akari-hero-banner,
-  .akari-sidebar-stack {
+  .akari-bento-grid > .akari-hero-banner {
     grid-column: 1 / -1;
-  }
-
-  .akari-sidebar-stack {
-    grid-template-columns: 1fr;
   }
 
   .akari-bento-layout__right,
@@ -4670,17 +4666,6 @@ body.akari-drawer-open {
   }
 }
 
-@media (max-width: 1180px) and (min-width: 721px) {
-  .akari-sidebar-stack {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .akari-sidebar-stack > .akari-info-tabs {
-    grid-column: 1 / -1;
-    order: -1;
-  }
-}
-
 @media (max-width: 900px) {
   .akari-personal-intro__figure-row {
     grid-template-columns: 1fr;
@@ -4688,6 +4673,11 @@ body.akari-drawer-open {
 
   .akari-personal-intro__figure img {
     aspect-ratio: 16 / 9;
+  }
+
+  .akari-duo-stack,
+  .akari-duo-stack--secondary {
+    grid-template-columns: 1fr;
   }
 }
 

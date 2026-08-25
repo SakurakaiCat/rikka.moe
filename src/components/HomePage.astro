@@ -89,159 +89,9 @@ const GALLERY_COUNT = 2;
       </div>
     </div>
   </section>
-
-  <div class="akari-sidebar-stack" data-motion="fade-up-children">
-    {momentsPosts.length > 0 && (
-      <aside class="moments-card glass-card">
-        <div class="moments-card__head">
-          <i class="ph ph-note-pencil" aria-hidden="true"></i>
-          <div>
-            <h2>{model.moments.title}</h2>
-            <p>{model.moments.subtitle}</p>
-          </div>
-        </div>
-        <ul class="moments-card__list">
-          {momentsPosts.slice(0, 5).map((post) => (
-            <li>
-              <a href={postUrl(post)}>
-                <time>{dateLabel(post)}</time>
-                <h3>{post.data.title}</h3>
-                {post.data.description && <p>{post.data.description}</p>}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <a class="moments-card__more" href={momentsHref}>{label('common', 'viewAll', locale)} · {momentsPosts.length}</a>
-      </aside>
-    )}
-    <aside class="recent-comments-card glass-card" data-twikoo-env-id="https://comment.rikka.moe" data-twikoo-src="https://cdn.jsdelivr.net/npm/twikoo@1.7.13/dist/twikoo.all.min.js">
-      <div class="recent-comments-card__head"><i class="ph ph-chat-circle-dots"></i><div><h2>{model.comments.title}</h2><p>{model.comments.subtitle}</p></div></div>
-      <div class="recent-comments-card__list" data-empty={model.comments.empty} data-loading={model.comments.loading}>{model.comments.loading}</div>
-    </aside>
-
-    <section class="akari-info-tabs glass-card" aria-labelledby="akari-info-tabs-title">
-      <details class="akari-info-tabs__details">
-        <summary class="akari-info-tabs__summary">
-          <div class="akari-info-tabs__header">
-            <small>{model.tabs.eyebrow}</small>
-            <h2 id="akari-info-tabs-title">{model.tabs.title}</h2>
-          </div>
-        </summary>
-        <div class="akari-info-tabs__content">
-          <div class="akari-info-tabs__bar" role="tablist" aria-label={model.tabs.label}>
-            <a href="#akari-nav-panel">{model.tabs.nav}</a>
-            <a href="#akari-now-panel">{model.tabs.now}</a>
-            <a href="#akari-projects-panel">{model.tabs.projects}</a>
-            <a href="#akari-places-panel">{model.tabs.places}</a>
-            <a href="#akari-albums-panel">{model.tabs.albums}</a>
-            <a href="#akari-domains-panel">{model.tabs.domains}</a>
-          </div>
-          <div class="akari-info-panels">
-            <article id="akari-nav-panel" class="akari-info-panel akari-info-panel--wide">
-              <h3>{model.nav.title}</h3>
-              <p>{model.nav.subtitle}</p>
-              <div class="akari-info-nav__grid">
-                {model.nav.stations.map((station: any) => <a class="station" href={station.href} target={station.href.startsWith('#') ? undefined : '_blank'} rel={station.href.startsWith('#') ? undefined : 'noopener noreferrer'}><span>[{station.number}]</span><strong>{station.name}</strong><code>{station.code}</code><small>{station.description}</small></a>)}
-              </div>
-            </article>
-            <article id="akari-now-panel" class="akari-info-panel">
-              <h3>{model.personal.now.title}</h3>
-              <ul class="akari-info-now__list">{model.personal.now.items.map((item: any) => <li><span>{item.status}</span><p>{item.text}</p></li>)}</ul>
-            </article>
-            <article id="akari-projects-panel" class="akari-info-panel">
-              <h3>{model.personal.projects.title}</h3>
-              <div class="akari-info-project__grid">{model.personal.projects.items.map((project: any) => <section class="mini-card"><header><strong>{project.title}</strong><span>{project.status}</span></header><p>{project.description}</p><div>{project.tags.map((tag: string) => <em>{tag}</em>)}</div></section>)}</div>
-            </article>
-            <article id="akari-places-panel" class="akari-info-panel">
-              <h3>{model.personal.places.title}</h3>
-              <p>{model.personal.places.countLabel}</p>
-              <div class="chips">{model.personal.places.cities.map((city: string) => <span>{city}</span>)}</div>
-            </article>
-            <article id="akari-albums-panel" class="akari-info-panel akari-info-panel--wide">
-              <h3>{model.gallery.title}</h3>
-              <div class="akari-info-gallery__grid">{model.gallery.sections.flatMap((section: any) => section.albums.slice(0, 4)).map((album: any) => <a class="akari-info-album" href={album.externalHref || '#'} target="_blank" rel="noopener noreferrer"><img src={album.coverSrc} alt={album.coverAlt} loading="lazy" /><span>{album.artist}</span><strong>{album.title}</strong></a>)}</div>
-            </article>
-            <article id="akari-domains-panel" class="akari-info-panel akari-info-panel--wide">
-              <h3>{model.domains.title}</h3>
-              <p>{model.domains.intro}</p>
-              <details class="akari-info-domain__toggle" data-open={model.domains.openLabel} data-close={model.domains.closeLabel}>
-                <summary>{model.domains.openLabel}</summary>
-                {
-                  model.domains.groups.map((group: any) => (
-                    <section class="akari-info-domain-group">
-                      <h4>{group.title}</h4>
-                      <div class="akari-info-domain__items">
-                        {group.items.map((item: any) => (
-                          <a class="akari-info-domain-item" href={item.href} target="_blank" rel="noopener noreferrer">
-                            <div class="akari-info-domain-item__top">
-                              <strong>{item.name}</strong>
-                              <span>{item.status}</span>
-                            </div>
-                            <p>{item.note}</p>
-                            {item.whois && <pre class="akari-info-domain-item__whois">{item.whois}</pre>}
-                            <small class="akari-info-domain-item__action">{item.action}</small>
-                          </a>
-                        ))}
-                      </div>
-                    </section>
-                  ))
-                }
-              </details>
-            </article>
-          </div>
-        </div>
-      </details>
-    </section>
-
-    <section id="akari-blog-feed" class="akari-feed-intro glass-card"><h2>{model.feed.title}</h2><p>{model.feed.text}</p></section>
-  </div>
 </div>
 
-{model.personalIntro && <section class="akari-personal-intro glass-card" data-motion="fade-up">
-  <article>
-    <header class="akari-personal-intro__header">
-      <small>{label('ui', 'personal', locale)}</small>
-      <h2>{model.personalIntro.title}</h2>
-      <p class="akari-personal-intro__memoir-note">{model.personalIntro.memoirNote}</p>
-    </header>
-    {model.personalIntro.cards?.length > 0 && (
-      <div class="akari-profile-cards" data-motion="fade-up-children">
-        {model.personalIntro.cards.map((card: any) => (
-          <div class="akari-profile-card">
-            <i class={`ph ph-${card.icon}`} aria-hidden="true"></i>
-            <div>
-              <small>{card.label}</small>
-              <p>{card.value}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    )}
-    <div class="akari-personal-intro__figure-row">
-      <figure class="akari-personal-intro__figure">
-        <img src={model.personalIntro.image} alt={model.personalIntro.imageAlt} loading="lazy" />
-        <figcaption>{model.personalIntro.closing}</figcaption>
-      </figure>
-      <details class="akari-personal-intro__memoir" open>
-        <summary>
-          <span class="akari-personal-intro__memoir-toggle" data-open={model.personalIntro.memoirToggleOpen} data-close={model.personalIntro.memoirToggleClose}>{model.personalIntro.memoirToggleClose}</span>
-          <i class="ph ph-caret-down" aria-hidden="true"></i>
-        </summary>
-        <div class="akari-personal-intro__body">
-          {model.personalIntro.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}
-          {model.personalIntro.tags?.length > 0 && (
-            <div class="akari-personal-intro__tags">
-              <h3>{model.personalIntro.tagHeader}</h3>
-              <ul>{model.personalIntro.tags.map((tag: string) => <li>{tag}</li>)}</ul>
-            </div>
-          )}
-        </div>
-      </details>
-    </div>
-  </article>
-</section>}
-
-<section class="akari-blog-feed akari-home-sections akari-card-mosaic">
+<section id="akari-blog-feed" class="akari-blog-feed akari-home-sections akari-card-mosaic">
   <section class="akari-section akari-section--articles akari-mosaic-block">
     <header class="akari-section__head akari-section__head--split">
       <div><small>Essays</small><h2>{sectionLabels.articles}</h2></div>
@@ -340,6 +190,158 @@ const GALLERY_COUNT = 2;
     </div>
   </section>
 </section>
+
+<div class="akari-duo-stack" data-motion="fade-up-children">
+  {momentsPosts.length > 0 && (
+    <aside class="moments-card glass-card">
+      <div class="moments-card__head">
+        <i class="ph ph-note-pencil" aria-hidden="true"></i>
+        <div>
+          <h2>{model.moments.title}</h2>
+          <p>{model.moments.subtitle}</p>
+        </div>
+      </div>
+      <ul class="moments-card__list">
+        {momentsPosts.slice(0, 5).map((post) => (
+          <li>
+            <a href={postUrl(post)}>
+              <time>{dateLabel(post)}</time>
+              <h3>{post.data.title}</h3>
+              {post.data.description && <p>{post.data.description}</p>}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a class="moments-card__more" href={momentsHref}>{label('common', 'viewAll', locale)} · {momentsPosts.length}</a>
+    </aside>
+  )}
+  <aside class="recent-comments-card glass-card" data-twikoo-env-id="https://comment.rikka.moe" data-twikoo-src="https://cdn.jsdelivr.net/npm/twikoo@1.7.13/dist/twikoo.all.min.js">
+    <div class="recent-comments-card__head"><i class="ph ph-chat-circle-dots"></i><div><h2>{model.comments.title}</h2><p>{model.comments.subtitle}</p></div></div>
+    <div class="recent-comments-card__list" data-empty={model.comments.empty} data-loading={model.comments.loading}>{model.comments.loading}</div>
+  </aside>
+</div>
+
+<div class="akari-duo-stack akari-duo-stack--secondary" data-motion="fade-up-children">
+  <section class="akari-info-tabs glass-card" aria-labelledby="akari-info-tabs-title">
+    <details class="akari-info-tabs__details">
+      <summary class="akari-info-tabs__summary">
+        <div class="akari-info-tabs__header">
+          <small>{model.tabs.eyebrow}</small>
+          <h2 id="akari-info-tabs-title">{model.tabs.title}</h2>
+        </div>
+      </summary>
+      <div class="akari-info-tabs__content">
+        <div class="akari-info-tabs__bar" role="tablist" aria-label={model.tabs.label}>
+          <a href="#akari-nav-panel">{model.tabs.nav}</a>
+          <a href="#akari-now-panel">{model.tabs.now}</a>
+          <a href="#akari-projects-panel">{model.tabs.projects}</a>
+          <a href="#akari-places-panel">{model.tabs.places}</a>
+          <a href="#akari-albums-panel">{model.tabs.albums}</a>
+          <a href="#akari-domains-panel">{model.tabs.domains}</a>
+        </div>
+        <div class="akari-info-panels">
+          <article id="akari-nav-panel" class="akari-info-panel akari-info-panel--wide">
+            <h3>{model.nav.title}</h3>
+            <p>{model.nav.subtitle}</p>
+            <div class="akari-info-nav__grid">
+              {model.nav.stations.map((station: any) => <a class="station" href={station.href} target={station.href.startsWith('#') ? undefined : '_blank'} rel={station.href.startsWith('#') ? undefined : 'noopener noreferrer'}><span>[{station.number}]</span><strong>{station.name}</strong><code>{station.code}</code><small>{station.description}</small></a>)}
+            </div>
+          </article>
+          <article id="akari-now-panel" class="akari-info-panel">
+            <h3>{model.personal.now.title}</h3>
+            <ul class="akari-info-now__list">{model.personal.now.items.map((item: any) => <li><span>{item.status}</span><p>{item.text}</p></li>)}</ul>
+          </article>
+          <article id="akari-projects-panel" class="akari-info-panel">
+            <h3>{model.personal.projects.title}</h3>
+            <div class="akari-info-project__grid">{model.personal.projects.items.map((project: any) => <section class="mini-card"><header><strong>{project.title}</strong><span>{project.status}</span></header><p>{project.description}</p><div>{project.tags.map((tag: string) => <em>{tag}</em>)}</div></section>)}</div>
+          </article>
+          <article id="akari-places-panel" class="akari-info-panel">
+            <h3>{model.personal.places.title}</h3>
+            <p>{model.personal.places.countLabel}</p>
+            <div class="chips">{model.personal.places.cities.map((city: string) => <span>{city}</span>)}</div>
+          </article>
+          <article id="akari-albums-panel" class="akari-info-panel akari-info-panel--wide">
+            <h3>{model.gallery.title}</h3>
+            <div class="akari-info-gallery__grid">{model.gallery.sections.flatMap((section: any) => section.albums.slice(0, 4)).map((album: any) => <a class="akari-info-album" href={album.externalHref || '#'} target="_blank" rel="noopener noreferrer"><img src={album.coverSrc} alt={album.coverAlt} loading="lazy" /><span>{album.artist}</span><strong>{album.title}</strong></a>)}</div>
+          </article>
+          <article id="akari-domains-panel" class="akari-info-panel akari-info-panel--wide">
+            <h3>{model.domains.title}</h3>
+            <p>{model.domains.intro}</p>
+            <details class="akari-info-domain__toggle" data-open={model.domains.openLabel} data-close={model.domains.closeLabel}>
+              <summary>{model.domains.openLabel}</summary>
+              {
+                model.domains.groups.map((group: any) => (
+                  <section class="akari-info-domain-group">
+                    <h4>{group.title}</h4>
+                    <div class="akari-info-domain__items">
+                      {group.items.map((item: any) => (
+                        <a class="akari-info-domain-item" href={item.href} target="_blank" rel="noopener noreferrer">
+                          <div class="akari-info-domain-item__top">
+                            <strong>{item.name}</strong>
+                            <span>{item.status}</span>
+                          </div>
+                          <p>{item.note}</p>
+                          {item.whois && <pre class="akari-info-domain-item__whois">{item.whois}</pre>}
+                          <small class="akari-info-domain-item__action">{item.action}</small>
+                        </a>
+                      ))}
+                    </div>
+                  </section>
+                ))
+              }
+            </details>
+          </article>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="akari-feed-intro glass-card"><h2>{model.feed.title}</h2><p>{model.feed.text}</p></section>
+</div>
+
+{model.personalIntro && <section class="akari-personal-intro glass-card" data-motion="fade-up">
+  <article>
+    <header class="akari-personal-intro__header">
+      <small>{label('ui', 'personal', locale)}</small>
+      <h2>{model.personalIntro.title}</h2>
+      <p class="akari-personal-intro__memoir-note">{model.personalIntro.memoirNote}</p>
+    </header>
+    {model.personalIntro.cards?.length > 0 && (
+      <div class="akari-profile-cards" data-motion="fade-up-children">
+        {model.personalIntro.cards.map((card: any) => (
+          <div class="akari-profile-card">
+            <i class={`ph ph-${card.icon}`} aria-hidden="true"></i>
+            <div>
+              <small>{card.label}</small>
+              <p>{card.value}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+    <div class="akari-personal-intro__figure-row">
+      <figure class="akari-personal-intro__figure">
+        <img src={model.personalIntro.image} alt={model.personalIntro.imageAlt} loading="lazy" />
+        <figcaption>{model.personalIntro.closing}</figcaption>
+      </figure>
+      <details class="akari-personal-intro__memoir">
+        <summary>
+          <span class="akari-personal-intro__memoir-toggle" data-open={model.personalIntro.memoirToggleOpen} data-close={model.personalIntro.memoirToggleClose}>{model.personalIntro.memoirToggleOpen}</span>
+          <i class="ph ph-caret-down" aria-hidden="true"></i>
+        </summary>
+        <div class="akari-personal-intro__body">
+          {model.personalIntro.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}
+          {model.personalIntro.tags?.length > 0 && (
+            <div class="akari-personal-intro__tags">
+              <h3>{model.personalIntro.tagHeader}</h3>
+              <ul>{model.personalIntro.tags.map((tag: string) => <li>{tag}</li>)}</ul>
+            </div>
+          )}
+        </div>
+      </details>
+    </div>
+  </article>
+</section>}
 
 <SponsorWall locale={locale} />
 
