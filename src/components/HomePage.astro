@@ -2,7 +2,7 @@
 import type { Locale, PostEntry } from '../lib/content';
 import { asDate, postCategories, postUrl } from '../lib/content';
 import { categoryName, categoryKeyFromName, categorySlugForKey, label, getHomepageModel } from '../lib/i18n';
-import { collectTopicSummaries, postTopics, topicName, topicSlugForKey } from '../lib/topics';
+import { collectTopicSummaries, postTopics, topicIcon, topicName, topicSlugForKey } from '../lib/topics';
 import { resolveArtFallbacks } from '../lib/art';
 import SponsorWall from './SponsorWall.astro';
 
@@ -62,6 +62,7 @@ const topicMetaOf = (post: PostEntry) =>
 
 const FEATURED_ARTICLE_COUNT = 5;
 const GALLERY_COUNT = 2;
+const allTopicChips = collectTopicSummaries(posts);
 ---
 <div class="akari-bento-grid">
   <section class="akari-hero-banner">
@@ -119,6 +120,7 @@ const GALLERY_COUNT = 2;
     </div>
   </section>
 
+  <div class="akari-mosaic-columns">
   <section class="akari-section akari-section--thoughts akari-mosaic-block">
     <header class="akari-section__head akari-section__head--split">
       <div><small>Timeline</small><h2>{sectionLabels.thoughts}</h2></div>
@@ -162,6 +164,7 @@ const GALLERY_COUNT = 2;
     </div>
   </section>
 
+  <div class="akari-mosaic-side" data-motion="fade-up-children">
   <section class="akari-section akari-section--gallery akari-mosaic-block">
     <header class="akari-section__head akari-section__head--split">
       <div><small>Gallery</small><h2>{sectionLabels.gallery}</h2></div>
@@ -189,37 +192,55 @@ const GALLERY_COUNT = 2;
       })}
     </div>
   </section>
-</section>
 
-<div class="akari-duo-stack" data-motion="fade-up-children">
-  {momentsPosts.length > 0 && (
-    <aside class="moments-card glass-card">
-      <div class="moments-card__head">
-        <i class="ph ph-note-pencil" aria-hidden="true"></i>
+    <aside class="akari-topics-card glass-card">
+      <div class="akari-topics-card__head">
+        <i class="ph ph-hash" aria-hidden="true"></i>
         <div>
-          <h2>{model.moments.title}</h2>
-          <p>{model.moments.subtitle}</p>
+          <h2>{label('common', 'allTopics', locale)}</h2>
+          <p>{allTopicChips.length} {locale.lang === 'en' ? 'topics' : locale.lang === 'ja' ? 'トピック' : '个话题'} · {posts.length} {label('common', 'postsCount', locale)}</p>
         </div>
       </div>
-      <ul class="moments-card__list">
-        {momentsPosts.slice(0, 5).map((post) => (
-          <li>
-            <a href={postUrl(post)}>
-              <time>{dateLabel(post)}</time>
-              <h3>{post.data.title}</h3>
-              {post.data.description && <p>{post.data.description}</p>}
-            </a>
-          </li>
+      <div class="akari-topics-card__grid">
+        {allTopicChips.map(({ key, count }) => (
+          <a class="akari-topics-card__tile" href={`${topicsIndexHref}${encodeURIComponent(topicSlugForKey(key, locale))}/`}>
+            <i class={`ph ph-${topicIcon(key)}`} aria-hidden="true"></i>
+            <span>{topicName(key, locale)}</span>
+            <em>{count}</em>
+          </a>
         ))}
-      </ul>
-      <a class="moments-card__more" href={momentsHref}>{label('common', 'viewAll', locale)} · {momentsPosts.length}</a>
+      </div>
     </aside>
-  )}
-  <aside class="recent-comments-card glass-card" data-twikoo-env-id="https://comment.rikka.moe" data-twikoo-src="https://cdn.jsdelivr.net/npm/twikoo@1.7.13/dist/twikoo.all.min.js">
-    <div class="recent-comments-card__head"><i class="ph ph-chat-circle-dots"></i><div><h2>{model.comments.title}</h2><p>{model.comments.subtitle}</p></div></div>
-    <div class="recent-comments-card__list" data-empty={model.comments.empty} data-loading={model.comments.loading}>{model.comments.loading}</div>
-  </aside>
-</div>
+    {momentsPosts.length > 0 && (
+      <aside class="moments-card glass-card">
+        <div class="moments-card__head">
+          <i class="ph ph-note-pencil" aria-hidden="true"></i>
+          <div>
+            <h2>{model.moments.title}</h2>
+            <p>{model.moments.subtitle}</p>
+          </div>
+        </div>
+        <ul class="moments-card__list">
+          {momentsPosts.slice(0, 5).map((post) => (
+            <li>
+              <a href={postUrl(post)}>
+                <time>{dateLabel(post)}</time>
+                <h3>{post.data.title}</h3>
+                {post.data.description && <p>{post.data.description}</p>}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a class="moments-card__more" href={momentsHref}>{label('common', 'viewAll', locale)} · {momentsPosts.length}</a>
+      </aside>
+    )}
+    <aside class="recent-comments-card glass-card" data-twikoo-env-id="https://comment.rikka.moe" data-twikoo-src="https://cdn.jsdelivr.net/npm/twikoo@1.7.13/dist/twikoo.all.min.js">
+      <div class="recent-comments-card__head"><i class="ph ph-chat-circle-dots"></i><div><h2>{model.comments.title}</h2><p>{model.comments.subtitle}</p></div></div>
+      <div class="recent-comments-card__list" data-empty={model.comments.empty} data-loading={model.comments.loading}>{model.comments.loading}</div>
+    </aside>
+  </div>
+  </div>
+</section>
 
 <div class="akari-duo-stack akari-duo-stack--secondary" data-motion="fade-up-children">
   <section class="akari-info-tabs glass-card" aria-labelledby="akari-info-tabs-title">
