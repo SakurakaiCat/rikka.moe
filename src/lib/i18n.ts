@@ -74,6 +74,13 @@ export const t = {
     loading: { 'zh-CN': '正在加载留言…', 'zh-TW': '正在載入留言…', en: 'Loading messages…', ja: 'メッセージを読み込み中…' },
     empty: { 'zh-CN': '还没有留言。', 'zh-TW': '還沒有留言。', en: 'No messages yet.', ja: 'まだメッセージはありません。' },
     loadMore: { 'zh-CN': '加载更多', 'zh-TW': '載入更多', en: 'Load more', ja: 'もっと読み込む' },
+    archiveTitle: { 'zh-CN': '历史留言', 'zh-TW': '歷史留言', en: 'Archived messages', ja: '過去の留言' },
+    archiveNote: {
+      'zh-CN': '以下旧版留言板的存档,已转为只读;新留言请写在下方评论区。',
+      'zh-TW': '以下為舊版留言板的存檔,已轉為唯讀;新留言請寫在下方評論區。',
+      en: 'Archive of the legacy message board, now read-only. New messages go in the comment section below.',
+      ja: '以下は旧留言板のアーカイブ(読み取り専用)。新しいメッセージは下のコメント欄へどうぞ。',
+    },
     nickname: { 'zh-CN': '昵称', 'zh-TW': '暱稱', en: 'Name', ja: '名前' },
     email: { 'zh-CN': '邮箱（可选，仅用于头像）', 'zh-TW': 'Email（可選，僅用於頭像）', en: 'Email (optional, for avatar only)', ja: 'メール（任意、アバター用）' },
     message: { 'zh-CN': '留言内容', 'zh-TW': '留言內容', en: 'Message', ja: 'メッセージ' },

@@ -7,30 +7,18 @@ const copy = {
   loading: label('guestbook', 'loading', locale),
   empty: label('guestbook', 'empty', locale),
   loadMore: label('guestbook', 'loadMore', locale),
-  nickname: label('guestbook', 'nickname', locale),
-  email: label('guestbook', 'email', locale),
-  message: label('guestbook', 'message', locale),
-  submit: label('guestbook', 'submit', locale),
-  submitting: label('guestbook', 'submitting', locale),
-  success: label('guestbook', 'success', locale),
-  errorInvalid: label('guestbook', 'errorInvalid', locale),
-  errorDuplicate: label('guestbook', 'errorDuplicate', locale),
-  errorBlocked: label('guestbook', 'errorBlocked', locale),
-  errorRateLimited: label('guestbook', 'errorRateLimited', locale),
-  errorServer: label('guestbook', 'errorServer', locale),
+  archiveTitle: label('guestbook', 'archiveTitle', locale),
+  archiveNote: label('guestbook', 'archiveNote', locale),
 };
 ---
 <section class="guestbook-card" data-guestbook-root data-guestbook-copy={JSON.stringify(copy)}>
+  <div class="guestbook-card__head">
+    <h2>{copy.archiveTitle}</h2>
+    <p>{copy.archiveNote}</p>
+  </div>
   <div class="guestbook-card__status" data-guestbook-status>{copy.loading}</div>
   <div id="guestbook-list" class="guestbook-card__list" data-guestbook-list></div>
   <button class="guestbook-card__more" type="button" data-guestbook-more hidden>{copy.loadMore}</button>
-  <form id="guestbook-form" class="guestbook-card__form" data-guestbook-form>
-    <input name="nickname" autocomplete="name" maxlength="32" placeholder={copy.nickname} aria-label={copy.nickname} required />
-    <input name="email" autocomplete="email" inputmode="email" maxlength="254" placeholder={copy.email} aria-label={copy.email} />
-    <textarea name="content" maxlength="500" placeholder={copy.message} aria-label={copy.message} required></textarea>
-    <input class="guestbook-card__website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
-    <button type="submit" data-guestbook-submit>{copy.submit}</button>
-  </form>
 </section>
 
 <script is:inline>
@@ -43,8 +31,6 @@ const copy = {
     var list = root.querySelector('[data-guestbook-list]');
     var status = root.querySelector('[data-guestbook-status]');
     var more = root.querySelector('[data-guestbook-more]');
-    var form = root.querySelector('[data-guestbook-form]');
-    var submit = root.querySelector('[data-guestbook-submit]');
     var nextCursor = null;
     var loading = false;
 
@@ -90,14 +76,6 @@ const copy = {
       else list.innerHTML = html;
     }
 
-    function errorMessage(code) {
-      if (code === 'invalid_input') return copy.errorInvalid;
-      if (code === 'duplicate') return copy.errorDuplicate;
-      if (code === 'blocked') return copy.errorBlocked;
-      if (code === 'rate_limited') return copy.errorRateLimited;
-      return copy.errorServer;
-    }
-
     function loadEntries(append) {
       if (loading) return;
       loading = true;
@@ -121,51 +99,6 @@ const copy = {
     }
 
     if (more) more.addEventListener('click', function() { loadEntries(true); });
-
-    if (form) {
-      form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        var formData = new FormData(form);
-        var payload = {
-          nickname: String(formData.get('nickname') || ''),
-          email: String(formData.get('email') || ''),
-          content: String(formData.get('content') || ''),
-          website: String(formData.get('website') || '')
-        };
-        if (submit) {
-          submit.disabled = true;
-          submit.textContent = copy.submitting || 'Submitting…';
-        }
-        setStatus('');
-        fetch('/api/guestbook/submit', {
-          method: 'POST',
-          credentials: 'omit',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify(payload)
-        })
-          .then(function(response) {
-            return response.json().catch(function() { return {}; }).then(function(data) {
-              if (!response.ok || !data.ok) throw data;
-              return data;
-            });
-          })
-          .then(function(data) {
-            form.reset();
-            if (data.entry) renderEntries([data.entry], false);
-            nextCursor = null;
-            if (more) more.hidden = true;
-            setStatus(copy.success || 'Posted.', 'success');
-            loadEntries(false);
-          })
-          .catch(function(error) { setStatus(errorMessage(error && error.code), 'error'); })
-          .finally(function() {
-            if (submit) {
-              submit.disabled = false;
-              submit.textContent = copy.submit || 'Submit';
-            }
-          });
-      });
-    }
 
     loadEntries(false);
   }

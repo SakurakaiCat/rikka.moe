@@ -2833,6 +2833,18 @@ body.akari-drawer-open {
   gap: 1rem;
 }
 
+.guestbook-card__head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.guestbook-card__head p {
+  margin: 6px 0 0;
+  color: var(--akari-muted);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
 .guestbook-card__status {
   padding: 0.85rem 1rem;
   border: 1px dashed rgba(var(--akari-ink-rgb) / 0.12);

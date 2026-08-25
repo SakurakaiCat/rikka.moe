@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Comments from '../../../components/Comments.astro';
 import Guestbook from '../../../components/Guestbook.astro';
-import { languageOptions, LOCALES, pageUrl, resolveLocale } from '../../../lib/content';
+import { aboutPath, languageOptions, LOCALES, pageUrl, resolveLocale } from '../../../lib/content';
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages', (entry) => !entry.data.is_locale_selector);
@@ -21,12 +21,17 @@ const { Content } = await render(page);
 const allPages = await getCollection('pages');
 const currentUrl = pageUrl(page);
 const options = languageOptions(currentUrl, locale, page.data.translation_key, allPages);
+const isGuestbook = page.data.layout === 'guestbook' || currentUrl.includes('/guestbook/');
+const isAbout = page.data.layout === 'about';
+// 留言板已与关于页评论区合并:统一使用关于页的 Twikoo 评论串(path 不变以保留全部评论)
+const commentsPath = isGuestbook ? aboutPath(locale) : currentUrl;
 ---
 <BaseLayout title={page.data.title || 'Akari'} description={page.data.description} locale={locale} canonicalPath={currentUrl} indexing={page.data.indexing !== false} languageOptions={options}>
   <section class="content-page glass-card">
     <h1>{page.data.title}</h1>
     <Content />
-    {(page.data.layout === 'guestbook' || currentUrl.includes('/guestbook/')) && <Guestbook locale={locale} />}
-    {page.data.comment !== false && <Comments locale={locale} path={currentUrl} />}
+    {isGuestbook && <Guestbook locale={locale} />}
+    {isGuestbook && <Comments locale={locale} path={commentsPath} />}
+    {!isGuestbook && !isAbout && page.data.comment !== false && <Comments locale={locale} path={commentsPath} />}
   </section>
 </BaseLayout>
