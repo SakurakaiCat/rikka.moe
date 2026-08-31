@@ -103,6 +103,12 @@ document.addEventListener('click', (event) => {
   const target = event.target;
   if (!(target instanceof Element)) return;
 
+  if (target.closest('[data-banner-dismiss]')) {
+    try { localStorage.setItem('akari_luck_banner_dismissed', '1'); } catch {}
+    document.documentElement.classList.remove('akari-banner-visible');
+    return;
+  }
+
   if (target.closest('.appbar-menu-button')) {
     const drawer = document.getElementById('akari-sidebar');
     setDrawerOpen(!(drawer && drawer.classList.contains('akari-sidebar--open')));

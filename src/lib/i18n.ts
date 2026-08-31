@@ -58,6 +58,17 @@ export const t = {
     migration: { 'zh-CN': '本博客已换新颜，迁移到 Astro 框架！', 'zh-TW': '本部落格已換新顏，遷移到 Astro 框架！', en: 'This blog has a new look and now runs on Astro!', ja: 'このブログは新しい姿になり、Astro に移行しました！' },
     personal: { 'zh-CN': '个人', 'zh-TW': '個人', en: 'Personal', ja: 'Personal' },
   },
+  banner: {
+    badge: { 'zh-CN': '新', 'zh-TW': '新', en: 'New', ja: '新着' },
+    message: {
+      'zh-CN': '我在开发的 Akari 在线学习软件已开放预览，欢迎提前体验',
+      'zh-TW': '我開發的 Akari 線上學習軟體已開放預覽，歡迎提前體驗',
+      en: 'Akari, the online learning app I am building, is now in public preview',
+      ja: '開発中のオンライン学習ソフト「Akari」のプレビュー版を公開中です',
+    },
+    cta: { 'zh-CN': '去试试', 'zh-TW': '去試試', en: 'Try the preview', ja: 'プレビューを見る' },
+    dismiss: { 'zh-CN': '关闭横幅', 'zh-TW': '關閉橫幅', en: 'Dismiss banner', ja: 'バナーを閉じる' },
+  },
   footer: {
     siteVisitors: { 'zh-CN': '站点总访客数：', 'zh-TW': '站點總訪客數：', en: 'Total visitors: ', ja: '合計訪問者数：' },
     siteViews: { 'zh-CN': '站点总访问量：', 'zh-TW': '站點總瀏覽量：', en: 'Total page views: ', ja: '合計ページビュー：' },

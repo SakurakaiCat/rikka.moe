@@ -1,0 +1,23 @@
+---
+import type { Locale } from '../lib/content';
+import { label } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+<div class="akari-banner" role="region" aria-label={label('banner', 'message', locale)}>
+  <div class="akari-banner__inner">
+    <span class="akari-banner__badge">{label('banner', 'badge', locale)}</span>
+    <p class="akari-banner__text">{label('banner', 'message', locale)}</p>
+    <a class="akari-banner__cta" href="https://luck.moe" target="_blank" rel="noopener noreferrer">
+      {label('banner', 'cta', locale)}
+      <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+    </a>
+    <button class="akari-banner__close" type="button" data-banner-dismiss aria-label={label('banner', 'dismiss', locale)}>
+      <i class="ph ph-x" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>

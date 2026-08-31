@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import AppBar from '../components/AppBar.astro';
+import AnnounceBanner from '../components/AnnounceBanner.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Footer from '../components/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
@@ -89,6 +90,19 @@ const localeRoutingConfig = {
         document.documentElement.classList.add('mdui-theme-dark');
       }
     })();
+  </script>
+  <script is:inline>
+  // Restore banner visibility before first paint and after every view-transition swap
+  // (Astro swaps <html> attributes on client-side navigation, wiping runtime classes).
+  (function() {
+    function restoreBanner() {
+      var dismissed = false;
+      try { dismissed = localStorage.getItem('akari_luck_banner_dismissed') === '1'; } catch (e) {}
+      document.documentElement.classList.toggle('akari-banner-visible', !dismissed);
+    }
+    restoreBanner();
+    document.addEventListener('astro:after-swap', restoreBanner);
+  })();
   </script>
     <meta name="robots" content={indexing ? 'index, follow' : 'noindex, nofollow'} />
     <meta name="author" content="Akari / 篠崎香澄" />
@@ -194,6 +208,7 @@ const localeRoutingConfig = {
       document.addEventListener('astro:page-load', createSnow);
     })();
     </script>
+    <AnnounceBanner locale={locale} />
     <AppBar locale={locale} title={title || siteTitle} languageOptions={languageOptions} />
     <Sidebar locale={locale} />
     <main class="main" transition:animate={akariSlide}>
