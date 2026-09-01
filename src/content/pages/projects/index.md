@@ -71,10 +71,9 @@ comment: false
 <article class="akari-books-card">
 <p class="akari-books-kicker">Book</p>
 <h2>中学数学之旅</h2>
-<p>从高中三年数学笔记整理而来的书稿，现已搬到独立书籍站 b.rikka.moe；本站书籍页保留为简介与归档入口。</p>
+<p>从高中三年数学笔记整理而来的书稿，现已搬至独立书籍站 b.rikka.moe。</p>
 <div class="akari-books-actions">
 <a class="akari-button akari-button--filled" href="https://b.rikka.moe" target="_blank" rel="noopener">打开 b.rikka.moe</a>
-<a class="akari-button" href="/books/">本站简介页</a>
 </div>
 </article>
 </section>

@@ -4,16 +4,14 @@ import { categorySlugForKey, label } from '../lib/i18n';
 
 const { locale } = Astro.props as { locale: Locale };
 const local = (path: string) => `/${locale.lang_path}${path}`;
-const bookHref = locale.lang === 'zh-CN' ? '/books/' : local('/books/');
 const pathname = Astro.url.pathname;
-const isBooksCurrent = pathname.startsWith('/books/') || pathname.startsWith(`/${locale.lang_path}/books/`);
 const navItems = [
   { label: label('common', 'home', locale), href: `/${locale.lang_path}/`, icon: 'house' },
   { label: label('common', 'archive', locale), href: local('/archives/'), icon: 'article' },
   { label: label('common', 'categories', locale), href: local(`/categories/${categorySlugForKey('articles', locale)}/`), icon: 'folders' },
   { label: label('common', 'topics', locale), href: local('/topics/'), icon: 'hash', current: pathname.startsWith(`/${locale.lang_path}/topics/`) },
   { label: label('common', 'about', locale), href: local('/about/'), icon: 'user' },
-  { label: label('common', 'books', locale), href: bookHref, icon: 'book-open-text', current: isBooksCurrent },
+  { label: label('common', 'books', locale), href: 'https://books.rikka.moe', icon: 'book-open-text', external: true },
   { label: label('common', 'projects', locale), href: '/projects/', icon: 'briefcase', current: pathname.startsWith('/projects/') },
   { label: label('common', 'guestbook', locale), href: local('/guestbook/'), icon: 'chats-circle' },
   { label: label('category', 'moments', locale), href: local(`/categories/${categorySlugForKey('moments', locale)}/`), icon: 'chat-circle-dots', current: pathname.startsWith(`/${locale.lang_path}/categories/`) && pathname.includes(encodeURIComponent(categorySlugForKey('moments', locale))) },

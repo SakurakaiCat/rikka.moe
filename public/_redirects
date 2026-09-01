@@ -1,0 +1,13 @@
+# Books pages redirect to the standalone book site
+/books/ https://books.rikka.moe/ 301
+/books https://books.rikka.moe 301
+/books/* https://books.rikka.moe/:splat 301
+/zh-tw/books/ https://books.rikka.moe/ 301
+/zh-tw/books https://books.rikka.moe 301
+/zh-tw/books/* https://books.rikka.moe/:splat 301
+/en/books/ https://books.rikka.moe/ 301
+/en/books https://books.rikka.moe 301
+/en/books/* https://books.rikka.moe/:splat 301
+/ja/books/ https://books.rikka.moe/ 301
+/ja/books https://books.rikka.moe 301
+/ja/books/* https://books.rikka.moe/:splat 301

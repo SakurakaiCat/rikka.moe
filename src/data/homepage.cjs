@@ -413,8 +413,7 @@ const COPY = {
         description: '正在编写的数学内容系列，独立站点为 b.rikka.moe。',
         tags: ['数学', '笔记', '书籍站'],
         links: [
-          { label: 'b.rikka.moe', status: '运行中', description: '独立书籍站，承载《中学数学之旅》及后续多语言版本。', href: 'https://b.rikka.moe' },
-          { label: '本站简介页', status: '归档', description: '本站书籍页，保留为简介与下载备份入口。', href: '/books/' }
+          { label: 'b.rikka.moe', status: '运行中', description: '独立书籍站，承载《中学数学之旅》及后续多语言版本。', href: 'https://b.rikka.moe' }
         ]
       }
     ],
@@ -557,8 +556,7 @@ const COPY = {
         description: '正在編寫的數學內容系列，獨立站點為 b.rikka.moe。',
         tags: ['數學', '筆記', '書籍站'],
         links: [
-          { label: 'b.rikka.moe', status: '運行中', description: '獨立書籍站，承載《中學數學之旅》及後續多語言版本。', href: 'https://b.rikka.moe' },
-          { label: '本站簡介頁', status: '歸檔', description: '本站書籍頁，保留為簡介與下載備份入口。', href: '/books/' }
+          { label: 'b.rikka.moe', status: '運行中', description: '獨立書籍站，承載《中學數學之旅》及後續多語言版本。', href: 'https://b.rikka.moe' }
         ]
       }
     ],
@@ -701,8 +699,7 @@ const COPY = {
         description: 'A math content series I am writing, with its own standalone site at b.rikka.moe.',
         tags: ['Math', 'Notes', 'Book site'],
         links: [
-          { label: 'b.rikka.moe', status: 'Live', description: 'Standalone book site for Secondary Math Journey and future translations.', href: 'https://b.rikka.moe' },
-          { label: 'On-site overview', status: 'Archived', description: 'The on-site book page kept as an overview and download backup.', href: '/books/' }
+          { label: 'b.rikka.moe', status: 'Live', description: 'Standalone book site for Secondary Math Journey and future translations.', href: 'https://b.rikka.moe' }
         ]
       }
     ],
@@ -845,8 +842,7 @@ const COPY = {
         description: 'A math content series I am writing, with its own standalone site at b.rikka.moe.',
         tags: ['Math', 'Notes', 'Book site'],
         links: [
-          { label: 'b.rikka.moe', status: 'Live', description: 'Standalone book site for Secondary Math Journey and future translations.', href: 'https://b.rikka.moe' },
-          { label: 'On-site overview', status: 'Archived', description: 'The on-site book page kept as an overview and download backup.', href: '/books/' }
+          { label: 'b.rikka.moe', status: 'Live', description: 'Standalone book site for Secondary Math Journey and future translations.', href: 'https://b.rikka.moe' }
         ]
       }
     ],

@@ -65,7 +65,6 @@ This project index collects the things I am building or keeping in archive: the 
 <p>A manuscript distilled from three years of high-school math notes, now moved to the standalone book site b.rikka.moe.</p>
 <div class="akari-books-actions">
 <a class="akari-button akari-button--filled" href="https://b.rikka.moe" target="_blank" rel="noopener">Open b.rikka.moe</a>
-<a class="akari-button" href="/en/books/">On-site overview</a>
 </div>
 </article>
 </section>
