@@ -1,323 +1,6 @@
 'use strict';
 
-const manifest = require('./music-gallery-manifest.json');
 const { resolveLocaleFromPage, archivePath } = require('./locales.cjs');
-
-const SECTION_ORDER = ['zutomayo', 'toho-bossa-nova', 'local-archive'];
-
-const SECTION_COPY = {
-  zutomayo: {
-    kicker: {
-      'zh-CN': 'Official Archive',
-      'zh-TW': 'Official Archive',
-      en: 'Official Archive',
-      ja: 'Official Archive'
-    },
-    title: {
-      'zh-CN': 'ZUTOMAYO 全部专辑',
-      'zh-TW': 'ZUTOMAYO 全部專輯',
-      en: 'ZUTOMAYO Albumography',
-      ja: 'ZUTOMAYO 全アルバム'
-    },
-    description: {
-      'zh-CN': '按 ZTMY SOUNDS 专辑页整理到 2026 年 3 月 25 日，收录 full album、mini album、EP 与特别专辑。',
-      'zh-TW': '按 ZTMY SOUNDS 專輯頁整理到 2026 年 3 月 25 日，收錄 full album、mini album、EP 與特別專輯。',
-      en: 'Mapped from the ZTMY SOUNDS album page through March 25, 2026, covering full albums, mini albums, EPs, and special album releases.',
-      ja: 'ZTMY SOUNDS のアルバム一覧をもとに、2026 年 3 月 25 日までの full album、mini album、EP、special album を整理しています。'
-    }
-  },
-  'toho-bossa-nova': {
-    kicker: {
-      'zh-CN': 'Series Archive',
-      'zh-TW': 'Series Archive',
-      en: 'Series Archive',
-      ja: 'Series Archive'
-    },
-    title: {
-      'zh-CN': 'TOHO BOSSA NOVA 1-14',
-      'zh-TW': 'TOHO BOSSA NOVA 1-14',
-      en: 'TOHO BOSSA NOVA 1-14',
-      ja: 'TOHO BOSSA NOVA 1-14'
-    },
-    description: {
-      'zh-CN': '按系列顺序整理到 TOHO BOSSA NOVA 14，发行时间覆盖 2012 年 5 月 27 日到 2025 年 5 月 5 日。',
-      'zh-TW': '按系列順序整理到 TOHO BOSSA NOVA 14，發行時間涵蓋 2012 年 5 月 27 日到 2025 年 5 月 5 日。',
-      en: 'Complete series coverage from TOHO BOSSA NOVA through TOHO BOSSA NOVA 14, spanning May 27, 2012 to May 5, 2025.',
-      ja: 'TOHO BOSSA NOVA から TOHO BOSSA NOVA 14 までをシリーズ順に整理した一覧で、2012 年 5 月 27 日から 2025 年 5 月 5 日までをカバーしています。'
-    }
-  },
-  'local-archive': {
-    kicker: {
-      'zh-CN': 'Personal Picks',
-      'zh-TW': 'Personal Picks',
-      en: 'Personal Picks',
-      ja: 'Personal Picks'
-    },
-    title: {
-      'zh-CN': '封面收藏',
-      'zh-TW': '封面收藏',
-      en: 'Cover Picks',
-      ja: 'ジャケットコレクション'
-    },
-    description: {
-      'zh-CN': '放几张会让我反复点开的封面，作为这个主页里更私人一点的小收藏。',
-      'zh-TW': '放幾張會讓我反覆點開的封面，作為這個主頁裡更私人一點的小收藏。',
-      en: 'A smaller shelf of covers I keep reopening, kept here as a quieter and more personal part of the homepage.',
-      ja: '何度も見返してしまうジャケットを、もう少し私的な小さなコレクションとしてここに置いています。'
-    }
-  }
-};
-
-const KIND_LABELS = {
-  'zh-CN': {
-    full_album: '录音室专辑',
-    mini_album: '迷你专辑',
-    ep: 'EP',
-    special_album: '特别专辑',
-    series_album: '系列专辑',
-    local_archive: '本地收藏'
-  },
-  'zh-TW': {
-    full_album: '錄音室專輯',
-    mini_album: '迷你專輯',
-    ep: 'EP',
-    special_album: '特別專輯',
-    series_album: '系列專輯',
-    local_archive: '本地收藏'
-  },
-  en: {
-    full_album: 'Full Album',
-    mini_album: 'Mini Album',
-    ep: 'EP',
-    special_album: 'Special Album',
-    series_album: 'Series Album',
-    local_archive: 'Local Archive'
-  },
-  ja: {
-    full_album: 'フルアルバム',
-    mini_album: 'ミニアルバム',
-    ep: 'EP',
-    special_album: '特別盤',
-    series_album: 'シリーズ作品',
-    local_archive: '個人保存'
-  }
-};
-
-const LOCAL_DETAIL_LABEL = {
-  'zh-CN': '个人收藏',
-  'zh-TW': '個人收藏',
-  en: 'Personal pick',
-  ja: '個人コレクション'
-};
-
-const COUNT_SUFFIX = {
-  'zh-CN': '张',
-  'zh-TW': '張',
-  en: 'titles',
-  ja: '枚'
-};
-
-const COVER_ALT_SUFFIX = {
-  'zh-CN': '封面',
-  'zh-TW': '封面',
-  en: 'cover art',
-  ja: 'ジャケット'
-};
-
-const DOMAIN_NOTES = {
-  'zh-CN': {
-    title: '域名小记',
-    intro: '以后大概只会认真续费 rikka.moe 和 luck.moe。其他多半是一时兴起买下来的。',
-    groups: [
-      {
-        title: '会继续续费',
-        items: [
-          {
-            name: 'rikka.moe',
-            status: '会续费',
-            note: '个人主页和主入口。rikka 来自《中二病也要谈恋爱！》的女主角小鸟游六花。',
-            href: 'https://rikka.moe',
-            action: '打开',
-            whois: '注册日期: 2025-03-09\n到期日期: 2028-03-09\n注册商: Porkbun\nDNS: nena.ns.cloudflare.com / harvey.ns.cloudflare.com'
-          },
-          {
-            name: 'luck.moe',
-            status: '会续费',
-            note: '个人收藏的短域名，暂无用途。',
-            href: 'https://luck.moe',
-            action: '打开',
-            whois: '注册日期: 2024-05-11\n到期日期: 2027-05-11\n注册商: Porkbun\nDNS: cruz.ns.cloudflare.com / memphis.ns.cloudflare.com'
-          }
-        ]
-      },
-      {
-        title: '确定不续',
-        items: [
-          {
-            name: 'chronorise.com',
-            status: '不续费',
-            note: '产品相关入口，暂无实际产品。',
-            href: 'https://chronorise.com',
-            action: '打开',
-            whois: '注册日期: 2026-03-26\n到期日期: 2027-03-26\n注册商: Spaceship\nDNS: harvey.ns.cloudflare.com / nena.ns.cloudflare.com'
-          },
-          {
-            name: 'zutomayo.org',
-            status: '不续费',
-            note: '当时觉得好听买的，没有实际用途。',
-            href: 'https://zutomayo.org',
-            action: '打开',
-            whois: '注册日期: 2025-11-04\n到期日期: 2026-11-04\n注册商: Porkbun\nDNS: aaron.ns.cloudflare.com / faye.ns.cloudflare.com'
-          }
-        ]
-      }
-    ]
-  },
-  'zh-TW': {
-    title: '域名小記',
-    intro: '以後大概只會認真續費 rikka.moe 和 luck.moe。其他多半是一時興起買下來的。',
-    groups: [
-      {
-        title: '會繼續續費',
-        items: [
-          {
-            name: 'rikka.moe',
-            status: '會續費',
-            note: '個人主頁和主入口。rikka 來自《中二病也要談戀愛！》的女主角小鳥遊六花。',
-            href: 'https://rikka.moe',
-            action: '打開',
-            whois: '註冊日期: 2025-03-09\n到期日期: 2028-03-09\n註冊商: Porkbun\nDNS: nena.ns.cloudflare.com / harvey.ns.cloudflare.com'
-          },
-          {
-            name: 'luck.moe',
-            status: '會續費',
-            note: '個人收藏的短域名，暫無用途。',
-            href: 'https://luck.moe',
-            action: '打開',
-            whois: '註冊日期: 2024-05-11\n到期日期: 2027-05-11\n註冊商: Porkbun\nDNS: cruz.ns.cloudflare.com / memphis.ns.cloudflare.com'
-          }
-        ]
-      },
-      {
-        title: '確定不續',
-        items: [
-          {
-            name: 'chronorise.com',
-            status: '不續費',
-            note: '產品相關入口，暫無實際產品。',
-            href: 'https://chronorise.com',
-            action: '打開',
-            whois: '註冊日期: 2026-03-26\n到期日期: 2027-03-26\n註冊商: Spaceship\nDNS: harvey.ns.cloudflare.com / nena.ns.cloudflare.com'
-          },
-          {
-            name: 'zutomayo.org',
-            status: '不續費',
-            note: '當時覺得好聽買的，沒有實際用途。',
-            href: 'https://zutomayo.org',
-            action: '打開',
-            whois: '註冊日期: 2025-11-04\n到期日期: 2026-11-04\n註冊商: Porkbun\nDNS: aaron.ns.cloudflare.com / faye.ns.cloudflare.com'
-          }
-        ]
-      }
-    ]
-  },
-  en: {
-    title: 'Domain Notes',
-    intro: 'I will probably only keep renewing rikka.moe and luck.moe. Most of the others were impulse buys.',
-    groups: [
-      {
-        title: 'Keeping',
-        items: [
-          {
-            name: 'rikka.moe',
-            status: 'keep',
-            note: "Homepage and main entry. Rikka comes from Rikka Takanashi, the heroine of Love, Chunibyo & Other Delusions.",
-            href: 'https://rikka.moe',
-            action: 'Open',
-            whois: "Registered: 2025-03-09\nExpires: 2028-03-09\nRegistrar: Porkbun\nDNS: nena.ns.cloudflare.com / harvey.ns.cloudflare.com"
-          },
-          {
-            name: 'luck.moe',
-            status: 'keep',
-            note: 'A short domain kept for personal collection, no current use.',
-            href: 'https://luck.moe',
-            action: 'Open',
-            whois: "Registered: 2024-05-11\nExpires: 2027-05-11\nRegistrar: Porkbun\nDNS: cruz.ns.cloudflare.com / memphis.ns.cloudflare.com"
-          }
-        ]
-      },
-      {
-        title: 'Not renewing',
-        items: [
-          {
-            name: 'chronorise.com',
-            status: 'dropping',
-            note: 'Product-related entry, no actual product yet.',
-            href: 'https://chronorise.com',
-            action: 'Open',
-            whois: "Registered: 2026-03-26\nExpires: 2027-03-26\nRegistrar: Spaceship\nDNS: harvey.ns.cloudflare.com / nena.ns.cloudflare.com"
-          },
-          {
-            name: 'zutomayo.org',
-            status: 'dropping',
-            note: 'Bought because it sounded nice, no real use.',
-            href: 'https://zutomayo.org',
-            action: 'Open',
-            whois: "Registered: 2025-11-04\nExpires: 2026-11-04\nRegistrar: Porkbun\nDNS: aaron.ns.cloudflare.com / faye.ns.cloudflare.com"
-          }
-        ]
-      }
-    ]
-  },
-  ja: {
-    title: 'ドメインメモ',
-    intro: '今後はおそらく rikka.moe と luck.moe だけを更新するつもり。他はだいたい衝動買い。',
-    groups: [
-      {
-        title: '更新する',
-        items: [
-          {
-            name: 'rikka.moe',
-            status: '更新する',
-            note: '個人ホームページとメインエントランス。rikka は『中二病でも恋がしたい！』のヒロイン小鳥遊六花から。',
-            href: 'https://rikka.moe',
-            action: '開く',
-            whois: '登録日: 2025-03-09\n有効期限: 2028-03-09\nレジストラ: Porkbun\nDNS: nena.ns.cloudflare.com / harvey.ns.cloudflare.com'
-          },
-          {
-            name: 'luck.moe',
-            status: '更新する',
-            note: '個人コレクション用の短いドメイン、今のところ用途なし。',
-            href: 'https://luck.moe',
-            action: '開く',
-            whois: '登録日: 2024-05-11\n有効期限: 2027-05-11\nレジストラ: Porkbun\nDNS: cruz.ns.cloudflare.com / memphis.ns.cloudflare.com'
-          }
-        ]
-      },
-      {
-        title: '更新しない',
-        items: [
-          {
-            name: 'chronorise.com',
-            status: '更新しない',
-            note: '製品関連の入口、まだ実際の製品はなし。',
-            href: 'https://chronorise.com',
-            action: '開く',
-            whois: '登録日: 2026-03-26\n有効期限: 2027-03-26\nレジストラ: Spaceship\nDNS: harvey.ns.cloudflare.com / nena.ns.cloudflare.com'
-          },
-          {
-            name: 'zutomayo.org',
-            status: '更新しない',
-            note: '当時いいなと思って買ったが、特に用途なし。',
-            href: 'https://zutomayo.org',
-            action: '開く',
-            whois: '登録日: 2025-11-04\n有効期限: 2026-11-04\nレジストラ: Porkbun\nDNS: aaron.ns.cloudflare.com / faye.ns.cloudflare.com'
-          }
-        ]
-      }
-    ]
-  }
-};
 
 const COPY = {
   'zh-CN': {
@@ -331,27 +14,6 @@ const COPY = {
     githubCta: 'GitHub',
     aboutTitle: '关于我',
     aboutEyebrow: 'Profile',
-    galleryTitle: '相册',
-    galleryEyebrow: 'Music Archive',
-    gallerySourceLabel: '查看来源',
-    tabsEyebrow: 'Home',
-    tabsTitle: '更多',
-    tabsLabel: '首页内容分区',
-    placesTab: '去过的城市',
-    albumsTab: '相册',
-    coversTab: '封面',
-    domainsTab: '域名小记',
-    albumsToggleOpen: '展开相册',
-    albumsToggleClose: '收起相册',
-    coversToggleOpen: '展开封面',
-    coversToggleClose: '收起封面',
-    domainsToggleOpen: '展开域名小记',
-    domainsToggleClose: '收起域名小记',
-    placesEyebrow: 'Visited',
-    placesTitle: '去过的城市',
-    placesCount: '11 个城市',
-    feedTitle: '主页分区',
-    feedText: '长文、随想和相册在这里分开浏览。',
     commentsTitle: '最近评论',
     commentsSubtitle: '全博客评论区最新新增的留言。',
     commentsLoading: '正在加载评论……',
@@ -359,7 +21,6 @@ const COPY = {
     momentsTitle: '说说备份',
     momentsSubtitle: 'QQ 说说与动态的备份存档。',
     portraitAlt: '篠崎香澄头像',
-    cities: ['南宁', '北京', '天津', '石家庄', '广州', '秦皇岛', '大连', '长春', '上海', '苏州', '香港'],
     aboutTexts: [
       '我是筱崎Claire，知乎 ID 为“余命数”。今年 19 岁，现就读于大一，对计算机编程、数学以及经济学感兴趣。',
       '我对这方面的兴趣始于小学阶段，最开始的折腾我的三星 S3，刷CyanogenMod，并且学会了如何用 SuperSU 进行 root。初中时期，得益于 nirenr 大佬的 Androlua+ ，大大降低了 Android 开发的门槛，我也因此得以开发我的第一款 Android 软件，并由此学会了 Lua 语言。',
@@ -416,27 +77,6 @@ const COPY = {
     githubCta: 'GitHub',
     aboutTitle: '關於我',
     aboutEyebrow: 'Profile',
-    galleryTitle: '相冊',
-    galleryEyebrow: 'Music Archive',
-    gallerySourceLabel: '查看來源',
-    tabsEyebrow: 'Home',
-    tabsTitle: '更多',
-    tabsLabel: '首頁內容分區',
-    placesTab: '去過的城市',
-    albumsTab: '相冊',
-    coversTab: '封面',
-    domainsTab: '域名小記',
-    albumsToggleOpen: '展開相冊',
-    albumsToggleClose: '收起相冊',
-    coversToggleOpen: '展開封面',
-    coversToggleClose: '收起封面',
-    domainsToggleOpen: '展開域名小記',
-    domainsToggleClose: '收起域名小記',
-    placesEyebrow: 'Visited',
-    placesTitle: '去過的城市',
-    placesCount: '11 個城市',
-    feedTitle: '主頁分區',
-    feedText: '長文、隨想和相冊在這裡分開瀏覽。',
     commentsTitle: '最近評論',
     commentsSubtitle: '全博客評論區最新新增的留言。',
     commentsLoading: '正在載入評論……',
@@ -444,7 +84,6 @@ const COPY = {
     momentsTitle: '說說備份',
     momentsSubtitle: 'QQ 說說與動態的備份存檔。',
     portraitAlt: '篠崎香澄頭像',
-    cities: ['南寧', '北京', '天津', '石家莊', '廣州', '秦皇島', '大連', '長春', '上海', '蘇州', '香港'],
     aboutTexts: [
       '我是筱崎Claire，知乎 ID 為「余命數」。今年 19 歲，現就讀於大一，對電腦程式設計、數學以及經濟學感興趣。',
       '我對這方面的興趣始於小學階段，最開始折騰我的三星 S3，刷 CyanogenMod，並且學會了如何用 SuperSU 進行 root。初中時期，得益於 nirenr 大佬的 Androlua+，大大降低了 Android 開發的門檻，我也因此得以開發我的第一款 Android 軟體，並由此學會了 Lua 語言。',
@@ -501,27 +140,6 @@ const COPY = {
     githubCta: 'GitHub',
     aboutTitle: 'About',
     aboutEyebrow: 'Profile',
-    galleryTitle: 'Album',
-    galleryEyebrow: 'Music Archive',
-    gallerySourceLabel: 'Open source',
-    tabsEyebrow: 'Home',
-    tabsTitle: 'More',
-    tabsLabel: 'Homepage content sections',
-    placesTab: 'Visited Cities',
-    albumsTab: 'Albums',
-    coversTab: 'Covers',
-    domainsTab: 'Domain Notes',
-    albumsToggleOpen: 'Open albums',
-    albumsToggleClose: 'Close albums',
-    coversToggleOpen: 'Open covers',
-    coversToggleClose: 'Close covers',
-    domainsToggleOpen: 'Open domain notes',
-    domainsToggleClose: 'Close domain notes',
-    placesEyebrow: 'Visited',
-    placesTitle: 'Visited Cities',
-    placesCount: '11 cities',
-    feedTitle: 'Home sections',
-    feedText: 'Essays, thoughts, and gallery posts are separated here.',
     commentsTitle: 'Recent comments',
     commentsSubtitle: 'Newest comments from across the blog.',
     commentsLoading: 'Loading comments…',
@@ -529,7 +147,6 @@ const COPY = {
     momentsTitle: 'Moments',
     momentsSubtitle: 'Archived backups of my QQ moments and status posts.',
     portraitAlt: 'Kasumi Shinozaki portrait',
-    cities: ['Nanning', 'Beijing', 'Tianjin', 'Shijiazhuang', 'Guangzhou', 'Qinhuangdao', 'Dalian', 'Changchun', 'Shanghai', 'Suzhou', 'Hong Kong'],
     aboutTexts: [
       'I am Claire Shinozaki, known on Zhihu as "余命数". Currently a 19-year-old freshman, I have a profound interest in computer programming, mathematics, and economics.',
       'My passion for technology began in elementary school when I started tinkering with my Samsung S3, flashing CyanogenMod and learning to root via SuperSU. During middle school, thanks to Androlua+, the barrier to Android development was significantly lowered, allowing me to develop my first Android app and learn Lua.',
@@ -586,27 +203,6 @@ const COPY = {
     githubCta: 'GitHub',
     aboutTitle: '私について',
     aboutEyebrow: 'Profile',
-    galleryTitle: 'アルバム',
-    galleryEyebrow: 'Music Archive',
-    gallerySourceLabel: '参照元を開く',
-    tabsEyebrow: 'Home',
-    tabsTitle: 'その他',
-    tabsLabel: 'ホームのコンテンツ切り替え',
-    placesTab: '行った都市',
-    albumsTab: 'アルバム',
-    coversTab: 'ジャケット',
-    domainsTab: 'ドメインメモ',
-    albumsToggleOpen: 'アルバムを開く',
-    albumsToggleClose: 'アルバムを閉じる',
-    coversToggleOpen: 'ジャケットを開く',
-    coversToggleClose: 'ジャケットを閉じる',
-    domainsToggleOpen: 'ドメインメモを開く',
-    domainsToggleClose: 'ドメインメモを閉じる',
-    placesEyebrow: 'Visited',
-    placesTitle: '行った都市',
-    placesCount: '11 都市',
-    feedTitle: 'ホームセクション',
-    feedText: '記事、断章、ギャラリーをここで分けて読めます。',
     commentsTitle: '最近のコメント',
     commentsSubtitle: 'ブログ全体に届いた最新コメント。',
     commentsLoading: 'コメントを読み込み中…',
@@ -614,7 +210,6 @@ const COPY = {
     momentsTitle: 'モーメンツ',
     momentsSubtitle: 'QQ のモーメンツと投稿のバックアップ。',
     portraitAlt: '篠崎香澄のポートレート',
-    cities: ['南寧', '北京', '天津', '石家庄', '広州', '秦皇島', '大連', '長春', '上海', '蘇州', '香港'],
     aboutTexts: [
       'I am Claire Shinozaki, known on Zhihu as "余命数". Currently a 19-year-old freshman, I have a profound interest in computer programming, mathematics, and economics.',
       'My passion for technology began in elementary school when I started tinkering with my Samsung S3, flashing CyanogenMod and learning to root via SuperSU. During middle school, thanks to Androlua+, the barrier to Android development was significantly lowered, allowing me to develop my first Android app and learn Lua.',
@@ -666,63 +261,10 @@ function getSafeLang(lang) {
   return COPY[lang] ? lang : 'en';
 }
 
-function getSafeIntlLocale(lang) {
-  try {
-    new Intl.DateTimeFormat(lang);
-    return lang;
-  } catch {
-    return 'en';
-  }
-}
-
-function formatReleaseDate(releaseDate, lang) {
-  return new Intl.DateTimeFormat(getSafeIntlLocale(lang), {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    timeZone: 'UTC'
-  }).format(new Date(`${releaseDate}T00:00:00Z`));
-}
-
-function getGallerySections(lang) {
-  return SECTION_ORDER.map(sectionId => {
-    const albums = manifest.albums
-      .filter(album => album.sectionId === sectionId)
-      .sort((left, right) => right.sortOrder - left.sortOrder)
-      .map(album => ({
-        id: album.id,
-        artist: album.artist,
-        title: album.title,
-        coverSrc: album.coverPath,
-        coverAlt: `${album.title} · ${COVER_ALT_SUFFIX[lang]}`,
-        externalHref: album.externalHref,
-        kindLabel: KIND_LABELS[lang][album.kind],
-        detailLabel: album.releaseDate
-          ? `${formatReleaseDate(album.releaseDate, lang)} · ${KIND_LABELS[lang][album.kind]}`
-          : LOCAL_DETAIL_LABEL[lang]
-      }));
-    const sectionCopy = SECTION_COPY[sectionId];
-
-    return {
-      id: sectionId,
-      kicker: sectionCopy.kicker[lang],
-      title: sectionCopy.title[lang],
-      description: sectionCopy.description[lang],
-      countLabel: `${albums.length} ${COUNT_SUFFIX[lang]}`,
-      albums
-    };
-  });
-}
-
 function getHomepageModel(page) {
   const locale = resolveLocaleFromPage(page);
   const lang = getSafeLang(locale.lang);
   const copy = COPY[lang];
-  const gallerySections = getGallerySections(lang);
-  const albumSections = gallerySections.filter(section => section.id !== 'local-archive');
-  const coverSection = gallerySections.find(section => section.id === 'local-archive') || null;
-  const domainNotes = DOMAIN_NOTES[lang] || DOMAIN_NOTES.en;
-
   return {
     lang,
     hero: {
@@ -767,39 +309,6 @@ function getHomepageModel(page) {
       cards: copy.profileCards || [],
       closing: copy.personalIntroClosing
     } : null,
-    personal: {
-      places: {
-        eyebrow: copy.placesEyebrow,
-        title: copy.placesTitle,
-        countLabel: copy.placesCount,
-        cities: copy.cities
-      }
-    },
-    tabs: {
-      eyebrow: copy.tabsEyebrow,
-      title: copy.tabsTitle,
-      label: copy.tabsLabel,
-      places: copy.placesTab,
-      albums: copy.albumsTab,
-      covers: copy.coversTab,
-      domains: copy.domainsTab
-    },
-    gallery: {
-      eyebrow: copy.galleryEyebrow,
-      title: copy.galleryTitle,
-      sourceLabel: copy.gallerySourceLabel,
-      openLabel: copy.albumsToggleOpen,
-      closeLabel: copy.albumsToggleClose,
-      sections: albumSections,
-      covers: coverSection,
-      coversOpenLabel: copy.coversToggleOpen,
-      coversCloseLabel: copy.coversToggleClose
-    },
-    domains: {
-      ...domainNotes,
-      openLabel: copy.domainsToggleOpen,
-      closeLabel: copy.domainsToggleClose
-    },
     comments: {
       title: copy.commentsTitle,
       subtitle: copy.commentsSubtitle,
@@ -810,10 +319,6 @@ function getHomepageModel(page) {
       title: copy.momentsTitle,
       subtitle: copy.momentsSubtitle
     },
-    feed: {
-      title: copy.feedTitle,
-      text: copy.feedText
-    }
   };
 }
 

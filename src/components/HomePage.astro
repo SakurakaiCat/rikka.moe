@@ -262,58 +262,6 @@ const allTopicChips = collectTopicSummaries(posts);
   </div>
 </section>
 
-<section class="akari-info-mosaic" aria-labelledby="akari-info-tabs-title">
-  <header class="akari-info-tabs__header">
-    <small>{model.tabs.eyebrow}</small>
-    <h2 id="akari-info-tabs-title">{model.tabs.title}</h2>
-  </header>
-  <div class="akari-info-tabs__bar" role="tablist" aria-label={model.tabs.label}>
-          <a href="#akari-places-panel">{model.tabs.places}</a>
-          <a href="#akari-albums-panel">{model.tabs.albums}</a>
-          <a href="#akari-domains-panel">{model.tabs.domains}</a>
-        </div>
-        <div class="akari-info-panels akari-info-panels--mosaic" data-motion="fade-up-children">
-          <article id="akari-places-panel" class="akari-info-panel akari-span-2">
-            <h3>{model.personal.places.title}</h3>
-            <p>{model.personal.places.countLabel}</p>
-            <div class="chips">{model.personal.places.cities.map((city: string) => <span>{city}</span>)}</div>
-          </article>
-          <article id="akari-albums-panel" class="akari-info-panel akari-span-4">
-            <h3>{model.gallery.title}</h3>
-            <div class="akari-info-gallery__grid">{model.gallery.sections.flatMap((section: any) => section.albums.slice(0, 4)).map((album: any) => <a class="akari-info-album" href={album.externalHref || '#'} target="_blank" rel="noopener noreferrer"><img src={album.coverSrc} alt={album.coverAlt} loading="lazy" /><span>{album.artist}</span><strong>{album.title}</strong></a>)}</div>
-          </article>
-          <article id="akari-domains-panel" class="akari-info-panel akari-span-3">
-            <h3>{model.domains.title}</h3>
-            <p>{model.domains.intro}</p>
-            <details class="akari-info-domain__toggle" data-open={model.domains.openLabel} data-close={model.domains.closeLabel}>
-              <summary>{model.domains.openLabel}</summary>
-              {
-                model.domains.groups.map((group: any) => (
-                  <section class="akari-info-domain-group">
-                    <h4>{group.title}</h4>
-                    <div class="akari-info-domain__items">
-                      {group.items.map((item: any) => (
-                        <a class="akari-info-domain-item" href={item.href} target="_blank" rel="noopener noreferrer">
-                          <div class="akari-info-domain-item__top">
-                            <strong>{item.name}</strong>
-                            <span>{item.status}</span>
-                          </div>
-                          <p>{item.note}</p>
-                          {item.whois && <pre class="akari-info-domain-item__whois">{item.whois}</pre>}
-                          <small class="akari-info-domain-item__action">{item.action}</small>
-                        </a>
-                      ))}
-                    </div>
-                  </section>
-                ))
-              }
-            </details>
-          </article>
-
-    <section class="akari-feed-intro glass-card akari-info-mosaic__feed"><h2>{model.feed.title}</h2><p>{model.feed.text}</p></section>
-  </div>
-</section>
-
 {model.personalIntro && <section class="akari-personal-intro glass-card" data-motion="fade-up">
   <article>
     <header class="akari-personal-intro__header">
@@ -431,19 +379,6 @@ const allTopicChips = collectTopicSummaries(posts);
 
   initRecentComments();
   document.addEventListener('astro:page-load', initRecentComments);
-})();
-</script>
-<script is:inline>
-(function() {
-  var toggle = document.querySelector('.akari-info-domain__toggle');
-  if (!toggle) return;
-  var openLabel = toggle.dataset.open || 'Open';
-  var closeLabel = toggle.dataset.close || 'Close';
-  var summary = toggle.querySelector('summary');
-  if (!summary) return;
-  toggle.addEventListener('toggle', function() {
-    summary.textContent = toggle.open ? closeLabel : openLabel;
-  });
 })();
 </script>
 <script is:inline>

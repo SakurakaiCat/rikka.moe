@@ -98,7 +98,6 @@ html[data-font-locale='en'] .akari-appbar-title,
 html[data-font-locale='en'] .article-hero-kicker,
 html[data-font-locale='en'] .akari-hero-badge,
 html[data-font-locale='en'] .akari-section__head small,
-html[data-font-locale='en'] .akari-info-tabs__header small,
 html[data-font-locale='en'] .akari-sponsor-wall__eyebrow,
 html[data-font-locale='en'] .akari-books-kicker {
   font-family: var(--akari-font-display);
@@ -639,16 +638,13 @@ html.akari-banner-visible .akari-banner { display: flex; }
   padding-inline: 0;
 }
 
-.akari-info-tabs,
 .recent-comments-card,
-.akari-feed-intro,
 .akari-personal-intro,
 .archive-page,
 .content-page {
   padding: 28px;
 }
 
-.akari-info-tabs__header small,
 .akari-section__head small,
 .akari-personal-intro small {
   color: rgba(var(--akari-ink-rgb) / 0.50);
@@ -656,69 +652,20 @@ html.akari-banner-visible .akari-banner { display: flex; }
   letter-spacing: 0.02em;
 }
 
-.akari-info-tabs__header h2,
 .akari-section__head h2,
-.recent-comments-card h2,
-.akari-feed-intro h2 {
+.recent-comments-card h2 {
   margin: 0.25rem 0 0;
 }
 
-.akari-info-tabs__bar {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin: 18px 0;
-}
 
-.akari-info-tabs__bar a {
-  padding: 0.48rem 0.8rem;
-  border-radius: 999px;
-  background: rgba(var(--akari-ink-rgb) / 0.06);
-  color: var(--akari-text);
-  font-weight: 600;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
 
-.akari-info-tabs__bar a:hover {
-  background: rgba(var(--akari-ink-rgb) / 0.10);
-}
 
-.akari-info-tabs__bar a[aria-current="true"],
-.akari-info-tabs__bar a:target {
-  border: 1px solid rgb(var(--akari-accent-rgb) / 0.40);
-  color: var(--akari-accent);
-  background: rgb(var(--akari-accent-rgb) / 0.10);
-}
 
-.akari-info-panels {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
 
-.akari-info-panel,
-.akari-info-domain__items section,
-.akari-info-domain-item {
-  display: block;
-  padding: 18px;
-  border: 1px solid rgba(var(--akari-ink-rgb) / 0.08);
-  border-radius: 14px;
-  background: rgba(var(--akari-ink-rgb) / 0.04);
-}
-
-.akari-info-domain__items {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.akari-info-domain__items p,
-.recent-comments-card p,
-.akari-feed-intro p {
+.recent-comments-card p {
   color: var(--akari-muted);
 }
 
-.akari-info-domain__items span,
 .akari-section summary > span:last-child {
   padding: 0.22rem 0.55rem;
   border-radius: 999px;
@@ -728,76 +675,13 @@ html.akari-banner-visible .akari-banner { display: flex; }
   font-weight: 600;
 }
 
-.akari-info-domain-group {
-  margin-bottom: 18px;
-}
 
-.akari-info-domain-group h4 {
-  margin: 0 0 8px 0;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--akari-muted);
-}
 
-.akari-info-domain-item {
-  text-decoration: none;
-  color: inherit;
-  position: relative;
-}
 
-.akari-info-domain-item:hover {
-  border-color: rgb(var(--akari-accent-rgb) / 0.18);
-}
 
-.akari-info-domain-item__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-}
 
-.akari-info-domain-item__action {
-  display: inline-flex;
-  margin-top: 6px;
-  color: var(--akari-accent);
-  font-size: 0.75rem;
-  font-weight: 500;
-}
 
-.akari-info-domain-item__whois {
-  margin: 6px 0 0 0;
-  padding: 6px 8px;
-  font-size: 0.72rem;
-  color: var(--akari-muted);
-  background: rgba(var(--akari-ink-rgb) / 0.03);
-  border-radius: 6px;
-  white-space: pre-wrap;
-  line-height: 1.5;
-}
 
-.akari-info-gallery__grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.akari-info-album {
-  display: grid;
-  gap: 6px;
-  color: inherit;
-}
-
-.akari-info-album img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: 14px;
-}
-
-.akari-info-album span {
-  color: var(--akari-muted);
-  font-size: 0.82rem;
-}
 
 .recent-comments-card__head {
   display: flex;
@@ -1933,9 +1817,6 @@ html.akari-banner-visible .akari-banner { display: flex; }
     font-size: 0.85rem;
   }
 
-  .akari-info-panels,
-  .akari-info-domain__items,
-  .akari-info-gallery__grid,
   .post-grid,
   .post-grid--compact,
   .locale-chooser__grid,
@@ -4383,57 +4264,6 @@ body.akari-drawer-open {
   }
 }
 
-.akari-info-mosaic {
-  margin-top: 24px;
-}
-
-.akari-info-mosaic .akari-info-tabs__bar {
-  margin-top: 14px;
-}
-
-.akari-info-panels--mosaic {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 20px;
-  margin-top: 16px;
-}
-
-.akari-info-panels--mosaic .akari-info-panel {
-  background: rgba(var(--akari-shadow-rgb) / 0.22);
-  border: 1px solid var(--akari-glass-border);
-  backdrop-filter: blur(40px) saturate(180%);
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
-  box-shadow: var(--akari-shadow-card);
-  transition: transform 0.18s ease, border-color 0.18s ease;
-}
-
-.akari-info-panels--mosaic .akari-info-panel:hover {
-  transform: translateY(-2px);
-  border-color: rgba(var(--akari-accent-rgb) / 0.35);
-}
-
-.akari-info-panels--mosaic .akari-span-2 {
-  grid-column: span 2;
-}
-
-.akari-info-panels--mosaic .akari-span-3 {
-  grid-column: span 3;
-}
-
-.akari-info-panels--mosaic .akari-span-4 {
-  grid-column: span 4;
-}
-
-.akari-info-panels--mosaic .akari-info-gallery__grid {
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-}
-
-.akari-info-mosaic__feed {
-  grid-column: span 3;
-  display: grid;
-  gap: 8px;
-  align-content: start;
-}
-
 .recent-comments-card {
   display: flex;
   flex-direction: column;
@@ -4442,32 +4272,6 @@ body.akari-drawer-open {
 .recent-comments-card .recent-comments-card__list {
   flex: 1;
   overflow-y: auto;
-}
-
-@media (max-width: 1024px) {
-  .akari-info-panels--mosaic {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .akari-info-panels--mosaic .akari-span-3,
-  .akari-info-panels--mosaic .akari-span-4,
-  .akari-info-mosaic__feed {
-    grid-column: 1 / -1;
-  }
-
-  .akari-info-panels--mosaic .akari-span-2 {
-    grid-column: auto;
-  }
-}
-
-@media (max-width: 720px) {
-  .akari-info-panels--mosaic {
-    grid-template-columns: 1fr;
-  }
-
-  .akari-info-panels--mosaic .akari-span-2 {
-    grid-column: 1 / -1;
-  }
 }
 
 /* 随想 + 侧栏卡片拼盘 */
