@@ -335,23 +335,8 @@ const COPY = {
     galleryEyebrow: 'Music Archive',
     gallerySourceLabel: '查看来源',
     tabsEyebrow: 'Home',
-    tabsTitle: '站点导航',
+    tabsTitle: '更多',
     tabsLabel: '首页内容分区',
-    navTab: '站点导航',
-    navTitle: '当前站点：我的个人博客 rikka.moe',
-    navSubtitle: '请选择你要前往的目的地',
-    navOpenLabel: '前往',
-    navStations: [
-      { number: '1', code: 'k.rikka.moe', name: '服务器探针', description: '查看我服务器的实时状态、负载与可用性。', href: 'https://k.rikka.moe' },
-      { number: '2', code: 'b.rikka.moe', name: '书籍项目站', description: '我的独立书籍站，承载《中学数学之旅》等长篇内容。', href: 'https://b.rikka.moe' },
-      { number: '3', code: 'reader.rikka.moe', name: '在线阅读器', description: '在线阅读我的书籍（自动转换格式）。', href: 'https://reader.rikka.moe' },
-      { number: '4', code: 'next.rikka.moe', name: '在线学习工具箱', description: '我的在线学习工具箱产品本体。', href: 'https://next.rikka.moe' },
-      { number: '5', code: 'product.rikka.moe', name: '工具箱落地页', description: '在线学习工具箱的官方落地页（chronorise.com）。', href: 'https://product.rikka.moe' },
-      { number: '6', code: 'archive.rikka.moe', name: '旧版工具箱归档', description: '废弃的在线学习工作台 Flutter 版本，留作归档。', href: 'http://archive.rikka.moe/' },
-      { number: '7', code: 'rikka.moe', name: '继续看博客', description: '了解我的更多——继续在博客里阅读文章和随想。', href: '#akari-blog-feed' }
-    ],
-    nowTab: '最近',
-    projectsTab: '作品',
     placesTab: '去过的城市',
     albumsTab: '相册',
     coversTab: '封面',
@@ -362,15 +347,9 @@ const COPY = {
     coversToggleClose: '收起封面',
     domainsToggleOpen: '展开域名小记',
     domainsToggleClose: '收起域名小记',
-    nowEyebrow: 'Now',
-    nowTitle: '最近在做',
-    projectsEyebrow: 'Works',
-    projectsTitle: '作品',
     placesEyebrow: 'Visited',
     placesTitle: '去过的城市',
     placesCount: '11 个城市',
-    projectOpenLabel: '打开',
-    unpublishedLabel: '暂未公开',
     feedTitle: '主页分区',
     feedText: '长文、随想和相册在这里分开浏览。',
     commentsTitle: '最近评论',
@@ -380,43 +359,6 @@ const COPY = {
     momentsTitle: '说说备份',
     momentsSubtitle: 'QQ 说说与动态的备份存档。',
     portraitAlt: '篠崎香澄头像',
-    nowItems: [
-      { status: '开发中', text: '继续开发 Akari 的 Web 版本。' },
-      { status: '维护中', text: '维护 b.rikka.moe 独立书籍站，整理《中学数学之旅》。' },
-      { status: '搭建中', text: '在 next.rikka.moe 上搭建在线学习工具箱。' },
-      { status: '整理中', text: '整理旧版 Flutter 实现。' },
-      { status: '记录', text: '偶尔写一些项目记录和随笔。' }
-    ],
-    projects: [
-      {
-        title: 'Akari',
-        status: '开发中',
-        description: '一个仍在开发中的学习工具。',
-        tags: ['Web', 'Flutter', '学习'],
-        links: [
-          { label: '旧版 Flutter 实现', status: '归档', description: '早期实现，保留为归档版本。', href: 'https://archive.rikka.moe' },
-          { label: '新版 Web 程序', status: '开发中', description: '正在开发的 Web 版本。', href: 'https://web.chronorise.com' }
-        ]
-      },
-      {
-        title: '在线学习工具箱',
-        status: '搭建中',
-        description: '部署在 next.rikka.moe 的在线学习工具集合，做一些轻量、可组合的小工具。',
-        tags: ['Web', '学习', '工具'],
-        links: [
-          { label: 'next.rikka.moe', status: '搭建中', description: '在线学习工具箱主入口。', href: 'https://next.rikka.moe' }
-        ]
-      },
-      {
-        title: '数学之旅',
-        status: '编写中',
-        description: '正在编写的数学内容系列，独立站点为 b.rikka.moe。',
-        tags: ['数学', '笔记', '书籍站'],
-        links: [
-          { label: 'b.rikka.moe', status: '运行中', description: '独立书籍站，承载《中学数学之旅》及后续多语言版本。', href: 'https://b.rikka.moe' }
-        ]
-      }
-    ],
     cities: ['南宁', '北京', '天津', '石家庄', '广州', '秦皇岛', '大连', '长春', '上海', '苏州', '香港'],
     aboutTexts: [
       '我是筱崎Claire，知乎 ID 为“余命数”。今年 19 岁，现就读于大一，对计算机编程、数学以及经济学感兴趣。',
@@ -478,23 +420,8 @@ const COPY = {
     galleryEyebrow: 'Music Archive',
     gallerySourceLabel: '查看來源',
     tabsEyebrow: 'Home',
-    tabsTitle: '站點導航',
+    tabsTitle: '更多',
     tabsLabel: '首頁內容分區',
-    navTab: '站點導航',
-    navTitle: '當前站點：我的個人部落格 rikka.moe',
-    navSubtitle: '請選擇你要前往的目的地',
-    navOpenLabel: '前往',
-    navStations: [
-      { number: '1', code: 'k.rikka.moe', name: '伺服器探針', description: '查看我伺服器的即時狀態、負載與可用性。', href: 'https://k.rikka.moe' },
-      { number: '2', code: 'b.rikka.moe', name: '書籍專案站', description: '我的獨立書籍站，承載《中學數學之旅》等長篇內容。', href: 'https://b.rikka.moe' },
-      { number: '3', code: 'reader.rikka.moe', name: '線上閱讀器', description: '線上閱讀我的書籍（自動轉換格式）。', href: 'https://reader.rikka.moe' },
-      { number: '4', code: 'next.rikka.moe', name: '線上學習工具箱', description: '我的線上學習工具箱產品本體。', href: 'https://next.rikka.moe' },
-      { number: '5', code: 'product.rikka.moe', name: '工具箱落地頁', description: '線上學習工具箱的官方落地頁（chronorise.com）。', href: 'https://product.rikka.moe' },
-      { number: '6', code: 'archive.rikka.moe', name: '舊版工具箱歸檔', description: '已廢棄的線上學習工作台 Flutter 版本，留作歸檔。', href: 'http://archive.rikka.moe/' },
-      { number: '7', code: 'rikka.moe', name: '繼續看部落格', description: '了解我的更多——繼續在部落格裡閱讀文章和隨想。', href: '#akari-blog-feed' }
-    ],
-    nowTab: '最近',
-    projectsTab: '作品',
     placesTab: '去過的城市',
     albumsTab: '相冊',
     coversTab: '封面',
@@ -505,15 +432,9 @@ const COPY = {
     coversToggleClose: '收起封面',
     domainsToggleOpen: '展開域名小記',
     domainsToggleClose: '收起域名小記',
-    nowEyebrow: 'Now',
-    nowTitle: '最近在做',
-    projectsEyebrow: 'Works',
-    projectsTitle: '作品',
     placesEyebrow: 'Visited',
     placesTitle: '去過的城市',
     placesCount: '11 個城市',
-    projectOpenLabel: '打開',
-    unpublishedLabel: '暫未公開',
     feedTitle: '主頁分區',
     feedText: '長文、隨想和相冊在這裡分開瀏覽。',
     commentsTitle: '最近評論',
@@ -523,43 +444,6 @@ const COPY = {
     momentsTitle: '說說備份',
     momentsSubtitle: 'QQ 說說與動態的備份存檔。',
     portraitAlt: '篠崎香澄頭像',
-    nowItems: [
-      { status: '開發中', text: '繼續開發 Akari 的 Web 版本。' },
-      { status: '維護中', text: '維護 b.rikka.moe 獨立書籍站，整理《中學數學之旅》。' },
-      { status: '搭建中', text: '在 next.rikka.moe 上搭建線上學習工具箱。' },
-      { status: '整理中', text: '整理舊版 Flutter 實現。' },
-      { status: '記錄', text: '偶爾寫一些項目記錄和隨筆。' }
-    ],
-    projects: [
-      {
-        title: 'Akari',
-        status: '開發中',
-        description: '一個仍在開發中的學習工具。',
-        tags: ['Web', 'Flutter', '學習'],
-        links: [
-          { label: '舊版 Flutter 實現', status: '歸檔', description: '早期實現，保留為歸檔版本。', href: 'https://archive.rikka.moe' },
-          { label: '新版 Web 程式', status: '開發中', description: '正在開發的 Web 版本。', href: 'https://web.chronorise.com' }
-        ]
-      },
-      {
-        title: '線上學習工具箱',
-        status: '搭建中',
-        description: '部署在 next.rikka.moe 的線上學習工具集合，做一些輕量、可組合的小工具。',
-        tags: ['Web', '學習', '工具'],
-        links: [
-          { label: 'next.rikka.moe', status: '搭建中', description: '線上學習工具箱主入口。', href: 'https://next.rikka.moe' }
-        ]
-      },
-      {
-        title: '數學之旅',
-        status: '編寫中',
-        description: '正在編寫的數學內容系列，獨立站點為 b.rikka.moe。',
-        tags: ['數學', '筆記', '書籍站'],
-        links: [
-          { label: 'b.rikka.moe', status: '運行中', description: '獨立書籍站，承載《中學數學之旅》及後續多語言版本。', href: 'https://b.rikka.moe' }
-        ]
-      }
-    ],
     cities: ['南寧', '北京', '天津', '石家莊', '廣州', '秦皇島', '大連', '長春', '上海', '蘇州', '香港'],
     aboutTexts: [
       '我是筱崎Claire，知乎 ID 為「余命數」。今年 19 歲，現就讀於大一，對電腦程式設計、數學以及經濟學感興趣。',
@@ -621,23 +505,8 @@ const COPY = {
     galleryEyebrow: 'Music Archive',
     gallerySourceLabel: 'Open source',
     tabsEyebrow: 'Home',
-    tabsTitle: 'Site Navigation',
+    tabsTitle: 'More',
     tabsLabel: 'Homepage content sections',
-    navTab: 'Navigation',
-    navTitle: 'You are at: my personal blog rikka.moe',
-    navSubtitle: 'Pick the destination you would like to head to.',
-    navOpenLabel: 'Go',
-    navStations: [
-      { number: '1', code: 'k.rikka.moe', name: 'Server Probe', description: 'Live server status, load and uptime dashboard.', href: 'https://k.rikka.moe' },
-      { number: '2', code: 'b.rikka.moe', name: 'Book Site', description: 'My standalone book site hosting Secondary Math Journey and more.', href: 'https://b.rikka.moe' },
-      { number: '3', code: 'reader.rikka.moe', name: 'Online Reader', description: 'Read my books online with automatic format conversion.', href: 'https://reader.rikka.moe' },
-      { number: '4', code: 'next.rikka.moe', name: 'Study Toolbox', description: 'The online learning toolbox product itself.', href: 'https://next.rikka.moe' },
-      { number: '5', code: 'product.rikka.moe', name: 'Product Landing', description: 'Landing page for the study toolbox (chronorise.com).', href: 'https://product.rikka.moe' },
-      { number: '6', code: 'archive.rikka.moe', name: 'Legacy Flutter', description: 'Deprecated Flutter build of the study workbench, kept as an archive.', href: 'http://archive.rikka.moe/' },
-      { number: '7', code: 'rikka.moe', name: 'Keep Reading', description: 'Stay on the blog and dig into the essays and fragments below.', href: '#akari-blog-feed' }
-    ],
-    nowTab: 'Now',
-    projectsTab: 'Works',
     placesTab: 'Visited Cities',
     albumsTab: 'Albums',
     coversTab: 'Covers',
@@ -648,15 +517,9 @@ const COPY = {
     coversToggleClose: 'Close covers',
     domainsToggleOpen: 'Open domain notes',
     domainsToggleClose: 'Close domain notes',
-    nowEyebrow: 'Now',
-    nowTitle: 'Now',
-    projectsEyebrow: 'Works',
-    projectsTitle: 'Works',
     placesEyebrow: 'Visited',
     placesTitle: 'Visited Cities',
     placesCount: '11 cities',
-    projectOpenLabel: 'Open',
-    unpublishedLabel: 'Not public yet',
     feedTitle: 'Home sections',
     feedText: 'Essays, thoughts, and gallery posts are separated here.',
     commentsTitle: 'Recent comments',
@@ -666,43 +529,6 @@ const COPY = {
     momentsTitle: 'Moments',
     momentsSubtitle: 'Archived backups of my QQ moments and status posts.',
     portraitAlt: 'Kasumi Shinozaki portrait',
-    nowItems: [
-      { status: 'Building', text: 'Continuing the Web version of Akari.' },
-      { status: 'Maintaining', text: 'Maintaining b.rikka.moe, the standalone book site for Secondary Math Journey.' },
-      { status: 'Building', text: 'Building an online study toolbox on next.rikka.moe.' },
-      { status: 'Sorting', text: 'Cleaning up the old Flutter implementation.' },
-      { status: 'Notes', text: 'Sometimes writing project notes and small essays.' }
-    ],
-    projects: [
-      {
-        title: 'Akari',
-        status: 'Building',
-        description: 'A study tool still in progress.',
-        tags: ['Web', 'Flutter', 'Study'],
-        links: [
-          { label: 'Old Flutter build', status: 'Archived', description: 'Early version kept as an archive.', href: 'https://archive.rikka.moe' },
-          { label: 'New Web app', status: 'Building', description: 'The Web version currently in development.', href: 'https://web.chronorise.com' }
-        ]
-      },
-      {
-        title: 'Online Study Toolbox',
-        status: 'Building',
-        description: 'A growing collection of small, composable learning utilities hosted at next.rikka.moe.',
-        tags: ['Web', 'Study', 'Tools'],
-        links: [
-          { label: 'next.rikka.moe', status: 'Building', description: 'Main entry of the online study toolbox.', href: 'https://next.rikka.moe' }
-        ]
-      },
-      {
-        title: 'Math Journey',
-        status: 'Writing',
-        description: 'A math content series I am writing, with its own standalone site at b.rikka.moe.',
-        tags: ['Math', 'Notes', 'Book site'],
-        links: [
-          { label: 'b.rikka.moe', status: 'Live', description: 'Standalone book site for Secondary Math Journey and future translations.', href: 'https://b.rikka.moe' }
-        ]
-      }
-    ],
     cities: ['Nanning', 'Beijing', 'Tianjin', 'Shijiazhuang', 'Guangzhou', 'Qinhuangdao', 'Dalian', 'Changchun', 'Shanghai', 'Suzhou', 'Hong Kong'],
     aboutTexts: [
       'I am Claire Shinozaki, known on Zhihu as "余命数". Currently a 19-year-old freshman, I have a profound interest in computer programming, mathematics, and economics.',
@@ -764,23 +590,8 @@ const COPY = {
     galleryEyebrow: 'Music Archive',
     gallerySourceLabel: '参照元を開く',
     tabsEyebrow: 'Home',
-    tabsTitle: 'サイトナビ',
+    tabsTitle: 'その他',
     tabsLabel: 'ホームのコンテンツ切り替え',
-    navTab: 'サイトナビ',
-    navTitle: '現在地：私の個人ブログ rikka.moe',
-    navSubtitle: '行き先を選んでください。',
-    navOpenLabel: '移動',
-    navStations: [
-      { number: '1', code: 'k.rikka.moe', name: 'サーバープローブ', description: 'サーバーの稼働状況・負荷・可用性をリアルタイムで確認。', href: 'https://k.rikka.moe' },
-      { number: '2', code: 'b.rikka.moe', name: '書籍プロジェクト', description: '『中学数学の旅』などを掲載する独立した書籍サイト。', href: 'https://b.rikka.moe' },
-      { number: '3', code: 'reader.rikka.moe', name: 'オンラインリーダー', description: '私の書籍をオンラインで読む（自動フォーマット変換）。', href: 'https://reader.rikka.moe' },
-      { number: '4', code: 'next.rikka.moe', name: '学習ツールボックス', description: 'オンライン学習ツールボックス本体。', href: 'https://next.rikka.moe' },
-      { number: '5', code: 'product.rikka.moe', name: '製品ランディング', description: '学習ツールボックスの公式ランディング（chronorise.com）。', href: 'https://product.rikka.moe' },
-      { number: '6', code: 'archive.rikka.moe', name: '旧 Flutter 版', description: '廃止された学習ワークベンチの Flutter 版、アーカイブとして保存。', href: 'http://archive.rikka.moe/' },
-      { number: '7', code: 'rikka.moe', name: 'ブログを読む', description: 'このブログに残って、記事や断章を読み続けてください。', href: '#akari-blog-feed' }
-    ],
-    nowTab: '最近',
-    projectsTab: '作品',
     placesTab: '行った都市',
     albumsTab: 'アルバム',
     coversTab: 'ジャケット',
@@ -791,15 +602,9 @@ const COPY = {
     coversToggleClose: 'ジャケットを閉じる',
     domainsToggleOpen: 'ドメインメモを開く',
     domainsToggleClose: 'ドメインメモを閉じる',
-    nowEyebrow: 'Now',
-    nowTitle: '最近',
-    projectsEyebrow: 'Works',
-    projectsTitle: '作品',
     placesEyebrow: 'Visited',
     placesTitle: '行った都市',
     placesCount: '11 都市',
-    projectOpenLabel: '開く',
-    unpublishedLabel: '未公開',
     feedTitle: 'ホームセクション',
     feedText: '記事、断章、ギャラリーをここで分けて読めます。',
     commentsTitle: '最近のコメント',
@@ -809,43 +614,6 @@ const COPY = {
     momentsTitle: 'モーメンツ',
     momentsSubtitle: 'QQ のモーメンツと投稿のバックアップ。',
     portraitAlt: '篠崎香澄のポートレート',
-    nowItems: [
-      { status: 'Building', text: 'Continuing the Web version of Akari.' },
-      { status: 'Maintaining', text: 'Maintaining b.rikka.moe, the standalone book site for Secondary Math Journey.' },
-      { status: 'Building', text: 'Building an online study toolbox on next.rikka.moe.' },
-      { status: 'Sorting', text: 'Cleaning up the old Flutter implementation.' },
-      { status: 'Notes', text: 'Sometimes writing project notes and small essays.' }
-    ],
-    projects: [
-      {
-        title: 'Akari',
-        status: 'Building',
-        description: 'A study tool still in progress.',
-        tags: ['Web', 'Flutter', 'Study'],
-        links: [
-          { label: 'Old Flutter build', status: 'Archived', description: 'Early version kept as an archive.', href: 'https://archive.rikka.moe' },
-          { label: 'New Web app', status: 'Building', description: 'The Web version currently in development.', href: 'https://web.chronorise.com' }
-        ]
-      },
-      {
-        title: 'Online Study Toolbox',
-        status: 'Building',
-        description: 'A growing collection of small, composable learning utilities hosted at next.rikka.moe.',
-        tags: ['Web', 'Study', 'Tools'],
-        links: [
-          { label: 'next.rikka.moe', status: 'Building', description: 'Main entry of the online study toolbox.', href: 'https://next.rikka.moe' }
-        ]
-      },
-      {
-        title: 'Math Journey',
-        status: 'Writing',
-        description: 'A math content series I am writing, with its own standalone site at b.rikka.moe.',
-        tags: ['Math', 'Notes', 'Book site'],
-        links: [
-          { label: 'b.rikka.moe', status: 'Live', description: 'Standalone book site for Secondary Math Journey and future translations.', href: 'https://b.rikka.moe' }
-        ]
-      }
-    ],
     cities: ['南寧', '北京', '天津', '石家庄', '広州', '秦皇島', '大連', '長春', '上海', '蘇州', '香港'],
     aboutTexts: [
       'I am Claire Shinozaki, known on Zhihu as "余命数". Currently a 19-year-old freshman, I have a profound interest in computer programming, mathematics, and economics.',
@@ -1000,18 +768,6 @@ function getHomepageModel(page) {
       closing: copy.personalIntroClosing
     } : null,
     personal: {
-      now: {
-        eyebrow: copy.nowEyebrow,
-        title: copy.nowTitle,
-        items: copy.nowItems
-      },
-      projects: {
-        eyebrow: copy.projectsEyebrow,
-        title: copy.projectsTitle,
-        openLabel: copy.projectOpenLabel,
-        unpublishedLabel: copy.unpublishedLabel,
-        items: copy.projects
-      },
       places: {
         eyebrow: copy.placesEyebrow,
         title: copy.placesTitle,
@@ -1023,19 +779,10 @@ function getHomepageModel(page) {
       eyebrow: copy.tabsEyebrow,
       title: copy.tabsTitle,
       label: copy.tabsLabel,
-      nav: copy.navTab,
-      now: copy.nowTab,
-      projects: copy.projectsTab,
       places: copy.placesTab,
       albums: copy.albumsTab,
       covers: copy.coversTab,
       domains: copy.domainsTab
-    },
-    nav: {
-      title: copy.navTitle,
-      subtitle: copy.navSubtitle,
-      openLabel: copy.navOpenLabel,
-      stations: copy.navStations
     },
     gallery: {
       eyebrow: copy.galleryEyebrow,

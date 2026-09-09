@@ -697,8 +697,6 @@ html.akari-banner-visible .akari-banner { display: flex; }
 }
 
 .akari-info-panel,
-.mini-card,
-.station,
 .akari-info-domain__items section,
 .akari-info-domain-item {
   display: block;
@@ -708,55 +706,18 @@ html.akari-banner-visible .akari-banner { display: flex; }
   background: rgba(var(--akari-ink-rgb) / 0.04);
 }
 
-.akari-info-panel--wide {
-  grid-column: 1 / -1;
-}
-
-.akari-info-nav__grid,
-.akari-info-project__grid,
 .akari-info-domain__items {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
-.station {
-  color: inherit;
-}
-
-.station span,
-.station code,
-.station small {
-  display: block;
-  margin-top: 4px;
-}
-
-.station code,
-.station small,
-.akari-info-now__list p,
-.mini-card p,
 .akari-info-domain__items p,
 .recent-comments-card p,
 .akari-feed-intro p {
   color: var(--akari-muted);
 }
 
-.akari-info-now__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 10px;
-}
-
-.akari-info-now__list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.akari-info-now__list span,
-.mini-card header span,
 .akari-info-domain__items span,
 .akari-section summary > span:last-child {
   padding: 0.22rem 0.55rem;
@@ -812,20 +773,6 @@ html.akari-banner-visible .akari-banner { display: flex; }
   border-radius: 6px;
   white-space: pre-wrap;
   line-height: 1.5;
-}
-
-.mini-card header {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.mini-card em {
-  display: inline-flex;
-  margin: 4px 4px 0 0;
-  color: var(--akari-muted);
-  font-style: normal;
-  font-size: 0.82rem;
 }
 
 .akari-info-gallery__grid {
@@ -1987,8 +1934,6 @@ html.akari-banner-visible .akari-banner { display: flex; }
   }
 
   .akari-info-panels,
-  .akari-info-nav__grid,
-  .akari-info-project__grid,
   .akari-info-domain__items,
   .akari-info-gallery__grid,
   .post-grid,
@@ -4466,10 +4411,6 @@ body.akari-drawer-open {
   border-color: rgba(var(--akari-accent-rgb) / 0.35);
 }
 
-.akari-info-panels--mosaic .akari-info-panel--wide {
-  grid-column: span 6;
-}
-
 .akari-info-panels--mosaic .akari-span-2 {
   grid-column: span 2;
 }
@@ -4480,14 +4421,6 @@ body.akari-drawer-open {
 
 .akari-info-panels--mosaic .akari-span-4 {
   grid-column: span 4;
-}
-
-.akari-info-panels--mosaic .akari-info-nav__grid {
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-}
-
-.akari-info-panels--mosaic .akari-info-project__grid {
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
 }
 
 .akari-info-panels--mosaic .akari-info-gallery__grid {
@@ -4516,7 +4449,6 @@ body.akari-drawer-open {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .akari-info-panels--mosaic .akari-info-panel--wide,
   .akari-info-panels--mosaic .akari-span-3,
   .akari-info-panels--mosaic .akari-span-4,
   .akari-info-mosaic__feed {

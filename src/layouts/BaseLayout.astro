@@ -182,10 +182,16 @@ const localeRoutingConfig = {
     <div class="akari-snow" aria-hidden="true"></div>
     <script is:inline>
     (function() {
+      // 仅当访客本地时区处于冬季（12 月、1 月、2 月）时才启用下雪特效
+      function isLocalWinter() {
+        var month = new Date().getMonth();
+        return month === 11 || month === 0 || month === 1;
+      }
       function createSnow() {
         var container = document.querySelector('.akari-snow');
         if (!container) return;
         container.innerHTML = '';
+        if (!isLocalWinter()) return;
         var snowflakes = ['❄', '❅', '❆', '·', '•'];
         var colors = ['#ffffff', '#e0f7fa', '#d6c9ff', '#c5e1ff'];
         var count = 50;
